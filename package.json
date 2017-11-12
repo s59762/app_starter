@@ -5,6 +5,7 @@
     "@rails/webpacker": "^3.0.2",
     "bulma": "^0.6.1",
     "coffeescript": "1.12.7",
+    "expose-loader": "^0.7.3",
     "font-awesome": "^4.7.0",
     "node-sass": "^4.6.1",
     "rails-ujs": "^5.1.4",
@@ -12,7 +13,8 @@
     "turbolinks": "^5.0.3",
     "vue": "^2.5.3",
     "vue-loader": "^13.5.0",
-    "vue-template-compiler": "^2.5.3"
+    "vue-template-compiler": "^2.5.3",
+    "webpack-merge": "^4.1.1"
   },
   "devDependencies": {
     "webpack-dev-server": "^2.9.4"

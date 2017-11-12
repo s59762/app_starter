@@ -1,3 +1,3 @@
-import { Style } from "../src/application/css/application.css"
+import "../src/application/css/application.css"
 
 console.log('app')
