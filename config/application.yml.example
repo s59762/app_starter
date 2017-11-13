@@ -1,0 +1,24 @@
+app_domain:
+pg_username: oddesign
+pg_password: qwerasdf
+mailgun_user_name:
+mailgun_password:
+mailgun_api_key:
+
+staging:
+  SECRET_KEY_BASE:
+  app_domain:
+  pg_username:
+  pg_password:
+  mailgun_user_name:
+  mailgun_password:
+  mailgun_api_key:
+
+production:
+  SECRET_KEY_BASE:
+  app_domain:
+  pg_username:
+  pg_password:
+  mailgun_user_name:
+  mailgun_password:
+  mailgun_api_key:
