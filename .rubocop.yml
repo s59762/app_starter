@@ -1,0 +1,56 @@
+AllCops:
+  TargetRubyVersion: 2.4
+  Exclude:
+    - '**/*.slim'
+    - 'vendor/**/*'
+    - 'db/**/*'
+    - 'log/**/*'
+    - 'tmp/**/*'
+
+Lint/EndAlignment:
+  EnforcedStyleAlignWith: keyword
+
+Metrics/LineLength:
+  Enabled: false
+
+Metrics/AbcSize:
+  Enabled: false
+
+Metrics/MethodLength:
+  Enabled: false
+
+Layout/AlignArray:
+  Enabled: false
+
+Layout/AlignParameters:
+  EnforcedStyle: with_first_parameter
+
+Style/AsciiComments:
+  Enabled: false
+
+Layout/CaseIndentation:
+  EnforcedStyle: case
+
+Style/Documentation:
+  Enabled: false
+
+Layout/DotPosition:
+  EnforcedStyle: leading
+
+Style/Lambda:
+  Enabled: false
+
+Layout/MultilineOperationIndentation:
+  EnforcedStyle: indented
+
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: aligned
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Documentation:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false
