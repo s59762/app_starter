@@ -97,6 +97,9 @@ group :development do
 
   # page proformence monitor
   gem 'rack-mini-profiler', require: false
+
+  # foreman for multi-process management
+  gem 'foreman'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
