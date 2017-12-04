@@ -5,7 +5,6 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.4'
 # Use sqlite3 as the database for Active Record
@@ -50,7 +49,6 @@ group :development, :test do
   gem 'vcr'
   gem 'webmock'
 
-
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
   gem 'capybara-screenshot'
@@ -58,8 +56,8 @@ group :development, :test do
 
   # guard
   gem 'guard-livereload'
-  gem 'guard-rspec', require: false
   gem 'guard-pow'
+  gem 'guard-rspec', require: false
   gem 'terminal-notifier-guard'
 
   # factory bot + faker for test data
@@ -89,11 +87,11 @@ group :development do
   # Deploy tools
   gem 'capistrano'
   gem 'capistrano-bundler'
+  gem "capistrano-db-tasks", require: false
   gem 'capistrano-rails'
   gem 'capistrano-rbenv', github: 'capistrano/rbenv'
   gem 'capistrano-sidekiq'
   gem 'slackistrano'
-  gem "capistrano-db-tasks", require: false
 
   # page proformence monitor
   gem 'rack-mini-profiler', require: false
@@ -140,16 +138,16 @@ gem 'figaro'
 
 # for View components and cache
 gem 'cells'
-gem 'cells-slim'
 gem 'cells-rails'
+gem 'cells-slim'
 
 # file upload and image process
 gem 'carrierwave'
 gem 'mini_magick'
 
 # SEO
-gem 'meta-tags'
 gem 'favicon_maker'
+gem 'meta-tags'
 
 # job
 gem 'sidekiq'
