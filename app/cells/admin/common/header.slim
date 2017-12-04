@@ -1,0 +1,36 @@
+body
+  header.main-header
+    = link_to admin_root_path, class: 'logo' do
+      span.logo-mini
+        b> A
+        | S
+      span.logo-lg
+        b> APP
+        | Starter
+    /! Header Navbar: style can be found in header.less
+    nav.navbar.navbar-static-top role="navigation"
+      /! Navi Toggle
+      a.sidebar-toggle data-toggle="push-menu" href="#" role="button"
+        span.sr-only Toggle navigation
+      /! Navbar Right Menu
+      .navbar-custom-menu
+        ul.nav.navbar-nav
+          /! User Account: style can be found in dropdown.less
+          li.dropdown.user.user-menu
+            a.dropdown-toggle data-toggle="dropdown" href="#"
+              = user_avatar(current_admin)
+              span.hidden-xs= user_name(current_admin)
+            ul.dropdown-menu
+              /! User image
+              li.user-header
+                = user_avatar(current_admin, class: 'img-circle')
+                p
+                  = %(#{user_name(current_admin)} - #{user_level(current_admin)})
+              /! Menu Footer
+              li.user-footer
+                .pull-left
+                  = link_to t('.edit_profile'), '#', class: "btn btn-flat btn-default"
+                .pull-right
+                  = link_to destroy_admin_session_path, class: "btn btn-default btn-flat", method: :delete do
+                    i.fa.fa-sign-out
+                    = t('.sign_out')

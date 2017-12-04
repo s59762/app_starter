@@ -9,31 +9,10 @@ html
     /![if lt IE 7]
       | <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
     .wrapper
-      header.main-header
-        = link_to admin_root_path, class: 'logo' do
-          span.logo-mini
-            b> A
-            | S
-          span.logo-lg
-            b> App
-            | Starter
-        nav.navbar.navbar-static-top role="navigation"
-          /! Navi Toggle
-          a.sidebar-toggle data-toggle="push-menu" href="#" role="button"
-            span.sr-only Toggle navigation
-          /! Navbar Right Menu
-          .navbar-custom-menu
-            ul.nav.navbar-nav
+      = cell('admin/common').call(:header)
 
       .content-wrapper
-        aside.main-sidebar
-          section.sidebar
-            ul.sidebar-menu.tree data-widget="tree"
-              li.header Menu Example
-              li class=("active")
-                = link_to 'admin_root_path'
-                  i.fa.fa-dashboard
-                  span Dashboard
+        = cell('admin/common').call(:sidebar)
 
         .main-content-container
           = yield

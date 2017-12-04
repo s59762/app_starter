@@ -1,3 +1,6 @@
+# Admin UI 的 cells 都繼承這個 class。
+# include 所有需要用到的 modules
+# @abstract
 class Admin::ApplicationCell < Cell::ViewModel
   include ActionView::Helpers::CaptureHelper
   include ActionView::Helpers::FormHelper
@@ -9,10 +12,13 @@ class Admin::ApplicationCell < Cell::ViewModel
 
   private
 
+  # 回傳 actions i18n 翻譯
   def render_action_name
     t("actions.#{options[:action]}", model: options[:model].model_name.human)
   end
 
+  # 這是 cells gem issue 的 walkaround。解決 block 傳入 tag helper 時，block 中的 element 會被 escape 掉，直接輸出的問題。
+  #   詳細請見：https://github.com/trailblazer/cells-slim/issues/14
   def tag_builder
     super.tap { |builder| builder.class_eval { include Cell::Slim::Rails } }
   end
