@@ -6,6 +6,8 @@ const webpack = require('webpack')
 environment.plugins.set('Provide', new webpack.ProvidePlugin({
     Rails: 'rails-ujs',
     Turbolinks: 'turbolinks',
+    jQuery: 'jquery',
+    $: 'jquery',
     Vue: 'vue'
   })
 )
