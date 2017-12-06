@@ -36,7 +36,7 @@ gem 'jbuilder', '~> 2.5'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'pry-remote'
 
   # RSpec
   gem 'rspec-rails'
@@ -61,20 +61,23 @@ group :development, :test do
   gem 'terminal-notifier-guard'
 
   # factory bot + faker for test data
-  gem 'factory_bot_rails'
   gem 'database_cleaner'
+  gem 'factory_bot_rails'
   gem 'faker'
 end
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
-  gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
+  gem 'web-console', '>= 3.3.0'
 
   # add schema comments in related files
   gem 'annotate'
 
+  # better error page
   gem 'better_errors'
+  gem "binding_of_caller"
+
   # support for chrome rails panel
   gem 'meta_request'
 
@@ -140,6 +143,10 @@ gem 'figaro'
 gem 'cells'
 gem 'cells-rails'
 gem 'cells-slim'
+
+# for Form Object
+gem 'reform'
+gem 'reform-rails'
 
 # file upload and image process
 gem 'carrierwave'
