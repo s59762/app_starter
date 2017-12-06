@@ -1,6 +1,8 @@
 #!/usr/bin/env ruby
 require 'pathname'
 require 'fileutils'
+require 'io/console'
+
 include FileUtils
 
 # path to your application root.
@@ -38,16 +40,23 @@ chdir APP_ROOT do
     system! 'ln shared/config/* config/'
   end
 
-  puts "\n== remove .git =="
-  system! 'rm -rf .git'
+  puts "\nRemove git history and re-init project? (y/n)"
+  input = STDIN.getch
+  if input == 'y'
+    puts "\n== remove .git =="
+    system! 'rm -rf .git'
 
-  puts "\n== init git =="
-  system! 'git init'
-  system! 'git add .'
-  system! 'git commit -m ":tada: init commit"'
+    puts "\n== init git =="
+    system! 'git init'
+    system! 'git add .'
+    system! 'git commit -m ":tada: init commit"'
+  else
+    puts "\n== Ok, git history will not delete =="
+  end
 
   puts "\n== Preparing database =="
   system! 'docker-compose up -d'
+  puts "\n== Please wait for db setup =="
   sleep 10
   system! 'bin/rails db:setup'
   system! 'docker-compose down'
@@ -57,4 +66,29 @@ chdir APP_ROOT do
 
   puts "\n== Restarting application server =="
   system! 'bin/rails restart'
+
+  puts %(\n\n\n
+==============================================================
+=                              dddddddd            dddddddd  =
+=                              d::::::d            d::::::d  =
+=                              d::::::d            d::::::d  =
+=                              d::::::d            d::::::d  =
+=                              d:::::d             d:::::d   =
+=    ooooooooooo       ddddddddd:::::d     ddddddddd:::::d   =
+=  oo:::::::::::oo   dd::::::::::::::d   dd::::::::::::::d   =
+= o:::::::::::::::o d::::::::::::::::d  d::::::::::::::::d   =
+= o:::::ooooo:::::od:::::::ddddd:::::d d:::::::ddddd:::::d   =
+= o::::o     o::::od::::::d    d:::::d d::::::d    d:::::d   =
+= o::::o     o::::od:::::d     d:::::d d:::::d     d:::::d   =
+= o::::o     o::::od:::::d     d:::::d d:::::d     d:::::d   =
+= o::::o     o::::od:::::d     d:::::d d:::::d     d:::::d   =
+= o:::::ooooo:::::od::::::ddddd::::::ddd::::::ddddd::::::dd  =
+= o:::::::::::::::o d:::::::::::::::::d d:::::::::::::::::d  =
+=  oo:::::::::::oo   d:::::::::ddd::::d  d:::::::::ddd::::d  =
+=    ooooooooooo      ddddddddd   ddddd   ddddddddd   ddddd  =
+=                                                            =
+=        Next, use `bin/server` to starting services         =
+=  booting up rails server with `rails s` and start coding.  =
+==============================================================
+  )
 end
