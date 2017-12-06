@@ -2,8 +2,10 @@ doctype html
 html
   head
     meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
+    / TODO: change TITLE for project
     title AppStarter
     = csrf_meta_tags
+    = javascript_pack_tag 'admin', 'data-turbolinks-track': 'reload'
     = stylesheet_pack_tag 'admin', media: 'all', 'data-turbolinks-track': 'reload'
   body class="skin-black sidebar-mini layout-fixed #{controller.controller_name}-#{controller.action_name} admin-ui"
     /![if lt IE 7]
@@ -16,7 +18,5 @@ html
 
         .main-content-container
           = yield
-
-    = javascript_pack_tag 'admin', 'data-turbolinks-track': 'reload'
 
     = yield :added_scripts if content_for?(:added_scripts)
