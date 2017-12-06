@@ -27,18 +27,30 @@ chdir APP_ROOT do
     cp 'config/application.yml.example', 'config/application.yml'
   end
 
-  puts "\n== create shared folder and setting up files"
+  puts "\n== create shared folder and setting up files =="
   unless File.exist?('shared/config/application.yml')
+    mkdir 'shared'
     mkdir 'shared/config'
     cp 'config/application.yml', 'shared/config/application.yml'
     cp 'config/database.yml', 'shared/config/database.yml'
     cp 'config/secrets.yml', 'shared/config/secrets.yml'
-    system! 'rm config/application.yml config/database.yml config/secret.yml'
+    system! 'rm config/application.yml config/database.yml config/secrets.yml'
     system! 'ln shared/config/* config/'
   end
 
+  puts "\n== remove .git =="
+  system! 'rm -rf .git'
+
+  puts "\n== init git =="
+  system! 'git init'
+  system! 'git add .'
+  system! 'git commit -m ":tada: init commit"'
+
   puts "\n== Preparing database =="
+  system! 'docker-compose up -d'
+  sleep 10
   system! 'bin/rails db:setup'
+  system! 'docker-compose down'
 
   puts "\n== Removing old logs and tempfiles =="
   system! 'bin/rails log:clear tmp:clear'
