@@ -59,7 +59,7 @@ Rails.application.configure do
 
   # Use a real queuing backend for Active Job (and separate queues per environment)
   # config.active_job.queue_adapter     = :resque
-  # TODO: change queue name prefix for your project istead of `app_starter_`
+  # RENAME: change queue name prefix for your project istead of `app_starter_`
   # config.active_job.queue_name_prefix = "app_starter_#{Rails.env}"
   config.action_mailer.perform_caching = false
 

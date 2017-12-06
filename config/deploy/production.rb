@@ -1,11 +1,11 @@
 set :stage, :production
 
-role :app, %w{deployer@[your.domain.name]} # TODO: change to your domain name
-role :web, %w{deployer@[your.domain.name]} # TODO: change to your domain name
-role :db,  %w{deployer@[your.domain.name]} # TODO: change to your domain name
+role :app, %w{deployer@[your.domain.name]} # RENAME: change to your domain name
+role :web, %w{deployer@[your.domain.name]} # RENAME: change to your domain name
+role :db,  %w{deployer@[your.domain.name]} # RENAME: change to your domain name
 
 
-server '[your.domain.name]', user: 'deployer', roles: %w{web app} # TODO: change to your domain name
+server '[your.domain.name]', user: 'deployer', roles: %w{web app} # RENAME: change to your domain name
 
 # you can set custom ssh options
 # it's possible to pass any option but you need to keep in mind that net/ssh understand limited list of options
