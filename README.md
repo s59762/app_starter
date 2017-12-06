@@ -14,6 +14,10 @@ This is a rails application starter-kit @odd.
 
 After all, go to `http://localhost:3000` and start coding!
 
+### Suggestion
+
+You can use [rails-dashboard](https://www.npmjs.com/package/rails-dashboard) for booting up rails server. But be careful rails server maybe shutdown randomlly after update application config or `Gemfile`.
+
 ## Extra functions
 
 ### Remote pry
