@@ -27,6 +27,14 @@ You can use [rails-dashboard](https://www.npmjs.com/package/rails-dashboard) for
 
 Using `binding.remote_pry` to set breakpoint in your program, and use `pry-remote` in terminal to debug.
 
+### Yard server
+
+`bin/server` will also booting up **yard server** for writing documentation, you can access `http://localhost:8808` in browser for check _current_ documentation.
+
+> With this functionality, you almost have no excuse not to write documentation!
+>
+> -- https://yardoc.org/
+
 ### EspressoMartini
 
 This gem is build for generate general file templates in our daily development life.

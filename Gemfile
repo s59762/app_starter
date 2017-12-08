@@ -104,6 +104,9 @@ group :development do
 
   # generator for service objects, form objects, PORO, policy objects.
   gem 'pattern_generator' # FIXIT: we should fork this gem and update form template
+
+  # Documentation
+  gem 'yard'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
