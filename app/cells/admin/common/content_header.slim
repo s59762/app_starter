@@ -1,12 +1,6 @@
 section.content-header
   h1
-    = render_content_header
-    small
-  ol.breadcrumb
-    li
-      = link_to admin_root_path do
-        i.fa.fa-dashboard
-        = t('.admin_root')
-    li
-      = current_parent_node_link
-    li.active = render_action_name
+    = page_title(options[:title])
+    small = page_sub_title(options[:sub_title])
+
+  = cell('admin/common', nil, breadcrumb_units: options[:breadcrumb_units]).call(:breadcrumb)
