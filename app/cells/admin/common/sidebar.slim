@@ -1,8 +1,21 @@
 aside.main-sidebar
   section.sidebar
     ul.sidebar-menu.tree data-widget="tree"
-      li.header Example Menu
-      li class=("#{sidebar_menu_active?('admin/dashboard')}")
-        = link_to admin_root_path
-          i.fa.fa-dashboard
-          span = t('page_titles.admin.dashboard.main_title')
+      - if @menu_items
+        - @menu_items.each do |item|
+          li.header = item[:title]
+          - item[:menus].each do |menu|
+            li.treeview class=("#{sidebar_menu_active?(menu[:active_by])}")
+              = link_to menu[:path]
+                i.fa class=("#{menu[:icon]}")
+                span = menu[:title]
+                - if menu[:sub_menus].present?
+                  span.pull-right-container
+                    i.fa.fa-angle-left.pull-right
+              - if menu[:sub_menus].present?
+                ul.treeview-menu
+                  - menu[:sub_menus].each do |sub_menu|
+                    li class=("#{submenu_active?(sub_menu[:action])}")
+                      = link_to sub_menu[:path]
+                        i.fa class=("#{sub_menu[:icon]}")
+                        span = sub_menu[:title]
