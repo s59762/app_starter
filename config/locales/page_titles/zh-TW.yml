@@ -3,4 +3,4 @@ zh-TW:
     admin:
       dashboard:
         main_title: 資訊面板
-        index: ''
+        show: ''

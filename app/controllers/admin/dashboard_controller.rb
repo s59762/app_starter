@@ -1,7 +1,7 @@
 require_dependency 'admin/application_controller'
 
 class Admin::DashboardController < Admin::ApplicationController
-  def index
+  def show
     # code
   end
 end

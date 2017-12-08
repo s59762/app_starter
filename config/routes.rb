@@ -5,6 +5,8 @@ Rails.application.routes.draw do
 
   # Back-Stage UI for Administrators
   namespace :admin do
-    root 'dashboard#index'
+    root to: redirect('admin/dashboard')
+
+    resource :dashboard, only: %i[show], controller: 'dashboard'
   end
 end
