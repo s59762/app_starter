@@ -3,8 +3,8 @@ zh-TW:
   activerecord: &default
     models:
       admin:
-        one: 使用者
-        other: 使用者
+        one: 管理員
+        other: 管理員
 
     attributes:
       admin:

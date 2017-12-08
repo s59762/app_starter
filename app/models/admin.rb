@@ -17,6 +17,9 @@
 #  updated_at             :datetime         not null
 #
 
+# Admin Model
+#
+# 管理員
 class Admin < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
