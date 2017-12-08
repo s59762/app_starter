@@ -31,6 +31,12 @@ Using `binding.remote_pry` to set breakpoint in your program, and use `pry-remot
 
 `bin/server` will also booting up **yard server** for writing documentation, you can access `http://localhost:8808` in browser for check _current_ documentation.
 
+Documentation will output to `docs/`, and we can let Github Pages host our documentation page.
+
+For example:
+
+https://oracle-design.github.io/app_starter/
+
 > With this functionality, you almost have no excuse not to write documentation!
 >
 > -- https://yardoc.org/
