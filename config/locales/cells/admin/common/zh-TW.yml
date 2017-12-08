@@ -2,7 +2,3 @@ zh-TW:
   admin:
     common:
       admin_root: 管理首頁
-      page_titles:
-        dashboard:
-          main_title: 資訊面板
-          index: ''

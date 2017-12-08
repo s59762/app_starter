@@ -106,18 +106,17 @@ class Admin::CommonCell < Admin::ApplicationCell
   # @example 不指定標題內容
   #   render_content_header # => 會回傳 locales 中指定的內容
   #
-  #   # 可在 `config/locales/cells/admin/common/` 設定頁面翻譯內容
+  #   # 可在 `config/locales/page_titles` 設定頁面翻譯內容
   #   # 例如 Admin::MembersController 可以用下面的方式指定頁面名稱為 '會員管理'
   #   # zh-TW:
-  #   #   admin:
-  #   #     common:
-  #   #       page_titles:
-  #   #         'members':
-  #   #           main_title: 會員管理
+  #   #   page_titles:
+  #   #     admin:
+  #   #       members:
+  #   #         main_title: 會員管理
   #
   # @return [String] 頁面主標題
   def page_title(given_title = nil)
-    given_title || t(".page_titles.#{controller.controller_name}.main_title")
+    given_title || t("page_titles.admin.#{controller.controller_name}.main_title")
   end
 
   # 回傳頁面副標題
@@ -129,18 +128,17 @@ class Admin::CommonCell < Admin::ApplicationCell
   # @example 不指定副標題內容
   #   render_content_header # => 會回傳 locales 中指定的內容
   #
-  #   # 可在 `config/locales/cells/admin/common/` 設定頁面翻譯內容
+  #   # 可在 `config/locales/page_titles` 設定頁面翻譯內容
   #   # 例如 Admin::MembersController#index 可以用下面的方式指定副標題為 '列表'
   #   # zh-TW:
-  #   #   admin:
-  #   #     common:
-  #   #       page_titles:
-  #   #         'members':
-  #   #           index: 列表
+  #   #   page_titles:
+  #   #     admin:
+  #   #       members:
+  #   #         index: 列表
   #
   # @return [String] 頁面副標題
   def page_sub_title(given_title = nil)
-    given_title || t(".page_titles.#{controller.controller_name}.#{controller.action_name}")
+    given_title || t("page_titles.admin.#{controller.controller_name}.#{controller.action_name}")
   end
 
   # Render 麵包屑元件
