@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  devise_for :admins, skip: %i[registrations]#, controllers: { sessions: 'admins/sessions' }
+  devise_for :admins, path: 'admin',
+                      path_names: {
+                        sign_in: 'login',
+                        sign_out: 'logout'
+                      }
 
   root 'pages#index'
 
