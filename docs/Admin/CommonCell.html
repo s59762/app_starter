@@ -105,8 +105,7 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>Admin 介面中的基本元件</p>
+    <p>Admin 介面中的基本元件</p>
 
 
   </div>
@@ -146,8 +145,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>麵包屑.</p>
+    <span class="summary_desc"><div class='inline'><p>麵包屑.</p>
 </div></span>
   
 </li>
@@ -170,8 +168,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>每頁的頁面標題，包含麵包屑.</p>
+    <span class="summary_desc"><div class='inline'><p>每頁的頁面標題，包含麵包屑.</p>
 </div></span>
   
 </li>
@@ -194,8 +191,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>回傳麵包屑中「第一層」的連結 link.</p>
+    <span class="summary_desc"><div class='inline'><p>回傳麵包屑中「第一層」的連結 link.</p>
 </div></span>
   
 </li>
@@ -218,8 +214,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>畫面頂部的橫條 Header，包含使用者個人選項 dropdown.</p>
+    <span class="summary_desc"><div class='inline'><p>畫面頂部的橫條 Header，包含使用者個人選項 dropdown.</p>
 </div></span>
   
 </li>
@@ -242,8 +237,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>回傳頁面副標題.</p>
+    <span class="summary_desc"><div class='inline'><p>回傳頁面副標題.</p>
 </div></span>
   
 </li>
@@ -266,8 +260,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>回傳頁面主標題.</p>
+    <span class="summary_desc"><div class='inline'><p>回傳頁面主標題.</p>
 </div></span>
   
 </li>
@@ -290,8 +283,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Render 麵包屑元件.</p>
+    <span class="summary_desc"><div class='inline'><p>Render 麵包屑元件.</p>
 </div></span>
   
 </li>
@@ -314,8 +306,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>左側選單結構.</p>
+    <span class="summary_desc"><div class='inline'><p>左側選單結構.</p>
 </div></span>
   
 </li>
@@ -338,8 +329,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>檢測 sidebar 選單是否 active。.</p>
+    <span class="summary_desc"><div class='inline'><p>檢測 sidebar 選單是否 active。.</p>
 </div></span>
   
 </li>
@@ -362,8 +352,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>檢測 sidebar 子選單是否 active。.</p>
+    <span class="summary_desc"><div class='inline'><p>檢測 sidebar 子選單是否 active。.</p>
 </div></span>
   
 </li>
@@ -386,8 +375,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>顯示目前使用者的頭像.</p>
+    <span class="summary_desc"><div class='inline'><p>顯示目前使用者的頭像.</p>
 </div></span>
   
 </li>
@@ -410,8 +398,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>顯示目前使用者的權限等級.</p>
+    <span class="summary_desc"><div class='inline'><p>顯示目前使用者的權限等級.</p>
 </div></span>
   
 </li>
@@ -434,8 +421,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>回傳目前使用者的名稱.</p>
+    <span class="summary_desc"><div class='inline'><p>回傳目前使用者的名稱.</p>
 </div></span>
   
 </li>
@@ -480,8 +466,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>麵包屑</p>
+    <p>麵包屑</p>
 
 <p>理論上僅提供 #content_header 使用</p>
 
@@ -530,8 +515,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>每頁的頁面標題，包含麵包屑</p>
+    <p>每頁的頁面標題，包含麵包屑</p>
 
 <p>用於每個獨立頁面 View 的起始位置，作為設定頁面標題之用。</p>
 
@@ -544,16 +528,14 @@
     <p class="tag_title">Examples:</p>
     
       
-        <p class="example_title"><div class='inline'>
-<p>`admin/members#show` 的頁面標題</p>
+        <p class="example_title"><div class='inline'><p><code>admin/members#show</code> 的頁面標題</p>
 </div></p>
       
       <pre class="example code"><code>= cell(&#39;admin/common&#39;, nil, breadcrumb_units: [{ name: &#39;管理會員&#39;, path: admin_members_path },
                                                { name: &#39;詳細資料&#39; }]).call(:content_header)</code></pre>
     
       
-        <p class="example_title"><div class='inline'>
-<p>`admin/something#really_weird` 的特殊頁面標題，自行指定標題內容</p>
+        <p class="example_title"><div class='inline'><p><code>admin/something#really_weird</code> 的特殊頁面標題，自行指定標題內容</p>
 </div></p>
       
       <pre class="example code"><code>= cell(&#39;admin/common&#39;, nil, title: &#39;全站功能設定&#39;,
@@ -575,8 +557,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>a customizable set of options</p>
+        <div class='inline'><p>a customizable set of options</p>
 </div>
       
     </li>
@@ -618,8 +599,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>回傳麵包屑中「第一層」的連結 link</p>
+    <p>回傳麵包屑中「第一層」的連結 link</p>
 
 
   </div>
@@ -659,8 +639,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>畫面頂部的橫條 Header，包含使用者個人選項 dropdown</p>
+    <p>畫面頂部的橫條 Header，包含使用者個人選項 dropdown</p>
 
 
   </div>
@@ -700,8 +679,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>回傳頁面副標題</p>
+    <p>回傳頁面副標題</p>
 
 
   </div>
@@ -712,15 +690,13 @@
     <p class="tag_title">Examples:</p>
     
       
-        <p class="example_title"><div class='inline'>
-<p>直接指定副標題內容</p>
+        <p class="example_title"><div class='inline'><p>直接指定副標題內容</p>
 </div></p>
       
       <pre class="example code"><code><span class='id identifier rubyid_render_content_header'>render_content_header</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>神秘頁面</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='comment'># =&gt; 會直接回傳指定的字串</span></code></pre>
     
       
-        <p class="example_title"><div class='inline'>
-<p>不指定副標題內容</p>
+        <p class="example_title"><div class='inline'><p>不指定副標題內容</p>
 </div></p>
       
       <pre class="example code"><code><span class='id identifier rubyid_render_content_header'>render_content_header</span> <span class='comment'># =&gt; 會回傳 locales 中指定的內容
@@ -749,8 +725,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>直接指定副標題內容，預設為 nil</p>
+        <div class='inline'><p>直接指定副標題內容，預設為 nil</p>
 </div>
       
     </li>
@@ -768,8 +743,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>頁面副標題</p>
+        <div class='inline'><p>頁面副標題</p>
 </div>
       
     </li>
@@ -808,8 +782,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>回傳頁面主標題</p>
+    <p>回傳頁面主標題</p>
 
 
   </div>
@@ -820,15 +793,13 @@
     <p class="tag_title">Examples:</p>
     
       
-        <p class="example_title"><div class='inline'>
-<p>直接指定標題內容</p>
+        <p class="example_title"><div class='inline'><p>直接指定標題內容</p>
 </div></p>
       
       <pre class="example code"><code><span class='id identifier rubyid_render_content_header'>render_content_header</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>神秘頁面</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='comment'># =&gt; 會直接回傳指定的字串</span></code></pre>
     
       
-        <p class="example_title"><div class='inline'>
-<p>不指定標題內容</p>
+        <p class="example_title"><div class='inline'><p>不指定標題內容</p>
 </div></p>
       
       <pre class="example code"><code><span class='id identifier rubyid_render_content_header'>render_content_header</span> <span class='comment'># =&gt; 會回傳 locales 中指定的內容
@@ -857,8 +828,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>直接指定主標題內容，預設為 nil</p>
+        <div class='inline'><p>直接指定主標題內容，預設為 nil</p>
 </div>
       
     </li>
@@ -876,8 +846,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>頁面主標題</p>
+        <div class='inline'><p>頁面主標題</p>
 </div>
       
     </li>
@@ -916,8 +885,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Render 麵包屑元件</p>
+    <p>Render 麵包屑元件</p>
 
 
   </div>
@@ -936,8 +904,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>麵包屑元件的「標題」與「聯結路徑」</p>
+        <div class='inline'><p>麵包屑元件的「標題」與「聯結路徑」</p>
 </div>
       
     </li>
@@ -955,8 +922,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>HTML</p>
+        <div class='inline'><p>HTML</p>
 </div>
       
     </li>
@@ -1007,11 +973,9 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>左側選單結構</p>
+    <p>左側選單結構</p>
 
-<p>這裡的 `@menu_items` 會讀取 &#39;./common/sidebar_menu_items.yml&#39;
-這個檔案做解析，自動產生選單列表。請參考 YAML 檔案中的範例來製作選單。支援 erb 語法。</p>
+<p>這裡的 <code>@menu_items</code> 會讀取 <code>./common/sidebar_menu_items.yml</code> 這個檔案做解析，自動產生選單列表。請參考 YAML 檔案中的範例來製作選單。支援 erb 語法。</p>
 
 
   </div>
@@ -1057,8 +1021,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>檢測 sidebar 選單是否 active。</p>
+    <p>檢測 sidebar 選單是否 active。</p>
 
 
   </div>
@@ -1077,8 +1040,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>選單選項所代表的 path</p>
+        <div class='inline'><p>選單選項所代表的 path</p>
 </div>
       
     </li>
@@ -1096,8 +1058,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>&#39;active&#39; or nothing</p>
+        <div class='inline'><p>&#39;active&#39; or nothing</p>
 </div>
       
     </li>
@@ -1138,8 +1099,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>檢測 sidebar 子選單是否 active。</p>
+    <p>檢測 sidebar 子選單是否 active。</p>
 
 
   </div>
@@ -1158,8 +1118,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>選單子選項所代表的 action name</p>
+        <div class='inline'><p>選單子選項所代表的 action name</p>
 </div>
       
     </li>
@@ -1177,8 +1136,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>&#39;active&#39; or nothing</p>
+        <div class='inline'><p>&#39;active&#39; or nothing</p>
 </div>
       
     </li>
@@ -1217,8 +1175,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>顯示目前使用者的頭像</p>
+    <p>顯示目前使用者的頭像</p>
 
 
   </div>
@@ -1239,8 +1196,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>Admin 的 instance，沒有給會用 Null::User 代替</p>
+        <div class='inline'><p>Admin 的 instance，沒有給會用 Null::User 代替</p>
 </div>
       
     </li>
@@ -1257,8 +1213,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>a customizable set of options</p>
+        <div class='inline'><p>a customizable set of options</p>
 </div>
       
     </li>
@@ -1280,8 +1235,7 @@
             
           </span>
           
-            &mdash; <div class='inline'>
-<p>需要自行指定 image_tag 的 class 內容時可使用</p>
+            &mdash; <div class='inline'><p>需要自行指定 image_tag 的 class 內容時可使用</p>
 </div>
           
         </li>
@@ -1300,8 +1254,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>HTML</p>
+        <div class='inline'><p>HTML</p>
 </div>
       
     </li>
@@ -1346,8 +1299,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>顯示目前使用者的權限等級</p>
+    <p>顯示目前使用者的權限等級</p>
 
 <p>TODO: 尚未實作</p>
 
@@ -1370,8 +1322,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>Admin 的 instance</p>
+        <div class='inline'><p>Admin 的 instance</p>
 </div>
       
     </li>
@@ -1424,8 +1375,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>回傳目前使用者的名稱</p>
+    <p>回傳目前使用者的名稱</p>
 
 
   </div>
@@ -1446,8 +1396,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>Admin 的 instance，沒有給會用 Null::User 代替</p>
+        <div class='inline'><p>Admin 的 instance，沒有給會用 Null::User 代替</p>
 </div>
       
     </li>
@@ -1495,12 +1444,7 @@
 
 </div>
 
-      <div id="footer">
-  Generated on Fri Dec  8 21:27:49 2017 by
-  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.12 (ruby-2.4.2).
-</div>
-
+      
     </div>
   </body>
 </html>

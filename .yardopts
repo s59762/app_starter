@@ -1,3 +1,6 @@
 --protected
 --private
 --output-dir ./docs
+--markup-provider=redcarpet
+--markup=markdown
+--template-path ./vendor/yard_custom_templates

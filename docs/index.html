@@ -57,68 +57,58 @@
         <div class="clear"></div>
       </div>
 
-      <div id="content"><div id='filecontents'>
-<h1 id="label-README">README</h1>
+      <div id="content"><div id='filecontents'><h1>README</h1>
 
 <p>This is a rails application starter-kit @odd.</p>
 
-<h2 id="label-How+to+use">How to use</h2>
-<ol><li>
-<p>clone this repo.</p>
-</li><li>
-<p><code>cp -r app_starter YOUR_PROJECT_NAME</code> and goto project path.</p>
-</li><li>
-<p>exec <code>bin/setup</code> in terminal for setting up application.</p>
-</li><li>
-<p>global search for <code>RENAME:</code>, change name for your project
-instead of <code>AppStarter</code> or <code>app_starter_</code></p>
-</li><li>
-<p><code>bin/server</code> to start services.</p>
-</li><li>
-<p>using <code>rails s</code> for development server.</p>
-</li></ol>
+<h2>How to use</h2>
+
+<ol>
+<li>clone this repo.</li>
+<li><code>cp -r app_starter YOUR_PROJECT_NAME</code> and goto project path.</li>
+<li>exec <code>bin/setup</code> in terminal for setting up application.</li>
+<li>global search for <code>RENAME:</code>, change name for your project instead of <code>AppStarter</code> or <code>app_starter_</code></li>
+<li><code>bin/server</code> to start services.</li>
+<li>using <code>rails s</code> for development server.</li>
+</ol>
 
 <p>After all, go to <code>http://localhost:3000</code> and start coding!</p>
 
-<h3 id="label-Suggestion">Suggestion</h3>
+<h3>Suggestion</h3>
 
-<p>You can use <a
-href="https://www.npmjs.com/package/rails-dashboard">rails-dashboard</a>
-for booting up rails server. But be careful rails server maybe shutdown
-randomlly after update application config or <code>Gemfile</code>.</p>
+<p>You can use <a href="https://www.npmjs.com/package/rails-dashboard">rails-dashboard</a> for booting up rails server. But be careful rails server maybe shutdown randomlly after update application config or <code>Gemfile</code>.</p>
 
-<h3 id="label-Warning-21">Warning!</h3>
+<h3>Warning!</h3>
 
-<p><code>bin/setup</code> should <strong>ONLY</strong> execute at very first
-time. This script will remove git history and re-init for project.</p>
+<p><code>bin/setup</code> should <strong>ONLY</strong> execute at very first time. This script will remove git history and re-init for project.</p>
 
-<h2 id="label-Extra+functions">Extra functions</h2>
+<h2>Extra functions</h2>
 
-<h3 id="label-Remote+pry">Remote pry</h3>
+<h3>Remote pry</h3>
 
-<p>Using <code>binding.remote_pry</code> to set breakpoint in your program,
-and use <code>pry-remote</code> in terminal to debug.</p>
+<p>Using <code>binding.remote_pry</code> to set breakpoint in your program, and use <code>pry-remote</code> in terminal to debug.</p>
 
-<h3 id="label-Yard+server">Yard server</h3>
+<h3>Yard server</h3>
 
-<p><code>bin/server</code> will also booting up <strong>yard server</strong>
-for writing documentation, you can access
-<code>http://localhost:8808</code> in browser for check <em>current</em>
-documentation.</p>
+<p><code>bin/server</code> will also booting up <strong>yard server</strong> for writing documentation, you can access <code>http://localhost:8808</code> in browser for check <em>current</em> documentation.</p>
+
+<p>Documentation will output to <code>docs/</code>, and we can let Github Pages host our documentation page.</p>
+
+<p>For example:</p>
+
+<p><a href="https://oracle-design.github.io/app_starter/">https://oracle-design.github.io/app_starter/</a></p>
 
 <blockquote>
-<p>With this functionality, you almost have no excuse not to write
-documentation!</p>
+<p>With this functionality, you almost have no excuse not to write documentation!</p>
 
-<p>– <a href="https://yardoc.org">yardoc.org</a>/</p>
+<p>-- <a href="https://yardoc.org/">https://yardoc.org/</a></p>
 </blockquote>
 
-<h3 id="label-EspressoMartini">EspressoMartini</h3>
+<h3>EspressoMartini</h3>
 
-<p>This gem is build for generate general file templates in our daily
-development life.</p>
+<p>This gem is build for generate general file templates in our daily development life.</p>
 
-<h4 id="label-Generating+locale+files+for+Model">Generating locale files for Model</h4>
+<h4>Generating locale files for Model</h4>
 
 <p><code>rails generate martini:locale:model [MODEL] [LANGUAGE]</code></p>
 
@@ -126,10 +116,9 @@ development life.</p>
 
 <p><code>rails g martini:locale:model user zh-TW</code></p>
 
-<p>This will generate a template file at path
-<code>app/config/locales/models/user/zh-TW.yml</code>.</p>
+<p>This will generate a template file at path <code>app/config/locales/models/user/zh-TW.yml</code>.</p>
 
-<h4 id="label-Generating+locale+files+for+Cell">Generating locale files for Cell</h4>
+<h4>Generating locale files for Cell</h4>
 
 <p><code>rails generate martini:locale:cell [CELL] [LANGUAGE]</code></p>
 
@@ -137,16 +126,10 @@ development life.</p>
 
 <p><code>rails g espresso:locale:cell user zh-TW</code></p>
 
-<p>This will generate a template file at path
-<code>app/config/locales/cells/user/zh-TW.yml</code></p>
+<p>This will generate a template file at path  <code>app/config/locales/cells/user/zh-TW.yml</code></p>
 </div></div>
 
-      <div id="footer">
-  Generated on Fri Dec  8 21:27:48 2017 by
-  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.12 (ruby-2.4.2).
-</div>
-
+      
     </div>
   </body>
 </html>

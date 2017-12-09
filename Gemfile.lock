@@ -180,6 +180,7 @@ GEM
       dotenv (~> 0.7.0)
       thor (>= 0.13.6)
     formatador (0.2.5)
+    github-markup (1.6.2)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     growlyflash (0.10.0)
@@ -334,6 +335,7 @@ GEM
     rb-fsevent (0.10.2)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
+    redcarpet (3.4.0)
     redis (4.0.1)
     reform (2.2.4)
       disposable (>= 0.4.1)
@@ -493,6 +495,7 @@ DEPENDENCIES
   favicon_maker
   figaro
   foreman
+  github-markup
   growlyflash
   guard-livereload
   guard-pow
@@ -514,6 +517,7 @@ DEPENDENCIES
   rack-mini-profiler
   rails (~> 5.1.4)
   rails-settings-cached
+  redcarpet
   reform
   reform-rails
   rspec-rails

@@ -107,6 +107,8 @@ group :development do
 
   # Documentation
   gem 'yard'
+  gem 'redcarpet'
+  gem 'github-markup'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
