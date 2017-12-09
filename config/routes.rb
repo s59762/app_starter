@@ -3,6 +3,9 @@ Rails.application.routes.draw do
                       path_names: {
                         sign_in: 'login',
                         sign_out: 'logout'
+                      },
+                      controllers: {
+                        sessions: 'devise/admins/sessions'
                       }
 
   root 'pages#index'
