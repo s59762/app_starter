@@ -12,4 +12,9 @@ environment.plugins.set('Provide', new webpack.ProvidePlugin({
   })
 )
 
+environment.loaders.set('import-glob', {
+  test: /\.sass$/,
+  use: 'import-glob-loader'
+})
+
 module.exports = environment
