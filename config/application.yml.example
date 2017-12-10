@@ -4,21 +4,22 @@ pg_password: qwerasdf
 mailgun_user_name:
 mailgun_password:
 mailgun_api_key:
+SECRET_KEY_BASE: a914a802130373c8939559575b9186385d474b139d28f44c7450ccfa0569b87f609ec31bb64766a4ea9a5200fcb36e680036cd7501be1b14616d33e9f1be1c1c
 
 staging:
-  SECRET_KEY_BASE:
   app_domain:
   pg_username:
   pg_password:
   mailgun_user_name:
   mailgun_password:
   mailgun_api_key:
+  SECRET_KEY_BASE:
 
 production:
-  SECRET_KEY_BASE:
   app_domain:
   pg_username:
   pg_password:
   mailgun_user_name:
   mailgun_password:
   mailgun_api_key:
+  SECRET_KEY_BASE:

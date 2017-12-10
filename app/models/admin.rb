@@ -15,6 +15,7 @@
 #  last_sign_in_ip        :inet
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
+#  avatar                 :string
 #
 
 # Admin Model
@@ -24,4 +25,9 @@ class Admin < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :recoverable, :rememberable, :trackable, :validatable
+
+  # 如果 avatar 是 nil（未上傳使用者頭像），使用 null object 替代
+  def avatar
+    super || Null::Image.new
+  end
 end

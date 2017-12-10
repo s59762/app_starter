@@ -1,0 +1,43 @@
+<div class="login-box">
+  <div class="login-logo">
+    <a href="#">
+
+    </a>
+  </div>
+  <!-- /.login-logo -->
+  <div class="login-box-body">
+    <p class="login-box-msg">請您先登入管理員身份</p>
+
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="form-group has-feedback">
+        <%= f.text_field :email, class: 'form-control', placeholder: 'Email' %>
+        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+      </div>
+      <div class="form-group has-feedback">
+        <%= f.password_field :password, autocomplete: "off", class: 'form-control', placeholder: 'Password' %>
+        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+      </div>
+      <div class="row">
+        <div class="col-xs-8">
+          <div class="checkbox">
+            <% if devise_mapping.rememberable? -%>
+              <label>
+                <%= f.check_box :remember_me %> <%= t('activerecord.attributes.admin.remember_me') %>
+              </label>
+            <% end -%>
+          </div>
+        </div>
+        <!-- /.col -->
+        <div class="col-xs-4">
+          <button type="submit" class="btn btn-primary btn-block btn-flat"><%= t('devise.sessions.new.sign_in') %></button>
+        </div>
+        <!-- /.col -->
+      </div>
+    <% end %>
+
+    <%# link_to t('devise.shared.links.forgot_your_password'), new_password_path(resource_name) %>
+
+  </div>
+  <!-- /.login-box-body -->
+</div>
+<!-- /.login-box -->

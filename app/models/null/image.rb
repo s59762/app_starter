@@ -6,6 +6,6 @@ class Null::Image
 
   # 模擬 Carrierwave 的 `url` 方法給出替代圖片 url
   def url
-    'http://via.placeholder.com/300x300'
+    'http://via.placeholder.com/300x300?text=No+image'
   end
 end

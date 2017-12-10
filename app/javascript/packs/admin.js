@@ -1,5 +1,6 @@
-import "../src/admin/css/application.css"
+import "../src/admin/css/application.css.sass"
 import 'bootstrap'
 import 'admin-lte'
 
-console.log('admin')
+Rails.start()
+Turbolinks.start()
