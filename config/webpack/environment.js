@@ -4,13 +4,13 @@ const webpack = require('webpack')
 
 // Add an additional plugin of your choosing : ProvidePlugin
 environment.plugins.set('Provide', new webpack.ProvidePlugin({
-    Rails: 'rails-ujs',
-    Turbolinks: 'turbolinks',
-    jQuery: 'jquery',
-    $: 'jquery',
-    Vue: 'vue/dist/vue.esm'
-  })
-)
+  Rails: 'rails-ujs',
+  Turbolinks: 'turbolinks',
+  jQuery: 'jquery',
+  $: 'jquery',
+  Vue: 'vue/dist/vue.esm',
+  TurbolinksAdapter: 'vue-turbolinks'
+}))
 
 environment.loaders.set('import-glob', {
   test: /\.sass$/,
