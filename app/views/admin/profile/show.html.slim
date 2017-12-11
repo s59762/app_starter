@@ -1,0 +1,52 @@
+= cell('admin/common', nil, breadcrumb_units: [{ name: t("page_titles.admin.#{controller.controller_name}.main_title") }]).call(:content_header)
+
+.content
+  .row
+    .col-sm-3
+      .box.box-success
+        .box-body.box-profile
+          = image_tag @admin.avatar.url, class: 'profile-user-img img-responsive img-circle', alt: '使用者頭像'
+          h2.profile-username.text-center = @admin.name
+          p.text-muted.text-center = t("enums.admin.role.#{@admin.role}")
+          p.text-muted.text-center = @admin.email
+    .col-sm-9
+      / Password form
+      .box.box-default
+        = form_for(@admin, as: :admin, url: admin_profile_password_path, html: { method: :put }) do |f|
+          .box-header.with-border
+            h3.box-title = t('actions.admin.change_password')
+          .box-body
+            .row
+              .col-md-6
+                .form-group
+                  = f.label :current_password, '目前密碼'
+                  = f.password_field :current_password, autofocus: true, autocomplete: "off", class: 'form-control'
+            .row
+              .col-md-6
+                .form-group
+                  = f.label :password, '新密碼'
+                  = f.password_field :password, autocomplete: "off", class: 'form-control'
+              .col-md-6
+                .form-group
+                  = f.label :password_confirmation, "確認新密碼"
+                  = f.password_field :password_confirmation, autocomplete: "off", class: 'form-control'
+          .box-footer
+            = button_tag t('actions.admin.submit'), type: 'submit', class: 'pull-right btn btn-primary'
+
+      / Profile form
+      .box.box-default
+        = form_for(@admin, as: :admin, url: admin_profile_path, html: { method: :put }) do |f|
+          .box-header.with-border
+            h3.box-title = t('actions.admin.update_profile')
+          .box-body
+            .row
+              .col-md-6
+                .form-group
+                  = f.label :name
+                  = f.text_field :name, class: 'form-control'
+              .col-md-6
+                .form-group
+                  = f.label :avatar
+                  = f.file_field :avatar
+          .box-footer
+            = button_tag t('actions.admin.submit'), type: 'submit', class: 'pull-right btn btn-primary'

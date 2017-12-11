@@ -4,3 +4,6 @@ zh-TW:
       dashboard:
         main_title: 資訊面板
         show: ''
+      profile:
+        main_title: 管理員個人檔案
+        show: 編輯

@@ -8,6 +8,7 @@ zh-TW:
 
     attributes:
       admin:
+        avatar: 頭像
         confirmation_sent_at: 認證信寄出時間
         confirmation_token: '認證 TOKEN'
         confirmed_at: 認證時間
@@ -21,6 +22,7 @@ zh-TW:
         last_sign_in_at: 上次登入於
         last_sign_in_ip: '上次登入的 IP 位址'
         locked_at: 封鎖時間
+        name: 姓名
         password: 密碼
         password_confirmation: 確認密碼
         remember_created_at:
