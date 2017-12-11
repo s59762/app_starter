@@ -2,6 +2,7 @@ zh-TW:
   actions:
     admin:
       cancel: 取消
+      change_password: 變更密碼
       close: 關閉
       confirm: 確認
       confirm_delete: 確定要刪除%{model}嗎？
@@ -22,3 +23,4 @@ zh-TW:
       show:  詳細內容
       submit: 送出資料
       this_action_can_not_retrieve: 這個動作將無法復原
+      update_profile: 編輯檔案
