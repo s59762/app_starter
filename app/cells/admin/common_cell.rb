@@ -61,7 +61,7 @@ class Admin::CommonCell < Admin::ApplicationCell
 
   # 顯示目前使用者的權限等級
   #
-  # @param _user [Object] Admin 的 instance
+  # @param user [Object] Admin 的 instance
   # @return [String]
   def user_level(user = nil)
     user ||= null_user
