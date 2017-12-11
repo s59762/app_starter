@@ -8,7 +8,6 @@ environment.plugins.set('Provide', new webpack.ProvidePlugin({
   Turbolinks: 'turbolinks',
   jQuery: 'jquery',
   $: 'jquery',
-  Vue: 'vue/dist/vue.esm',
   TurbolinksAdapter: 'vue-turbolinks'
 }))
 

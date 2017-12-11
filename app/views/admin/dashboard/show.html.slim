@@ -1,1 +1,9 @@
 = cell('admin/common', nil, breadcrumb_units: [{ name: t("page_titles.admin.#{controller.controller_name}.main_title") }]).call(:content_header)
+
+.content
+  .test-1 data-vue='test_1'
+    | {{message}}
+    hello
+  .test-2 data-vue='test_2'
+    | {{message}}
+    hello
