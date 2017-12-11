@@ -55,18 +55,17 @@ class Admin::CommonCell < Admin::ApplicationCell
   # @param user [Object] Admin 的 instance，沒有給會用 Null::User 代替
   # @return [String]
   def user_name(user = nil)
-    user ||= Null::User.new
+    user ||= null_user
     user.try(:name) || "#{t('.administrator')} (#{user.email})"
   end
 
   # 顯示目前使用者的權限等級
   #
-  # TODO: 尚未實作
-  #
   # @param _user [Object] Admin 的 instance
   # @return [String]
-  def user_level(_user = nil)
-    '一般'
+  def user_level(user = nil)
+    user ||= null_user
+    t("enums.admin.role.#{user.role}")
   end
 
   # 顯示目前使用者的頭像
@@ -76,7 +75,7 @@ class Admin::CommonCell < Admin::ApplicationCell
   # @return [String] HTML
   def user_avatar(user = nil, options = {})
     class_name = options.fetch(:class, 'user-image')
-    user ||= Null::User.new
+    user ||= null_user
 
     image_tag user.avatar.url, class: class_name
   end

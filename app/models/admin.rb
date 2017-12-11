@@ -16,6 +16,8 @@
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  avatar                 :string
+#  name                   :string
+#  role                   :integer          default(0)
 #
 
 # Admin Model
@@ -25,6 +27,8 @@ class Admin < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :recoverable, :rememberable, :trackable, :validatable
+
+  enum role: %i[general super]
 
   # 如果 avatar 是 nil（未上傳使用者頭像），使用 null object 替代
   def avatar

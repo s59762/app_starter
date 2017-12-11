@@ -16,6 +16,8 @@
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  avatar                 :string
+#  name                   :string
+#  role                   :integer          default(0)
 #
 
 require 'rails_helper'

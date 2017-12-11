@@ -5,4 +5,4 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-default_admin = Admin.create(email: 'admin@odd.com', password: 'qwerasdf')
+default_admin = Admin.create(email: 'admin@odd.com', password: 'qwerasdf', name: '測試帳號', role: :super)

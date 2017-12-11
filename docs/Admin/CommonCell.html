@@ -384,7 +384,7 @@
         <li class="private ">
   <span class="summary_signature">
     
-      <a href="#user_level-instance_method" title="#user_level (instance method)">#<strong>user_level</strong>(_user = nil)  &#x21d2; String </a>
+      <a href="#user_level-instance_method" title="#user_level (instance method)">#<strong>user_level</strong>(user = nil)  &#x21d2; String </a>
     
 
     
@@ -440,7 +440,7 @@
   
   
   <h3 class="inherited">Methods inherited from <span class='object_link'><a href="ApplicationCell.html" title="Admin::ApplicationCell (class)">ApplicationCell</a></span></h3>
-  <p class="inherited"><span class='object_link'><a href="ApplicationCell.html#tag_builder-instance_method" title="Admin::ApplicationCell#tag_builder (method)">#tag_builder</a></span></p>
+  <p class="inherited"><span class='object_link'><a href="ApplicationCell.html#null_user-instance_method" title="Admin::ApplicationCell#null_user (method)">#null_user</a></span>, <span class='object_link'><a href="ApplicationCell.html#tag_builder-instance_method" title="Admin::ApplicationCell#tag_builder (method)">#tag_builder</a></span></p>
 
   
   
@@ -613,12 +613,12 @@
       <pre class="lines">
 
 
+101
 102
-103
-104</pre>
+103</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/cells/admin/common_cell.rb', line 102</span>
+      <pre class="code"><span class="info file"># File 'app/cells/admin/common_cell.rb', line 101</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_current_parent_node_link'>current_parent_node_link</span>
   <span class='id identifier rubyid_link_to'>link_to</span> <span class='id identifier rubyid_render_content_header'>render_content_header</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:parent_model</span><span class='rbracket'>]</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:parent_path</span><span class='rbracket'>]</span>
@@ -756,12 +756,12 @@
       <pre class="lines">
 
 
+145
 146
-147
-148</pre>
+147</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/cells/admin/common_cell.rb', line 146</span>
+      <pre class="code"><span class="info file"># File 'app/cells/admin/common_cell.rb', line 145</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_page_sub_title'>page_sub_title</span><span class='lparen'>(</span><span class='id identifier rubyid_given_title'>given_title</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_given_title'>given_title</span> <span class='op'>||</span> <span class='id identifier rubyid_t'>t</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>page_titles.admin.</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_controller'>controller</span><span class='period'>.</span><span class='id identifier rubyid_controller_name'>controller_name</span><span class='embexpr_end'>}</span><span class='tstring_content'>.</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_controller'>controller</span><span class='period'>.</span><span class='id identifier rubyid_action_name'>action_name</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
@@ -859,12 +859,12 @@
       <pre class="lines">
 
 
+123
 124
-125
-126</pre>
+125</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/cells/admin/common_cell.rb', line 124</span>
+      <pre class="code"><span class="info file"># File 'app/cells/admin/common_cell.rb', line 123</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_page_title'>page_title</span><span class='lparen'>(</span><span class='id identifier rubyid_given_title'>given_title</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_given_title'>given_title</span> <span class='op'>||</span> <span class='id identifier rubyid_t'>t</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>page_titles.admin.</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_controller'>controller</span><span class='period'>.</span><span class='id identifier rubyid_controller_name'>controller_name</span><span class='embexpr_end'>}</span><span class='tstring_content'>.main_title</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
@@ -935,6 +935,7 @@
       <pre class="lines">
 
 
+153
 154
 155
 156
@@ -942,11 +943,10 @@
 158
 159
 160
-161
-162</pre>
+161</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/cells/admin/common_cell.rb', line 154</span>
+      <pre class="code"><span class="info file"># File 'app/cells/admin/common_cell.rb', line 153</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_render_breadcrumb_unit'>render_breadcrumb_unit</span><span class='lparen'>(</span><span class='id identifier rubyid_unit'>unit</span><span class='rparen'>)</span>
   <span class='ivar'>@breadcrumb_unit</span> <span class='op'>=</span> <span class='id identifier rubyid_unit'>unit</span>
@@ -1071,13 +1071,13 @@
       <pre class="lines">
 
 
+87
 88
 89
-90
-91</pre>
+90</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/cells/admin/common_cell.rb', line 88</span>
+      <pre class="code"><span class="info file"># File 'app/cells/admin/common_cell.rb', line 87</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_sidebar_menu_active?'>sidebar_menu_active?</span><span class='lparen'>(</span><span class='id identifier rubyid_path'>path</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_menu_path'>menu_path</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>/</span><span class='tstring_end'>&#39;</span></span> <span class='op'>+</span> <span class='id identifier rubyid_controller'>controller</span><span class='period'>.</span><span class='id identifier rubyid_controller_path'>controller_path</span>
@@ -1149,12 +1149,12 @@
       <pre class="lines">
 
 
+96
 97
-98
-99</pre>
+98</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/cells/admin/common_cell.rb', line 97</span>
+      <pre class="code"><span class="info file"># File 'app/cells/admin/common_cell.rb', line 96</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_submenu_active?'>submenu_active?</span><span class='lparen'>(</span><span class='id identifier rubyid_action_name'>action_name</span><span class='rparen'>)</span>
   <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>active</span><span class='tstring_end'>&#39;</span></span> <span class='kw'>if</span> <span class='lbracket'>[</span><span class='id identifier rubyid_controller'>controller</span><span class='period'>.</span><span class='id identifier rubyid_controller_name'>controller_name</span><span class='comma'>,</span> <span class='id identifier rubyid_controller'>controller</span><span class='period'>.</span><span class='id identifier rubyid_action_name'>action_name</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span> <span class='id identifier rubyid_action_name'>action_name</span>
@@ -1267,19 +1267,19 @@
       <pre class="lines">
 
 
+76
 77
 78
 79
 80
-81
-82</pre>
+81</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/cells/admin/common_cell.rb', line 77</span>
+      <pre class="code"><span class="info file"># File 'app/cells/admin/common_cell.rb', line 76</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_user_avatar'>user_avatar</span><span class='lparen'>(</span><span class='id identifier rubyid_user'>user</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_class_name'>class_name</span> <span class='op'>=</span> <span class='id identifier rubyid_options'>options</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='symbol'>:class</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>user-image</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_user'>user</span> <span class='op'>||=</span> <span class='const'>Null</span><span class='op'>::</span><span class='const'>User</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+  <span class='id identifier rubyid_user'>user</span> <span class='op'>||=</span> <span class='id identifier rubyid_null_user'>null_user</span>
 
   <span class='id identifier rubyid_image_tag'>image_tag</span> <span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_avatar'>avatar</span><span class='period'>.</span><span class='id identifier rubyid_url'>url</span><span class='comma'>,</span> <span class='label'>class:</span> <span class='id identifier rubyid_class_name'>class_name</span>
 <span class='kw'>end</span></pre>
@@ -1291,7 +1291,7 @@
       <div class="method_details ">
   <h3 class="signature " id="user_level-instance_method">
   
-    #<strong>user_level</strong>(_user = nil)  &#x21d2; <tt>String</tt>  <span class="extras">(private)</span>
+    #<strong>user_level</strong>(user = nil)  &#x21d2; <tt>String</tt>  <span class="extras">(private)</span>
   
 
   
@@ -1300,8 +1300,6 @@
 </h3><div class="docstring">
   <div class="discussion">
     <p>顯示目前使用者的權限等級</p>
-
-<p>TODO: 尚未實作</p>
 
 
   </div>
@@ -1317,8 +1315,6 @@
       
         <span class='type'>(<tt>Object</tt>)</span>
       
-      
-        <em class="default">(defaults to: <tt>nil</tt>)</em>
       
       
         &mdash;
@@ -1349,15 +1345,17 @@
       <pre class="lines">
 
 
+66
+67
 68
-69
-70</pre>
+69</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/cells/admin/common_cell.rb', line 68</span>
+      <pre class="code"><span class="info file"># File 'app/cells/admin/common_cell.rb', line 66</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_user_level'>user_level</span><span class='lparen'>(</span><span class='id identifier rubyid__user'>_user</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
-  <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>一般</span><span class='tstring_end'>&#39;</span></span>
+<span class='kw'>def</span> <span class='id identifier rubyid_user_level'>user_level</span><span class='lparen'>(</span><span class='id identifier rubyid_user'>user</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_user'>user</span> <span class='op'>||=</span> <span class='id identifier rubyid_null_user'>null_user</span>
+  <span class='id identifier rubyid_t'>t</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>enums.admin.role.</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_role'>role</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1432,7 +1430,7 @@
       <pre class="code"><span class="info file"># File 'app/cells/admin/common_cell.rb', line 57</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_user_name'>user_name</span><span class='lparen'>(</span><span class='id identifier rubyid_user'>user</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_user'>user</span> <span class='op'>||=</span> <span class='const'>Null</span><span class='op'>::</span><span class='const'>User</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+  <span class='id identifier rubyid_user'>user</span> <span class='op'>||=</span> <span class='id identifier rubyid_null_user'>null_user</span>
   <span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_try'>try</span><span class='lparen'>(</span><span class='symbol'>:name</span><span class='rparen'>)</span> <span class='op'>||</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_t'>t</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>.administrator</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'> (</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_email'>email</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span>
 <span class='kw'>end</span></pre>
     </td>

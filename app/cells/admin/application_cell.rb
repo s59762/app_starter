@@ -17,4 +17,9 @@ class Admin::ApplicationCell < Cell::ViewModel
   def tag_builder
     super.tap { |builder| builder.class_eval { include Cell::Slim::Rails } }
   end
+
+  # 建立 Null::User object，使用者未登入時會使用到這個方法
+  def null_user
+    @null_user ||= Null::User.new
+  end
 end
