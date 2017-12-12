@@ -128,6 +128,9 @@ gem 'koala', '~> 2.2'
 # CORS
 gem 'rack-cors', require: 'rack/cors'
 
+# Serializer
+gem 'active_model_serializers', '~> 0.10.7'
+
 # odd Tools set
 gem 'espresso_martini', github: 'oracle-design/espresso_martini'
 
