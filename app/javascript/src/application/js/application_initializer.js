@@ -1,4 +1,5 @@
 import Vue from 'vue/dist/vue.esm'
+import store from './store'
 
 /**
  * 啟動 Application
@@ -6,6 +7,10 @@ import Vue from 'vue/dist/vue.esm'
  * @class ApplicationInitializer
  */
 class ApplicationInitializer {
+
+  /**
+   * instance 建立時直接啟動 Application
+   */
   constructor() {
     this.vms = []
     this.vueInitializers = {}
@@ -45,17 +50,17 @@ class ApplicationInitializer {
     document.addEventListener('turbolinks:load', () => {
       let templates = document.querySelectorAll('[data-vue]');
       for (let element of templates) {
-        let vm = new Vue(Object.assign(this.vueInitializers[element.dataset.vue], { el: element }));
+        let vm = new Vue(Object.assign(this.vueInitializers[element.dataset.vue], { el: element, store }));
         this.vms.push(vm);
       }
     });
   }
 
   /**
-   * 讀取 `../admin/js/vue_initializers` 中的所有檔案，以 Object 的形式記錄到 `vueInitializers` 中
+   * 讀取 `path` 中的所有檔案，以 Object 的形式記錄到 `vueInitializers` 中
    */
   requireVueInitializers() {
-    let requireContextForvueInitializers = require.context('../admin/js/vue_initializers', false, /\.js$/);
+    let requireContextForvueInitializers = require.context('./vue_initializers', false, /\.js$/);
     requireContextForvueInitializers.keys().forEach(key => {
       let name = key.split('/').pop().split('.').shift();
       this.vueInitializers[name] = requireContextForvueInitializers(key).default;
