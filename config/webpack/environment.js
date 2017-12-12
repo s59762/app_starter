@@ -7,8 +7,7 @@ environment.plugins.set('Provide', new webpack.ProvidePlugin({
   Rails: 'rails-ujs',
   Turbolinks: 'turbolinks',
   jQuery: 'jquery',
-  $: 'jquery',
-  TurbolinksAdapter: 'vue-turbolinks'
+  $: 'jquery'
 }))
 
 environment.loaders.set('import-glob', {
