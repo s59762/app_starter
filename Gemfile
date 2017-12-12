@@ -37,7 +37,6 @@ gem 'jbuilder', '~> 2.5'
 group :development, :test do
   # for console and debug
   gem 'hirb'
-  gem 'hirb-unicode'
   gem 'pry-remote'
 
   # RSpec
@@ -84,7 +83,7 @@ group :development do
   gem 'meta_request'
 
   # Linter
-  gem 'rubocop'
+  gem 'rubocop', '~> 0.49.0'
 
   # detect N+1 query
   gem 'bullet'
