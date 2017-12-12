@@ -30,6 +30,8 @@ class Admin < ApplicationRecord
 
   enum role: %i[general super]
 
+  include BasicScopes
+
   # 如果 avatar 是 nil（未上傳使用者頭像），使用 null object 替代
   def avatar
     super || Null::Image.new

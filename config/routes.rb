@@ -20,4 +20,11 @@ Rails.application.routes.draw do
       resource :password, only: %i[update], controller: 'profile/password'
     end
   end
+
+  # API routes
+  namespace :api do
+    namespace :v1 do
+      resources :admins, only: %i[index show]
+    end
+  end
 end
