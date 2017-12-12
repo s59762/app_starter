@@ -81,7 +81,7 @@
   
   <dl>
     <dt>Included in:</dt>
-    <dd><span class='object_link'><a href="Admin.html" title="Admin (class)">Admin</a></span></dd>
+    <dd><span class='object_link'><a href="ApplicationRecord.html" title="ApplicationRecord (class)">ApplicationRecord</a></span></dd>
   </dl>
   
 
@@ -93,7 +93,41 @@
   
 </div>
 
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>提供基本上每個 modles 都會用到的 Scope</p>
 
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <p class="tag_title">Examples:</p>
+    
+      
+        <p class="example_title"><div class='inline'><p>recent</p>
+</div></p>
+      
+      <pre class="example code"><code><span class='const'>ExampleModel</span><span class='period'>.</span><span class='id identifier rubyid_recent'>recent</span> <span class='comment'># =&gt; 以建立時間排序新的在前</span></code></pre>
+    
+      
+        <p class="example_title"><div class='inline'><p>by_date(date)</p>
+</div></p>
+      
+      <pre class="example code"><code><span class='const'>ExampleModel</span><span class='period'>.</span><span class='id identifier rubyid_by_date'>by_date</span><span class='lparen'>(</span><span class='int'>3</span><span class='period'>.</span><span class='id identifier rubyid_days'>days</span><span class='period'>.</span><span class='id identifier rubyid_ago'>ago</span><span class='rparen'>)</span> <span class='comment'># =&gt; 以日期查詢</span></code></pre>
+    
+      
+        <p class="example_title"><div class='inline'><p>unselect(*columns)</p>
+</div></p>
+      
+      <pre class="example code"><code><span class='const'>ExampleModel</span><span class='period'>.</span><span class='id identifier rubyid_unselect'>unselect</span><span class='lparen'>(</span><span class='symbol'>:created_at</span><span class='comma'>,</span> <span class='symbol'>:updated_at</span><span class='rparen'>)</span>
+<span class='comment'># `.unselect` 是類似 `.select` 的方法，可以在查詢時排除不需要的欄位</span></code></pre>
+    
+  </div>
+
+
+</div>
 
 
 
@@ -155,19 +189,19 @@
       <pre class="lines">
 
 
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13</pre>
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/concerns/basic_scopes.rb', line 4</span>
+      <pre class="code"><span class="info file"># File 'app/models/concerns/basic_scopes.rb', line 13</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_included'>included</span><span class='lparen'>(</span><span class='id identifier rubyid_klass'>klass</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_klass'>klass</span><span class='period'>.</span><span class='id identifier rubyid_instance_eval'>instance_eval</span> <span class='kw'>do</span>
