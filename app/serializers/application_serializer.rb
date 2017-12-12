@@ -6,7 +6,6 @@ class ApplicationSerializer < ActiveModel::Serializer
   # @param fields [Symble] 要轉換的欄位名稱
   def self.to_unix_time(*fields)
     fields.each do |field|
-
       # 動態產生 methods，並把回傳結果變更為 unix time
       #
       # @return [Integer]

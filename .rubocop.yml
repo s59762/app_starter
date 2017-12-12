@@ -6,6 +6,7 @@ AllCops:
     - 'db/**/*'
     - 'log/**/*'
     - 'tmp/**/*'
+    - 'node_modules/**/*'
 
 Lint/EndAlignment:
   EnforcedStyleAlignWith: keyword

@@ -4,7 +4,7 @@ class Api::V1::AdminsController < Api::ApiController
 
     render json: @admins, meta: { total: @admins.count,
                                   lastest_update_at: @admins.order(updated_at: :asc).last.updated_at.to_i },
-                          links: { self: api_v1_admins_path }
+           links: { self: api_v1_admins_path }
   end
 
   def show

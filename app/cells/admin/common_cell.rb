@@ -11,8 +11,8 @@ class Admin::CommonCell < Admin::ApplicationCell
   #
   # 這裡的 `@menu_items` 會讀取 `./common/sidebar_menu_items.yml` 這個檔案做解析，自動產生選單列表。請參考 YAML 檔案中的範例來製作選單。支援 erb 語法。
   def sidebar
-    @menu_items = YAML.load(ERB.new(File.read("#{::Rails.root}/app/cells/admin/common/sidebar_menu_items.yml")).result)
-    @menu_items.map!(&:with_indifferent_access) if @menu_items
+    @menu_items = YAML.safe_load(ERB.new(File.read("#{::Rails.root}/app/cells/admin/common/sidebar_menu_items.yml")).result)
+    @menu_items&.map!(&:with_indifferent_access)
 
     render
   end

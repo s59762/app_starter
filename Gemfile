@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 git_source(:github) do |repo_name|
-  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
+  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?('/')
   "https://github.com/#{repo_name}.git"
 end
 
@@ -78,7 +78,7 @@ group :development do
 
   # better error page
   gem 'better_errors'
-  gem "binding_of_caller"
+  gem 'binding_of_caller'
 
   # support for chrome rails panel
   gem 'meta_request'
@@ -92,7 +92,7 @@ group :development do
   # Deploy tools
   gem 'capistrano'
   gem 'capistrano-bundler'
-  gem "capistrano-db-tasks", require: false
+  gem 'capistrano-db-tasks', require: false
   gem 'capistrano-rails'
   gem 'capistrano-rbenv', github: 'capistrano/rbenv'
   gem 'capistrano-sidekiq'
@@ -108,13 +108,13 @@ group :development do
   gem 'pattern_generator' # FIXIT: we should fork this gem and update form template
 
   # Documentation
-  gem 'yard'
-  gem 'redcarpet'
   gem 'github-markup'
+  gem 'redcarpet'
+  gem 'yard'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 # pg adapter
 gem 'pg'
@@ -123,9 +123,9 @@ gem 'pg'
 gem 'devise'
 
 # Oauth
+gem 'koala', '~> 2.2'
 gem 'omniauth'
 gem 'omniauth-facebook'
-gem 'koala', '~> 2.2'
 
 # CORS
 gem 'rack-cors', require: 'rack/cors'

@@ -30,7 +30,7 @@ guard 'livereload' do
     # less: :less, # uncomment if you want LESS stylesheets done in browser
   }
 
-  rails_view_exts = %w(erb haml slim)
+  rails_view_exts = %w[erb haml slim]
 
   # file types LiveReload may optimize refresh for
   compiled_exts = extensions.values.uniq
@@ -79,8 +79,8 @@ end
 
 rspec_results = File.expand_path('rspec_guard_result')
 
-guard :rspec, cmd: "bundle exec rspec --color", cmd_additional_args: "--tty", results_file: rspec_results do
-  require "guard/rspec/dsl"
+guard :rspec, cmd: 'bundle exec rspec --color', cmd_additional_args: '--tty', results_file: rspec_results do
+  require 'guard/rspec/dsl'
   dsl = Guard::RSpec::Dsl.new(self)
 
   # Feel free to open issues for suggestions and improvements
@@ -96,7 +96,7 @@ guard :rspec, cmd: "bundle exec rspec --color", cmd_additional_args: "--tty", re
   dsl.watch_spec_files_for(ruby.lib_files)
 
   # Rails files
-  rails = dsl.rails(view_extensions: %w(erb haml slim))
+  rails = dsl.rails(view_extensions: %w[erb haml slim])
   dsl.watch_spec_files_for(rails.app_files)
   dsl.watch_spec_files_for(rails.views)
 
@@ -120,6 +120,6 @@ guard :rspec, cmd: "bundle exec rspec --color", cmd_additional_args: "--tty", re
   # Turnip features and steps
   watch(%r{^spec/acceptance/(.+)\.feature$})
   watch(%r{^spec/acceptance/steps/(.+)_steps\.rb$}) do |m|
-    Dir[File.join("**/#{m[1]}.feature")][0] || "spec/acceptance"
+    Dir[File.join("**/#{m[1]}.feature")][0] || 'spec/acceptance'
   end
 end

@@ -12,6 +12,6 @@ class ApplicationForm < Reform::Form
 
   # workaround for i18n issue of form labels
   def self.human_attribute_name(attribute_key_name, options = {})
-    I18n.t("activerecord.attributes.#{self.model_name.to_s.underscore}.#{attribute_key_name}", options)
+    I18n.t("activerecord.attributes.#{model_name.to_s.underscore}.#{attribute_key_name}", options)
   end
 end
