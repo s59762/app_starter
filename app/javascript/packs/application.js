@@ -1,4 +1,4 @@
 import "../src/application/css/application.css"
+import ApplicationInitializer from '../src/shared/application_initializer'
 
-Rails.start()
-Turbolinks.start()
+new ApplicationInitializer()
