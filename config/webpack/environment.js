@@ -15,4 +15,9 @@ environment.loaders.set('import-glob', {
   use: 'import-glob-loader'
 })
 
+environment.loaders.set('pug', {
+  test: /\.pug$/,
+  use: 'pug-loader'
+})
+
 module.exports = environment

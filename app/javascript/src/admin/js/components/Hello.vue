@@ -1,15 +1,15 @@
-<template>
-  <div>
-    <h2>{{ message }}</h2>
+<template lang="pug">
+  div
+    h2 {{message}}
 
-    <h3>Vuex 測試</h3>
-    <div>
-      <label for="">Counter</label>
-      <p>{{ counter }}</p>
-    </div>
-    <button @click="increment">+1</button>
-    <button @click="decrement">-1</button>
-  </div>
+    h3 Vuex 測試
+
+    div
+      label Counter
+      p {{counter}}
+
+    button(@click="increment") +1
+    button(@click="decrement") -1
 </template>
 
 <script>
