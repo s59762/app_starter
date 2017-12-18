@@ -46,6 +46,7 @@ class ApplicationInitializer {
         vm.$destroy();
       }
       this.vms = [];
+      store.replaceState(cloneDeep(storeState))
     });
   }
 
@@ -59,7 +60,6 @@ class ApplicationInitializer {
         let vm = new Vue(Object.assign(this.vueInitializers[element.dataset.vue], { el: element, store }));
 
         this.vms.push(vm)
-        store.replaceState(cloneDeep(storeState))
       }
     });
   }
