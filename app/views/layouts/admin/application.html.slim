@@ -17,6 +17,10 @@ html
         = cell('admin/common').call(:sidebar)
 
         .main-content-container
+          .flash-messages-container data-vue="flash_message" data-messages=(flash.to_json)
+            .flash-messages v-for="message in messages"
+              flash-message :message-type="message[0]" :message="message[1]"
+
           = yield
 
     = yield :added_scripts if content_for?(:added_scripts)
