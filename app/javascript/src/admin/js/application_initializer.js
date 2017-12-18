@@ -1,8 +1,11 @@
 import Vue from 'vue/dist/vue.esm'
+import VueCookie from 'vue-cookie'
 import store from './store'
 import cloneDeep from 'lodash.clonedeep'
 
 const storeState = cloneDeep(store.state)
+
+Vue.use(VueCookie)
 
 /**
  * 啟動 Application

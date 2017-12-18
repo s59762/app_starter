@@ -108,8 +108,116 @@
 
 
 
+  
+    <h2>
+      Instance Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#create-instance_method" title="#create (instance method)">#<strong>create</strong> {|resource| ... } &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
 
   
+    <span class="summary_desc"><div class='inline'><p>登入 產生 JWT 並放在 cookie.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="create-instance_method">
+  
+    #<strong>create</strong> {|resource| ... } &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>登入
+產生 JWT 並放在 cookie</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Yields:</p>
+<ul class="yield">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>resource</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/devise/admins/sessions_controller.rb', line 12</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_create'>create</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_resource'>resource</span> <span class='op'>=</span> <span class='id identifier rubyid_warden'>warden</span><span class='period'>.</span><span class='id identifier rubyid_authenticate!'>authenticate!</span><span class='lparen'>(</span><span class='id identifier rubyid_auth_options'>auth_options</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_set_flash_message!'>set_flash_message!</span><span class='lparen'>(</span><span class='symbol'>:notice</span><span class='comma'>,</span> <span class='symbol'>:signed_in</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_sign_in'>sign_in</span><span class='lparen'>(</span><span class='id identifier rubyid_resource_name'>resource_name</span><span class='comma'>,</span> <span class='id identifier rubyid_resource'>resource</span><span class='rparen'>)</span>
+  <span class='kw'>yield</span> <span class='id identifier rubyid_resource'>resource</span> <span class='kw'>if</span> <span class='id identifier rubyid_block_given?'>block_given?</span>
+
+  <span class='id identifier rubyid_cookies'>cookies</span><span class='lbracket'>[</span><span class='symbol'>:jwt</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../JsonWebToken.html" title="JsonWebToken (class)">JsonWebToken</a></span></span><span class='period'>.</span><span class='id identifier rubyid_encode'><span class='object_link'><a href="../../JsonWebToken.html#encode-class_method" title="JsonWebToken.encode (method)">encode</a></span></span><span class='lparen'>(</span><span class='label'>sub:</span> <span class='id identifier rubyid_resource'>resource</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='label'>iat:</span> <span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_current'>current</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span><span class='comma'>,</span> <span class='label'>role:</span> <span class='id identifier rubyid_resource'>resource</span><span class='period'>.</span><span class='id identifier rubyid_role'>role</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_respond_with'>respond_with</span> <span class='id identifier rubyid_resource'>resource</span><span class='comma'>,</span> <span class='label'>location:</span> <span class='id identifier rubyid_after_sign_in_path_for'>after_sign_in_path_for</span><span class='lparen'>(</span><span class='id identifier rubyid_resource'>resource</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
 
 </div>
 

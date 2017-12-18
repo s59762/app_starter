@@ -7,11 +7,18 @@ class Devise::Admins::SessionsController < Devise::SessionsController
   #   super
   # end
 
-  # POST /resource/sign_in
-  # def create
-  #   super
-  # end
+  # 登入
+  # 產生 JWT 並放在 cookie
+  def create
+    self.resource = warden.authenticate!(auth_options)
+    set_flash_message!(:notice, :signed_in)
+    sign_in(resource_name, resource)
+    yield resource if block_given?
 
+    cookies[:jwt] = JsonWebToken.encode(sub: resource.id, iat: Time.current.to_i, role: resource.role)
+
+    respond_with resource, location: after_sign_in_path_for(resource)
+  end
   # DELETE /resource/sign_out
   # def destroy
   #   super
