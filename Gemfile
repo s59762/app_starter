@@ -173,3 +173,6 @@ gem 'sidekiq'
 
 # authorization
 gem 'pundit'
+
+# query DB based on time
+gem 'by_star'

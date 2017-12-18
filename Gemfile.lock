@@ -83,6 +83,8 @@ GEM
     bullet (5.7.0)
       activesupport (>= 3.0.0)
       uniform_notifier (~> 1.10.0)
+    by_star (2.2.1)
+      activesupport
     callsite (0.0.11)
     capistrano (3.10.1)
       airbrussh (>= 1.0.0)
@@ -482,6 +484,7 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   bullet
+  by_star
   capistrano
   capistrano-bundler
   capistrano-db-tasks
