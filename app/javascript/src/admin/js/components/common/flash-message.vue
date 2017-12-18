@@ -45,8 +45,8 @@
 
     mounted: function() {
       setTimeout(function(){
-          this.show = false;
-      }.bind(this), 5000);
+        this.show = false
+      }.bind(this), 5000)
     }
   }
 </script>
