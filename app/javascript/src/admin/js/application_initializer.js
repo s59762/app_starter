@@ -13,7 +13,6 @@ Vue.use(VueCookie)
  * @class ApplicationInitializer
  */
 class ApplicationInitializer {
-
   /**
    * instance 建立時直接啟動 Application
    */
@@ -33,8 +32,8 @@ class ApplicationInitializer {
     Turbolinks.start()
 
     this.requireVueInitializers()
-    this.detectAndInitializingVueInstances();
-    this.destroyVueInstancesWhenPageChange();
+    this.detectAndInitializingVueInstances()
+    this.destroyVueInstancesWhenPageChange()
   }
 
   /**
@@ -43,11 +42,11 @@ class ApplicationInitializer {
   destroyVueInstancesWhenPageChange() {
     document.addEventListener('turbolinks:visit', () => {
       for (let vm of this.vms) {
-        vm.$destroy();
+        vm.$destroy()
       }
-      this.vms = [];
+      this.vms = []
       store.replaceState(cloneDeep(storeState))
-    });
+    })
   }
 
   /**
@@ -55,24 +54,30 @@ class ApplicationInitializer {
    */
   detectAndInitializingVueInstances() {
     document.addEventListener('turbolinks:load', () => {
-      let templates = document.querySelectorAll('[data-vue]');
+      let templates = document.querySelectorAll('[data-vue]')
       for (let element of templates) {
-        let vm = new Vue(Object.assign(this.vueInitializers[element.dataset.vue], { el: element, store }));
+        let vm = new Vue(
+          Object.assign(this.vueInitializers[element.dataset.vue], { el: element, store })
+        )
 
         this.vms.push(vm)
       }
-    });
+    })
   }
 
   /**
    * 讀取 `path` 中的所有檔案，以 Object 的形式記錄到 `vueInitializers` 中
    */
   requireVueInitializers() {
-    let requireContextForvueInitializers = require.context('./vue_initializers', false, /\.js$/);
+    let requireContextForvueInitializers = require.context('./vue_initializers', false, /\.js$/)
     requireContextForvueInitializers.keys().forEach(key => {
-      let name = key.split('/').pop().split('.').shift();
-      this.vueInitializers[name] = requireContextForvueInitializers(key).default;
-    });
+      let name = key
+        .split('/')
+        .pop()
+        .split('.')
+        .shift()
+      this.vueInitializers[name] = requireContextForvueInitializers(key).default
+    })
   }
 }
 

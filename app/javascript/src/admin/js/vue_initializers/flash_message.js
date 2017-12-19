@@ -7,9 +7,7 @@ export default {
   },
 
   computed: {
-    ...mapGetters([
-      'flashMessages'
-    ])
+    ...mapGetters(['flashMessages'])
   },
 
   created() {
