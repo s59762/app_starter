@@ -1,0 +1,14 @@
+// ========================================================================== //
+// for more infomation, visit https://github.com/Huachao/vscode-restclient    //
+// this vscode extension can send request from editor and get response easily //
+// ========================================================================== //
+
+# define variables here
+@host = localhost:3000
+
+// ========================================================================== //
+
+# This is a demo api for get admin list
+GET http://{{host}}/api/v1/admins HTTP/1.1
+
+###
