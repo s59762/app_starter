@@ -10,8 +10,8 @@ export default {
     ...mapGetters(['flashMessages'])
   },
 
-  created() {
-    let messages = JSON.parse(document.querySelector("[data-vue='flash_message']").dataset.messages)
+  mounted() {
+    let messages = JSON.parse(this.$el.dataset.messages)
     this.$store.dispatch('setFlashMessages', messages)
   }
 }
