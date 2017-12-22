@@ -1,11 +1,12 @@
 <template lang="pug">
 
 transition(leave-active-class="fadeOutUp")
-  .alert.alert-dismissible.animated.fadeInDown(:class="mappingClasses" v-if="show")
-    button.close(aria-hidden="true" type="button" @click="closeAlert") ×
-    h4
-      i.icon.fa(:class="mappingIcons")
-    | {{message}}
+  .flash-messages
+    .alert.alert-dismissible.animated.fadeInDown(:class="mappingClasses" v-if="show")
+      button.close(aria-hidden="true" type="button" @click="closeAlert") ×
+      h4
+        i.icon.fa(:class="mappingIcons")
+      | {{message}}
 
 </template>
 

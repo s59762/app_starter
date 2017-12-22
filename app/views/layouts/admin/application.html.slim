@@ -12,14 +12,12 @@ html
       | <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
     .wrapper
       = cell('admin/common').call(:header)
-
+      = cell('admin/common').call(:sidebar)
       .content-wrapper
-        = cell('admin/common').call(:sidebar)
-
         .main-content-container
+          // [vue flash_message]
           .flash-messages-container data-vue="flash_message" data-messages=(flash.to_json)
-            .flash-messages v-for="message in flashMessages"
-              flash-message :message-type="message[0]" :message="message[1]"
+            flash-message(:message-type="message[0]" :message="message[1]" v-for="(message, index) in flashMessages" :key="index")
 
           = yield
 
