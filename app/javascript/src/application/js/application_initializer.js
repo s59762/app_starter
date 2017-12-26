@@ -1,4 +1,5 @@
 import Vue from 'vue/dist/vue.esm'
+import Buefy from 'buefy'
 import VueCookie from 'vue-cookie'
 import store from './store'
 import cloneDeep from 'lodash.clonedeep'
@@ -6,6 +7,7 @@ import cloneDeep from 'lodash.clonedeep'
 const storeState = cloneDeep(store.state)
 
 Vue.use(VueCookie)
+Vue.use(Buefy, { defaultIconPack: 'fa' })
 
 /**
  * 啟動 Application
