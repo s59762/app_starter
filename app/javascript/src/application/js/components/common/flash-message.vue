@@ -1,10 +1,3 @@
-<template lang="pug">
-  transition(leave-active-class="bounceOutRight")
-    .notification.animated.bounceInRight(:class="mappingClasses" v-if="show")
-      button.delete(@click="closeAlert")
-      | {{message}}
-</template>
-
 <script>
 const CLASSES_MAP = {
   success: 'is-success',
@@ -15,31 +8,23 @@ const CLASSES_MAP = {
 export default {
   props: ['messageType', 'message'],
 
-  data: function() {
-    return {
-      show: true
-    }
-  },
-
   computed: {
     mappingClasses: function() {
       return CLASSES_MAP[this.messageType]
     }
   },
 
-  methods: {
-    closeAlert: function() {
-      this.show = false
-    }
+  mounted: function() {
+    this.$toast.open({
+      type: this.mappingClasses,
+      message: this.message,
+      duration: 5000,
+      queue: false
+    })
   },
 
-  mounted: function() {
-    setTimeout(
-      function() {
-        this.show = false
-      }.bind(this),
-      5000
-    )
+  render: h => {
+    h()
   }
 }
 </script>
