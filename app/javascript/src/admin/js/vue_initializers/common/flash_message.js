@@ -1,4 +1,4 @@
-import FlashMessage from '../components/common/flash-message.vue'
+import FlashMessage from '../../components/common/flash-message.vue'
 import { mapGetters } from 'vuex'
 
 export default {
