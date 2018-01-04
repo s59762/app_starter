@@ -91,6 +91,9 @@ group :development do
   gem 'github-markup'
   gem 'redcarpet'
   gem 'yard'
+
+  # i18n for js world
+  gem 'i18n-js'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -154,3 +157,9 @@ gem 'pundit'
 
 # query DB based on time
 gem 'by_star'
+
+# aasm state machine
+gem 'aasm'
+
+# friendly ID
+gem 'friendly_id', '~> 5.1.0'
