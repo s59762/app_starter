@@ -1,13 +1,14 @@
 import Vue from 'vue/dist/vue.esm'
 import Buefy from 'buefy'
-import VueCookie from 'vue-cookie'
 import store from './store'
 import cloneDeep from 'lodash.clonedeep'
+import '../../../src/locale/zh-TW'
+import moment from 'moment'
+import Cookies from 'js-cookie'
+import axios from 'axios'
 
 const storeState = cloneDeep(store.state)
-
-Vue.use(VueCookie)
-Vue.use(Buefy, { defaultIconPack: 'fa' })
+const JWT = Cookies.get('client_jwt') || '' // Devise 登入時必須產生 JWT 並放在 Cookie，登出時刪掉
 
 /**
  * 啟動 Application
@@ -33,21 +34,33 @@ class ApplicationInitializer {
     Rails.start()
     Turbolinks.start()
 
+    // using Buefy
+    Vue.use(Buefy, { defaultIconPack: 'fa' })
+
+    // using zh-TW as defult locale file
+    I18n.locale = 'zh-TW'
+    moment.locale('zh-TW')
+
+    // setting up axios default headers with JWT
+    axios.defaults.headers.common['Authorization'] = `Bearer ${JWT}`
+
     this.requireVueInitializers()
     this.detectAndInitializingVueInstances()
     this.destroyVueInstancesWhenPageChange()
   }
 
   /**
-   * 在 `turbolinks:load` 事件發生時，把 `vms` 中的所有 Vue instances 都移除
+   * 讀取 `path` 中的所有檔案，以 Object 的形式記錄到 `vueInitializers` 中
    */
-  destroyVueInstancesWhenPageChange() {
-    document.addEventListener('turbolinks:visit', () => {
-      for (let vm of this.vms) {
-        vm.$destroy()
-      }
-      this.vms = []
-      store.replaceState(cloneDeep(storeState))
+  requireVueInitializers() {
+    let requireContextForvueInitializers = require.context('./vue_initializers', true, /\.js$/)
+    requireContextForvueInitializers.keys().forEach(key => {
+      let name = key
+        .split('/')
+        .pop()
+        .split('.')
+        .shift()
+      this.vueInitializers[name] = requireContextForvueInitializers(key).default
     })
   }
 
@@ -68,17 +81,15 @@ class ApplicationInitializer {
   }
 
   /**
-   * 讀取 `path` 中的所有檔案，以 Object 的形式記錄到 `vueInitializers` 中
+   * 在 `turbolinks:load` 事件發生時，把 `vms` 中的所有 Vue instances 都移除
    */
-  requireVueInitializers() {
-    let requireContextForvueInitializers = require.context('./vue_initializers', false, /\.js$/)
-    requireContextForvueInitializers.keys().forEach(key => {
-      let name = key
-        .split('/')
-        .pop()
-        .split('.')
-        .shift()
-      this.vueInitializers[name] = requireContextForvueInitializers(key).default
+  destroyVueInstancesWhenPageChange() {
+    document.addEventListener('turbolinks:visit', () => {
+      for (let vm of this.vms) {
+        vm.$destroy()
+      }
+      this.vms = []
+      store.replaceState(cloneDeep(storeState))
     })
   }
 }
