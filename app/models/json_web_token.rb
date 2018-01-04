@@ -1,6 +1,5 @@
 # JWT 的 Wrapper
 class JsonWebToken
-
   # 產生 JWT
   #
   # @param [Hash] payload JWT 要包含的內容

@@ -11,6 +11,6 @@ class ValidationFailureException < ApplicationException
 
   # 把 validation 的錯誤訊息加入 response
   def response
-    super.merge({ validation_errors: @errors })
+    super.merge(validation_errors: @errors)
   end
 end
