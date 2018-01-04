@@ -34,4 +34,9 @@ class Admin < ApplicationRecord
   def avatar
     super || Null::Image.new
   end
+
+  # 產生 JWT 供 API 認證身份
+  def issue_jwt
+    JsonWebToken.encode(sub: id, iat: Time.current.to_i, role: role, type: 'Admin')
+  end
 end

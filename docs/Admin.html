@@ -163,6 +163,29 @@
 </li>
 
       
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#issue_jwt-instance_method" title="#issue_jwt (instance method)">#<strong>issue_jwt</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>產生 JWT 供 API 認證身份.</p>
+</div></span>
+  
+</li>
+
+      
     </ul>
   
 
@@ -225,6 +248,46 @@
 
 <span class='kw'>def</span> <span class='id identifier rubyid_avatar'>avatar</span>
   <span class='kw'>super</span> <span class='op'>||</span> <span class='const'>Null</span><span class='op'>::</span><span class='const'>Image</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="issue_jwt-instance_method">
+  
+    #<strong>issue_jwt</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>產生 JWT 供 API 認證身份</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+39
+40
+41</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/admin.rb', line 39</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_issue_jwt'>issue_jwt</span>
+  <span class='const'><span class='object_link'><a href="JsonWebToken.html" title="JsonWebToken (class)">JsonWebToken</a></span></span><span class='period'>.</span><span class='id identifier rubyid_encode'><span class='object_link'><a href="JsonWebToken.html#encode-class_method" title="JsonWebToken.encode (method)">encode</a></span></span><span class='lparen'>(</span><span class='label'>sub:</span> <span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='label'>iat:</span> <span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_current'>current</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span><span class='comma'>,</span> <span class='label'>role:</span> <span class='id identifier rubyid_role'>role</span><span class='comma'>,</span> <span class='label'>type:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Admin</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>

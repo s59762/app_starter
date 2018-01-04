@@ -15,14 +15,18 @@ class Devise::Admins::SessionsController < Devise::SessionsController
     sign_in(resource_name, resource)
     yield resource if block_given?
 
-    cookies[:jwt] = JsonWebToken.encode(sub: resource.id, iat: Time.current.to_i, role: resource.role)
+    cookies[:admin_jwt] = resource.issue_jwt
 
     respond_with resource, location: after_sign_in_path_for(resource)
   end
-  # DELETE /resource/sign_out
-  # def destroy
-  #   super
-  # end
+
+  # 登出
+  # 移除 JWT
+  def destroy
+    cookies.delete :admin_jwt
+
+    super
+  end
 
   # protected
 
