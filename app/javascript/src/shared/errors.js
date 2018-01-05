@@ -1,9 +1,11 @@
+const DEFAULT_ERROR_OBJECT = { validation_errors: {} }
+
 export default class Errors {
   /**
    * 建立 Errors 的 instance
    */
   constructor() {
-    this.errors = {}
+    this.errors = DEFAULT_ERROR_OBJECT
   }
 
   /**
@@ -12,14 +14,14 @@ export default class Errors {
    * @param {string} columnName 欄位名稱
    */
   has(columnName) {
-    return this.errors.hasOwnProperty(columnName)
+    return this.errors.validation_errors.hasOwnProperty(columnName)
   }
 
   /**
    * 檢查是否有任何錯誤
    */
   any() {
-    return Object.keys(this.errors).length > 0
+    return Object.keys(this.errors.validation_errors).length > 0
   }
 
   /**
@@ -28,8 +30,8 @@ export default class Errors {
    * @param {string} columnName
    */
   get(columnName) {
-    if (this.errors[columnName]) {
-      return this.errors[columnName]
+    if (this.errors.validation_errors[columnName]) {
+      return this.errors.validation_errors[columnName]
     }
   }
 
@@ -45,10 +47,10 @@ export default class Errors {
   /**
    * 紀錄錯誤內容
    *
-   * @param {object} errors
+   * @param {object} ererrors_from_serverrors
    */
-  record(errors) {
-    this.errors = errors
+  record(errors_from_server) {
+    this.errors = errors_from_server
   }
 
   /**
@@ -58,11 +60,11 @@ export default class Errors {
    */
   clear(columnName) {
     if (columnName) {
-      delete this.errors[columnName]
+      delete this.errors.validation_errors[columnName]
 
       return
     }
 
-    this.errors = {}
+    this.errors = DEFAULT_ERROR_OBJECT
   }
 }
