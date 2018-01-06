@@ -1,0 +1,29 @@
+.site-navbar
+  > .navbar
+    box-shadow: 0 0 5px 0 $dark
+    display: flex
+
+.navbar
+  > .nav-left,
+  > .nav-center,
+  > .nav-right
+    display: flex
+    align-items: center
+  > .nav-left
+    flex-basis: 0
+    flex-grow: 1
+    flex-shrink: 0
+  > .nav-center
+    flex-grow: 0
+    flex-shrink: 0
+  > .nav-right
+    flex-grow: 1
+    flex-shrink: 0
+    justify-content: flex-end
+    padding-right: 1rem
+  .sidebar-toggle
+    display: flex
+    align-items: center
+    justify-content: center
+    width: 44px
+    height: 44px
