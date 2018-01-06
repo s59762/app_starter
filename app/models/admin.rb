@@ -37,6 +37,10 @@ class Admin < ApplicationRecord
 
   # 產生 JWT 供 API 認證身份
   def issue_jwt
-    JsonWebToken.encode(sub: id, iat: Time.current.to_i, role: role, type: 'Admin')
+    JsonWebToken.encode(sub: id,
+                        iat: Time.current.to_i,
+                        role: role,
+                        type: 'Admin',
+                        ref: 'web')
   end
 end
