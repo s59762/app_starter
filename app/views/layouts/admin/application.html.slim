@@ -10,15 +10,7 @@ html
   body class="skin-black sidebar-mini layout-fixed #{controller.controller_name}-#{controller.action_name} admin-ui"
     /![if lt IE 7]
       | <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
-    .wrapper
-      = cell('admin/common').call(:header)
-      = cell('admin/common').call(:sidebar)
-      .content-wrapper
-        .main-content-container
-          // [vue flash_message]
-          .flash-messages-container data-vue="flash_message" data-messages=(flash.to_json)
-            flash-message(:message-type="message[0]" :message="message[1]" v-for="(message, index) in flashMessages" :key="index")
+    nav.site-navbar.navbar.is-fixed-top
 
-          = yield
 
     = yield :added_scripts if content_for?(:added_scripts)
