@@ -25,7 +25,20 @@ html
     .site-main-container(data-vue="site_main_container"
                          :class="sidebarOpenedClass")
       .container
+        - breadcrumbs do |links|
+          - if links.any?
+            nav.breadcrumb.is-right(aria-label='breadcrumbs')
+              ul
+                - links.each do |link|
+                  li(class=(link.current? ? 'is-active' : nil))
+                    = link_to link.url
+                      .icon
+                        i.fa(class=(link.icon))
+                      span = link.text
+
+
         = yield
+
 
 
     = yield :added_scripts if content_for?(:added_scripts)
