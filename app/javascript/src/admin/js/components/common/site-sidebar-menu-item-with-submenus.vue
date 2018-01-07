@@ -1,11 +1,11 @@
 <template lang="pug">
 
 li
-  a(:href="menu.path")
+  a.list-item-link(:href="menu.path")
     .icon
       i.fa(:class="menu.icon")
     span {{menu.title}}
-  ul
+  ul.submenu-list
     li(v-for="submenu in menu.submenus")
       a(:href="submenu.path") {{submenu.title}}
 

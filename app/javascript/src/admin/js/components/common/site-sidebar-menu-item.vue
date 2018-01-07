@@ -1,7 +1,7 @@
 <template lang="pug">
 
 li
-  a(:href="menu.path")
+  a.list-item-link(:href="menu.path")
     .icon
       i.fa(:class="menu.icon")
     span {{menu.title}}
