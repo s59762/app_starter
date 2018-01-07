@@ -13,6 +13,13 @@ export const clearFlashMessages = ({ commit }) => {
 }
 
 export const toggleSidebar = ({ commit }, option) => {
+  const siteMainContainer = document.querySelector('.site-main-container')
+
+  if (option) {
+    siteMainContainer.classList.add('sidebar-is-opened')
+  } else {
+    siteMainContainer.classList.remove('sidebar-is-opened')
+  }
   commit(types.TOGGLE_SIDEBAR, option)
 }
 

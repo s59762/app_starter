@@ -22,9 +22,7 @@ html
     .site-sidebar-menu-container(data-vue="site_sidebar_menu_container")
       sidebar-menu(data-sidebar-menu-items=(sidebar_menu_items.to_json))
 
-    // [vue site_main_container]
-    .site-main-container(data-vue="site_main_container"
-                         :class="sidebarOpenedClass")
+    .site-main-container
       .odd-container
         - breadcrumbs do |links|
           - if links.any?
