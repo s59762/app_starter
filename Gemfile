@@ -163,3 +163,6 @@ gem 'aasm'
 
 # friendly ID
 gem 'friendly_id', '~> 5.1.0'
+
+# breadcrumb
+gem 'gretel'

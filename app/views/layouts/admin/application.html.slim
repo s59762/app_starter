@@ -7,18 +7,34 @@ html
     = csrf_meta_tags
     = javascript_pack_tag 'admin', 'data-turbolinks-track': 'reload'
     = stylesheet_pack_tag 'admin', media: 'all', 'data-turbolinks-track': 'reload'
-  body class="skin-black sidebar-mini layout-fixed #{controller.controller_name}-#{controller.action_name} admin-ui"
+  body class="#{controller.controller_name}-#{controller.action_name}"
     /![if lt IE 7]
       | <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
-    .wrapper
-      = cell('admin/common').call(:header)
-      = cell('admin/common').call(:sidebar)
-      .content-wrapper
-        .main-content-container
-          // [vue flash_message]
-          .flash-messages-container data-vue="flash_message" data-messages=(flash.to_json)
-            flash-message(:message-type="message[0]" :message="message[1]" v-for="(message, index) in flashMessages" :key="index")
+    // [vue flash_message]
+    .flash-messages-container data-vue="flash_message" data-messages=(flash.to_json)
+      flash-message(v-for="(message, index) in flashMessages" :message-type="message[0]" :message="message[1]" :key="index")
 
-          = yield
+    // [vue site_navbar_container]
+    .site-navbar(data-vue="site_navbar_container")
+      site-navbar(:logout-path=("'#{destroy_admin_session_path}'"))
+
+    // [vue site_sidebar_menu_container]
+    .site-sidebar-menu-container(data-vue="site_sidebar_menu_container")
+      sidebar-menu(data-sidebar-menu-items=(sidebar_menu_items.to_json))
+
+    .site-main-container
+      .odd-container
+        - breadcrumbs do |links|
+          - if links.any?
+            nav.breadcrumb.is-right(aria-label='breadcrumbs')
+              ul
+                - links.each do |link|
+                  li(class=(link.current? ? 'is-active' : nil))
+                    = link_to link.url
+                      .icon
+                        i.fa(class=(link.icon))
+                      span = link.text
+
+        = yield
 
     = yield :added_scripts if content_for?(:added_scripts)

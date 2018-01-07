@@ -1,0 +1,59 @@
+<template lang="pug">
+
+li
+  a.list-item-link(@click="toggleSubmenu"
+                   :class="activeClass")
+    .icon
+      i.fa(:class="menu.icon")
+    span {{menu.title}}
+    .submenu-active-indicator.icon.is-pulled-right(:class="submenuActiveClass")
+      i.fa.fa-angle-right
+  b-collapse(:open.sync="submenuActive")
+    ul.submenu-list
+      li(v-for="submenu in menu.submenus")
+        a.submenu-list-link(:href="submenu.path")
+          .icon(:class="submenuItemActiveItem(submenu)")
+            i.fa.fa-circle
+          span {{submenu.title}}
+
+</template>
+
+<script>
+import siteSidebarMenuItemMixin from '../mixins/site_sidebar_menu_item_mixin'
+
+export default {
+  // components: {},
+
+  mixins: [siteSidebarMenuItemMixin],
+
+  // props: {},
+
+  data() {
+    return {
+      submenuActive: false
+    }
+  },
+
+  computed: {
+    submenuActiveClass() {
+      if (this.submenuActive) { return 'is-active' }
+    }
+  },
+
+  // created() {},
+
+  mounted() {
+    this.submenuActive = this.isActive
+  },
+
+  methods: {
+    toggleSubmenu() {
+      this.submenuActive = !this.submenuActive
+    },
+
+    submenuItemActiveItem(submenu) {
+      if (submenu.action == document.querySelector('body').className && this.submenuActive) { return 'is-active' }
+    }
+  }
+}
+</script>

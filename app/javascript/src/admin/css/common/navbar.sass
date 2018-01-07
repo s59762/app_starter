@@ -1,0 +1,41 @@
+.site-navbar
+  position: fixed
+  top: 0
+  left: 0
+  width: 100%
+  z-index: index($elements, site-navibar)
+  > .navbar
+    position: relative
+    display: flex
+    box-shadow: 0 0 5px 0 $c-site-navibar-shadow
+    text-align: center
+
+.navbar
+  > .nav-left,
+  > .nav-center,
+  > .nav-right
+    display: flex
+    flex: 1
+    align-items: center
+  > .nav-left
+    flex-basis: 0
+    flex-grow: 1
+    flex-shrink: 0
+  > .nav-center
+    flex-grow: 0
+    flex-shrink: 0
+  > .nav-right
+    justify-content: flex-end
+  .sidebar-toggle
+    cursor: pointer
+    display: flex
+    align-items: center
+    justify-content: center
+    width: 44px
+    height: 44px
+  .options-btn
+    margin-right: 0.5rem
+    &.is-active .button
+      background-color: $c-site-navibar-option-btn-active
+  .dropdown-item
+    text-align: left

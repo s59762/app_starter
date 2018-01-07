@@ -8,9 +8,9 @@ GIT
 
 GIT
   remote: https://github.com/oracle-design/espresso_martini.git
-  revision: 28f03f6026af83d1db5ebc34eb371d36263f4739
+  revision: d091ed2cfe6513e067b2b34792bf8d3e50e64ffc
   specs:
-    espresso_martini (0.3.0)
+    espresso_martini (0.3.1)
 
 GEM
   remote: https://rubygems.org/
@@ -194,6 +194,8 @@ GEM
     github-markup (1.6.2)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
+    gretel (3.0.9)
+      rails (>= 3.1.0)
     guard (2.14.1)
       formatador (>= 0.2.4)
       listen (>= 2.7, < 4.0)
@@ -510,6 +512,7 @@ DEPENDENCIES
   foreman
   friendly_id (~> 5.1.0)
   github-markup
+  gretel
   guard-livereload
   guard-pow
   guard-rspec

@@ -11,3 +11,18 @@ export const addFlashMessage = ({ commit }, message) => {
 export const clearFlashMessages = ({ commit }) => {
   commit(types.CLEAR_FLASH_MESSAGES)
 }
+
+export const toggleSidebar = ({ commit }, option) => {
+  const siteMainContainer = document.querySelector('.site-main-container')
+
+  if (option) {
+    siteMainContainer.classList.add('sidebar-is-opened')
+  } else {
+    siteMainContainer.classList.remove('sidebar-is-opened')
+  }
+  commit(types.TOGGLE_SIDEBAR, option)
+}
+
+export const toggleDevice = ({ commit }, device) => {
+  commit(types.TOGGLE_DEVICE, device)
+}
