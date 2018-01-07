@@ -1,6 +1,9 @@
 zh-TW:
   page_titles:
     admin:
+      login:
+        title: 請先登入
+        subtitle: 本頁面僅限 Admin 帳號使用
       dashboard:
         main_title: 資訊面板
         show: ''
