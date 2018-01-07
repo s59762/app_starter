@@ -1,10 +1,12 @@
 <template lang="pug">
 
-aside.menu.site-sidebar.animated.slideInLeft
-  template(v-for="item in menuItems")
-    p.menu-label
-      | {{item.title}}
-    sidebar-menu(:menus="item.menus")
+transition(enter-active-class="slideInLeft"
+           leave-active-class="slideOutLeft")
+  aside.menu.site-sidebar.animated(v-show="sidebarIsOpen")
+    template(v-for="item in menuItems")
+      p.menu-label
+        | {{item.title}}
+      sidebar-menu(:menus="item.menus")
 
 </template>
 
@@ -19,6 +21,12 @@ export default {
   data() {
     return {
       menuItems: {}
+    }
+  },
+
+  computed: {
+    sidebarIsOpen() {
+      return this.$store.getters['sidebarIsOpen']
     }
   },
 

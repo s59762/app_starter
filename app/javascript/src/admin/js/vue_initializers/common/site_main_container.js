@@ -9,7 +9,17 @@ export default {
   //   return {}
   // },
 
-  // computed: {},
+  computed: {
+    sidebarIsOpen() {
+      return this.$store.getters['sidebarIsOpen']
+    },
+
+    sidebarOpenedClass() {
+      if (this.sidebarIsOpen) {
+        return 'sidebar-is-opened'
+      }
+    }
+  },
 
   // created() {},
   beforeMount() {

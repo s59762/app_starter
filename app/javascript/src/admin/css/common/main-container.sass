@@ -1,3 +1,7 @@
 .site-main-container
-  margin-left: $v-site-sidebar-width
   padding-top: $v-site-navibar-height
+  transition: margin-left 1s
+  &.sidebar-is-opened
+    margin-left: $v-site-sidebar-width
+  > .container
+    padding: .5rem

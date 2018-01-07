@@ -2,7 +2,7 @@
 
 nav.navbar.is-fixed-top.level.animated.slideInDown
   .nav-left
-    .sidebar-toggle.is-hidden-tablet
+    .sidebar-toggle.is-hidden-tablet(@click="toggleSidebar")
       i.fa.fa-bars
   .nav-center
     .brand-logo
@@ -51,7 +51,13 @@ export default {
 
   computed: {
     optionMenuActive() {
-      if (this.isOptionMenuOpen == true) { return 'is-active' }
+      if (this.isOptionMenuOpen == true) {
+        return 'is-active'
+      }
+    },
+
+    sidebarIsOpen() {
+      return this.$store.getters['sidebarIsOpen']
     }
   },
 
@@ -62,6 +68,10 @@ export default {
   methods: {
     triggerOptionMenu() {
       this.isOptionMenuOpen = !this.isOptionMenuOpen
+    },
+
+    toggleSidebar() {
+      this.$store.dispatch('toggleSidebar', !this.sidebarIsOpen)
     }
   }
 }
