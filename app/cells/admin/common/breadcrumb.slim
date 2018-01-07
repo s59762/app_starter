@@ -1,8 +1,0 @@
-ol.breadcrumb
-    li
-      = link_to admin_root_path do
-        i.fa.fa-dashboard
-        = t('.admin_root')
-    - if options[:breadcrumb_units]
-      - options[:breadcrumb_units].each do |unit|
-        = render_breadcrumb_unit(unit)
