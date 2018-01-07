@@ -11,3 +11,11 @@ export const addFlashMessage = ({ commit }, message) => {
 export const clearFlashMessages = ({ commit }) => {
   commit(types.CLEAR_FLASH_MESSAGES)
 }
+
+export const toggleSidebar = ({ commit }, option) => {
+  commit(types.TOGGLE_SIDEBAR, option)
+}
+
+export const toggleDevice = ({ commit }, device) => {
+  commit(types.TOGGLE_DEVICE, device)
+}

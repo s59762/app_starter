@@ -7,7 +7,13 @@ import mutations from './mutations'
 Vue.use(Vuex)
 
 const state = {
-  flashMessages: []
+  flashMessages: [],
+  device: {
+    isMobile: false
+  },
+  sidebar: {
+    isOpen: false
+  }
 }
 
 export default new Vuex.Store({
