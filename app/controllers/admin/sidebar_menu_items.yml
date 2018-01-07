@@ -1,0 +1,24 @@
+- title: 單層一般選單
+  menus:
+    - path: <%= Rails.application.routes.url_helpers.admin_dashboard_path %>
+      active_by: <%= Rails.application.routes.url_helpers.admin_dashboard_path %>
+      icon: fa-tachometer
+      title: <%= I18n.t('page_titles.admin.dashboard.main_title') %>
+
+- title: 雙層樹狀選單
+  menus:
+    - path: '#'
+      active_by: '/admin/orders'
+      icon: fa-file-text-o
+      title: 訂單管理
+      has_submenu: true
+      submenus:
+        - action: index
+          icon: fa-list
+          path: <%= Rails.application.routes.url_helpers.admin_dashboard_path %>
+          title: 列表
+
+        - action: export
+          icon: fa-download
+          path: <%= Rails.application.routes.url_helpers.admin_dashboard_path %>
+          title: 匯出
