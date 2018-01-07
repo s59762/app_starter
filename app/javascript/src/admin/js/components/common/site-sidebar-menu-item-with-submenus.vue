@@ -1,39 +1,59 @@
 <template lang="pug">
 
 li
-  a.list-item-link(:href="menu.path")
+  a.list-item-link(@click="toggleSubmenu"
+                   :class="activeClass")
     .icon
       i.fa(:class="menu.icon")
     span {{menu.title}}
-  ul.submenu-list
-    li(v-for="submenu in menu.submenus")
-      a(:href="submenu.path") {{submenu.title}}
+    .submenu-active-indicator.icon.is-pulled-right(:class="submenuActiveClass")
+      i.fa.fa-angle-right
+  b-collapse(:open.sync="submenuActive")
+    ul.submenu-list
+      li(v-for="submenu in menu.submenus")
+        a.submenu-list-link(:href="submenu.path")
+          .icon(:class="submenuItemActiveItem(submenu)")
+            i.fa.fa-circle
+          span {{submenu.title}}
 
 </template>
 
 <script>
+import siteSidebarMenuItemMixin from '../mixins/site_sidebar_menu_item_mixin'
+
 export default {
   // components: {},
 
-  // mixins: {},
+  mixins: [siteSidebarMenuItemMixin],
 
-  props: {
-    menu: {
-      type: Object,
-      required: true
+  // props: {},
+
+  data() {
+    return {
+      submenuActive: false
     }
   },
 
-  // data() {
-  //   return {}
-  // },
-
-  // computed: {},
+  computed: {
+    submenuActiveClass() {
+      if (this.submenuActive) { return 'is-active' }
+    }
+  },
 
   // created() {},
 
-  // mounted() {},
+  mounted() {
+    this.submenuActive = this.isActive
+  },
 
-  // methods: {}
+  methods: {
+    toggleSubmenu() {
+      this.submenuActive = !this.submenuActive
+    },
+
+    submenuItemActiveItem(submenu) {
+      if (submenu.action == document.querySelector('body').className && this.submenuActive) { return 'is-active' }
+    }
+  }
 }
 </script>

@@ -8,14 +8,35 @@
   min-width: 180px
   height: $sidebar-height
   padding: 1rem 0
-  padding-left: 0.5rem
   font-size: .9rem
   border-right: 1px solid $c-site-sidebar-border
-  background-color: $white
-  z-index: 9998
+  background-color: $c-site-sidebar-background
+  overflow-y: auto
+  z-index: index($elements, site-sidebar)
+  .menu-label
+    padding-left: 0.5rem
   .list-item-link
     padding: 0.5rem 0
+    padding-left: 0.5rem
+    border-radius: 0
+    &.is-active
+      background-color: $c-site-sidebar-menu-item-active
   .submenu-list
     margin: 0
     margin-left: .6rem
+    overflow: hidden
+  .submenu-list-link
+    position: relative
+    .icon
+      visibility: hidden
+      position: absolute
+      top: 4px
+      left: -12px
+      color: $c-site-sidebar-submenu-link-active
+      &.is-active
+        visibility: visible
+  .submenu-active-indicator
+    transition: all .3s
+    &.is-active
+      transform: rotate(90deg)
 

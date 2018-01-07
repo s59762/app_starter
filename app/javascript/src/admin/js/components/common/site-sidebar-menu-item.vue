@@ -1,7 +1,8 @@
 <template lang="pug">
 
 li
-  a.list-item-link(:href="menu.path")
+  a.list-item-link(:href="menu.path"
+                   :class="activeClass")
     .icon
       i.fa(:class="menu.icon")
     span {{menu.title}}
@@ -9,17 +10,14 @@ li
 </template>
 
 <script>
+import siteSidebarMenuItemMixin from '../mixins/site_sidebar_menu_item_mixin'
+
 export default {
   // components: {},
 
-  // mixins: {},
+  mixins: [siteSidebarMenuItemMixin],
 
-  props: {
-    menu: {
-      type: Object,
-      required: true
-    }
-  },
+  // props: {},
 
   // data() {
   //   return {}
@@ -29,9 +27,7 @@ export default {
 
   // created() {},
 
-  mounted() {
-    console.log(window.location.pathname)
-  },
+  // mounted() {},
 
   // methods: {}
 }

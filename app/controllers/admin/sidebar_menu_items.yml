@@ -13,12 +13,12 @@
       title: 訂單管理
       has_submenu: true
       submenus:
-        - action: index
+        - action: orders-index
           icon: fa-list
           path: <%= Rails.application.routes.url_helpers.admin_dashboard_path %>
           title: 列表
 
-        - action: export
+        - action: export-show
           icon: fa-download
           path: <%= Rails.application.routes.url_helpers.admin_dashboard_path %>
           title: 匯出
