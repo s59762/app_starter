@@ -2,7 +2,8 @@
 
 transition(enter-active-class="slideInLeft"
            leave-active-class="slideOutLeft")
-  aside.menu.site-sidebar.animated(v-show="sidebarIsOpen")
+  aside.menu.site-sidebar.animated(v-show="sidebarIsOpen"
+                                   :class="sidebarOpenedClass")
     template(v-for="item in menuItems")
       p.menu-label
         | {{item.title}}
@@ -27,6 +28,12 @@ export default {
   computed: {
     sidebarIsOpen() {
       return this.$store.getters['sidebarIsOpen']
+    },
+
+    sidebarOpenedClass() {
+      if (this.sidebarIsOpen) {
+        return 'is-active'
+      }
     }
   },
 

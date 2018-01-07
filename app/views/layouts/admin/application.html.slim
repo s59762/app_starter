@@ -22,9 +22,10 @@ html
     .site-sidebar-menu-container(data-vue="site_sidebar_menu_container")
       sidebar-menu(data-sidebar-menu-items=(sidebar_menu_items.to_json))
 
+    // [vue site_main_container]
     .site-main-container(data-vue="site_main_container"
                          :class="sidebarOpenedClass")
-      .container
+      .odd-container
         - breadcrumbs do |links|
           - if links.any?
             nav.breadcrumb.is-right(aria-label='breadcrumbs')
@@ -36,9 +37,6 @@ html
                         i.fa(class=(link.icon))
                       span = link.text
 
-
         = yield
-
-
 
     = yield :added_scripts if content_for?(:added_scripts)
