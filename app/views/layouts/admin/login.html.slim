@@ -1,23 +1,16 @@
 doctype html
-/![if lt IE 7] <html class="no-js lt-ie9 lt-ie8 lt-ie7"
-/![if IE 7] <html class="no-js lt-ie9 lt-ie8"
-/![if IE 8] <html class="no-js lt-ie9"
-/! [if gt IE 8]><!
-html.no-js
-  /! <![endif]
+html
   head
     meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
-    meta charset="utf-8" /
-    meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" /
+    meta name="viewport" content="width=device-width; initial-scale=1.0"
+
     title Admin Panel
-    meta content="DESCRIPTION" name="description" /
-    meta content="width=device-width" name="viewport" /
-    /! Place favicon.ico and apple-touch-icon.png in the root directory
-    = javascript_pack_tag 'admin', 'data-turbolinks-track': 'reload'
-    = stylesheet_pack_tag 'admin', media: 'all', 'data-turbolinks-track': 'reload'
     = csrf_meta_tags
-  body class=("hold-transition login-page #{"#{controller.controller_name}-#{controller.action_name}"}")
-    /![if lt IE 7]
-      | <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p
+    = stylesheet_pack_tag 'admin', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_pack_tag 'admin', 'data-turbolinks-track': 'reload'
+  body(class=("#{controller.controller_name}-#{controller.action_name}"))
+    // [vue flash_message]
+    .flash-messages-container data-vue="flash_message" data-messages=(flash.to_json)
+      flash-message(v-for="(message, index) in flashMessages" :message-type="message[0]" :message="message[1]" :key="index")
+
     = yield
-    = yield :added_scripts if content_for?(:added_scripts)
