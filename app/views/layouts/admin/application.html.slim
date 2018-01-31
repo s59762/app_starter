@@ -26,7 +26,7 @@ html
 
     .site-main-container
       .odd-container
-        - breadcrumbs do |links|
+        - breadcrumbs(autoroot: false).tap do |links|
           - if links.any?
             nav.breadcrumb.is-right(aria-label='breadcrumbs')
               ul
