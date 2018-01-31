@@ -41,6 +41,12 @@ https://oracle-design.github.io/app_starter/
 >
 > -- https://yardoc.org/
 
+### Mailcatcher
+
+You have to install `mailcatcher` gem in your development env first, just exec `gem install mailcatcher`. Than you can boot up mail service with command `mailcatcher` in terminal.
+
+Visit `http://localhost:1080/` you will get a web mail interface, and all emails that send from application will list in here. Using Mailcatcher is easy for development and debugging more than ever.
+
 ### EspressoMartini
 
 This gem is build for generate general file templates in our daily development life.
@@ -63,4 +69,4 @@ example:
 
 `rails g espresso:locale:cell user zh-TW`
 
-This will generate a template file at path  `app/config/locales/cells/user/zh-TW.yml`
+This will generate a template file at path `app/config/locales/cells/user/zh-TW.yml`

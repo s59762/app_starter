@@ -4,6 +4,8 @@ pg_password: qwerasdf
 mailgun_user_name:
 mailgun_password:
 mailgun_api_key:
+smtp_server: 'localhost'
+smtp_port: '1025'
 SECRET_KEY_BASE: a914a802130373c8939559575b9186385d474b139d28f44c7450ccfa0569b87f609ec31bb64766a4ea9a5200fcb36e680036cd7501be1b14616d33e9f1be1c1c
 
 staging:
@@ -13,7 +15,9 @@ staging:
   mailgun_user_name:
   mailgun_password:
   mailgun_api_key:
-  SECRET_KEY_BASE:
+  smtp_server: 'smtp.mailgun.org'
+  smtp_port: '587'
+  SECRET_KEY_BASE: e71950c752907feaa7550dee63e232125a0395119b721c666a00656db477f0666589dc4fce05883fba41dbc621ebc96d1b7bb716a42cfd94ecb9c913723bf562
 
 production:
   app_domain:
@@ -22,4 +26,6 @@ production:
   mailgun_user_name:
   mailgun_password:
   mailgun_api_key:
-  SECRET_KEY_BASE:
+  smtp_server: 'smtp.mailgun.org'
+  smtp_port: '587'
+  SECRET_KEY_BASE: 84e2d28210ef17c2bd54072316c776b85c698b8e83b70bd2c532ad63aa3fa6f7812ab89030de4c2bf1d2745610044da9bfe2a8525e694749201e163e5705b682
