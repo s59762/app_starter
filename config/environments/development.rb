@@ -32,9 +32,9 @@ Rails.application.configure do
   config.action_mailer.perform_caching = false
 
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.default_url_options = { host: ENV['domain'] }
-  config.action_mailer.asset_host = "http://#{ENV['domain']}"
-  config.action_controller.asset_host = "http://#{ENV['domain']}"
+  config.action_mailer.default_url_options = { host: ENV['app_domain'] }
+  config.action_mailer.asset_host = "http://#{ENV['app_domain']}"
+  config.action_controller.asset_host = "http://#{ENV['app_domain']}"
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
