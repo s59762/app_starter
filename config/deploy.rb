@@ -49,6 +49,8 @@ set :slack_fields_updated, [
 
 set :slack_msg_failed, -> { ":shit: #{fetch :application} 部署失敗，我覺得 #{ENV['USER'] || ENV['USERNAME']} 你還是快去檢查 Log 吧？ :no_good:" }
 
+set :sidekiq_queue, %i[default mailers]
+
 Rake::Task['deploy:compile_assets'].clear
 
 namespace :deploy do
