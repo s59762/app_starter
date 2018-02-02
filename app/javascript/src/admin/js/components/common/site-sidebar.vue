@@ -2,7 +2,7 @@
 
 transition(enter-active-class="slideInLeft"
            leave-active-class="slideOutLeft")
-  aside.menu.site-sidebar.animated.slideInLeft(v-show="sidebarIsOpen"
+  aside.menu.site-sidebar.animated(v-show="sidebarIsOpen"
                                    :class="sidebarOpenedClass")
     template(v-for="item in menuItems")
       p.menu-label

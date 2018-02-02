@@ -1,6 +1,6 @@
 <template lang="pug">
 
-nav.navbar.is-fixed-top.level.animated.slideInDown
+nav.navbar.is-fixed-top.level.animated
   .nav-left
     .sidebar-toggle.is-hidden-tablet(@click="toggleSidebar")
       i.fa.fa-bars
