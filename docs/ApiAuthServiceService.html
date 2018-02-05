@@ -782,19 +782,6 @@
 </div>
 <div class="tags">
   
-<p class="tag_title">Raises:</p>
-<ul class="raise">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="AuthenticateFailureException.html" title="AuthenticateFailureException (class)">AuthenticateFailureException</a></span></tt>)</span>
-      
-      
-      
-    </li>
-  
-</ul>
 
 </div><table class="source_code">
   <tr>
@@ -814,8 +801,8 @@
 <span class='kw'>def</span> <span class='id identifier rubyid_validate_api_user_token'>validate_api_user_token</span>
   <span class='kw'>return</span> <span class='kw'>unless</span> <span class='id identifier rubyid_payload'>payload</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>ref</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>web</span><span class='tstring_end'>&#39;</span></span>
 
-  <span class='id identifier rubyid_raise'>raise</span> <span class='const'><span class='object_link'><a href="AuthenticateFailureException.html" title="AuthenticateFailureException (class)">AuthenticateFailureException</a></span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>auth token was expired due to user activity.</span><span class='tstring_end'>&#39;</span></span> <span class='kw'>if</span> <span class='id identifier rubyid_payload'>payload</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>iat</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>&lt;</span> <span class='lparen'>(</span><span class='id identifier rubyid_current_api_user'>current_api_user</span><span class='period'>.</span><span class='id identifier rubyid_current_sign_in_at'>current_sign_in_at</span> <span class='op'>-</span> <span class='const'><span class='object_link'><a href="#TIME_CHECK_LEEWAY-constant" title="ApiAuthServiceService::TIME_CHECK_LEEWAY (constant)">TIME_CHECK_LEEWAY</a></span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span>
-<span class='kw'>end</span></pre>
+  <span class='comment'># raise AuthenticateFailureException, &#39;auth token was expired due to user activity.&#39; if payload[&#39;iat&#39;] &lt; (current_api_user.current_sign_in_at - TIME_CHECK_LEEWAY).to_i
+</span><span class='kw'>end</span></pre>
     </td>
   </tr>
 </table>

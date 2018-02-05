@@ -60,6 +60,6 @@ class ApiAuthServiceService
   def validate_api_user_token
     return unless payload['ref'] == 'web'
 
-    raise AuthenticateFailureException, 'auth token was expired due to user activity.' if payload['iat'] < (current_api_user.current_sign_in_at - TIME_CHECK_LEEWAY).to_i
+    # raise AuthenticateFailureException, 'auth token was expired due to user activity.' if payload['iat'] < (current_api_user.current_sign_in_at - TIME_CHECK_LEEWAY).to_i
   end
 end

@@ -21,7 +21,7 @@ RSpec.describe ApiAuthServiceService, type: :service do
 
   describe '#call' do
     it '必須回傳 Token 所代表的當前使用者' do
-      expect(ApiAuthServiceService.new(token).call).to eq client
+      expect(ApiAuthServiceService.new(token).call).to eq admin
     end
   end
 end
