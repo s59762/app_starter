@@ -81,7 +81,7 @@ class ApplicationInitializer {
   }
 
   /**
-   * 在 `turbolinks:load` 事件發生時，把 `vms` 中的所有 Vue instances 都移除
+   * 在 `turbolinks:visit` 事件發生時，把 `vms` 中的所有 Vue instances 都移除
    */
   destroyVueInstancesWhenPageChange() {
     document.addEventListener('turbolinks:visit', () => {
