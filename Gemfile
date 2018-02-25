@@ -166,3 +166,6 @@ gem 'friendly_id', '~> 5.1.0'
 
 # breadcrumb
 gem 'gretel'
+
+# for eamil
+gem 'roadie-rails', '~> 1.0'
