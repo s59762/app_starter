@@ -117,6 +117,9 @@ gem 'rack-cors', require: 'rack/cors'
 # Serializer
 gem 'active_model_serializers', '~> 0.10.7'
 
+# paginate
+gem 'kaminari'
+
 # odd Tools set
 gem 'espresso_martini', github: 'oracle-design/espresso_martini'
 
@@ -169,3 +172,6 @@ gem 'gretel'
 
 # for eamil
 gem 'roadie-rails', '~> 1.0'
+
+# for cron job
+gem 'whenever', require: false
