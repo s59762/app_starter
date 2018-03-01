@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     root to: redirect('admin/dashboard')
 
     resource :dashboard, only: %i[show], controller: 'dashboard'
+    resources :admins, only: %i[index show]
     resource :profile, only: %i[show update], controller: 'profile' do
       resource :password, only: %i[update], controller: 'profile/password'
     end

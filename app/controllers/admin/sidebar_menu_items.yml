@@ -4,6 +4,10 @@
       active_by: <%= Rails.application.routes.url_helpers.admin_dashboard_path %>
       icon: fa-tachometer
       title: <%= I18n.t('page_titles.admin.dashboard.main_title') %>
+    - path: <%= Rails.application.routes.url_helpers.admin_admins_path %>
+      active_by: <%= Rails.application.routes.url_helpers.admin_admins_path %>
+      icon: fa-user-md
+      title: <%= I18n.t('page_titles.admin.admins.main_title') %>
 
 - title: 雙層樹狀選單
   menus:

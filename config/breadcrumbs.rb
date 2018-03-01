@@ -8,6 +8,16 @@ crumb :admin_dashboard do
   parent :admin_root
 end
 
+crumb :admin_admins do
+  link I18n.t('page_titles.admin.admins.main_title'), admin_admins_path, icon: 'fa-users'
+  parent :admin_root
+end
+
+crumb :admin_admin do |admin|
+  link I18n.t('page_titles.admin.admins.show'), admin_admin_path(admin), icon: 'fa-search'
+  parent :admin_admins
+end
+
 # crumb :projects do
 #   link "Projects", projects_path
 # end

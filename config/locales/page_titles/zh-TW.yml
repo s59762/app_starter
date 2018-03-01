@@ -7,6 +7,10 @@ zh-TW:
       dashboard:
         main_title: 資訊面板
         show: ''
+      admins:
+        main_title: 人員管理
+        index: 列表
+        show: 詳細資料
       profile:
         main_title: 管理員個人檔案
         show: 編輯
