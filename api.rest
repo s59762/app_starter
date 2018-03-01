@@ -4,11 +4,17 @@
 // ========================================================================== //
 
 # define variables here
-@host = localhost:3000
+@host_v1 = localhost:3000/api/v1/web/
 
 // ========================================================================== //
 
 # This is a demo api for get admin list
-GET http://{{host}}/api/v1/admins HTTP/1.1
+GET http://{{host_v1}}admins HTTP/1.1
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlhdCI6MTUxOTg5NTkxMywicm9sZSI6InN1cGVyIiwidHlwZSI6IkFkbWluIiwicmVmIjoid2ViIn0.HjYEKFCiS80llONdgSLzOie4ZQ_ggRS62zwfthneWoQ
 
+###
+
+# get Admin list with paginate
+GET http://{{host_v1}}admins?page[number]=1&page[size]=10 HTTP/1.1
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlhdCI6MTUxOTg5NTkxMywicm9sZSI6InN1cGVyIiwidHlwZSI6IkFkbWluIiwicmVmIjoid2ViIn0.HjYEKFCiS80llONdgSLzOie4ZQ_ggRS62zwfthneWoQ
 ###

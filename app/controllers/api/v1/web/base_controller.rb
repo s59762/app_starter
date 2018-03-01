@@ -1,4 +1,4 @@
-class Api::V1::Web::BaseController < ActionController::API
+class Api::V1::Web::BaseController < Api::ApiController
   include Api::JwtAuthenticatable
   include Api::Paginatable
 end

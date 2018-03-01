@@ -1,6 +1,4 @@
 class ApplicationSerializer < ActiveModel::Serializer
-  private
-
   # 轉換為 unix time
   #
   # @param fields [Symble] 要轉換的欄位名稱
