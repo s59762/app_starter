@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import * as getters from './getters'
 import * as actions from './actions'
 import mutations from './mutations'
+import admins from '../../../shared/store_modules/admins'
 import queryString from 'query-string'
 
 Vue.use(Vuex)
@@ -22,5 +23,8 @@ export default new Vuex.Store({
   state,
   getters,
   actions,
-  mutations
+  mutations,
+  modules: {
+    admins
+  }
 })
