@@ -24,7 +24,9 @@ Rails.application.routes.draw do
   # API routes
   namespace :api do
     namespace :v1 do
-      resources :admins, only: %i[index show]
+      namespace :web do
+        resources :admins, only: %i[index show]
+      end
     end
   end
 end
