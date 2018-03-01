@@ -1,3 +1,12 @@
 - breadcrumb :admin_admins
 
 = cell('admin/common').call(:content_header)
+
+.box.content-box.is-primary(data-vue="admin_list_table")
+  .box-header.with-border
+    .box-tools
+      .button.is-small.is-primary(@click="showNewAdminForm") ＋新增成員
+      b-modal(:active.sync="isNewAdminFormActive")
+        new-admin-form.form-modal(:available-roles=(Admin.roles.keys))
+  .box-body
+    admin-list-table(:admins="admins")
