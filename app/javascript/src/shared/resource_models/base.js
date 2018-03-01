@@ -18,6 +18,7 @@ export default class ModelBase {
   constructor(options) {
     this.api_base_path = '/api'
     this.api_version = 'v1'
+    this.scope = 'web'
     this.resource_type = options.resource_type
   }
 
@@ -27,8 +28,12 @@ export default class ModelBase {
    * @returns {Promise} 回傳 response 或 errors
    * @memberof ModelBase
    */
-  index() {
-    return axios.get(`${this.api_base_path}/${this.api_version}/${this.resource_type}`)
+  index(options = {}) {
+    return axios.get(
+      `${this.api_base_path}/${this.api_version}/${this.scope}/${
+        this.resource_type
+      }?${pagenateOptions(options)}`
+    )
   }
 
   /**
@@ -38,8 +43,12 @@ export default class ModelBase {
    * @returns {Promise} 回傳 response 或 errors
    * @memberof ModelBase
    */
-  show(id) {
-    return axios.get(`${this.api_base_path}/${this.api_version}/${this.resource_type}/${id}`)
+  show(id, options = {}) {
+    return axios.get(
+      `${this.api_base_path}/${this.api_version}/${this.scope}/${
+        this.resource_type
+      }/${id}?${pagenateOptions(options)}`
+    )
   }
 
   /**
@@ -50,7 +59,10 @@ export default class ModelBase {
    * @memberof ModelBase
    */
   create(resource) {
-    return axios.post(`${this.api_base_path}/${this.api_version}/${this.resource_type}`, resource)
+    return axios.post(
+      `${this.api_base_path}/${this.api_version}/${this.scope}/${this.resource_type}`,
+      resource
+    )
   }
 
   /**
@@ -63,7 +75,7 @@ export default class ModelBase {
    */
   update(id, resource) {
     return axios.put(
-      `${this.api_base_path}/${this.api_version}/${this.resource_type}/${id}`,
+      `${this.api_base_path}/${this.api_version}/${this.scope}/${this.resource_type}/${id}`,
       resource
     )
   }
@@ -76,7 +88,9 @@ export default class ModelBase {
    * @memberof ModelBase
    */
   destroy(id) {
-    return axios.delete(`${this.api_base_path}/${this.api_version}/${this.resource_type}/${id}`)
+    return axios.delete(
+      `${this.api_base_path}/${this.api_version}/${this.scope}/${this.resource_type}/${id}`
+    )
   }
 
   // ------------------------------------------------------------------------ //
