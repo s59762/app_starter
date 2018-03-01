@@ -6,25 +6,32 @@ module Api
 
     private
 
+    # 擷取 client 端提供的 paginate options，若沒有提供則回傳空 hash 來避免 page_number, page_size 方法的錯誤
+    #
+    # @return [Hash]
+    def page_options
+      @page_options_for_pagination ||= params[:page] || {}
+    end
+
     # 當前頁碼
     #
     # @return [String]
     def page_number
-      params[:page][:number]
+      page_options[:number]
     end
 
     # 每頁 items 數量
     #
     # @return [String]
     def page_size
-      params[:page][:size]
+      page_options[:size]
     end
 
     # 要求 client 端必須提供 paginate options
     #
     # @return [Boolean]
     def require_paginate_options!
-      raise ParametersFailureException, 'Must provide paginate options with query string like `?page[number]=1&page[size]=20`' unless params[:page].present?
+      raise ParametersFailureException, 'Must provide paginate options with query string like `?page[number]=1&page[size]=20`' unless page_options.present?
     end
 
     def validate_page_size!

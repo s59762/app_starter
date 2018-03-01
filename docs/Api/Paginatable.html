@@ -139,6 +139,29 @@
         <li class="private ">
   <span class="summary_signature">
     
+      <a href="#page_options-instance_method" title="#page_options (instance method)">#<strong>page_options</strong>  &#x21d2; Hash </a>
+    
+
+    
+  </span>
+  
+  
+  
+  <span class="note title private">private</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>擷取 client 端提供的 paginate options，若沒有提供則回傳空 hash 來避免 page_number, page_size 方法的錯誤.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="private ">
+  <span class="summary_signature">
+    
       <a href="#page_size-instance_method" title="#page_size (instance method)">#<strong>page_size</strong>  &#x21d2; String </a>
     
 
@@ -274,6 +297,59 @@
       <pre class="lines">
 
 
+19
+20
+21</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/concerns/api/paginatable.rb', line 19</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_page_number'>page_number</span>
+  <span class='id identifier rubyid_page_options'>page_options</span><span class='lbracket'>[</span><span class='symbol'>:number</span><span class='rbracket'>]</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="page_options-instance_method">
+  
+    #<strong>page_options</strong>  &#x21d2; <tt>Hash</tt>  <span class="extras">(private)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>擷取 client 端提供的 paginate options，若沒有提供則回傳空 hash 來避免 page_number, page_size 方法的錯誤</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
 12
 13
 14</pre>
@@ -281,8 +357,8 @@
     <td>
       <pre class="code"><span class="info file"># File 'app/controllers/concerns/api/paginatable.rb', line 12</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_page_number'>page_number</span>
-  <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:page</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='symbol'>:number</span><span class='rbracket'>]</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_page_options'>page_options</span>
+  <span class='ivar'>@page_options_for_pagination</span> <span class='op'>||=</span> <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:page</span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -327,15 +403,15 @@
       <pre class="lines">
 
 
-19
-20
-21</pre>
+26
+27
+28</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/concerns/api/paginatable.rb', line 19</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/concerns/api/paginatable.rb', line 26</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_page_size'>page_size</span>
-  <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:page</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='symbol'>:size</span><span class='rbracket'>]</span>
+  <span class='id identifier rubyid_page_options'>page_options</span><span class='lbracket'>[</span><span class='symbol'>:size</span><span class='rbracket'>]</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -380,18 +456,18 @@
       <pre class="lines">
 
 
-39
-40
-41
-42
-43
-44
-45
 46
-47</pre>
+47
+48
+49
+50
+51
+52
+53
+54</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/concerns/api/paginatable.rb', line 39</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/concerns/api/paginatable.rb', line 46</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_pagination_dict'>pagination_dict</span><span class='lparen'>(</span><span class='id identifier rubyid_collection'>collection</span><span class='rparen'>)</span>
   <span class='lbrace'>{</span>
@@ -458,15 +534,15 @@
       <pre class="lines">
 
 
-26
-27
-28</pre>
+33
+34
+35</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/concerns/api/paginatable.rb', line 26</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/concerns/api/paginatable.rb', line 33</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_require_paginate_options!'>require_paginate_options!</span>
-  <span class='id identifier rubyid_raise'>raise</span> <span class='const'><span class='object_link'><a href="../ParametersFailureException.html" title="ParametersFailureException (class)">ParametersFailureException</a></span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Must provide paginate options with query string like `?page[number]=1&amp;page[size]=20`</span><span class='tstring_end'>&#39;</span></span> <span class='kw'>unless</span> <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:page</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_present?'>present?</span>
+  <span class='id identifier rubyid_raise'>raise</span> <span class='const'><span class='object_link'><a href="../ParametersFailureException.html" title="ParametersFailureException (class)">ParametersFailureException</a></span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Must provide paginate options with query string like `?page[number]=1&amp;page[size]=20`</span><span class='tstring_end'>&#39;</span></span> <span class='kw'>unless</span> <span class='id identifier rubyid_page_options'>page_options</span><span class='period'>.</span><span class='id identifier rubyid_present?'>present?</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -510,14 +586,14 @@
       <pre class="lines">
 
 
-30
-31
-32
-33
-34</pre>
+37
+38
+39
+40
+41</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/concerns/api/paginatable.rb', line 30</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/concerns/api/paginatable.rb', line 37</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_validate_page_size!'>validate_page_size!</span>
   <span class='kw'>return</span> <span class='kw'>unless</span> <span class='id identifier rubyid_page_size'>page_size</span>
