@@ -9,11 +9,17 @@ export default {
   },
 
   [types.FETCH_ADMINS_SUCCESS](state, response) {
-    Admin.storeResourcesToEntities(state, response)
+    Admin.replaceEntities(state, response)
 
     state.meta = response.data.meta
     state.isCallingAPI = false
   },
+
+  [types.GET_RELATED_ADMINS_SUCCESS](state, response) {
+    Admin.storeResourcesToEntities(state, response)
+
+    state.isCallingAPI = false
+  }
 
   [types.GET_ADMIN_START](state) {
     state.isCallingAPI = true

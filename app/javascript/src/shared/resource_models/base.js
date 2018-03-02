@@ -108,7 +108,7 @@ export default class ModelBase {
   // ------------------------------------------------------------------------ //
 
   /**
-   * 把 response 中的所有 resources 內容放到 vuex store 中
+   * 把 response 中的所有 resources 內容加入 vuex store 中
    *
    * @param {object} state vuex state
    * @param {object} response raw response from server
@@ -119,6 +119,20 @@ export default class ModelBase {
 
     state.entities = merge({}, state.entities, normalizedResult.entities[this.resource_type])
     state.result = merge([], state.result, normalizedResult.result[this.resource_type])
+  }
+
+  /**
+   * 清除原本 vuex store 的內容把 response 中的所有 resources 內容放到 vuex store 中
+   *
+   * @param {object} state vuex state
+   * @param {object} response raw response from server
+   * @memberof ModelBase
+   */
+  replaceEntities(state, response) {
+    const normalizedResult = normalize(response.data)
+
+    state.entities = normalizedResult.entities[this.resource_type]
+    state.result = normalizedResult.result[this.resource_type]
   }
 
   /**

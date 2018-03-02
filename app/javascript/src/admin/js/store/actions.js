@@ -30,7 +30,7 @@ export const updateQueryString = ({commit}, {stateObj, newQueryString}) => {
   commit(types.UPDATE_QUERY_STRING)
 }
 
-export const reParseQueryString = ({commit}) => {
+export const updateQueryStringFromURL = ({commit}) => {
   commit(types.UPDATE_QUERY_STRING)
 }
 
