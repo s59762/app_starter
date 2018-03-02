@@ -23,6 +23,17 @@ export const toggleSidebar = ({ commit }, option) => {
   commit(types.TOGGLE_SIDEBAR, option)
 }
 
+export const updateQueryString = ({commit}, {stateObj, newQueryString}) => {
+  let title = document.title
+
+  window.history.pushState(stateObj, title, newQueryString)
+  commit(types.UPDATE_QUERY_STRING)
+}
+
+export const reParseQueryString = ({commit}) => {
+  commit(types.UPDATE_QUERY_STRING)
+}
+
 export const toggleDevice = ({ commit }, device) => {
   commit(types.TOGGLE_DEVICE, device)
 }

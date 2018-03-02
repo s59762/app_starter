@@ -8,11 +8,11 @@ const Admin = new AdminModel
  *
  * @returns {promise} response or errors
  */
-export const fetchAllResources = ({ dispatch, commit }) => {
+export const fetchAllResources = ({ dispatch, commit }, options) => {
   commit(types.FETCH_ADMINS_START)
 
   return new Promise((resolve, reject) => {
-    Admin.index()
+    Admin.index(options)
       .then(response => {
         commit(types.FETCH_ADMINS_SUCCESS, response)
 

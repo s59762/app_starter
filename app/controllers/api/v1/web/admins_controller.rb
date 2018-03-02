@@ -3,8 +3,9 @@ class Api::V1::Web::AdminsController < Api::V1::Web::BaseController
     @admins = Admin.recent.page(page_number).per(page_size)
 
     render json: @admins,
-           meta: { total: @admins.count,
-                   lastest_update_at: @admins.order(updated_at: :asc).last.updated_at.to_i }
+           meta: pagination_dict(@admins).merge({
+            lastest_update_at: @admins.order(updated_at: :asc).last.updated_at.to_i
+           })
   end
 
   def show

@@ -6,8 +6,7 @@ import Errors from "../../errors"
 const state = {
   entities: {},
   result: [],
-  totalPages: null,
-  totalCount: null,
+  meta: {},
   isCallingAPI: false,
   errors: new Errors()
 }

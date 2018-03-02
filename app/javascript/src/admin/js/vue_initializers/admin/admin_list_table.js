@@ -17,16 +17,6 @@ export default {
     }
   },
 
-  computed: {
-    admins() {
-      return this.$store.getters['admins/allResources']
-    }
-  },
-
-  created() {
-    this.$store.dispatch('admins/fetchAllResources')
-  },
-
   // mounted() {},
 
   methods: {

@@ -11,6 +11,7 @@ export default {
   [types.FETCH_ADMINS_SUCCESS](state, response) {
     Admin.storeResourcesToEntities(state, response)
 
+    state.meta = response.data.meta
     state.isCallingAPI = false
   },
 
@@ -21,6 +22,7 @@ export default {
   [types.GET_ADMIN_SUCCESS](state, response) {
     Admin.storeOneResourceToEntities(state, response)
 
+    state.meta = response.data.meta
     state.isCallingAPI = false
   },
 
@@ -32,6 +34,7 @@ export default {
     Admin.storeOneResourceToEntities(state, response)
     Admin.pushResourceToResult(state, response)
 
+    state.meta = response.data.meta
     state.isCallingAPI = false
   },
 
@@ -42,6 +45,7 @@ export default {
   [types.UPDATE_ADMIN_SUCCESS](state, response) {
     Admin.storeOneResourceToEntities(state, response)
 
+    state.meta = response.data.meta
     state.isCallingAPI = false
   },
 
