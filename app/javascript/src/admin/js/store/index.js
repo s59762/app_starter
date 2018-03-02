@@ -4,13 +4,12 @@ import * as getters from './getters'
 import * as actions from './actions'
 import mutations from './mutations'
 import admins from '../../../shared/store_modules/admins'
-import queryString from 'query-string'
 
 Vue.use(Vuex)
 
 const state = {
   flashMessages: [],
-  queryString: queryString.parse(window.location.search),
+  queryString: {},
   device: {
     isMobile: false
   },
