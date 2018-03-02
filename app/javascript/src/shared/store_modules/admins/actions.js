@@ -1,7 +1,7 @@
 import * as types from './mutation-types'
 import AdminModel from '../../resource_models/admin'
 
-const Admin = new AdminModel
+const Admin = new AdminModel()
 
 /**
  * 從 Server 取得所有 Resource

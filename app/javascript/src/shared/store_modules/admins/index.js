@@ -1,7 +1,7 @@
-import * as actions from "./actions"
-import * as getters from "./getters"
-import mutations from "./mutations"
-import Errors from "../../errors"
+import * as actions from './actions'
+import * as getters from './getters'
+import mutations from './mutations'
+import Errors from '../../errors'
 
 const state = {
   entities: {},
