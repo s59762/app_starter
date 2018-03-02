@@ -5,7 +5,7 @@ const Admin = new AdminModel()
 
 export default {
   [types.FETCH_ADMINS_START](state) {
-    state.isFetchingResources = true
+    state.isCallingAPI = true
   },
 
   [types.FETCH_ADMINS_SUCCESS](state, response) {
@@ -19,7 +19,7 @@ export default {
     Admin.storeResourcesToEntities(state, response)
 
     state.isCallingAPI = false
-  }
+  },
 
   [types.GET_ADMIN_START](state) {
     state.isCallingAPI = true
@@ -67,6 +67,6 @@ export default {
 
   [types.API_REQUEST_FAIL](state, errors) {
     state.errors.record(errors.response.data)
-    state.isFetchingResources = false
+    state.isCallingAPI = false
   }
 }
