@@ -1,6 +1,6 @@
 import queryString from 'query-string'
 
-// 可提供分頁以及自訂排序的功能。
+// 提供分頁以及自訂排序的功能。
 export default {
   // components: {},
 
@@ -143,7 +143,7 @@ export default {
      */
     fetchData(options) {
       this.currentPage = options.pageNumber
-      this.$store.dispatch('admins/fetchAllResources', options)
+      this.$store.dispatch('OVERRIDE_HERE_WITH_VUEX_MODULE_NAME/fetchAllResources', options)
     },
 
     /**
@@ -157,9 +157,9 @@ export default {
     updateQueryString(options) {
       this.$store.dispatch('updateQueryString', {
         options,
-        newQueryString: `/admin/admins/?page[number]=${options.pageNumber}&page[size]=${
-          options.pageSize
-        }&sort=${options.sort}`
+        newQueryString: `/OVERRIDE_HERE_WITH_CORRECT_ABSOLUTE_PATH?page[number]=${
+          options.pageNumber
+        }&page[size]=${options.pageSize}&sort=${options.sort}`
       })
     }
   }
