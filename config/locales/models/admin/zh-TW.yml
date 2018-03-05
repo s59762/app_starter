@@ -34,6 +34,7 @@ zh-TW:
         unconfirmed_email: '未認證 Email'
         unlock_token: '解除封鎖 TOKEN'
         updated_at: 更新於
+        is_suspended: 已停權
 
     errors:
       models:
