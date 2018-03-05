@@ -1,9 +1,9 @@
 import i18n from 'i18n-js'
+import moment from 'moment'
 
 function install(Vue) {
   Vue.mixin({
     methods: {
-
       /**
        * 取得 Rails model attributes 的 i18n 值
        *
@@ -38,7 +38,7 @@ function install(Vue) {
        * @param {string} key enum 值的名稱
        * @returns {string}
        */
-      enumsLocaleText(model, enumAttribute, key) {
+      enumLocaleText(model, enumAttribute, key) {
         return i18n.t(`enums.${model}.${enumAttribute}.${key}`)
       },
 
@@ -86,6 +86,16 @@ function install(Vue) {
        */
       actionLocaleText(scope, action) {
         return i18n.t(`actions.${scope}.${action}`)
+      },
+
+      /**
+       * 取得 TimeAgo 相對時間的 i18n 值
+       *
+       * @param {number} unixTime
+       * @returns {string}
+       */
+      timeAgoLocalText(unixTime) {
+        return moment(unixTime, 'X').fromNow()
       }
     }
   })

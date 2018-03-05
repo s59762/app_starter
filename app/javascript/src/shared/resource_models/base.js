@@ -15,6 +15,16 @@ let pagenateOptions = function(options) {
   }
 }
 
+let sortOptions = function (options) {
+  let sort = options.sort
+
+  if (sort) {
+    return `&sort=${sort}`
+  } else {
+    return ''
+  }
+}
+
 /**
  * Model 層的基礎，包含了所有 Models 都會用到的方法
  *
@@ -44,7 +54,7 @@ export default class ModelBase {
     return axios.get(
       `${this.api_base_path}/${this.api_version}/${this.scope}/${
         this.resource_type
-      }?${pagenateOptions(options)}`
+      }?${pagenateOptions(options)}${sortOptions(options)}`
     )
   }
 

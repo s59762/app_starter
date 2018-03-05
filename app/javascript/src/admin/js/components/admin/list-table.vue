@@ -6,6 +6,10 @@ b-table(:data="admins"
         :currentPage="currentPage"
         :perPage="pageSize"
         @page-change="onPageChange"
+        backend-sorting
+        :default-sort="sortField"
+        :default-sort-direction="sortOrder"
+        @sort="onSort"
         :total="totalCount"
         :loading="isLoading"
         :hoverable="true")
@@ -14,8 +18,25 @@ b-table(:data="admins"
 
     b-table-column(field="id"
                    label="ID"
+                   sortable
                    numbric)
       | {{props.row.id}}
+
+    b-table-column(field="name"
+                   :label="attributeLocaleText('admin', 'name')")
+      | {{props.row.name}}
+
+    b-table-column(field="role"
+                   :label="attributeLocaleText('admin', 'role')")
+      | {{enumLocaleText('admin', 'role', props.row.role)}}
+
+    b-table-column(field="created_at"
+                   :label="attributeLocaleText('admin', 'created_at')"
+                   sortable)
+      | {{timeAgoLocalText(props.row.created_at)}}
+
+    b-table-column(:label="actionLocaleText('admin', 'options')")
+
 
   template(slot='empty')
     section.section
@@ -40,7 +61,9 @@ export default {
   data() {
     return {
       currentPage: 1,
-      pageSize: 25
+      pageSize: 25,
+      sortOrder: 'desc',
+      sortField: 'created_at'
     }
   },
 
@@ -57,8 +80,12 @@ export default {
       return this.$store.getters['admins/metaInfo'].total_count
     },
 
-    queryString() {
-      return this.$store.getters['queryString']
+    sortOrderValue() {
+      if(this.sortOrder == 'desc') {
+        return `-${this.sortField}`
+      } else {
+        return `${this.sortField}`
+      }
     }
   },
 
@@ -91,20 +118,47 @@ export default {
       let currentQueryString = queryString.parse(window.location.search)
       let options = {
         pageNumber: parseInt(currentQueryString['page[number]']) || this.currentPage,
-        pageSize: parseInt(currentQueryString['page[size]']) || this.pageSize
+        pageSize: parseInt(currentQueryString['page[size]']) || this.pageSize,
+        sort: currentQueryString['sort'] || this.sortOrderValue
       }
 
+      this.updateQueryOptions(options)
+
+      return options
+    },
+
+    updateQueryOptions(options) {
       this.currentPage = options.pageNumber
       this.pageSize = options.pageSize
 
-      return options
+      if(options.sort.charAt(0) == '-') {
+        this.sortOrder = 'desc'
+        this.sortField = options.sort.slice(1)
+      } else {
+        this.sortOrder = 'asc'
+        this.sortField = options.sort
+      }
     },
 
     onPageChange(page) {
       let options = {
         pageNumber: page,
-        pageSize: this.pageSize
+        pageSize: this.pageSize,
+        sort: this.sortOrderValue
       }
+      this.fetchData(options)
+      this.updateQueryString(options)
+    },
+
+    onSort(field, order) {
+      this.sortField = field
+      this.sortOrder = order
+      let options = {
+        pageNumber: this.currentPage,
+        pageSize: this.pageSize,
+        sort: this.sortOrderValue
+      }
+
       this.fetchData(options)
       this.updateQueryString(options)
     },
@@ -117,9 +171,7 @@ export default {
     updateQueryString(options) {
       this.$store.dispatch('updateQueryString', {
         options,
-        newQueryString: `/admin/admins/?page[number]=${options.pageNumber}&page[size]=${
-          options.pageSize
-        }`
+        newQueryString: `/admin/admins/?page[number]=${options.pageNumber}&page[size]=${options.pageSize}&sort=${options.sort}`
       })
     }
   }
