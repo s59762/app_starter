@@ -94,9 +94,8 @@ export default {
 
   methods: {
     submitForm() {
-      console.log('ok')
       this.form.dispatch('admins/addResource', this.requestBody).then(() => {
-        this.form.addFlashMessage(['success', '已新增管理員'])
+        this.form.addFlashMessage(['success', this.messageLocaleText('admin_added_succefully')])
         this.$parent.close()
         this.$emit('admin-added')
       })

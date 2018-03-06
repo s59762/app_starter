@@ -95,8 +95,19 @@ function install(Vue) {
        * @param {number} unixTime
        * @returns {string}
        */
-      timeAgoLocalText(unixTime) {
+      timeAgoLocaleText(unixTime) {
         return moment(unixTime, 'X').fromNow()
+      },
+
+      /**
+       * 取得 message 的 i18n 值
+       *
+       * @param {string} message
+       * @param {string} locals 可傳入變數
+       * @returns {string}
+       */
+      messageLocaleText(message, locals = {}) {
+        return i18n.t(`messages.${message}`, locals)
       }
     }
   })

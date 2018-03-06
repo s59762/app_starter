@@ -35,7 +35,7 @@ b-table(:data="admins"
     b-table-column(field="created_at"
                    :label="attributeLocaleText('admin', 'created_at')"
                    sortable)
-      | {{timeAgoLocalText(props.row.created_at)}}
+      | {{timeAgoLocaleText(props.row.created_at)}}
 
     b-table-column(:label="actionLocaleText('admin', 'options')")
       suspend-button(:admin="props.row")

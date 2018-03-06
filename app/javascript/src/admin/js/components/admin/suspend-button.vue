@@ -48,9 +48,9 @@ export default {
 
     flashMessage() {
       if (this.admin.is_suspended) {
-        return `管理員 ${this.admin.name} 已停權`
+        return this.messageLocaleText('admin_is_suspended', { name: this.admin.name })
       } else {
-        return `管理員 ${this.admin.name} 已復權`
+        return this.messageLocaleText('admin_is_unsuspended', { name: this.admin.name })
       }
     }
   },
