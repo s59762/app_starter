@@ -64,7 +64,7 @@ export default {
      * 和 `sort` 的值複寫至 instance 中；若 URL 沒有指定 query options，則使用 data 中設定
      * 的預設值。
      *
-     * @returns {object} query options
+     * @returns {Object} query options
      */
     checkCurrentQueryStringOptionsFromURL() {
       let currentQueryString = queryString.parse(window.location.search)
