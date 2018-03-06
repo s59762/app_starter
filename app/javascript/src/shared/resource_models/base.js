@@ -25,6 +25,16 @@ let sortOptions = function(options) {
   }
 }
 
+let filterOptions = function(options) {
+  let filter = options.filter
+
+  if (filter) {
+    return `&filter=${filter}`
+  } else {
+    return ''
+  }
+}
+
 /**
  * Model 層的基礎，包含了所有 Models 都會用到的方法
  *
@@ -54,7 +64,7 @@ export default class ModelBase {
     return axios.get(
       `${this.api_base_path}/${this.api_version}/${this.scope}/${
         this.resource_type
-      }?${pagenateOptions(options)}${sortOptions(options)}`
+      }?${pagenateOptions(options)}${sortOptions(options)}${filterOptions(options)}`
     )
   }
 

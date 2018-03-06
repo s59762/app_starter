@@ -1,6 +1,6 @@
 import NewAdminForm from '../../components/admin/new-form'
 import AdminListTable from '../../components/admin/list-table'
-import backendPaginateAndSortable from '../../components/mixins/backend_paginate_and_sortable_mixin'
+import backendPaginateAndFilterAndSortableMixin from '../../components/mixins/backend_paginate_and_filter_and_sortable_mixin'
 
 export default {
   components: {
@@ -8,7 +8,7 @@ export default {
     AdminListTable
   },
 
-  mixins: [backendPaginateAndSortable],
+  mixins: [backendPaginateAndFilterAndSortableMixin],
 
   // props: {},
 

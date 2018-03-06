@@ -31,6 +31,9 @@ class Admin < ApplicationRecord
 
   enum role: %i[content_manager accounter stock_manager super owner]
 
+  scope :actived, -> { where(is_suspended: false) }
+  scope :suspended, -> { where(is_suspended: true) }
+
   # 如果 avatar 是 nil（未上傳使用者頭像），使用 null object 替代
   def avatar
     super || Null::Image.new

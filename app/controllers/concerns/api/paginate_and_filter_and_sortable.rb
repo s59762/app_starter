@@ -1,7 +1,7 @@
 # 提供 WebApi 使用分頁與排序的功能
 
 module Api
-  module PaginateAndSortable
+  module PaginateAndFilterAndSortable
     PAGE_SIZE_LIMIT = 100
 
     private
@@ -49,13 +49,24 @@ module Api
 
     # 根據 URL query string 中的 paginate 和 sort options 來查詢 Model 的資料
     #
-    # @param [Class] model 要查詢的 Model class
+    # @param [Class] ActiveRecord::Relation 或要查詢的 Model
     #
     # @return [Object] ActiveRecord::Relation 物件
-    def query_with_paginate_and_sort_options_for(model)
-      return model.page(page_number).per(page_size) unless params[:sort].present?
+    def query_with_paginate_and_sort_options_for(collection)
+      return collection.page(page_number).per(page_size) unless params[:sort].present?
 
-      model.page(page_number).per(page_size).order(order_options_to_sql)
+      collection.page(page_number).per(page_size).order(order_options_to_sql)
+    end
+
+    # 根據 URL query string 中的 paginate、sort 和 filter options 來查詢 Model 的資料
+    #
+    # @param [Class] ActiveRecord::Relation 或要查詢的 Model
+    #
+    # @return [Object] ActiveRecord::Relation 物件
+    def query_with_paginate_and_sort_and_filter_options_for(collection)
+      return query_with_paginate_and_sort_options_for(collection) unless params[:filter].present?
+
+      query_with_paginate_and_sort_options_for(collection).send(params[:filter])
     end
 
     # 根據 query string 中的 sort params 來產生正確的 order sql 敘述。

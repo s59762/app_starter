@@ -1,66 +1,73 @@
 <template lang="pug">
 
-b-table(:data="admins"
-        paginated
-        backend-pagination
-        :currentPage="currentPage"
-        :perPage="pageSize"
-        @page-change="onPageChange"
-        backend-sorting
-        :default-sort="sortField"
-        :default-sort-direction="sortOrder"
-        @sort="onSort"
-        :total="totalCount"
-        :loading="isLoading"
-        :hoverable="true")
+div
+  section
+    b-tabs(v-model="currentFilter"
+           @change="filterOnChangeHandler")
+      b-tab-item(label="活動中")
+      b-tab-item(label="已停權")
 
-  template(slot-scope="props")
+  b-table(:data="admins"
+          paginated
+          backend-pagination
+          :currentPage="currentPage"
+          :perPage="pageSize"
+          @page-change="onPageChange"
+          backend-sorting
+          :default-sort="sortField"
+          :default-sort-direction="sortOrder"
+          @sort="onSort"
+          :total="totalCount"
+          :loading="isLoading"
+          :hoverable="true")
 
-    b-table-column(field="id"
-                   label="ID"
-                   sortable
-                   numbric)
-      | {{props.row.id}}
+    template(slot-scope="props")
 
-    b-table-column(field="name"
-                   :label="attributeLocaleText('admin', 'name')"
-                   sortable)
-      | {{props.row.name}}
+      b-table-column(field="id"
+                    label="ID"
+                    sortable
+                    numbric)
+        | {{props.row.id}}
 
-    b-table-column(field="role"
-                   :label="attributeLocaleText('admin', 'role')"
-                   sortable)
-      | {{enumLocaleText('admin', 'role', props.row.role)}}
+      b-table-column(field="name"
+                    :label="attributeLocaleText('admin', 'name')"
+                    sortable)
+        | {{props.row.name}}
 
-    b-table-column(field="created_at"
-                   :label="attributeLocaleText('admin', 'created_at')"
-                   sortable)
-      | {{timeAgoLocaleText(props.row.created_at)}}
+      b-table-column(field="role"
+                    :label="attributeLocaleText('admin', 'role')"
+                    sortable)
+        | {{enumLocaleText('admin', 'role', props.row.role)}}
 
-    b-table-column(:label="actionLocaleText('admin', 'options')")
-      suspend-button(:admin="props.row")
+      b-table-column(field="created_at"
+                    :label="attributeLocaleText('admin', 'created_at')"
+                    sortable)
+        | {{timeAgoLocaleText(props.row.created_at)}}
+
+      b-table-column(:label="actionLocaleText('admin', 'options')")
+        suspend-button(:admin="props.row")
 
 
-  template(slot='empty')
-    section.section
-      .content.has-text-grey.has-text-centered
-        p
-          b-icon(icon='times'
-                 size='is-large')
-        p 目前沒有資料
+    template(slot='empty')
+      section.section
+        .content.has-text-grey.has-text-centered
+          p
+            b-icon(icon='times'
+                  size='is-large')
+          p 目前沒有資料
 
 </template>
 
 <script>
 import SuspendButton from '../../components/admin/suspend-button'
-import backendPaginateAndSortable from '../mixins/backend_paginate_and_sortable_mixin'
+import backendPaginateAndFilterAndSortableMixin from '../mixins/backend_paginate_and_filter_and_sortable_mixin'
 
 export default {
   components: {
     SuspendButton
   },
 
-  mixins: [backendPaginateAndSortable],
+  mixins: [backendPaginateAndFilterAndSortableMixin],
 
   // props: {},
 
@@ -68,7 +75,9 @@ export default {
     return {
       isUsingCreatedHook: true,
       resourceType: 'admins',
-      currentUrlPath: '/admin/admins'
+      currentUrlPath: '/admin/admins',
+      currentFilter: 0,
+      availableFilters: ['actived', 'suspended']
     }
   },
 

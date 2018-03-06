@@ -1,8 +1,8 @@
 /**
- * 提供分頁以及排序功能的 mixin
+ * 提供分頁、Filter、以及排序功能的 mixin
  *
  * 在 vue instance 引入此 mixin 後，需 override data 中的 `isUsingCreatedHook`、
- * `resourceType`、以及 `currentUrlPath`。
+ * `resourceType`、以及 `currentUrlPath`，並視情況 override 其他預設值。
  */
 import queryString from 'query-string'
 
@@ -17,10 +17,13 @@ export default {
       resourceType: 'resourceType', //          [OPTION] resource 的 type，用於 `#fetchData` 中指定 vuex 的 module
       currentUrlPath: '/absolute/path', //      [OPTION] 當前頁面的絕對路徑，於更新 URL 時使用
 
-      currentPage: 1, //            當前頁碼
-      pageSize: 25, //              每頁數量
-      sortOrder: 'desc', //         排序方向
-      sortField: 'created_at' //    排序欄位
+      // 預設值
+      currentPage: 1, //                            當前頁碼
+      pageSize: 25, //                              每頁數量
+      sortOrder: 'desc', //                         排序方向
+      sortField: 'created_at', //                   排序欄位
+      currentFilter: 0, //                         Filter
+      availableFilters: ['example1', 'example2'] // 可用的 filters 列表
     }
   },
 
@@ -82,7 +85,8 @@ export default {
       let options = {
         pageNumber: parseInt(currentQueryString['page[number]']) || this.currentPage,
         pageSize: parseInt(currentQueryString['page[size]']) || this.pageSize,
-        sort: currentQueryString['sort'] || this.sortOrderValue
+        sort: currentQueryString['sort'] || this.sortOrderValue,
+        filter: currentQueryString['filter'] || this.availableFilters[this.currentFilter]
       }
 
       this.updateQueryOptions(options)
@@ -98,6 +102,7 @@ export default {
     updateQueryOptions(options) {
       this.currentPage = options.pageNumber
       this.pageSize = options.pageSize
+      this.currentFilter = this.availableFilters.indexOf(options.filter)
 
       if (options.sort.charAt(0) == '-') {
         this.sortOrder = 'desc'
@@ -118,7 +123,8 @@ export default {
       let options = {
         pageNumber: page,
         pageSize: this.pageSize,
-        sort: this.sortOrderValue
+        sort: this.sortOrderValue,
+        filter: this.availableFilters[this.currentFilter]
       }
       this.fetchData(options)
       this.updateQueryString(options)
@@ -137,7 +143,28 @@ export default {
       let options = {
         pageNumber: this.currentPage,
         pageSize: this.pageSize,
-        sort: this.sortOrderValue
+        sort: this.sortOrderValue,
+        filter: this.availableFilters[this.currentFilter]
+      }
+
+      this.fetchData(options)
+      this.updateQueryString(options)
+    },
+
+    /**
+     * 變更 Filter 選項的 handler。可依照指定的 filter options 重新透過 API 取得資
+     * 料，並透過 pushState 更新 URL。
+     *
+     * @param {number} index
+     * @param {string} order
+     */
+    filterOnChangeHandler(index) {
+      this.currentFilter = index
+      let options = {
+        pageNumber: this.currentPage,
+        pageSize: this.pageSize,
+        sort: this.sortOrderValue,
+        filter: this.availableFilters[this.currentFilter]
       }
 
       this.fetchData(options)
@@ -170,7 +197,7 @@ export default {
         options,
         newQueryString: `${this.currentUrlPath}?page[number]=${options.pageNumber}&page[size]=${
           options.pageSize
-        }&sort=${options.sort}`
+        }&sort=${options.sort}&filter=${options.filter}`
       })
     }
   }
