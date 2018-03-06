@@ -8,22 +8,33 @@
           :message="form.errors.get('email')")
     b-input(type="text"
             placeholder="e.g. name@example.com"
-            v-model="form.email")
+            v-model="form.email"
+            @input="form.errors.clear('email')")
 
   b-field(:label="attributeLocaleText('admin', 'password')"
           :type="form.errorClassAt('password')"
           :message="form.errors.get('password')")
     b-input(type="text"
             :placeholder="actionLocaleText('admin', 'leave_empty_for_default_password')"
-            v-model="form.password")
+            v-model="form.password"
+            @input="form.errors.clear('password')")
+
+  b-field(:label="attributeLocaleText('admin', 'name')"
+          :type="form.errorClassAt('name')"
+          :message="form.errors.get('name')")
+    b-input(type="text"
+            placeholder="e.g. Jone Doe"
+            v-model="form.name"
+            @input="form.errors.clear('name')")
 
   b-field(:label="attributeLocaleText('admin', 'role')"
           :type="form.errorClassAt('role')"
           :message="form.errors.get('role')")
     b-select(v-model="form.role"
              :loading="isLoading"
+             @input="form.errors.clear('role')"
              expanded)
-      option(v-for="(role, index) in avaliableRoles"
+      option(v-for="role in avaliableRoles"
              :value="role")
         | {{enumLocaleText('admin', 'role', role)}}
 
@@ -63,6 +74,15 @@ export default {
 
     avaliableRoles() {
       return this.$store.getters['admins/avaliableRoles']
+    },
+
+    requestBody() {
+      return {
+        data: {
+          type: 'admins',
+          attributes: this.form.data()
+        }
+      }
     }
   },
 
@@ -75,6 +95,11 @@ export default {
   methods: {
     submitForm() {
       console.log('ok')
+      this.form.dispatch('admins/addResource', this.requestBody).then(() => {
+        this.form.addFlashMessage(['success', '已新增管理員'])
+        this.$parent.close()
+        this.$emit('admin-added')
+      })
     }
   }
 }
