@@ -23,11 +23,13 @@ b-table(:data="admins"
       | {{props.row.id}}
 
     b-table-column(field="name"
-                   :label="attributeLocaleText('admin', 'name')")
+                   :label="attributeLocaleText('admin', 'name')"
+                   sortable)
       | {{props.row.name}}
 
     b-table-column(field="role"
-                   :label="attributeLocaleText('admin', 'role')")
+                   :label="attributeLocaleText('admin', 'role')"
+                   sortable)
       | {{enumLocaleText('admin', 'role', props.row.role)}}
 
     b-table-column(field="created_at"
