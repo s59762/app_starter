@@ -1,24 +1,29 @@
 <template lang="pug">
 
 .box.form-container-box.is-default.clearfix
-  h3.subtitle {{pageTitleLocaleText('admin', 'admins', 'new')}}
+  h3.subtitle {{pageTitleLocaleText('admin', 'admins', 'edit')}}
 
-  b-field(:label="attributeLocaleText('admin', 'email')"
-          :type="form.errorClassAt('email')"
-          :message="form.errors.get('email')")
-    b-input(type="text"
-            placeholder="e.g. name@example.com"
-            v-model="form.email"
-            @input="form.errors.clear('email')")
+  //- change password fields
+  b-collapse.panel(:open.sync="isEditPasswordInputOpen")
+    .panel-heading(slot="trigger") {{actionLocaleText('admin', 'change_password')}}
+    .panel-block
+      b-field(:label="attributeLocaleText('admin', 'password')"
+              :type="form.errorClassAt('password')"
+              :message="form.errors.get('password')")
+        b-input(type="password"
+                :placeholder="actionLocaleText('admin', 'if_do_not_want_to_change_password_leave_empty')"
+                v-model="form.password"
+                @input="form.errors.clear('password')")
 
-  b-field(:label="attributeLocaleText('admin', 'password')"
-          :type="form.errorClassAt('password')"
-          :message="form.errors.get('password')")
-    b-input(type="password"
-            :placeholder="actionLocaleText('admin', 'leave_empty_for_default_password')"
-            v-model="form.password"
-            @input="form.errors.clear('password')")
+      b-field(:label="attributeLocaleText('admin', 'password_confirmation')"
+              :placeholder="actionLocaleText('admin', 'if_do_not_want_to_change_password_leave_empty')"
+              :type="form.errorClassAt('password_confirmation')"
+              :message="form.errors.get('password_confirmation')")
+        b-input(type="password"
+                v-model="form.password_confirmation"
+                @input="form.errors.clear('password_confirmation')")
 
+  //- general fields
   b-field(:label="attributeLocaleText('admin', 'name')"
           :type="form.errorClassAt('name')"
           :message="form.errors.get('name')")
@@ -51,19 +56,26 @@ import Form from '../../../../shared/form'
 export default {
   // components: {},
   // mixins: [],
-  // props: {},
+  props: {
+    admin: {
+      type: Object,
+      required: true
+    }
+  },
+
   data() {
     return {
       form: new Form(
         {
-          email: '',
           password: '',
-          name: '',
-          role: ''
+          password_confirmation: '',
+          name: this.admin.name,
+          role: this.admin.role
         },
         this.$store.dispatch,
         this.$store.getters['admins/errors']
-      )
+      ),
+      isEditPasswordInputOpen: false
     }
   },
 
@@ -86,6 +98,7 @@ export default {
     }
   },
 
+  // created() {},
   mounted() {
     if (this.availableRoles) {
       this.form.role = this.availableRoles[0]
@@ -95,18 +108,14 @@ export default {
   },
 
   methods: {
-    submitForm() {
-      this.form.dispatch('admins/addResource', this.requestBody).then(() => {
-        this.form.addFlashMessage(['success', this.messageLocaleText('admin_added_succefully')])
-        this.$parent.close()
-        this.$emit('admin-added')
-      })
-    },
-
     fetchAvailableRolesAndSetDefaultSelect() {
       this.$store.dispatch('admins/fetchAvailableRoles').then(response => {
         this.form.role = response.data.data[0]
       })
+    },
+
+    submitForm() {
+      console.log(this.requestBody)
     }
   }
 }

@@ -10,10 +10,12 @@ zh-TW:
       delete: 刪除
       destroy: '刪除%{modle}'
       detail_of: '%{model}詳細內容'
-      edit: '編輯%{model}'
+      edit: '編輯'
+      edit_on: '編輯%{model}'
       get_info_for: '查看%{model}'
       index: '%{model}列表'
       leave_empty_for_default_password: 不設定密碼將會使用預設密碼 `qwerasdf`
+      if_do_not_want_to_change_password_leave_empty: 若不變更密碼請留空
       login: 登入
       logout: 登出
       management: '管理%{model}'

@@ -85,8 +85,8 @@ function install(Vue) {
        * @param {string} action 動作的名稱
        * @returns {string}
        */
-      actionLocaleText(scope, action) {
-        return i18n.t(`actions.${scope}.${action}`)
+      actionLocaleText(scope, action, locals = {}) {
+        return i18n.t(`actions.${scope}.${action}`, locals)
       },
 
       /**

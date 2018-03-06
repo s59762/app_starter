@@ -46,6 +46,8 @@ div
 
       b-table-column(:label="actionLocaleText('admin', 'options')")
         suspend-button(:admin="props.row")
+        | &nbsp;
+        edit-button(:admin="props.row")
 
 
     template(slot='empty')
@@ -60,11 +62,13 @@ div
 
 <script>
 import SuspendButton from '../../components/admin/suspend-button'
+import EditButton from '../../components/admin/edit-button'
 import backendPaginateAndFilterAndSortableMixin from '../mixins/backend_paginate_and_filter_and_sortable_mixin'
 
 export default {
   components: {
-    SuspendButton
+    SuspendButton,
+    EditButton
   },
 
   mixins: [backendPaginateAndFilterAndSortableMixin],
