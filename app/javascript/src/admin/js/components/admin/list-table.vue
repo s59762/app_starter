@@ -38,6 +38,7 @@ b-table(:data="admins"
       | {{timeAgoLocalText(props.row.created_at)}}
 
     b-table-column(:label="actionLocaleText('admin', 'options')")
+      suspend-button(:admin="props.row")
 
 
   template(slot='empty')
@@ -51,10 +52,13 @@ b-table(:data="admins"
 </template>
 
 <script>
+import SuspendButton from '../../components/admin/suspend-button'
 import backendPaginateAndSortable from '../mixins/backend_paginate_and_sortable_mixin'
 
 export default {
-  // components: {},
+  components: {
+    SuspendButton
+  },
 
   mixins: [backendPaginateAndSortable],
 
