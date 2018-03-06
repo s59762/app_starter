@@ -10,9 +10,13 @@ zh-TW:
       delete: 刪除
       destroy: '刪除%{modle}'
       detail_of: '%{model}詳細內容'
-      edit: '編輯%{model}'
+      edit: '編輯'
+      edit_on: '編輯%{model}'
       get_info_for: '查看%{model}'
       index: '%{model}列表'
+      leave_empty_for_default_password: 不設定密碼將會使用預設密碼 `qwerasdf`
+      if_do_not_want_to_change_password_leave_empty: 若不變更密碼請留空
+      please_re_enter_password_for_confirmation: 請再輸入一次密碼做為確認
       login: 登入
       logout: 登出
       management: '管理%{model}'
@@ -24,5 +28,7 @@ zh-TW:
       save: 儲存
       show:  詳細內容
       submit: 送出資料
+      suspend_admin: 停權
+      unsuspend_admin: 復權
       this_action_can_not_retrieve: 這個動作將無法復原
       update_profile: 編輯檔案

@@ -24,28 +24,38 @@ zh-TW:
         locked_at: 封鎖時間
         name: 姓名
         password: 密碼
+        new_password: 新密碼
         password_confirmation: 確認密碼
         remember_created_at:
         remember_me: 記住我的資訊
         reset_password_sent_at: 重置密碼引導信件祭出時間
         reset_password_token: '重置密碼 TOKEN'
+        role: 角色
         sign_in_count: 登入次數
         unconfirmed_email: '未認證 Email'
         unlock_token: '解除封鎖 TOKEN'
         updated_at: 更新於
+        is_suspended: 已停權
 
     errors:
       models:
         admin:
           attributes:
+            password:
+              password_mismatch: 兩次輸入的密碼不相同
+            new_password:
+              password_mismatch: 兩次輸入的密碼不相同
   activemodel: *default
 
   # Enums
   enums:
     admin:
       role:
-        general: 一般帳號
-        super: 高級帳號
+        content_manager: 內容管理員
+        accounter: 會計帳號
+        stock_manager: 庫存管理員
+        super: 高級管理員
+        owner: 網站擁有者
         not_signed_in: 無權限
 
   # AASM state machine

@@ -2,9 +2,9 @@ export default class Form {
   /**
    * 建立 Form 的 instance
    *
-   * @param {object} data Form 需要的 attributes
+   * @param {Object} data Form 需要的 attributes
    * @param {function} dispatcher vuex store dispatch function
-   * @param {object} errors Errors instance in vuex store
+   * @param {Object} errors Errors instance in vuex store
    */
   constructor(data, dispatcher, errors) {
     this.originalData = data
@@ -64,7 +64,7 @@ export default class Form {
    * 分發 action 到 vuex
    *
    * @param {any} actionName
-   * @returns {object} 回傳 Promise 物件，成功的話回傳 response，失敗則回傳 errors 內容
+   * @returns {Object} 回傳 Promise 物件，成功的話回傳 response，失敗則回傳 errors 內容
    */
   dispatch(actionName, payload) {
     return new Promise((resolve, reject) => {

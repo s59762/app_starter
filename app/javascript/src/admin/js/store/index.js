@@ -3,13 +3,13 @@ import Vuex from 'vuex'
 import * as getters from './getters'
 import * as actions from './actions'
 import mutations from './mutations'
-import queryString from 'query-string'
+import admins from '../../../shared/store_modules/admins'
 
 Vue.use(Vuex)
 
 const state = {
   flashMessages: [],
-  queryString: queryString.parse(window.location.search),
+  queryString: {},
   device: {
     isMobile: false
   },
@@ -22,5 +22,8 @@ export default new Vuex.Store({
   state,
   getters,
   actions,
-  mutations
+  mutations,
+  modules: {
+    admins
+  }
 })

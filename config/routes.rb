@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     root to: redirect('admin/dashboard')
 
     resource :dashboard, only: %i[show], controller: 'dashboard'
+    resources :admins, only: %i[index show]
     resource :profile, only: %i[show update], controller: 'profile' do
       resource :password, only: %i[update], controller: 'profile/password'
     end
@@ -25,7 +26,12 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       namespace :web do
-        resources :admins, only: %i[index show]
+        resources :admins, only: %i[index show create update] do
+          collection do
+            get :roles, controller: 'admins/roles', action: 'show'
+          end
+          resource :suspend, only: %i[update], controller: 'admins/suspend'
+        end
       end
     end
   end

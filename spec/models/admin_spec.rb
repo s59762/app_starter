@@ -17,7 +17,8 @@
 #  updated_at             :datetime         not null
 #  avatar                 :string
 #  name                   :string
-#  role                   :integer          default(0)
+#  role                   :integer          default("content_manager")
+#  is_suspended           :boolean          default(FALSE)
 #
 
 require 'rails_helper'

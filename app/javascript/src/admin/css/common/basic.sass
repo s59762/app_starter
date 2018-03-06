@@ -60,3 +60,18 @@
   .box-tools
     padding: .5rem 0
     float: right
+
+.form-container-box
+  +clearfix
+  border-radius: 0
+  border-top: 3px solid $c-content-box-border
+  // Colors
+  @each $name, $pair in $colors
+    $color: nth($pair, 1)
+    $color-invert: nth($pair, 2)
+    &.is-#{$name}
+      border-color: $color
+  .panel-heading
+    font-size: 1rem
+  .panel-block
+    display: block

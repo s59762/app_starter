@@ -3,6 +3,38 @@ import Vue from 'vue/dist/vue.esm'
 import normalize from 'jsonapi-normalizer'
 import merge from 'lodash.merge'
 
+const DEFAULT_PAGE_SIZE = 25
+let pagenateOptions = function(options) {
+  let pageNumber = options.pageNumber
+  let pageSize = options.pageSize || DEFAULT_PAGE_SIZE
+
+  if (pageNumber) {
+    return `page[number]=${pageNumber}&page[size]=${pageSize}`
+  } else {
+    return ''
+  }
+}
+
+let sortOptions = function(options) {
+  let sort = options.sort
+
+  if (sort) {
+    return `&sort=${sort}`
+  } else {
+    return ''
+  }
+}
+
+let filterOptions = function(options) {
+  let filter = options.filter
+
+  if (filter) {
+    return `&filter=${filter}`
+  } else {
+    return ''
+  }
+}
+
 /**
  * Model 層的基礎，包含了所有 Models 都會用到的方法
  *
@@ -32,7 +64,7 @@ export default class ModelBase {
     return axios.get(
       `${this.api_base_path}/${this.api_version}/${this.scope}/${
         this.resource_type
-      }?${pagenateOptions(options)}`
+      }?${pagenateOptions(options)}${sortOptions(options)}${filterOptions(options)}`
     )
   }
 
@@ -45,9 +77,7 @@ export default class ModelBase {
    */
   show(id, options = {}) {
     return axios.get(
-      `${this.api_base_path}/${this.api_version}/${this.scope}/${
-        this.resource_type
-      }/${id}?${pagenateOptions(options)}`
+      `${this.api_base_path}/${this.api_version}/${this.scope}/${this.resource_type}/${id}`
     )
   }
 
@@ -98,7 +128,7 @@ export default class ModelBase {
   // ------------------------------------------------------------------------ //
 
   /**
-   * 把 response 中的所有 resources 內容放到 vuex store 中
+   * 把 response 中的所有 resources 內容加入 vuex store 中
    *
    * @param {object} state vuex state
    * @param {object} response raw response from server
@@ -109,6 +139,20 @@ export default class ModelBase {
 
     state.entities = merge({}, state.entities, normalizedResult.entities[this.resource_type])
     state.result = merge([], state.result, normalizedResult.result[this.resource_type])
+  }
+
+  /**
+   * 清除原本 vuex store 的內容把 response 中的所有 resources 內容放到 vuex store 中
+   *
+   * @param {object} state vuex state
+   * @param {object} response raw response from server
+   * @memberof ModelBase
+   */
+  replaceEntities(state, response) {
+    const normalizedResult = normalize(response.data)
+
+    state.entities = normalizedResult.entities[this.resource_type]
+    state.result = normalizedResult.result[this.resource_type]
   }
 
   /**

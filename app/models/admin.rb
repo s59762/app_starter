@@ -17,7 +17,8 @@
 #  updated_at             :datetime         not null
 #  avatar                 :string
 #  name                   :string
-#  role                   :integer          default(0)
+#  role                   :integer          default("content_manager")
+#  is_suspended           :boolean          default(FALSE)
 #
 
 # Admin Model
@@ -28,7 +29,10 @@ class Admin < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :recoverable, :rememberable, :trackable, :validatable
 
-  enum role: %i[general super]
+  enum role: %i[content_manager accounter stock_manager super owner]
+
+  scope :actived, -> { where(is_suspended: false) }
+  scope :suspended, -> { where(is_suspended: true) }
 
   # 如果 avatar 是 nil（未上傳使用者頭像），使用 null object 替代
   def avatar

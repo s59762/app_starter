@@ -4,17 +4,64 @@
 // ========================================================================== //
 
 # define variables here
-@host_v1 = localhost:3000/api/v1/web/
+@host_v1 = http://localhost:3000/api/v1/web/
 
 // ========================================================================== //
 
-# This is a demo api for get admin list
-GET http://{{host_v1}}admins HTTP/1.1
+# Get available admin roles
+GET {{host_v1}}admins/roles HTTP/1.1
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlhdCI6MTUxOTg5NTkxMywicm9sZSI6InN1cGVyIiwidHlwZSI6IkFkbWluIiwicmVmIjoid2ViIn0.HjYEKFCiS80llONdgSLzOie4ZQ_ggRS62zwfthneWoQ
+
+###
+
+# get admin list
+GET {{host_v1}}admins HTTP/1.1
 Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlhdCI6MTUxOTg5NTkxMywicm9sZSI6InN1cGVyIiwidHlwZSI6IkFkbWluIiwicmVmIjoid2ViIn0.HjYEKFCiS80llONdgSLzOie4ZQ_ggRS62zwfthneWoQ
 
 ###
 
 # get Admin list with paginate
-GET http://{{host_v1}}admins?page[number]=1&page[size]=10 HTTP/1.1
+GET {{host_v1}}admins?page[number]=1&page[size]=10 HTTP/1.1
 Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlhdCI6MTUxOTg5NTkxMywicm9sZSI6InN1cGVyIiwidHlwZSI6IkFkbWluIiwicmVmIjoid2ViIn0.HjYEKFCiS80llONdgSLzOie4ZQ_ggRS62zwfthneWoQ
 ###
+
+# add a new Admin
+POST {{host_v1}}admins HTTP/1.1
+content-type: application/vnd.api+json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlhdCI6MTUxOTg5NTkxMywicm9sZSI6InN1cGVyIiwidHlwZSI6IkFkbWluIiwicmVmIjoid2ViIn0.HjYEKFCiS80llONdgSLzOie4ZQ_ggRS62zwfthneWoQ
+
+{
+  "data": {
+    "type": "admins",
+    "attributes": {
+      "email": "test100@test.com",
+      "password": "qwerasdf",
+      "name": "test100",
+      "role": "super"
+    }
+  }
+}
+
+###
+
+# edit an Admin
+PUT {{host_v1}}admins/38 HTTP/1.1
+content-type: application/vnd.api+json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlhdCI6MTUxOTg5NTkxMywicm9sZSI6InN1cGVyIiwidHlwZSI6IkFkbWluIiwicmVmIjoid2ViIn0.HjYEKFCiS80llONdgSLzOie4ZQ_ggRS62zwfthneWoQ
+
+{
+  "data": {
+    "type": "admins",
+    "attributes": {
+      "name": "test500",
+      "role": "super"
+    }
+  }
+}
+
+###
+
+# suspend an Admin
+PUT {{host_v1}}admins/36/suspend HTTP/1.1
+content-type: application/vnd.api+json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlhdCI6MTUxOTg5NTkxMywicm9sZSI6InN1cGVyIiwidHlwZSI6IkFkbWluIiwicmVmIjoid2ViIn0.HjYEKFCiS80llONdgSLzOie4ZQ_ggRS62zwfthneWoQ

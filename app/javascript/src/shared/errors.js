@@ -47,7 +47,7 @@ export default class Errors {
   /**
    * 紀錄錯誤內容
    *
-   * @param {object} ererrors_from_serverrors
+   * @param {Object} ererrors_from_serverrors
    */
   record(errors_from_server) {
     this.errors = errors_from_server
