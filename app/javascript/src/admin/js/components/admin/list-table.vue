@@ -60,9 +60,13 @@ export default {
 
   // props: {},
 
-  // data() {
-  //   return {}
-  // },
+  data() {
+    return {
+      isUsingCreatedHook: true,
+      resourceType: 'admins',
+      currentUrlPath: '/admin/admins'
+    }
+  },
 
   computed: {
     isLoading() {
@@ -76,24 +80,12 @@ export default {
     totalCount() {
       return this.$store.getters['admins/metaInfo'].total_count
     }
-  },
+  }
+
+  // created() {},
 
   // mounted() {},
 
-  methods: {
-    fetchData(options) {
-      this.currentPage = options.pageNumber
-      this.$store.dispatch('admins/fetchAllResources', options)
-    },
-
-    updateQueryString(options) {
-      this.$store.dispatch('updateQueryString', {
-        options,
-        newQueryString: `/admin/admins/?page[number]=${options.pageNumber}&page[size]=${
-          options.pageSize
-        }&sort=${options.sort}`
-      })
-    }
-  }
+  // methods: {}
 }
 </script>

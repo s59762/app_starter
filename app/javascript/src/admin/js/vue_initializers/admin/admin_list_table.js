@@ -1,5 +1,6 @@
 import NewAdminForm from '../../components/admin/new-form'
 import AdminListTable from '../../components/admin/list-table'
+import backendPaginateAndSortable from '../../components/mixins/backend_paginate_and_sortable_mixin'
 
 export default {
   components: {
@@ -7,12 +8,15 @@ export default {
     AdminListTable
   },
 
-  // mixins: [],
+  mixins: [backendPaginateAndSortable],
 
   // props: {},
 
   data() {
     return {
+      isUsingCreatedHook: false,
+      resourceType: 'admins',
+      currentUrlPath: '/admin/admins/',
       isNewAdminFormActive: false
     }
   },
@@ -22,6 +26,12 @@ export default {
   methods: {
     showNewAdminForm() {
       this.isNewAdminFormActive = true
+    },
+
+    reloadAdminListTable() {
+      let options = this.checkCurrentQueryStringOptionsFromURL()
+
+      this.fetchData(options)
     }
   }
 }

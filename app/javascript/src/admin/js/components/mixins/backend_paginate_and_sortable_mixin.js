@@ -1,6 +1,11 @@
+/**
+ * 提供分頁以及排序功能的 mixin
+ *
+ * 在 vue instance 引入此 mixin 後，需 override data 中的 `isUsingCreatedHook`、
+ * `resourceType`、以及 `currentUrlPath`。
+ */
 import queryString from 'query-string'
 
-// 提供分頁以及自訂排序的功能。
 export default {
   // components: {},
 
@@ -8,10 +13,14 @@ export default {
 
   data() {
     return {
-      currentPage: 1, // 當前頁碼
-      pageSize: 25, // 每頁數量
-      sortOrder: 'desc', // 排序方向
-      sortField: 'created_at' // 排序欄位
+      isUsingCreatedHook: false, //             [OPTION] 是否使用 mixin 預設的 created hook
+      resourceType: 'resourceType', //          [OPTION] resource 的 type，用於 `#fetchData` 中指定 vuex 的 module
+      currentUrlPath: '/absolute/path', //      [OPTION] 當前頁面的絕對路徑，於更新 URL 時使用
+
+      currentPage: 1, //            當前頁碼
+      pageSize: 25, //              每頁數量
+      sortOrder: 'desc', //         排序方向
+      sortField: 'created_at' //    排序欄位
     }
   },
 
@@ -45,15 +54,17 @@ export default {
    * 重新取得正確的資料，並更新 vuex store 中 queryString 為當前 URL 的內容。
    */
   created() {
-    let options = this.checkCurrentQueryStringOptionsFromURL()
+    if (this.isUsingCreatedHook) {
+      let options = this.checkCurrentQueryStringOptionsFromURL()
 
-    this.fetchData(options)
-    this.updateQueryString(options)
+      this.fetchData(options)
+      this.updateQueryString(options)
 
-    // TODO: onpopstate 時沒有把 sort 狀態更新到 table 上，需要再檢查。
-    window.onpopstate = event => {
-      this.fetchData(event.state)
-      this.$store.dispatch('updateQueryStringFromURL')
+      // TODO: onpopstate 時沒有把 sort 狀態更新到 table 上，需要再檢查。
+      window.onpopstate = event => {
+        this.fetchData(event.state)
+        this.$store.dispatch('updateQueryStringFromURL')
+      }
     }
   },
 
@@ -101,7 +112,7 @@ export default {
      * 切換分頁的 handler。可指定要切換到第幾頁，重新透過 API 取得資料，並透過 pushState
      * 更新 URL。
      *
-     * @param {any} page 目標頁碼
+     * @param {number} page 目標頁碼
      */
     onPageChange(page) {
       let options = {
@@ -117,8 +128,8 @@ export default {
      * 變更排序選項的 handler。可依照指定的排序重新透過 API 取得資料，並透過 pushState
      * 更新 URL。
      *
-     * @param {any} field
-     * @param {any} order
+     * @param {string} field
+     * @param {string} order
      */
     onSort(field, order) {
       this.sortField = field
@@ -139,11 +150,11 @@ export default {
      * 《請依照需要，在 vue instance 中 override 這個方法，提供正確的 vuex actions》
      * =========================================================================
      *
-     * @param {any} options query options
+     * @param {Object} options query options
      */
     fetchData(options) {
       this.currentPage = options.pageNumber
-      this.$store.dispatch('OVERRIDE_HERE_WITH_VUEX_MODULE_NAME/fetchAllResources', options)
+      this.$store.dispatch(`${this.resourceType}/fetchAllResources`, options)
     },
 
     /**
@@ -152,14 +163,14 @@ export default {
      * 《請依照需要，在 vue instance 中 override 這個方法，提供正確的 Path》
      * =========================================================================
      *
-     * @param {any} options query options
+     * @param {Object} options query options
      */
     updateQueryString(options) {
       this.$store.dispatch('updateQueryString', {
         options,
-        newQueryString: `/OVERRIDE_HERE_WITH_CORRECT_ABSOLUTE_PATH?page[number]=${
-          options.pageNumber
-        }&page[size]=${options.pageSize}&sort=${options.sort}`
+        newQueryString: `${this.currentUrlPath}?page[number]=${options.pageNumber}&page[size]=${
+          options.pageSize
+        }&sort=${options.sort}`
       })
     }
   }
