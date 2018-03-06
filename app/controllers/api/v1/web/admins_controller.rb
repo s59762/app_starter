@@ -13,4 +13,20 @@ class Api::V1::Web::AdminsController < Api::V1::Web::BaseController
 
     render json: @admin
   end
+
+  def create
+    form = Admin::AdminForm.new(Admin.new)
+
+    return raise ValidationFailureException, form unless form.validate(admin_params)
+
+    form.save
+
+    render json: form.model
+  end
+
+  private
+
+  def admin_params
+    ActiveModelSerializers::Deserialization.jsonapi_parse(params)
+  end
 end

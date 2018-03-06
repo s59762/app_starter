@@ -15,7 +15,7 @@ let pagenateOptions = function(options) {
   }
 }
 
-let sortOptions = function (options) {
+let sortOptions = function(options) {
   let sort = options.sort
 
   if (sort) {
