@@ -26,7 +26,7 @@ export const toggleSidebar = ({ commit }, option) => {
 /**
  * 用 pushState 更新 URL，同時更新 queryString 的內容
  *
- * @param {object} options 提供 `window.onpopstate` 使用，傳入的物件內容會包含在 popState event 的 state
+ * @param {Object} options 提供 `window.onpopstate` 使用，傳入的物件內容會包含在 popState event 的 state
  * @param {string} newQueryString 新的 URL path，盡量使用完整的絕對路徑比較不容易出錯。
  */
 export const updateQueryString = ({ commit }, { options, newQueryString }) => {

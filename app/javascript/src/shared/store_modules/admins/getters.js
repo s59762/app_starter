@@ -6,6 +6,15 @@ export const isLoading = state => {
 }
 
 /**
+ * 所有可用的 roles 列表
+ *
+ * @returns {array} 所有 roles
+ */
+export const avaliableRoles = state => {
+  return state.avaliableRoles
+}
+
+/**
  * 依照 server 回傳的排序列出所有 Resource
  * 若沒有 Resource 則不回傳
  *
@@ -21,7 +30,7 @@ export const allResources = state => {
  * 以 ID 在 vuex store 中尋找特定 Resource
  *
  * @param {number} id
- * @returns {object} Resource 物件
+ * @returns {Object} Resource 物件
  */
 export const findResourceById = state => id => {
   return state.entities[id]
@@ -30,7 +39,7 @@ export const findResourceById = state => id => {
 /**
  * 回傳 API response 中的 meta 資訊
  *
- * @returns {object} meta info from API response
+ * @returns {Object} meta info from API response
  */
 export const metaInfo = state => {
   return state.meta
@@ -39,7 +48,7 @@ export const metaInfo = state => {
 /**
  * 回傳 state 中的 errors
  *
- * @returns {object} Errors 物件
+ * @returns {Object} Errors 物件
  */
 export const errors = state => {
   return state.errors

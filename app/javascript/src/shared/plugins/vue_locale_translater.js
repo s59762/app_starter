@@ -59,7 +59,7 @@ function install(Vue) {
        *
        * @param {string} model model name
        * @param {string} activity 活動的名稱
-       * @param {object} options 若需要可帶入 locals 物件
+       * @param {Object} options 若需要可帶入 locals 物件
        * @returns {string}
        */
       activityLocaleText(model, activity, options = {}) {
@@ -69,12 +69,13 @@ function install(Vue) {
       /**
        * 取得頁面標題的 i18n 值
        *
+       * @param {string} scope 頁面操作角色（admin, client 等）
        * @param {string} pageName 頁面名稱
        * @param {string} subPageName 副頁面名稱
        * @returns {string}
        */
-      pageTitleLocaleText(pageName, subPageName) {
-        return i18n.t(`page_titles.${pageName}.${subPageName}`)
+      pageTitleLocaleText(scope, pageName, subPageName) {
+        return i18n.t(`page_titles.${scope}.${pageName}.${subPageName}`)
       },
 
       /**

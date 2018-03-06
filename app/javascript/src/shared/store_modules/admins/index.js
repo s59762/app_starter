@@ -7,6 +7,7 @@ const state = {
   entities: {},
   result: [],
   meta: {},
+  avaliableRoles: [],
   isCallingAPI: false,
   errors: new Errors()
 }

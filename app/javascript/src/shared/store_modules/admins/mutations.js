@@ -4,6 +4,16 @@ import AdminModel from '../../resource_models/admin'
 const Admin = new AdminModel()
 
 export default {
+  [types.FETCH_ADMIN_ROLES_START](state) {
+    state.isCallingAPI = true
+  },
+
+  [types.FETCH_ADMIN_ROLES_SUCCESS](state, response) {
+    Admin.receiveAvaliableRoles(state, response)
+
+    state.isCallingAPI = false
+  },
+
   [types.FETCH_ADMINS_START](state) {
     state.isCallingAPI = true
   },

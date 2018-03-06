@@ -26,7 +26,11 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       namespace :web do
-        resources :admins, only: %i[index show]
+        resources :admins, only: %i[index show] do
+          collection do
+            get :roles, controller: 'admins/roles', action: 'show'
+          end
+        end
       end
     end
   end

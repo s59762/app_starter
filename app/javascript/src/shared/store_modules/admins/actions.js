@@ -4,6 +4,29 @@ import AdminModel from '../../resource_models/admin'
 const Admin = new AdminModel()
 
 /**
+ * 從 Server 取得所有 Admin 可用的 roles 選項
+ *
+ * @returns {promise} response or errors
+ */
+export const fetchAvaliableRoles = ({ dispatch, commit }) => {
+  commit(types.FETCH_ADMIN_ROLES_START)
+
+  return new Promise((resolve, reject) => {
+    Admin.roles()
+      .then(response => {
+        commit(types.FETCH_ADMIN_ROLES_SUCCESS, response)
+
+        resolve(response)
+      })
+      .catch(errors => {
+        commit(types.API_REQUEST_FAIL, errors)
+
+        reject(errors)
+      })
+  })
+}
+
+/**
  * 從 Server 取得所有 Resource
  *
  * @returns {promise} response or errors
@@ -53,7 +76,7 @@ export const getResource = ({ dispatch, commit }, id) => {
 /**
  * 新增 Resource 到 Server
  *
- * @param {object} resource JSON:API 規格的 request body
+ * @param {Object} resource JSON:API 規格的 request body
  * @returns {promise} response or errors
  */
 export const addResource = ({ dispatch, commit }, resource) => {
@@ -78,7 +101,7 @@ export const addResource = ({ dispatch, commit }, resource) => {
  * 從 Server 更新一筆 resource 的內容
  *
  * @param {number} id 指定的 resource ID
- * @param {object} resource JSON:API 規格的 request body
+ * @param {Object} resource JSON:API 規格的 request body
  * @returns {promise} response or errors
  */
 export const updateResource = ({ dispatch, commit }, { id, resource }) => {
@@ -126,7 +149,7 @@ export const deleteResource = ({ dispatch, commit }, id) => {
 /**
  * 收到多筆其他 resource 的 relationships
  *
- * @param {object} response axios response object
+ * @param {Object} response axios response object
  * @returns {promise} response or errors
  */
 export const receiveResourcesFromRelationships = ({ commit }, response) => {
@@ -140,7 +163,7 @@ export const receiveResourcesFromRelationships = ({ commit }, response) => {
 /**
  * 收到單筆其他 resource 的 relationship
  *
- * @param {object} response axios response object
+ * @param {Object} response axios response object
  * @returns {promise} response or errors
  */
 export const getResourceFromRelationship = ({ commit }, response) => {
