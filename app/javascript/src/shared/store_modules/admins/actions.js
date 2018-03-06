@@ -8,7 +8,7 @@ const Admin = new AdminModel()
  *
  * @returns {promise} response or errors
  */
-export const fetchAvaliableRoles = ({ dispatch, commit }) => {
+export const fetchAvailableRoles = ({ dispatch, commit }) => {
   commit(types.FETCH_ADMIN_ROLES_START)
 
   return new Promise((resolve, reject) => {

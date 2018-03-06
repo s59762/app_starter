@@ -34,7 +34,7 @@
              :loading="isLoading"
              @input="form.errors.clear('role')"
              expanded)
-      option(v-for="role in avaliableRoles"
+      option(v-for="role in availableRoles"
              :value="role")
         | {{enumLocaleText('admin', 'role', role)}}
 
@@ -72,8 +72,8 @@ export default {
       return this.$store.getters['admins/isLoading']
     },
 
-    avaliableRoles() {
-      return this.$store.getters['admins/avaliableRoles']
+    availableRoles() {
+      return this.$store.getters['admins/availableRoles']
     },
 
     requestBody() {
@@ -87,7 +87,7 @@ export default {
   },
 
   mounted() {
-    this.$store.dispatch('admins/fetchAvaliableRoles').then(response => {
+    this.$store.dispatch('admins/fetchAvailableRoles').then(response => {
       this.form.role = response.data.data[0]
     })
   },

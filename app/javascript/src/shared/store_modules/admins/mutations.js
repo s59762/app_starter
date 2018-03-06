@@ -9,7 +9,7 @@ export default {
   },
 
   [types.FETCH_ADMIN_ROLES_SUCCESS](state, response) {
-    Admin.receiveAvaliableRoles(state, response)
+    Admin.receiveAvailableRoles(state, response)
 
     state.isCallingAPI = false
   },

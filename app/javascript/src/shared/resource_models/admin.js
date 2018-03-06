@@ -26,7 +26,7 @@ export default class Admin extends ModelBase {
   /**
    * 把 admin roles 列表寫入 vuex store。
    */
-  receiveAvaliableRoles(state, response) {
-    state.avaliableRoles = response.data.data
+  receiveAvailableRoles(state, response) {
+    state.availableRoles = response.data.data
   }
 }

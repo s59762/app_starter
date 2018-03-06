@@ -10,8 +10,8 @@ export const isLoading = state => {
  *
  * @returns {array} 所有 roles
  */
-export const avaliableRoles = state => {
-  return state.avaliableRoles
+export const availableRoles = state => {
+  return state.availableRoles
 }
 
 /**
