@@ -30,6 +30,7 @@ Rails.application.routes.draw do
           collection do
             get :roles, controller: 'admins/roles', action: 'show'
           end
+          resource :suspend, only: %i[update], controller: 'admins/suspend'
         end
       end
     end

@@ -17,6 +17,12 @@ export default class Admin extends ModelBase {
     )
   }
 
+  suspend(id) {
+    return axios.put(
+      `${this.api_base_path}/${this.api_version}/${this.scope}/${this.resource_type}/${id}/suspend`
+    )
+  }
+
   /**
    * 把 admin roles 列表寫入 vuex store。
    */

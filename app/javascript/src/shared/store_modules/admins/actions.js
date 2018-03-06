@@ -147,6 +147,30 @@ export const deleteResource = ({ dispatch, commit }, id) => {
 }
 
 /**
+ * toggle Admin `is_suspended` 的狀態
+ *
+ * @param {number} id 指定的 resource ID
+ * @returns {promise} response or errors
+ */
+export const suspendResource = ({ dispatch, commit }, id) => {
+  commit(types.UPDATE_ADMIN_START)
+
+  return new Promise((resolve, reject) => {
+    Admin.suspend(id)
+      .then(response => {
+        commit(types.UPDATE_ADMIN_SUCCESS, response)
+
+        resolve(response)
+      })
+      .catch(errors => {
+        commit(types.API_REQUEST_FAIL, errors)
+
+        reject(errors)
+      })
+  })
+}
+
+/**
  * 收到多筆其他 resource 的 relationships
  *
  * @param {Object} response axios response object

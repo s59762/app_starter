@@ -14,7 +14,7 @@ Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlhdCI6M
 
 ###
 
-# This is a demo api for get admin list
+# get admin list
 GET {{host_v1}}admins HTTP/1.1
 Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlhdCI6MTUxOTg5NTkxMywicm9sZSI6InN1cGVyIiwidHlwZSI6IkFkbWluIiwicmVmIjoid2ViIn0.HjYEKFCiS80llONdgSLzOie4ZQ_ggRS62zwfthneWoQ
 
@@ -41,3 +41,10 @@ Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlhdCI6M
     }
   }
 }
+
+###
+
+# suspend an Admin
+PUT {{host_v1}}admins/36/suspend HTTP/1.1
+content-type: application/vnd.api+json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlhdCI6MTUxOTg5NTkxMywicm9sZSI6InN1cGVyIiwidHlwZSI6IkFkbWluIiwicmVmIjoid2ViIn0.HjYEKFCiS80llONdgSLzOie4ZQ_ggRS62zwfthneWoQ

@@ -25,5 +25,7 @@ zh-TW:
       save: 儲存
       show:  詳細內容
       submit: 送出資料
+      suspend_admin: 停權
+      unsuspend_admin: 復權
       this_action_can_not_retrieve: 這個動作將無法復原
       update_profile: 編輯檔案
