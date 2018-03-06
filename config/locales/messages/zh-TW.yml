@@ -4,3 +4,4 @@ zh-TW:
     admin_added_succefully: 已新增管理員
     admin_is_suspended: 管理員 %{name} 已停權
     admin_is_unsuspended: 管理員 %{name} 已復權
+    admin_updated_succefully: 管理員資料已更新

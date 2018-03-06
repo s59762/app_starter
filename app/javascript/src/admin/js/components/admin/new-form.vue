@@ -18,6 +18,13 @@
             :placeholder="actionLocaleText('admin', 'leave_empty_for_default_password')"
             v-model="form.password"
             @input="form.errors.clear('password')")
+  b-field(:label="attributeLocaleText('admin', 'password_confirmation')"
+          :type="form.errorClassAt('password_confirmation')"
+          :message="form.errors.get('password_confirmation')")
+    b-input(type="password"
+            :placeholder="actionLocaleText('admin', 'please_re_enter_password_for_confirmation')"
+            v-model="form.password_confirmation"
+            @input="form.errors.clear('password_confirmation')")
 
   b-field(:label="attributeLocaleText('admin', 'name')"
           :type="form.errorClassAt('name')"
@@ -58,6 +65,7 @@ export default {
         {
           email: '',
           password: '',
+          password_confirmation: '',
           name: '',
           role: ''
         },
@@ -96,6 +104,7 @@ export default {
 
   methods: {
     submitForm() {
+      console.log(this.requestBody)
       this.form.dispatch('admins/addResource', this.requestBody).then(() => {
         this.form.addFlashMessage(['success', this.messageLocaleText('admin_added_succefully')])
         this.$parent.close()

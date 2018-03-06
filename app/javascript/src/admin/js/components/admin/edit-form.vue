@@ -7,20 +7,20 @@
   b-collapse.panel(:open.sync="isEditPasswordInputOpen")
     .panel-heading(slot="trigger") {{actionLocaleText('admin', 'change_password')}}
     .panel-block
-      b-field(:label="attributeLocaleText('admin', 'password')"
-              :type="form.errorClassAt('password')"
-              :message="form.errors.get('password')")
+      b-field(:label="attributeLocaleText('admin', 'new_password')"
+              :type="form.errorClassAt('new_password')"
+              :message="form.errors.get('new_password')")
         b-input(type="password"
+                v-model="form.new_password"
                 :placeholder="actionLocaleText('admin', 'if_do_not_want_to_change_password_leave_empty')"
-                v-model="form.password"
-                @input="form.errors.clear('password')")
+                @input="form.errors.clear('new_password')")
 
       b-field(:label="attributeLocaleText('admin', 'password_confirmation')"
-              :placeholder="actionLocaleText('admin', 'if_do_not_want_to_change_password_leave_empty')"
               :type="form.errorClassAt('password_confirmation')"
               :message="form.errors.get('password_confirmation')")
         b-input(type="password"
                 v-model="form.password_confirmation"
+                :placeholder="actionLocaleText('admin', 'if_do_not_want_to_change_password_leave_empty')"
                 @input="form.errors.clear('password_confirmation')")
 
   //- general fields
@@ -68,6 +68,7 @@ export default {
       form: new Form(
         {
           password: '',
+          new_password: '',
           password_confirmation: '',
           name: this.admin.name,
           role: this.admin.role
@@ -100,22 +101,22 @@ export default {
 
   // created() {},
   mounted() {
-    if (this.availableRoles) {
-      this.form.role = this.availableRoles[0]
-    } else {
-      this.fetchAvailableRolesAndSetDefaultSelect()
+    if (!this.availableRoles) {
+      this.$store.dispatch('admins/fetchAvailableRoles')
     }
   },
 
   methods: {
-    fetchAvailableRolesAndSetDefaultSelect() {
-      this.$store.dispatch('admins/fetchAvailableRoles').then(response => {
-        this.form.role = response.data.data[0]
-      })
-    },
-
     submitForm() {
-      console.log(this.requestBody)
+      this.form
+        .dispatch('admins/updateResource', {
+          id: this.admin.id,
+          resource: this.requestBody
+        })
+        .then(response => {
+          this.form.addFlashMessage(['success', this.messageLocaleText('admin_updated_succefully')])
+          this.$parent.close()
+        })
     }
   }
 }

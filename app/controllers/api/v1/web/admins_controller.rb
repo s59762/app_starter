@@ -6,14 +6,24 @@ class Api::V1::Web::AdminsController < Api::V1::Web::BaseController
            meta: pagination_dict(@admins)
   end
 
-  def show
-    @admin = Admin.find(params[:id])
+  # def show
+  #   @admin = Admin.find(params[:id])
 
-    render json: @admin
-  end
+  #   render json: @admin
+  # end
 
   def create
-    form = Admin::AdminForm.new(Admin.new)
+    form = Admin::NewAdminForm.new(Admin.new)
+
+    return raise ValidationFailureException, form unless form.validate(admin_params)
+
+    form.save
+
+    render json: form.model
+  end
+
+  def update
+    form = Admin::EditAdminForm.new(Admin.find(params[:id]))
 
     return raise ValidationFailureException, form unless form.validate(admin_params)
 
