@@ -89,16 +89,8 @@ export default {
   },
 
   computed: {
-    isLoading() {
-      return this.$store.getters['admins/isLoading']
-    },
-
     admins() {
       return this.$store.getters['admins/allResources']
-    },
-
-    totalCount() {
-      return this.$store.getters['admins/metaInfo'].total_count
     }
   }
 

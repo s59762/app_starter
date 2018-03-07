@@ -3,6 +3,7 @@
  *
  * 在 vue instance 引入此 mixin 後，需 override data 中的 `isUsingCreatedHook`、
  * `resourceType`、以及 `currentUrlPath`，並視情況 override 其他預設值。
+ * TODO: 建立 option 可選擇是否開啟排序、filter 功能。（isSortable, isFilterable）
  */
 import queryString from 'query-string'
 
@@ -43,6 +44,24 @@ export default {
       } else {
         return `${this.sortField}`
       }
+    },
+
+    /**
+     * 從 vuex 中取得 meta 中的 total_count
+     *
+     * @returns {number}
+     */
+    totalCount() {
+      return this.$store.getters[`${this.resourceType}/metaInfo`].total_count
+    },
+
+    /**
+     * 從 vuex 中取得 isCallingAPI 的值
+     *
+     * @returns {boolean}
+     */
+    isLoading() {
+      return this.$store.getters[`${this.resourceType}/isLoading`]
     }
   },
 
