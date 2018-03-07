@@ -4,6 +4,7 @@ import * as getters from './getters'
 import * as actions from './actions'
 import mutations from './mutations'
 import admins from '../../../shared/store_modules/admins'
+import users from '../../../shared/store_modules/users'
 
 Vue.use(Vuex)
 
@@ -24,6 +25,7 @@ export default new Vuex.Store({
   actions,
   mutations,
   modules: {
-    admins
+    admins,
+    users
   }
 })
