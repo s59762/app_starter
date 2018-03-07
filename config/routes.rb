@@ -26,6 +26,7 @@ Rails.application.routes.draw do
 
     resource :dashboard, only: %i[show], controller: 'dashboard'
     resources :admins, only: %i[index show]
+    resources :users, only: %i[index show]
     resource :profile, only: %i[show update], controller: 'profile' do
       resource :password, only: %i[update], controller: 'profile/password'
     end
