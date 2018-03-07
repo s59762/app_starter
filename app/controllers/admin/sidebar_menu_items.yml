@@ -1,4 +1,4 @@
-- title: 單層一般選單
+- title: 一般資訊
   menus:
     - path: <%= Rails.application.routes.url_helpers.admin_dashboard_path %>
       active_by: <%= Rails.application.routes.url_helpers.admin_dashboard_path %>
@@ -8,13 +8,50 @@
       active_by: <%= Rails.application.routes.url_helpers.admin_admins_path %>
       icon: fa-user-md
       title: <%= I18n.t('page_titles.admin.admins.main_title') %>
+    - path: <%= Rails.application.routes.url_helpers.admin_admins_path %>
+      active_by: <%= Rails.application.routes.url_helpers.admin_admins_path %>
+      icon: fa-users
+      title: <%= I18n.t('page_titles.admin.users.main_title') %>
 
-- title: 雙層樹狀選單
+- title: 商品資訊
+  menus:
+    - path: '#'
+      active_by: '/admin/products'
+      icon: fa-tags
+      title: 商品管理
+      has_submenu: true
+      submenus:
+        - action: orders-index
+          icon: fa-list
+          path: <%= Rails.application.routes.url_helpers.admin_dashboard_path %>
+          title: 列表
+
+        - action: export-show
+          icon: fa-download
+          path: <%= Rails.application.routes.url_helpers.admin_dashboard_path %>
+          title: 匯出
+
+- title: 訂單資訊
   menus:
     - path: '#'
       active_by: '/admin/orders'
       icon: fa-file-text-o
       title: 訂單管理
+      has_submenu: true
+      submenus:
+        - action: orders-index
+          icon: fa-list
+          path: <%= Rails.application.routes.url_helpers.admin_dashboard_path %>
+          title: 列表
+
+        - action: export-show
+          icon: fa-download
+          path: <%= Rails.application.routes.url_helpers.admin_dashboard_path %>
+          title: 匯出
+    - path: '#'
+      active_by: '/admin/shippings'
+      icon: fa-file-text-o
+      title: 出貨管理
       has_submenu: true
       submenus:
         - action: orders-index

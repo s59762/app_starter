@@ -6,13 +6,18 @@ zh-TW:
         subtitle: 本頁面僅限 Admin 帳號使用
       dashboard:
         main_title: 資訊面板
-        show: ''
+        show: 網站狀態簡報
       admins:
         main_title: 人員管理
         index: 列表
         show: 詳細資料
         new: 新增管理員
         edit: 編輯管理員
+      users:
+        main_title: 會員管理
+        index: 列表
+        show: 詳細資料
+        edit: 編輯會員
       profile:
         main_title: 管理員個人檔案
         show: 編輯
