@@ -42,6 +42,7 @@ Rails.application.routes.draw do
           end
           resource :suspend, only: %i[update], controller: 'admins/suspend'
         end
+        resources :users, only: %i[index show]
       end
     end
   end

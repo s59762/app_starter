@@ -4,7 +4,7 @@
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>
-  Class: AdminSerializer
+  Class: UserSerializer
   
     &mdash; Documentation by YARD 0.9.12
   
@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
 
 <script type="text/javascript" charset="utf-8">
-  pathId = "AdminSerializer";
+  pathId = "UserSerializer";
   relpath = '';
 </script>
 
@@ -36,10 +36,10 @@
       <div id="header">
         <div id="menu">
   
-    <a href="_index.html">Index (A)</a> &raquo;
+    <a href="_index.html">Index (U)</a> &raquo;
     
     
-    <span class="title">AdminSerializer</span>
+    <span class="title">UserSerializer</span>
   
 </div>
 
@@ -59,7 +59,7 @@
         <div class="clear"></div>
       </div>
 
-      <div id="content"><h1>Class: AdminSerializer
+      <div id="content"><h1>Class: UserSerializer
   
   
   
@@ -78,7 +78,7 @@
           
             <li class="next"><span class='object_link'><a href="ApplicationSerializer.html" title="ApplicationSerializer (class)">ApplicationSerializer</a></span></li>
           
-            <li class="next">AdminSerializer</li>
+            <li class="next">UserSerializer</li>
           
         </ul>
         <a href="#" class="inheritanceTree">show all</a>
@@ -98,42 +98,12 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>app/serializers/admin_serializer.rb</dd>
+    <dd>app/serializers/user_serializer.rb</dd>
   </dl>
   
 </div>
 
-<h2>Overview</h2><div class="docstring">
-  <div class="discussion">
-    <p>== Schema Information</p>
 
-<p>Table name: admins</p>
-
-<p>id                     :integer          not null, primary key
- email                  :string           default(&quot;&quot;), not null
- encrypted_password     :string           default(&quot;&quot;), not null
- reset_password_token   :string
- reset_password_sent_at :datetime
- remember_created_at    :datetime
- sign_in_count          :integer          default(0), not null
- current_sign_in_at     :datetime
- last_sign_in_at        :datetime
- current_sign_in_ip     :inet
- last_sign_in_ip        :inet
- created_at             :datetime         not null
- updated_at             :datetime         not null
- avatar                 :string
- name                   :string
- role                   :integer          default(&quot;content_manager&quot;)
- is_suspended           :boolean          default(FALSE)</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div>
 
 
 

@@ -8,6 +8,11 @@
 
 // ========================================================================== //
 
+
+// ************************************************************************** //
+//                                 ADMIN                                      //
+// ************************************************************************** //
+
 # Get available admin roles
 GET {{host_v1}}admins/roles HTTP/1.1
 Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlhdCI6MTUxOTg5NTkxMywicm9sZSI6InN1cGVyIiwidHlwZSI6IkFkbWluIiwicmVmIjoid2ViIn0.HjYEKFCiS80llONdgSLzOie4ZQ_ggRS62zwfthneWoQ
@@ -20,8 +25,8 @@ Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlhdCI6M
 
 ###
 
-# get Admin list with paginate
-GET {{host_v1}}admins?page[number]=1&page[size]=10 HTTP/1.1
+# get Admin list with paginate, sort, and filter options
+GET {{host_v1}}admins?page[number]=1&page[size]=10&sort=-id&filter=actived HTTP/1.1
 Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlhdCI6MTUxOTg5NTkxMywicm9sZSI6InN1cGVyIiwidHlwZSI6IkFkbWluIiwicmVmIjoid2ViIn0.HjYEKFCiS80llONdgSLzOie4ZQ_ggRS62zwfthneWoQ
 ###
 
@@ -65,3 +70,21 @@ Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlhdCI6M
 PUT {{host_v1}}admins/36/suspend HTTP/1.1
 content-type: application/vnd.api+json
 Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlhdCI6MTUxOTg5NTkxMywicm9sZSI6InN1cGVyIiwidHlwZSI6IkFkbWluIiwicmVmIjoid2ViIn0.HjYEKFCiS80llONdgSLzOie4ZQ_ggRS62zwfthneWoQ
+
+###
+
+// ************************************************************************** //
+//                                  USER                                      //
+// ************************************************************************** //
+
+# get users list
+GET {{host_v1}}users HTTP/1.1
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlhdCI6MTUxOTg5NTkxMywicm9sZSI6InN1cGVyIiwidHlwZSI6IkFkbWluIiwicmVmIjoid2ViIn0.HjYEKFCiS80llONdgSLzOie4ZQ_ggRS62zwfthneWoQ
+
+###
+
+# get users list with paginate and sort options
+GET {{host_v1}}users?page[number]=1&page[size]=10&sort=-id HTTP/1.1
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlhdCI6MTUxOTg5NTkxMywicm9sZSI6InN1cGVyIiwidHlwZSI6IkFkbWluIiwicmVmIjoid2ViIn0.HjYEKFCiS80llONdgSLzOie4ZQ_ggRS62zwfthneWoQ
+
+###
