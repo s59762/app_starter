@@ -1,6 +1,24 @@
 <template lang="pug">
 
 div
+  b-collapse.panel(:open.sync="searchOptionsIsOpen")
+    .panel-heading(slot="trigger") Search
+    .panel-block
+      .column.is-5
+        b-field
+          b-input(type="text"
+                  v-model="searchOptions.email_cont"
+                  placeholder="search with email"
+                  icon="envelope")
+      .column.is-5
+        b-field
+          b-input(type="text"
+                  v-model="searchOptions.name_cont"
+                  placeholder="search with name"
+                  icon="user")
+      .column.is-2
+        .button.is-primary.is-block(@click="searchUser") 搜尋
+
   b-table(:data="users"
           paginated
           backend-pagination
@@ -46,12 +64,12 @@ div
 </template>
 
 <script>
-import backendPaginateAndFilterAndSortableMixin from '../mixins/backend_paginate_and_filter_and_sortable_mixin'
+import backendPaginateFilterSortAndSearchableMixin from '../mixins/backend_paginate_filter_sort_and_searchable_mixin'
 
 export default {
   // components: {},
 
-  mixins: [backendPaginateAndFilterAndSortableMixin],
+  mixins: [backendPaginateFilterSortAndSearchableMixin],
 
   // props: {},
 
@@ -61,7 +79,12 @@ export default {
       resourceType: 'users',
       currentUrlPath: '/admin/users',
       currentFilter: 0,
-      availableFilters: ['']
+      availableFilters: [''],
+      searchOptionsIsOpen: false,
+      searchOptions: {
+        email_cont: '',
+        name_cont: ''
+      }
     }
   },
 
@@ -69,12 +92,25 @@ export default {
     users() {
       return this.$store.getters['users/allResources']
     }
-  }
+  },
 
   // created() {},
 
   // mounted() {},
 
-  // methods: {}
+  methods: {
+    searchUser() {
+      let options = {
+        pageNumber: this.currentPage,
+        pageSize: this.pageSize,
+        sort: this.sortOrderValue,
+        filter: this.availableFilters[this.currentFilter],
+        search: this.searchOptions
+      }
+
+      this.fetchData(options)
+      this.updateQueryString(options)
+    }
+  }
 }
 </script>

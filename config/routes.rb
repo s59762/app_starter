@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users, path: 'admin',
+  devise_for :users, path: 'user',
                      skip: %w[password],
                      path_names: {
                        sign_in: 'login',
