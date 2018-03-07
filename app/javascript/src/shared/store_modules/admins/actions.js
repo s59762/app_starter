@@ -20,6 +20,7 @@ export const fetchAvailableRoles = ({ dispatch, commit }) => {
       })
       .catch(errors => {
         commit(types.API_REQUEST_FAIL, errors)
+        dispatch('errorMessageHandler', errors, { root: true })
 
         reject(errors)
       })
@@ -43,6 +44,7 @@ export const fetchAllResources = ({ dispatch, commit }, options) => {
       })
       .catch(errors => {
         commit(types.API_REQUEST_FAIL, errors)
+        dispatch('errorMessageHandler', errors, { root: true })
 
         reject(errors)
       })
@@ -67,6 +69,7 @@ export const getResource = ({ dispatch, commit }, id) => {
       })
       .catch(errors => {
         commit(types.API_REQUEST_FAIL, errors)
+        dispatch('errorMessageHandler', errors, { root: true })
 
         reject(errors)
       })
@@ -91,6 +94,7 @@ export const addResource = ({ dispatch, commit }, resource) => {
       })
       .catch(errors => {
         commit(types.API_REQUEST_FAIL, errors)
+        dispatch('errorMessageHandler', errors, { root: true })
 
         reject(errors)
       })
@@ -116,6 +120,7 @@ export const updateResource = ({ dispatch, commit }, { id, resource }) => {
       })
       .catch(errors => {
         commit(types.API_REQUEST_FAIL, errors)
+        dispatch('errorMessageHandler', errors, { root: true })
 
         reject(errors)
       })
@@ -140,6 +145,7 @@ export const deleteResource = ({ dispatch, commit }, id) => {
       })
       .catch(errors => {
         commit(types.API_REQUEST_FAIL, errors)
+        dispatch('errorMessageHandler', errors, { root: true })
 
         reject(errors)
       })
@@ -164,6 +170,7 @@ export const suspendResource = ({ dispatch, commit }, id) => {
       })
       .catch(errors => {
         commit(types.API_REQUEST_FAIL, errors)
+        dispatch('errorMessageHandler', errors, { root: true })
 
         reject(errors)
       })

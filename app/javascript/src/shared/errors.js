@@ -47,10 +47,12 @@ export default class Errors {
   /**
    * 紀錄錯誤內容
    *
-   * @param {Object} ererrors_from_serverrors
+   * @param {Object} errors axios 從 server 收到的 error 物件
    */
-  record(errors_from_server) {
-    this.errors = errors_from_server
+  record(errors) {
+    if (errors.response.status === 422) {
+      this.errors = errors.response.data
+    }
   }
 
   /**

@@ -1,6 +1,11 @@
 ---
 zh-TW:
   messages:
+    failure:
+      validation_failure: 請您檢查表單後再試一次
+      token_authenticate_failure: 身份認證失敗，請嘗試重新登入
+      parameters_failure: 您提供的參數不符合規範
+    server_side_500_error: 抱歉，伺服器發生問題，請稍後再試
     admin_added_succefully: 已新增管理員
     admin_is_suspended: 管理員 %{name} 已停權
     admin_is_unsuspended: 管理員 %{name} 已復權
