@@ -2,7 +2,7 @@
 
 div
   b-collapse.panel(:open.sync="searchOptionsIsOpen")
-    .panel-heading(slot="trigger") Search
+    .panel-heading(slot="trigger") {{actionLocaleText('admin', 'search_for', {model_name: modelNameLocaleText('user')})}}
     .panel-block
       .column.is-5
         b-field
@@ -17,7 +17,7 @@ div
                   placeholder="search with name"
                   icon="user")
       .column.is-2
-        .button.is-primary.is-block(@click="searchUser") 搜尋
+        .button.is-primary.is-block(@click="searchUser") {{actionLocaleText('admin', 'search')}}
 
   b-table(:data="users"
           paginated

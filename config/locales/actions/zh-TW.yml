@@ -26,6 +26,8 @@ zh-TW:
       preview: 預覽
       reply: 回覆
       save: 儲存
+      search: 搜尋
+      search_for: '搜尋%{model_name}'
       show:  詳細內容
       submit: 送出資料
       suspend_admin: 停權
