@@ -21,3 +21,9 @@ zh-TW:
       profile:
         main_title: 管理員個人檔案
         show: 編輯
+    user:
+      login:
+        title: 請先登入
+        subtitle: 我們需要確認您的身份以提供個人化服務
+      profile:
+        main_title: 管理個人資料

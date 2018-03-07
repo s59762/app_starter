@@ -1,4 +1,13 @@
 Rails.application.routes.draw do
+  devise_for :users, path: 'admin',
+                     skip: %w[password],
+                     path_names: {
+                       sign_in: 'login',
+                       sign_out: 'logout'
+                     },
+                     controllers: {
+                       sessions: 'devise/users/sessions'
+                     }
   devise_for :admins, path: 'admin',
                       skip: %w[password],
                       path_names: {
