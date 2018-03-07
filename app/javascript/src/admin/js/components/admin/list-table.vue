@@ -2,10 +2,13 @@
 
 div
   section
-    b-tabs(v-model="currentFilter"
+    b-tabs(type="is-boxed"
+           v-model="currentFilter"
            @change="filterOnChangeHandler")
-      b-tab-item(label="活動中")
-      b-tab-item(label="已停權")
+      b-tab-item(label="活動中"
+                 icon="check-circle")
+      b-tab-item(label="已停權"
+                 icon="ban")
 
   b-table(:data="admins"
           paginated

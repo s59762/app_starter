@@ -104,7 +104,6 @@ export default {
 
   methods: {
     submitForm() {
-      console.log(this.requestBody)
       this.form.dispatch('admins/addResource', this.requestBody).then(() => {
         this.form.addFlashMessage(['success', this.messageLocaleText('admin_added_succefully')])
         this.$parent.close()
