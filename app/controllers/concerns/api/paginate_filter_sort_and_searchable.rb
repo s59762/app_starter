@@ -1,7 +1,7 @@
 # 提供 WebApi 使用分頁與排序的功能
 
 module Api
-  module PaginateAndFilterAndSortable
+  module PaginateFilterSortAndSearchable
     PAGE_SIZE_LIMIT = 100
 
     private

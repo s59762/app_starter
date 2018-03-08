@@ -175,3 +175,6 @@ gem 'roadie-rails', '~> 1.0'
 
 # for cron job
 gem 'whenever', require: false
+
+# for meta search
+gem 'ransack'

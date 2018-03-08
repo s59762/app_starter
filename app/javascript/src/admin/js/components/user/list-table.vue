@@ -2,19 +2,19 @@
 
 div
   b-collapse.panel(:open.sync="searchOptionsIsOpen")
-    .panel-heading(slot="trigger") {{actionLocaleText('admin', 'search_for', {model_name: modelNameLocaleText('user')})}}
+    .panel-heading(slot="trigger") {{actionLocaleText('admin', 'search_for', { model_name: modelNameLocaleText('user') })}}
     .panel-block
       .column.is-5
         b-field
           b-input(type="text"
                   v-model="searchOptions.email_cont"
-                  :placeholder="actionLocaleText('admin', 'search_by', {attribute_name: attributeLocaleText('user', 'email')})"
+                  :placeholder="actionLocaleText('admin', 'search_by', { attribute_name: attributeLocaleText('user', 'email') })"
                   icon="envelope")
       .column.is-5
         b-field
           b-input(type="text"
                   v-model="searchOptions.name_cont"
-                  :placeholder="actionLocaleText('admin', 'search_by', {attribute_name: attributeLocaleText('user', 'name')})"
+                  :placeholder="actionLocaleText('admin', 'search_by', { attribute_name: attributeLocaleText('user', 'name') })"
                   icon="user")
       .column.is-2
         .button.is-primary.is-block(@click="searchUser") {{actionLocaleText('admin', 'search')}}
