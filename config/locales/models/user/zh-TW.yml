@@ -1,0 +1,50 @@
+zh-TW:
+  # model and attributes name
+  activerecord: &default
+    models:
+      user:
+        one: 會員
+        other: 會員
+
+    attributes:
+      user:
+        avatar: 頭像
+        confirmation_sent_at: 認證信寄出時間
+        confirmation_token: '認證 TOKEN'
+        confirmed_at: 認證時間
+        created_at: 建立時間
+        current_password: 原始密碼
+        current_sign_in_at: 現在登入狀態開始於
+        current_sign_in_ip: '現在登入中的 IP 位址'
+        email: 電子信箱
+        encrypted_password: 加密後的密碼
+        failed_attempts: 錯誤嘗試次數
+        last_sign_in_at: 上次登入於
+        last_sign_in_ip: '上次登入的 IP 位址'
+        locked_at: 封鎖時間
+        name: 姓名
+        password: 密碼
+        new_password: 新密碼
+        password_confirmation: 確認密碼
+        remember_created_at:
+        remember_me: 記住我的資訊
+        reset_password_sent_at: 重置密碼引導信件祭出時間
+        reset_password_token: '重置密碼 TOKEN'
+        sign_in_count: 登入次數
+        unconfirmed_email: '未認證 Email'
+        unlock_token: '解除封鎖 TOKEN'
+        updated_at: 更新於
+
+    errors:
+      models:
+        user:
+          attributes:
+  activemodel: *default
+
+  # Enums
+  enums:
+    user:
+
+  # AASM state machine
+  aasm_state:
+    user:

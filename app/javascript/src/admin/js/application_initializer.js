@@ -9,7 +9,7 @@ import Cookies from 'js-cookie'
 import axios from 'axios'
 
 const storeState = cloneDeep(store.state)
-const JWT = Cookies.get('client_jwt') || '' // Devise 登入時必須產生 JWT 並放在 Cookie，登出時刪掉
+const JWT = Cookies.get('admin_jwt') || '' // Devise 登入時必須產生 JWT 並放在 Cookie，登出時刪掉
 
 /**
  * 啟動 Application

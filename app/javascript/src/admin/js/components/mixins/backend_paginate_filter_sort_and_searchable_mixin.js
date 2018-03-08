@@ -1,8 +1,9 @@
 /**
- * 提供分頁、Filter、以及排序功能的 mixin
+ * 提供分頁、Filter、排序、以及搜尋功能的 mixin
  *
  * 在 vue instance 引入此 mixin 後，需 override data 中的 `isUsingCreatedHook`、
  * `resourceType`、以及 `currentUrlPath`，並視情況 override 其他預設值。
+ * TODO: 建立 option 可選擇是否開啟排序、filter 功能。（isSortable, isFilterable）
  */
 import queryString from 'query-string'
 
@@ -18,12 +19,14 @@ export default {
       currentUrlPath: '/absolute/path', //      [OPTION] 當前頁面的絕對路徑，於更新 URL 時使用
 
       // 預設值
-      currentPage: 1, //                            當前頁碼
-      pageSize: 25, //                              每頁數量
-      sortOrder: 'desc', //                         排序方向
-      sortField: 'created_at', //                   排序欄位
-      currentFilter: 0, //                         Filter
-      availableFilters: ['example1', 'example2'] // 可用的 filters 列表
+      currentPage: 1, //                                當前頁碼
+      pageSize: 25, //                                  每頁數量
+      sortOrder: 'desc', //                             排序方向
+      sortField: 'created_at', //                       排序欄位
+      currentFilter: 0, //                              Filter
+      availableFilters: ['example1', 'example2'], //    可用的 filters 列表
+      isSearchOptionsOpen: false, //                    可用來控制搜尋表單的開關
+      searchOptions: {} //                              搜尋選項，物件內容須依需要自行 override
     }
   },
 
@@ -43,6 +46,42 @@ export default {
       } else {
         return `${this.sortField}`
       }
+    },
+
+    /**
+     * 把所有 searchOptions 排列為 API 可接受的 query string
+     *
+     * @returns {string}
+     */
+    parsedSearchOptions() {
+      const searchOptionKeys = Object.keys(this.searchOptions)
+      let result = ''
+
+      searchOptionKeys.forEach(element => {
+        if (this.searchOptions[element]) {
+          result += `&q[${element}]=${this.searchOptions[element]}`
+        }
+      })
+
+      return result
+    },
+
+    /**
+     * 從 vuex 中取得 meta 中的 total_count
+     *
+     * @returns {number}
+     */
+    totalCount() {
+      return this.$store.getters[`${this.resourceType}/metaInfo`].total_count
+    },
+
+    /**
+     * 從 vuex 中取得 isCallingAPI 的值
+     *
+     * @returns {boolean}
+     */
+    isLoading() {
+      return this.$store.getters[`${this.resourceType}/isLoading`]
     }
   },
 
@@ -86,7 +125,12 @@ export default {
         pageNumber: parseInt(currentQueryString['page[number]']) || this.currentPage,
         pageSize: parseInt(currentQueryString['page[size]']) || this.pageSize,
         sort: currentQueryString['sort'] || this.sortOrderValue,
-        filter: currentQueryString['filter'] || this.availableFilters[this.currentFilter]
+        filter: currentQueryString['filter'] || this.availableFilters[this.currentFilter],
+        search: this.parseSearchOptionsFromURL(currentQueryString) || this.searchOptions
+      }
+
+      if (this.parseSearchOptionsFromURL(currentQueryString)) {
+        this.isSearchOptionsOpen = true
       }
 
       this.updateQueryOptions(options)
@@ -103,6 +147,7 @@ export default {
       this.currentPage = options.pageNumber
       this.pageSize = options.pageSize
       this.currentFilter = this.availableFilters.indexOf(options.filter)
+      this.searchOptions = options.search
 
       if (options.sort.charAt(0) == '-') {
         this.sortOrder = 'desc'
@@ -124,7 +169,8 @@ export default {
         pageNumber: page,
         pageSize: this.pageSize,
         sort: this.sortOrderValue,
-        filter: this.availableFilters[this.currentFilter]
+        filter: this.availableFilters[this.currentFilter],
+        search: this.searchOptions
       }
       this.fetchData(options)
       this.updateQueryString(options)
@@ -144,7 +190,8 @@ export default {
         pageNumber: this.currentPage,
         pageSize: this.pageSize,
         sort: this.sortOrderValue,
-        filter: this.availableFilters[this.currentFilter]
+        filter: this.availableFilters[this.currentFilter],
+        search: this.searchOptions
       }
 
       this.fetchData(options)
@@ -164,11 +211,38 @@ export default {
         pageNumber: this.currentPage,
         pageSize: this.pageSize,
         sort: this.sortOrderValue,
-        filter: this.availableFilters[this.currentFilter]
+        filter: this.availableFilters[this.currentFilter],
+        search: this.searchOptions
       }
 
       this.fetchData(options)
       this.updateQueryString(options)
+    },
+
+    /**
+     * 從 URL 的 query strings 中，找出與 search 有關的部分，嘗試轉換為可放到 data `searchOptions` 中的 js Object 形式。
+     * （以 `ransack` gem 定義的 param 格式 `q[search_matcher]=key_word` 為準）
+     *
+     * @param {any} queryStringObj query-string package parse 出來的 queryString Object，會包含 URL 中所有的 query string
+     * @returns {boolean|Object} 若有找到有效的 search option，會回傳 search options object，若沒有的話回傳 false
+     */
+    parseSearchOptionsFromURL(queryStringObj) {
+      const searchOptionKeys = Object.keys(queryStringObj).filter(
+        key => key.substring(0, 2) === 'q['
+      )
+      let newSearchOptions = {}
+
+      searchOptionKeys.forEach(element => {
+        if (queryStringObj[element]) {
+          newSearchOptions[element.slice(2, -1)] = queryStringObj[element]
+        }
+      })
+
+      if (Object.keys(newSearchOptions).length > 0) {
+        return newSearchOptions
+      } else {
+        return false
+      }
     },
 
     /**
@@ -197,7 +271,7 @@ export default {
         options,
         newQueryString: `${this.currentUrlPath}?page[number]=${options.pageNumber}&page[size]=${
           options.pageSize
-        }&sort=${options.sort}&filter=${options.filter}`
+        }&sort=${options.sort}&filter=${options.filter}${this.parsedSearchOptions}`
       })
     }
   }

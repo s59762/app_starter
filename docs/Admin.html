@@ -121,7 +121,7 @@
     
   
     
-      <strong class="classes">Classes:</strong> <span class='object_link'><a href="Admin/AdminsController.html" title="Admin::AdminsController (class)">AdminsController</a></span>, <span class='object_link'><a href="Admin/ApplicationCell.html" title="Admin::ApplicationCell (class)">ApplicationCell</a></span>, <span class='object_link'><a href="Admin/ApplicationController.html" title="Admin::ApplicationController (class)">ApplicationController</a></span>, <span class='object_link'><a href="Admin/CommonCell.html" title="Admin::CommonCell (class)">CommonCell</a></span>, <span class='object_link'><a href="Admin/DashboardController.html" title="Admin::DashboardController (class)">DashboardController</a></span>, <span class='object_link'><a href="Admin/ProfileController.html" title="Admin::ProfileController (class)">ProfileController</a></span>
+      <strong class="classes">Classes:</strong> <span class='object_link'><a href="Admin/AdminsController.html" title="Admin::AdminsController (class)">AdminsController</a></span>, <span class='object_link'><a href="Admin/ApplicationCell.html" title="Admin::ApplicationCell (class)">ApplicationCell</a></span>, <span class='object_link'><a href="Admin/ApplicationController.html" title="Admin::ApplicationController (class)">ApplicationController</a></span>, <span class='object_link'><a href="Admin/CommonCell.html" title="Admin::CommonCell (class)">CommonCell</a></span>, <span class='object_link'><a href="Admin/DashboardController.html" title="Admin::DashboardController (class)">DashboardController</a></span>, <span class='object_link'><a href="Admin/EditAdminForm.html" title="Admin::EditAdminForm (class)">EditAdminForm</a></span>, <span class='object_link'><a href="Admin/NewAdminForm.html" title="Admin::NewAdminForm (class)">NewAdminForm</a></span>, <span class='object_link'><a href="Admin/ProfileController.html" title="Admin::ProfileController (class)">ProfileController</a></span>, <span class='object_link'><a href="Admin/UsersController.html" title="Admin::UsersController (class)">UsersController</a></span>
     
   
 </p>
@@ -244,12 +244,12 @@
       <pre class="lines">
 
 
-34
-35
-36</pre>
+38
+39
+40</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/admin.rb', line 34</span>
+      <pre class="code"><span class="info file"># File 'app/models/admin.rb', line 38</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_avatar'>avatar</span>
   <span class='kw'>super</span> <span class='op'>||</span> <span class='const'>Null</span><span class='op'>::</span><span class='const'>Image</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
@@ -284,16 +284,16 @@
       <pre class="lines">
 
 
-39
-40
-41
-42
 43
 44
-45</pre>
+45
+46
+47
+48
+49</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/admin.rb', line 39</span>
+      <pre class="code"><span class="info file"># File 'app/models/admin.rb', line 43</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_issue_jwt'>issue_jwt</span>
   <span class='const'><span class='object_link'><a href="JsonWebToken.html" title="JsonWebToken (class)">JsonWebToken</a></span></span><span class='period'>.</span><span class='id identifier rubyid_encode'><span class='object_link'><a href="JsonWebToken.html#encode-class_method" title="JsonWebToken.encode (method)">encode</a></span></span><span class='lparen'>(</span><span class='label'>sub:</span> <span class='id identifier rubyid_id'>id</span><span class='comma'>,</span>

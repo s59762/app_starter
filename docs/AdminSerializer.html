@@ -103,7 +103,37 @@
   
 </div>
 
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>== Schema Information</p>
 
+<p>Table name: admins</p>
+
+<p>id                     :integer          not null, primary key
+ email                  :string           default(&quot;&quot;), not null
+ encrypted_password     :string           default(&quot;&quot;), not null
+ reset_password_token   :string
+ reset_password_sent_at :datetime
+ remember_created_at    :datetime
+ sign_in_count          :integer          default(0), not null
+ current_sign_in_at     :datetime
+ last_sign_in_at        :datetime
+ current_sign_in_ip     :inet
+ last_sign_in_ip        :inet
+ created_at             :datetime         not null
+ updated_at             :datetime         not null
+ avatar                 :string
+ name                   :string
+ role                   :integer          default(&quot;content_manager&quot;)
+ is_suspended           :boolean          default(FALSE)</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
 
 
 

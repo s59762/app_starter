@@ -66,7 +66,7 @@ div
 <script>
 import SuspendButton from '../../components/admin/suspend-button'
 import EditButton from '../../components/admin/edit-button'
-import backendPaginateAndFilterAndSortableMixin from '../mixins/backend_paginate_and_filter_and_sortable_mixin'
+import backendPaginateFilterSortAndSearchableMixin from '../mixins/backend_paginate_filter_sort_and_searchable_mixin'
 
 export default {
   components: {
@@ -74,7 +74,7 @@ export default {
     EditButton
   },
 
-  mixins: [backendPaginateAndFilterAndSortableMixin],
+  mixins: [backendPaginateFilterSortAndSearchableMixin],
 
   // props: {},
 
@@ -89,16 +89,8 @@ export default {
   },
 
   computed: {
-    isLoading() {
-      return this.$store.getters['admins/isLoading']
-    },
-
     admins() {
       return this.$store.getters['admins/allResources']
-    },
-
-    totalCount() {
-      return this.$store.getters['admins/metaInfo'].total_count
     }
   }
 

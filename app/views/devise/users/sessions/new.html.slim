@@ -1,0 +1,21 @@
+section.hero.is-fullheight.login-form-container
+  .hero-body
+    .container.has-text-centered.login-form-container
+      .column.is-4.is-offset-4
+        h3.title.has-text-grey = t('page_titles.admin.login.title')
+        p.subtitle.has-text-grey = t('page_titles.admin.login.subtitle')
+        .box
+          figure.avatar
+            img(src="https://via.placeholder.com/300x300?text=No+image")
+          = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+            .field
+              .control
+                = f.text_field :email, class: 'input is-large', placeholder: Admin.human_attribute_name(:email), autofocus: true
+            .field
+              .control
+                = f.password_field :password, autocomplete: "off", class: 'input is-large', placeholder: Admin.human_attribute_name(:password)
+            .field
+              label.checkbox
+                span = f.check_box :remember_me
+                span = Admin.human_attribute_name(:remember_me)
+            button.button.is-block.is-info.is-large.login-button = t('actions.admin.login')

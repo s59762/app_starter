@@ -1,4 +1,13 @@
 Rails.application.routes.draw do
+  devise_for :users, path: 'user',
+                     skip: %w[password],
+                     path_names: {
+                       sign_in: 'login',
+                       sign_out: 'logout'
+                     },
+                     controllers: {
+                       sessions: 'devise/users/sessions'
+                     }
   devise_for :admins, path: 'admin',
                       skip: %w[password],
                       path_names: {
@@ -17,6 +26,7 @@ Rails.application.routes.draw do
 
     resource :dashboard, only: %i[show], controller: 'dashboard'
     resources :admins, only: %i[index show]
+    resources :users, only: %i[index show]
     resource :profile, only: %i[show update], controller: 'profile' do
       resource :password, only: %i[update], controller: 'profile/password'
     end
@@ -32,6 +42,7 @@ Rails.application.routes.draw do
           end
           resource :suspend, only: %i[update], controller: 'admins/suspend'
         end
+        resources :users, only: %i[index show]
       end
     end
   end
