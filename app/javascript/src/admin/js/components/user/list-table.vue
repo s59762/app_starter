@@ -1,7 +1,7 @@
 <template lang="pug">
 
 div
-  b-collapse.panel(:open.sync="searchOptionsIsOpen")
+  b-collapse.panel(:open.sync="isSearchOptionsOpen")
     .panel-heading(slot="trigger") {{actionLocaleText('admin', 'search_for', { model_name: modelNameLocaleText('user') })}}
     .panel-block
       .column.is-5
@@ -80,7 +80,6 @@ export default {
       currentUrlPath: '/admin/users',
       currentFilter: 0,
       availableFilters: [''],
-      searchOptionsIsOpen: false,
       searchOptions: {
         email_cont: '',
         name_cont: ''

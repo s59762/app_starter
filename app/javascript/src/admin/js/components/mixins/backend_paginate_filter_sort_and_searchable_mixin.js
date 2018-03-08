@@ -25,6 +25,7 @@ export default {
       sortField: 'created_at', //                       排序欄位
       currentFilter: 0, //                              Filter
       availableFilters: ['example1', 'example2'], //    可用的 filters 列表
+      isSearchOptionsOpen: false, //                    可用來控制搜尋表單的開關
       searchOptions: {} //                              搜尋選項，物件內容須依需要自行 override
     }
   },
@@ -126,6 +127,10 @@ export default {
         sort: currentQueryString['sort'] || this.sortOrderValue,
         filter: currentQueryString['filter'] || this.availableFilters[this.currentFilter],
         search: this.parseSearchOptionsFromURL(currentQueryString) || this.searchOptions
+      }
+
+      if (this.parseSearchOptionsFromURL(currentQueryString)) {
+        this.isSearchOptionsOpen = true
       }
 
       this.updateQueryOptions(options)
