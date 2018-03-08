@@ -1,6 +1,6 @@
 class Api::V1::Web::AdminsController < Api::V1::Web::BaseController
   def index
-    @admins = query_with_paginate_and_sort_and_filter_options_for(Admin)
+    @admins = FetchingDataService.new(Admin, params).call
 
     render json: @admins,
            meta: pagination_dict(@admins)

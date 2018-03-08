@@ -83,7 +83,7 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>app/controllers/concerns/api/paginate_and_filter_and_sortable.rb</dd>
+    <dd>app/controllers/concerns/api/paginate_filter_sort_and_searchable.rb</dd>
   </dl>
   
 </div>
@@ -383,7 +383,7 @@ JSONAPI 規範中 <code>sort</code> 的內容應該為 <code>sort=attribute_name
 83</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/concerns/api/paginate_and_filter_and_sortable.rb', line 77</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/concerns/api/paginate_filter_sort_and_searchable.rb', line 77</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_order_options_to_sql'>order_options_to_sql</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:sort</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>-</span><span class='tstring_end'>&#39;</span></span>
@@ -440,7 +440,7 @@ JSONAPI 規範中 <code>sort</code> 的內容應該為 <code>sort=attribute_name
 21</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/concerns/api/paginate_and_filter_and_sortable.rb', line 19</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/concerns/api/paginate_filter_sort_and_searchable.rb', line 19</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_page_number'>page_number</span>
   <span class='id identifier rubyid_page_options'>page_options</span><span class='lbracket'>[</span><span class='symbol'>:number</span><span class='rbracket'>]</span>
@@ -493,7 +493,7 @@ JSONAPI 規範中 <code>sort</code> 的內容應該為 <code>sort=attribute_name
 14</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/concerns/api/paginate_and_filter_and_sortable.rb', line 12</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/concerns/api/paginate_filter_sort_and_searchable.rb', line 12</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_page_options'>page_options</span>
   <span class='ivar'>@page_options_for_pagination</span> <span class='op'>||=</span> <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:page</span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
@@ -546,7 +546,7 @@ JSONAPI 規範中 <code>sort</code> 的內容應該為 <code>sort=attribute_name
 28</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/concerns/api/paginate_and_filter_and_sortable.rb', line 26</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/concerns/api/paginate_filter_sort_and_searchable.rb', line 26</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_page_size'>page_size</span>
   <span class='id identifier rubyid_page_options'>page_options</span><span class='lbracket'>[</span><span class='symbol'>:size</span><span class='rbracket'>]</span>
@@ -605,7 +605,7 @@ JSONAPI 規範中 <code>sort</code> 的內容應該為 <code>sort=attribute_name
 96</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/concerns/api/paginate_and_filter_and_sortable.rb', line 88</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/concerns/api/paginate_filter_sort_and_searchable.rb', line 88</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_pagination_dict'>pagination_dict</span><span class='lparen'>(</span><span class='id identifier rubyid_collection'>collection</span><span class='rparen'>)</span>
   <span class='lbrace'>{</span>
@@ -689,7 +689,7 @@ JSONAPI 規範中 <code>sort</code> 的內容應該為 <code>sort=attribute_name
 70</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/concerns/api/paginate_and_filter_and_sortable.rb', line 66</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/concerns/api/paginate_filter_sort_and_searchable.rb', line 66</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_query_with_paginate_and_sort_and_filter_options_for'>query_with_paginate_and_sort_and_filter_options_for</span><span class='lparen'>(</span><span class='id identifier rubyid_collection'>collection</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='id identifier rubyid_query_with_paginate_and_sort_options_for'>query_with_paginate_and_sort_options_for</span><span class='lparen'>(</span><span class='id identifier rubyid_collection'>collection</span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:filter</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_present?'>present?</span>
@@ -769,7 +769,7 @@ JSONAPI 規範中 <code>sort</code> 的內容應該為 <code>sort=attribute_name
 59</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/concerns/api/paginate_and_filter_and_sortable.rb', line 55</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/concerns/api/paginate_filter_sort_and_searchable.rb', line 55</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_query_with_paginate_and_sort_options_for'>query_with_paginate_and_sort_options_for</span><span class='lparen'>(</span><span class='id identifier rubyid_collection'>collection</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='id identifier rubyid_collection'>collection</span><span class='period'>.</span><span class='id identifier rubyid_page'>page</span><span class='lparen'>(</span><span class='id identifier rubyid_page_number'>page_number</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_per'>per</span><span class='lparen'>(</span><span class='id identifier rubyid_page_size'>page_size</span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:sort</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_present?'>present?</span>
@@ -841,7 +841,7 @@ JSONAPI 規範中 <code>sort</code> 的內容應該為 <code>sort=attribute_name
 37</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/concerns/api/paginate_and_filter_and_sortable.rb', line 35</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/concerns/api/paginate_filter_sort_and_searchable.rb', line 35</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_require_paginate_options!'>require_paginate_options!</span>
   <span class='id identifier rubyid_raise'>raise</span> <span class='const'><span class='object_link'><a href="../ParametersFailureException.html" title="ParametersFailureException (class)">ParametersFailureException</a></span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Must provide paginate options with query string like `?page[number]=1&amp;page[size]=20`</span><span class='tstring_end'>&#39;</span></span> <span class='kw'>unless</span> <span class='id identifier rubyid_page_options'>page_options</span><span class='period'>.</span><span class='id identifier rubyid_present?'>present?</span>
@@ -913,7 +913,7 @@ JSONAPI 規範中 <code>sort</code> 的內容應該為 <code>sort=attribute_name
 48</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/concerns/api/paginate_and_filter_and_sortable.rb', line 44</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/concerns/api/paginate_filter_sort_and_searchable.rb', line 44</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_validate_page_size!'>validate_page_size!</span>
   <span class='kw'>return</span> <span class='kw'>unless</span> <span class='id identifier rubyid_page_size'>page_size</span>

@@ -125,6 +125,28 @@
 
     <ul class="summary">
       
+        <li class="private ">
+  <span class="summary_signature">
+    
+      <a href="#pagination_dict-instance_method" title="#pagination_dict (instance method)">#<strong>pagination_dict</strong>(collection)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  <span class="note title private">private</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
         <li class="public ">
   <span class="summary_signature">
     
@@ -170,7 +192,49 @@
 
     
       <div class="method_details first">
-  <h3 class="signature first" id="set_default_format-instance_method">
+  <h3 class="signature first" id="pagination_dict-instance_method">
+  
+    #<strong>pagination_dict</strong>(collection)  &#x21d2; <tt>Object</tt>  <span class="extras">(private)</span>
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+12
+13
+14
+15
+16
+17
+18
+19
+20</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/api/api_controller.rb', line 12</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_pagination_dict'>pagination_dict</span><span class='lparen'>(</span><span class='id identifier rubyid_collection'>collection</span><span class='rparen'>)</span>
+  <span class='lbrace'>{</span>
+    <span class='label'>current_page:</span> <span class='id identifier rubyid_collection'>collection</span><span class='period'>.</span><span class='id identifier rubyid_current_page'>current_page</span><span class='comma'>,</span>
+    <span class='label'>next_page:</span> <span class='id identifier rubyid_collection'>collection</span><span class='period'>.</span><span class='id identifier rubyid_next_page'>next_page</span><span class='comma'>,</span>
+    <span class='label'>prev_page:</span> <span class='id identifier rubyid_collection'>collection</span><span class='period'>.</span><span class='id identifier rubyid_prev_page'>prev_page</span><span class='comma'>,</span> <span class='comment'># use collection.previous_page when using will_paginate
+</span>    <span class='label'>total_pages:</span> <span class='id identifier rubyid_collection'>collection</span><span class='period'>.</span><span class='id identifier rubyid_total_pages'>total_pages</span><span class='comma'>,</span>
+    <span class='label'>total_count:</span> <span class='id identifier rubyid_collection'>collection</span><span class='period'>.</span><span class='id identifier rubyid_total_count'>total_count</span>
+  <span class='rbrace'>}</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="set_default_format-instance_method">
   
     #<strong>set_default_format</strong>  &#x21d2; <tt>Object</tt> 
   
