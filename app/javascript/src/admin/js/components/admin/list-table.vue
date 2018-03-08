@@ -1,6 +1,26 @@
 <template lang="pug">
 
 div
+  b-collapse.panel(:open.sync="isSearchOptionsOpen")
+    .panel-heading(slot="trigger") {{actionLocaleText('admin', 'search_for', { model_name: modelNameLocaleText('admin') })}}
+    .panel-block
+      .column.is-5
+        b-field
+          b-input(type="text"
+                  v-model="searchOptions.email_cont"
+                  :placeholder="actionLocaleText('admin', 'search_by', { attribute_name: attributeLocaleText('admin', 'email') })"
+                  icon="envelope")
+      .column.is-5
+        b-field
+          b-input(type="text"
+                  v-model="searchOptions.name_cont"
+                  :placeholder="actionLocaleText('admin', 'search_by', { attribute_name: attributeLocaleText('admin', 'name') })"
+                  icon="user")
+      .column.is-1
+        .button.is-default.is-block(@click="resetSearchOptions") {{actionLocaleText('admin', 'reset_search')}}
+      .column.is-1
+        .button.is-primary.is-block(@click="onSearchHandler") {{actionLocaleText('admin', 'search')}}
+
   section
     b-tabs(type="is-boxed"
            v-model="currentFilter"
@@ -84,7 +104,11 @@ export default {
       resourceType: 'admins',
       currentUrlPath: '/admin/admins',
       currentFilter: 0,
-      availableFilters: ['actived', 'suspended']
+      availableFilters: ['actived', 'suspended'],
+      searchOptions: {
+        email_cont: '',
+        name_cont: ''
+      }
     }
   },
 

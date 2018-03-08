@@ -16,8 +16,10 @@ div
                   v-model="searchOptions.name_cont"
                   :placeholder="actionLocaleText('admin', 'search_by', { attribute_name: attributeLocaleText('user', 'name') })"
                   icon="user")
-      .column.is-2
-        .button.is-primary.is-block(@click="searchUser") {{actionLocaleText('admin', 'search')}}
+      .column.is-1
+        .button.is-default.is-block(@click="resetSearchOptions") {{actionLocaleText('admin', 'reset_search')}}
+      .column.is-1
+        .button.is-primary.is-block(@click="onSearchHandler") {{actionLocaleText('admin', 'search')}}
 
   b-table(:data="users"
           paginated
@@ -91,25 +93,12 @@ export default {
     users() {
       return this.$store.getters['users/allResources']
     }
-  },
+  }
 
   // created() {},
 
   // mounted() {},
 
-  methods: {
-    searchUser() {
-      let options = {
-        pageNumber: this.currentPage,
-        pageSize: this.pageSize,
-        sort: this.sortOrderValue,
-        filter: this.availableFilters[this.currentFilter],
-        search: this.searchOptions
-      }
-
-      this.fetchData(options)
-      this.updateQueryString(options)
-    }
-  }
+  // methods: {}
 }
 </script>

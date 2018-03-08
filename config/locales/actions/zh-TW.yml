@@ -25,6 +25,7 @@ zh-TW:
       please_re_enter_password_for_confirmation: 請再輸入一次密碼做為確認
       preview: 預覽
       reply: 回覆
+      reset_search: 清除條件
       save: 儲存
       search: 搜尋
       search_by: '以%{attribute_name}搜尋'

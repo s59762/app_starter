@@ -219,6 +219,27 @@ export default {
       this.updateQueryString(options)
     },
 
+    onSearchHandler() {
+      let options = {
+        pageNumber: this.currentPage,
+        pageSize: this.pageSize,
+        sort: this.sortOrderValue,
+        filter: this.availableFilters[this.currentFilter],
+        search: this.searchOptions
+      }
+
+      this.fetchData(options)
+      this.updateQueryString(options)
+    },
+
+    resetSearchOptions() {
+      Object.keys(this.searchOptions).forEach(element => {
+        this.searchOptions[element] = ''
+      })
+
+      this.onSearchHandler()
+    },
+
     /**
      * 從 URL 的 query strings 中，找出與 search 有關的部分，嘗試轉換為可放到 data `searchOptions` 中的 js Object 形式。
      * （以 `ransack` gem 定義的 param 格式 `q[search_matcher]=key_word` 為準）
