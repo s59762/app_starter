@@ -13,24 +13,25 @@ zh-TW:
       edit: '編輯'
       edit_on: '編輯%{model}'
       get_info_for: '查看%{model}'
+      if_do_not_want_to_change_password_leave_empty: 若不變更密碼請留空
       index: '%{model}列表'
       leave_empty_for_default_password: 不設定密碼將會使用預設密碼 `qwerasdf`
-      if_do_not_want_to_change_password_leave_empty: 若不變更密碼請留空
-      please_re_enter_password_for_confirmation: 請再輸入一次密碼做為確認
       login: 登入
       logout: 登出
       management: '管理%{model}'
       new: '建立%{model}'
       open: 開啟
       options: 選項
+      please_re_enter_password_for_confirmation: 請再輸入一次密碼做為確認
       preview: 預覽
       reply: 回覆
       save: 儲存
       search: 搜尋
+      search_by: '以%{attribute_name}搜尋'
       search_for: '搜尋%{model_name}'
       show:  詳細內容
       submit: 送出資料
       suspend_admin: 停權
-      unsuspend_admin: 復權
       this_action_can_not_retrieve: 這個動作將無法復原
+      unsuspend_admin: 復權
       update_profile: 編輯檔案

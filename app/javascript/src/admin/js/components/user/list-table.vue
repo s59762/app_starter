@@ -8,13 +8,13 @@ div
         b-field
           b-input(type="text"
                   v-model="searchOptions.email_cont"
-                  placeholder="search with email"
+                  :placeholder="actionLocaleText('admin', 'search_by', {attribute_name: attributeLocaleText('user', 'email')})"
                   icon="envelope")
       .column.is-5
         b-field
           b-input(type="text"
                   v-model="searchOptions.name_cont"
-                  placeholder="search with name"
+                  :placeholder="actionLocaleText('admin', 'search_by', {attribute_name: attributeLocaleText('user', 'name')})"
                   icon="user")
       .column.is-2
         .button.is-primary.is-block(@click="searchUser") {{actionLocaleText('admin', 'search')}}
