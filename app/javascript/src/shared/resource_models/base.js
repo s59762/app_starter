@@ -4,8 +4,15 @@ import normalize from 'jsonapi-normalizer'
 import merge from 'lodash.merge'
 
 const DEFAULT_PAGE_SIZE = 25
+const tryStoreMetaToVuex = function(state, response) {
+  const metaObj = response.data.meta
 
-let pagenateOptions = function(options) {
+  if (metaObj) {
+    state.meta = metaObj
+  }
+}
+
+const pagenateOptions = function(options) {
   let pageNumber = options.pageNumber
   let pageSize = options.pageSize || DEFAULT_PAGE_SIZE
 
@@ -16,7 +23,7 @@ let pagenateOptions = function(options) {
   }
 }
 
-let sortOptions = function(options) {
+const sortOptions = function(options) {
   let sort = options.sort
 
   if (sort) {
@@ -26,7 +33,7 @@ let sortOptions = function(options) {
   }
 }
 
-let filterOptions = function(options) {
+const filterOptions = function(options) {
   let filter = options.filter
 
   if (filter) {
@@ -36,17 +43,21 @@ let filterOptions = function(options) {
   }
 }
 
-let searchOptions = function(options) {
-  const keys = Object.keys(options.search)
-  let result = ''
+const searchOptions = function(options) {
+  if (!options.search) {
+    return ''
+  } else {
+    const keys = Object.keys(options.search)
+    let result = ''
 
-  keys.forEach(element => {
-    if (options.search[element]) {
-      result += `&q[${element}]=${options.search[element]}`
-    }
-  })
+    keys.forEach(element => {
+      if (options.search[element]) {
+        result += `&q[${element}]=${options.search[element]}`
+      }
+    })
 
-  return result
+    return result
+  }
 }
 
 /**
@@ -153,6 +164,7 @@ export default class ModelBase {
   storeResourcesToEntities(state, response) {
     const normalizedResult = normalize(response.data)
 
+    tryStoreMetaToVuex(state, response)
     state.entities = merge({}, state.entities, normalizedResult.entities[this.resource_type])
     state.result = merge([], state.result, normalizedResult.result[this.resource_type])
   }
@@ -167,6 +179,7 @@ export default class ModelBase {
   replaceEntities(state, response) {
     const normalizedResult = normalize(response.data)
 
+    tryStoreMetaToVuex(state, response)
     state.entities = normalizedResult.entities[this.resource_type]
     state.result = normalizedResult.result[this.resource_type]
   }
@@ -182,6 +195,7 @@ export default class ModelBase {
     const normalizedResult = normalize(response.data)
     const id = Object.keys(normalizedResult.entities[this.resource_type])[0]
 
+    tryStoreMetaToVuex(state, response)
     Vue.set(state.entities, id, normalizedResult.entities[this.resource_type][id])
   }
 

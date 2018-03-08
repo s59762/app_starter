@@ -2,6 +2,7 @@ import Vue from 'vue/dist/vue.esm'
 import Buefy from 'buefy'
 import store from './store'
 import cloneDeep from 'lodash.clonedeep'
+import VueLocaleTranslator from '../../shared/plugins/vue_locale_translator'
 import '../../../src/locale/zh-TW'
 import moment from 'moment'
 import Cookies from 'js-cookie'
@@ -36,6 +37,9 @@ class ApplicationInitializer {
 
     // using Buefy
     Vue.use(Buefy, { defaultIconPack: 'fa' })
+
+    // using VueLocaleTranslator
+    Vue.use(VueLocaleTranslator)
 
     // using zh-TW as defult locale file
     I18n.locale = 'zh-TW'
