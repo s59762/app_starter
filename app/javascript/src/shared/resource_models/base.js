@@ -2,61 +2,13 @@ import axios from 'axios'
 import Vue from 'vue/dist/vue.esm'
 import normalize from 'jsonapi-normalizer'
 import merge from 'lodash.merge'
+import FetchingDataOptionsService from '../services/fetching_data_options_service'
 
-const DEFAULT_PAGE_SIZE = 25
 const tryStoreMetaToVuex = function(state, response) {
   const metaObj = response.data.meta
 
   if (metaObj) {
     state.meta = metaObj
-  }
-}
-
-const pagenateOptions = function(options) {
-  let pageNumber = options.pageNumber
-  let pageSize = options.pageSize || DEFAULT_PAGE_SIZE
-
-  if (pageNumber) {
-    return `page[number]=${pageNumber}&page[size]=${pageSize}`
-  } else {
-    return ''
-  }
-}
-
-const sortOptions = function(options) {
-  let sort = options.sort
-
-  if (sort) {
-    return `&sort=${sort}`
-  } else {
-    return ''
-  }
-}
-
-const filterOptions = function(options) {
-  let filter = options.filter
-
-  if (filter) {
-    return `&filter=${filter}`
-  } else {
-    return ''
-  }
-}
-
-const searchOptions = function(options) {
-  if (!options.search) {
-    return ''
-  } else {
-    const keys = Object.keys(options.search)
-    let result = ''
-
-    keys.forEach(element => {
-      if (options.search[element]) {
-        result += `&q[${element}]=${options.search[element]}`
-      }
-    })
-
-    return result
   }
 }
 
@@ -89,9 +41,9 @@ export default class ModelBase {
     return axios.get(
       `${this.api_base_path}/${this.api_version}/${this.scope}/${
         this.resource_type
-      }?${pagenateOptions(options)}${sortOptions(options)}${filterOptions(options)}${searchOptions(
+      }?${FetchingDataOptionsService.pagenate(options)}${FetchingDataOptionsService.sort(
         options
-      )}`
+      )}${FetchingDataOptionsService.filter(options)}${FetchingDataOptionsService.search(options)}`
     )
   }
 

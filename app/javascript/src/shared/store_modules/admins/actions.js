@@ -185,7 +185,7 @@ export const suspendResource = ({ dispatch, commit }, id) => {
  */
 export const receiveResourcesFromRelationships = ({ commit }, response) => {
   return new Promise((resolve, reject) => {
-    commit(types.FETCH_ADMINS_SUCCESS, response)
+    commit(types.GET_RELATED_ADMINS_SUCCESS, response)
 
     resolve(response)
   })

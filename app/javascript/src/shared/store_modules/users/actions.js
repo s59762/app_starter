@@ -138,7 +138,7 @@ export const deleteResource = ({ dispatch, commit }, id) => {
  */
 export const receiveResourcesFromRelationships = ({ commit }, response) => {
   return new Promise((resolve, reject) => {
-    commit(types.FETCH_USERS_SUCCESS, response)
+    commit(types.GET_RELATED_USERS_SUCCESS, response)
 
     resolve(response)
   })
