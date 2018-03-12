@@ -132,8 +132,8 @@ export default class ModelBase {
     const normalizedResult = normalize(response.data)
 
     tryStoreMetaToVuex(state, response)
-    state.entities = normalizedResult.entities[this.resource_type]
-    state.result = normalizedResult.result[this.resource_type]
+    state.entities = normalizedResult.entities[this.resource_type] || {}
+    state.result = normalizedResult.result[this.resource_type] || []
   }
 
   /**
