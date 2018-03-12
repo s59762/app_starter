@@ -1,12 +1,14 @@
 zh-TW:
   actions:
     admin:
+      add_new: '新增%{model}'
       cancel: 取消
       change_password: 變更密碼
       close: 關閉
       confirm: 確認
       confirm_delete: 確定要刪除%{model}嗎？
       confirm_to_delete: 確認刪除%{model}
+      create: '建立%{model}'
       delete: 刪除
       destroy: '刪除%{modle}'
       detail_of: '%{model}詳細內容'
