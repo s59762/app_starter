@@ -130,6 +130,25 @@
   
 
 </div>
+  <h2>Constant Summary</h2>
+  <dl class="constants">
+    
+      <dt id="FILTERABLE_FIELDS-constant" class="">FILTERABLE_FIELDS =
+        
+      </dt>
+      <dd><pre class="code"><span class='qwords_beg'>%w[</span><span class='words_sep'>]</span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+    
+      <dt id="SORTABLE_FIELDS-constant" class="">SORTABLE_FIELDS =
+        
+      </dt>
+      <dd><pre class="code"><span class='qwords_beg'>%w[
+</span><span class='tstring_content'>  id</span><span class='words_sep'>
+</span><span class='tstring_content'>  email</span><span class='words_sep'>
+</span><span class='tstring_content'>  created_at</span><span class='words_sep'>
+</span><span class='tstring_end'>]</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+    
+  </dl>
+
 
 
 
@@ -225,15 +244,15 @@
       <pre class="lines">
 
 
-27
-28
-29
-30
-31
-32</pre>
+34
+35
+36
+37
+38
+39</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 27</span>
+      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 34</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_issue_jwt'>issue_jwt</span>
   <span class='const'><span class='object_link'><a href="JsonWebToken.html" title="JsonWebToken (class)">JsonWebToken</a></span></span><span class='period'>.</span><span class='id identifier rubyid_encode'><span class='object_link'><a href="JsonWebToken.html#encode-class_method" title="JsonWebToken.encode (method)">encode</a></span></span><span class='lparen'>(</span><span class='label'>sub:</span> <span class='id identifier rubyid_id'>id</span><span class='comma'>,</span>

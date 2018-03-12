@@ -1,7 +1,7 @@
 # 提供根據 params 的選項，從 DB 中提取特定資料的功能
 
 class FetchingDataService
-  attr_reader :resource, :paginate_options, :filter_options, :sort_options, :search_options, :options
+  attr_reader :resource, :model, :paginate_options, :filter_options, :sort_options, :search_options, :options
 
   PAGE_SIZE_LIMIT = 100.freeze
 
@@ -14,6 +14,7 @@ class FetchingDataService
   # @raise [ParametersFailureException] 若 `options[:check_paginate]` 為真，params 中不包含 paginate_params 時 raise exception
   def initialize(resource, params, options = {})
     @resource = resource
+    @model = resource.name.constantize
     @paginate_options = params[:page] || {}
     @filter_options = params[:filter] || {}
     @sort_options = params[:sort] || {}
@@ -45,6 +46,7 @@ class FetchingDataService
 
   def try_query_with_filter(collection)
     return false if filter_options.blank?
+    return false if invalid_filter?
 
     @result = collection.send(filter_options)
 
@@ -53,6 +55,7 @@ class FetchingDataService
 
   def try_query_with_sort(collection)
     return false if sort_options.blank?
+    return false if invalid_sort?
 
     @result = collection.order(sort_options_to_sql)
 
@@ -93,12 +96,31 @@ class FetchingDataService
   # JSONAPI 規範中 `sort` 的內容應該為 `sort=attribute_name`，預設為 ASC，若需要 DESC 排序則應表示為 `sort=-attribute_name`
   #
   # @return [String] order sql statement
-  # TODO: 每個 Model 本身應該要定義哪些 attributes 可以被用來排序，若給的 attribute 不符規範應該要 raise exception 比較安全。這邊可能會有 SQL Injection 風險。
   def sort_options_to_sql
-    if sort_options[0] == '-'
-      %(#{sort_options[1..-1]} DESC)
-    else
-      %(#{sort_options[0..-1]} ASC)
-    end
+    %(#{sort_field} #{sort_direction})
+  end
+
+  def sort_field
+    @sort_field ||= sort_options[0] == '-' ? sort_options[1..-1] : sort_options[0..-1]
+  end
+
+  def sort_direction
+    @sort_direction ||= sort_options[0] == '-' ? 'DESC' : 'ASC'
+  end
+
+  def filterable_fields
+    model::FILTERABLE_FIELDS
+  end
+
+  def sortable_fields
+    model::SORTABLE_FIELDS
+  end
+
+  def invalid_filter?
+    !filterable_fields.include?(filter_options)
+  end
+
+  def invalid_sort?
+    !sortable_fields.include?(sort_field)
   end
 end

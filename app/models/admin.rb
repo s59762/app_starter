@@ -25,6 +25,24 @@
 #
 # 管理員
 class Admin < ApplicationRecord
+  FILTERABLE_FIELDS = %w[
+    content_manager
+    accounter
+    stock_manager
+    super
+    owner
+    actived
+    suspended
+  ].freeze
+  SORTABLE_FIELDS = %w[
+    id
+    email
+    name
+    role
+    is_suspended
+    created_at
+  ].freeze
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :recoverable, :rememberable, :trackable, :validatable

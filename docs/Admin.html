@@ -126,6 +126,36 @@
   
 </p>
 
+  <h2>Constant Summary</h2>
+  <dl class="constants">
+    
+      <dt id="FILTERABLE_FIELDS-constant" class="">FILTERABLE_FIELDS =
+        
+      </dt>
+      <dd><pre class="code"><span class='qwords_beg'>%w[
+</span><span class='tstring_content'>  content_manager</span><span class='words_sep'>
+</span><span class='tstring_content'>  accounter</span><span class='words_sep'>
+</span><span class='tstring_content'>  stock_manager</span><span class='words_sep'>
+</span><span class='tstring_content'>  super</span><span class='words_sep'>
+</span><span class='tstring_content'>  owner</span><span class='words_sep'>
+</span><span class='tstring_content'>  actived</span><span class='words_sep'>
+</span><span class='tstring_content'>  suspended</span><span class='words_sep'>
+</span><span class='tstring_end'>]</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+    
+      <dt id="SORTABLE_FIELDS-constant" class="">SORTABLE_FIELDS =
+        
+      </dt>
+      <dd><pre class="code"><span class='qwords_beg'>%w[
+</span><span class='tstring_content'>  id</span><span class='words_sep'>
+</span><span class='tstring_content'>  email</span><span class='words_sep'>
+</span><span class='tstring_content'>  name</span><span class='words_sep'>
+</span><span class='tstring_content'>  role</span><span class='words_sep'>
+</span><span class='tstring_content'>  is_suspended</span><span class='words_sep'>
+</span><span class='tstring_content'>  created_at</span><span class='words_sep'>
+</span><span class='tstring_end'>]</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+    
+  </dl>
+
 
 
 
@@ -244,12 +274,12 @@
       <pre class="lines">
 
 
-38
-39
-40</pre>
+56
+57
+58</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/admin.rb', line 38</span>
+      <pre class="code"><span class="info file"># File 'app/models/admin.rb', line 56</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_avatar'>avatar</span>
   <span class='kw'>super</span> <span class='op'>||</span> <span class='const'>Null</span><span class='op'>::</span><span class='const'>Image</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
@@ -284,16 +314,16 @@
       <pre class="lines">
 
 
-43
-44
-45
-46
-47
-48
-49</pre>
+61
+62
+63
+64
+65
+66
+67</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/admin.rb', line 43</span>
+      <pre class="code"><span class="info file"># File 'app/models/admin.rb', line 61</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_issue_jwt'>issue_jwt</span>
   <span class='const'><span class='object_link'><a href="JsonWebToken.html" title="JsonWebToken (class)">JsonWebToken</a></span></span><span class='period'>.</span><span class='id identifier rubyid_encode'><span class='object_link'><a href="JsonWebToken.html#encode-class_method" title="JsonWebToken.encode (method)">encode</a></span></span><span class='lparen'>(</span><span class='label'>sub:</span> <span class='id identifier rubyid_id'>id</span><span class='comma'>,</span>
