@@ -4,6 +4,7 @@ zh-TW:
     failure:
       validation_failure: 請您檢查表單後再試一次
       token_authenticate_failure: 身份認證失敗，請嘗試重新登入
+      token_expired: 憑證已過期
       parameters_failure: 您提供的參數不符合規範
       policy_validate_failure: 您的帳號並不能執行這個動作
     error:

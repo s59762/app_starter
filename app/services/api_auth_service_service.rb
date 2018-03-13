@@ -42,7 +42,7 @@ class ApiAuthServiceService
 
     JsonWebToken.decode(token)
   rescue ::JWT::ExpiredSignature
-    raise AuthenticateFailureException, 'auth token was expired'
+    raise JwtExpiredException, 'auth token was expired'
   rescue ::JWT::DecodeError,
          ::JWT::VerificationError
     raise AuthenticateFailureException, 'Invalid auth token'

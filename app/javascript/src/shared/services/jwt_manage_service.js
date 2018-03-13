@@ -1,4 +1,5 @@
 import Cookies from 'js-cookie'
+import moment from 'moment'
 
 /**
  * 處理 JWT 專用的 Service
@@ -47,6 +48,21 @@ export default class JwtManageService {
       return JSON.parse(atob(payload))
     } else {
       return {}
+    }
+  }
+
+  /**
+   * 若 JWT 過期則 reload page 嘗試更新 token
+   *
+   * @static
+   * @param {any} scope
+   */
+  static checkJwt(scope) {
+    const expireTime = this.getPayload(scope).exp
+    const currentTime = moment().unix()
+
+    if (currentTime > expireTime) {
+      window.location.reload()
     }
   }
 }
