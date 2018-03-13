@@ -3,13 +3,13 @@ import Buefy from 'buefy'
 import store from './store'
 import cloneDeep from 'lodash.clonedeep'
 import VueLocaleTranslator from '../../shared/plugins/vue_locale_translator'
+import JwtManageService from '../../shared/services/jwt_manage_service'
 import '../../../src/locale/zh-TW'
 import moment from 'moment'
-import Cookies from 'js-cookie'
 import axios from 'axios'
 
 const storeState = cloneDeep(store.state)
-const JWT = Cookies.get('user_jwt') || '' // Devise 登入時必須產生 JWT 並放在 Cookie，登出時刪掉
+const envScope = 'user'
 
 /**
  * 啟動 Application
@@ -46,7 +46,9 @@ class ApplicationInitializer {
     moment.locale('zh-TW')
 
     // setting up axios default headers with JWT
-    axios.defaults.headers.common['Authorization'] = `Bearer ${JWT}`
+    axios.defaults.headers.common['Authorization'] = JwtManageService.getAuthorizationHeader(
+      envScope
+    )
 
     this.requireVueInitializers()
     this.detectAndInitializingVueInstances()
