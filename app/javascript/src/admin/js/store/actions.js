@@ -15,7 +15,13 @@ export const errorMessageHandler = ({ commit }, errors) => {
       break
     case 401:
       commit(types.ADD_FLASH_MESSAGES, [
-        'notice',
+        'error',
+        I18n.t(`messages.failure.${errors.response.data.code}`)
+      ])
+      break
+    case 403:
+      commit(types.ADD_FLASH_MESSAGES, [
+        'error',
         I18n.t(`messages.failure.${errors.response.data.code}`)
       ])
       break

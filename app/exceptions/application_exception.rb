@@ -5,6 +5,6 @@ class ApplicationException < StandardError
   end
 
   def status
-    @status || 422
+    @status || :unprocessable_entity
   end
 end
