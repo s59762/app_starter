@@ -1,10 +1,9 @@
 class Admin::ApplicationController < ActionController::Base
   include RefererRecordable
-  include JwtCheckable
 
   protect_from_forgery with: :exception
-  before_action :authenticate_admin!
   before_action :check_jwt!
+  before_action :authenticate_admin!
   helper_method :sidebar_menu_items
 
   private
@@ -19,7 +18,10 @@ class Admin::ApplicationController < ActionController::Base
     return unless jwt
 
     JsonWebToken.decode(jwt)
+  rescue JWT::ExpiredSignature
+    cookies[:admin_jwt] = current_admin.issue_jwt if admin_signed_in?
   rescue
-    sign_out(current_user)
+    sign_out(current_admin) if admin_signed_in?
+    redirect_to new_admin_session_path, flash: { notice: I18n.t('messages.error.jwt_token_been_modified') }
   end
 end

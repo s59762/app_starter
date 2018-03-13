@@ -6,6 +6,8 @@ zh-TW:
       token_authenticate_failure: 身份認證失敗，請嘗試重新登入
       parameters_failure: 您提供的參數不符合規範
       policy_validate_failure: 您的帳號並不能執行這個動作
+    error:
+      jwt_token_been_modified: 您的身份憑證可能遭到竄改，請重新登入取得正確的憑證。
     server_side_500_error: 抱歉，伺服器發生問題，請稍後再試
     admin_added_succefully: 已新增管理員
     admin_is_suspended: 管理員 %{name} 已停權
