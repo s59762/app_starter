@@ -1,4 +1,13 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
+  # 將 routes 拆到獨立的檔案管理，再使用 draw 來引入
+  #
+  # @param [Symbol] route_name route 的名稱，需與檔名一致
+  def draw(routes_name)
+    instance_eval(File.read(Rails.root.join("config/routes/#{routes_name}.rb")))
+  end
+
   devise_for :users, path: 'user',
                      skip: %w[password],
                      path_names: {
@@ -20,30 +29,8 @@ Rails.application.routes.draw do
 
   root 'pages#index'
 
-  # Back-Stage UI for Administrators
-  namespace :admin do
-    root to: redirect('admin/dashboard')
+  draw :admin
+  draw :api_v1_web
 
-    resource :dashboard, only: %i[show], controller: 'dashboard'
-    resources :admins, only: %i[index show]
-    resources :users, only: %i[index show]
-    resource :profile, only: %i[show update], controller: 'profile' do
-      resource :password, only: %i[update], controller: 'profile/password'
-    end
-  end
-
-  # API routes
-  namespace :api do
-    namespace :v1 do
-      namespace :web do
-        resources :admins, only: %i[index show create update] do
-          collection do
-            get :roles, controller: 'admins/roles', action: 'show'
-          end
-          resource :suspend, only: %i[update], controller: 'admins/suspend'
-        end
-        resources :users, only: %i[index show]
-      end
-    end
-  end
+  draw :sidekiq
 end

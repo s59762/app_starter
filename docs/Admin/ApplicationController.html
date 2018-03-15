@@ -89,6 +89,11 @@
   
   
   
+  <dl>
+      <dt>Includes:</dt>
+      <dd><span class='object_link'><a href="../RefererRecordable.html" title="RefererRecordable (module)">RefererRecordable</a></span></dd>
+  </dl>
+  
   
 
   
@@ -123,7 +128,7 @@
         <li class="private ">
   <span class="summary_signature">
     
-      <a href="#clear_original_referer-instance_method" title="#clear_original_referer (instance method)">#<strong>clear_original_referer</strong>  &#x21d2; Object </a>
+      <a href="#check_jwt!-instance_method" title="#check_jwt! (instance method)">#<strong>check_jwt!</strong>  &#x21d2; Object </a>
     
 
     
@@ -137,31 +142,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>清除 referer.</p>
-</div></span>
-  
-</li>
-
-      
-        <li class="private ">
-  <span class="summary_signature">
-    
-      <a href="#original_referer-instance_method" title="#original_referer (instance method)">#<strong>original_referer</strong>  &#x21d2; Object </a>
-    
-
-    
-  </span>
-  
-  
-  
-  <span class="note title private">private</span>
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'><p>讀取 referer.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -188,33 +169,22 @@
 </li>
 
       
-        <li class="private ">
-  <span class="summary_signature">
-    
-      <a href="#write_original_referer-instance_method" title="#write_original_referer (instance method)">#<strong>write_original_referer</strong>  &#x21d2; Object </a>
-    
-
-    
-  </span>
-  
-  
-  
-  <span class="note title private">private</span>
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'><p>紀錄 referer.</p>
-</div></span>
-  
-</li>
-
-      
     </ul>
   
 
 
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="../RefererRecordable.html" title="RefererRecordable (module)">RefererRecordable</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="../RefererRecordable.html#clear_original_referer-instance_method" title="RefererRecordable#clear_original_referer (method)">#clear_original_referer</a></span>, <span class='object_link'><a href="../RefererRecordable.html#original_referer-instance_method" title="RefererRecordable#original_referer (method)">#original_referer</a></span>, <span class='object_link'><a href="../RefererRecordable.html#write_original_referer-instance_method" title="RefererRecordable#write_original_referer (method)">#write_original_referer</a></span></p>
+
+  
   
 
   <div id="instance_method_details" class="method_details_list">
@@ -222,79 +192,47 @@
 
     
       <div class="method_details first">
-  <h3 class="signature first" id="clear_original_referer-instance_method">
+  <h3 class="signature first" id="check_jwt!-instance_method">
   
-    #<strong>clear_original_referer</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(private)</span>
-  
-
+    #<strong>check_jwt!</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(private)</span>
   
 
   
-</h3><div class="docstring">
-  <div class="discussion">
-    <p>清除 referer</p>
 
-
-  </div>
-</div>
-<div class="tags">
   
-
-</div><table class="source_code">
+</h3><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-14
 15
-16</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/admin/application_controller.rb', line 14</span>
-
-<span class='kw'>def</span> <span class='id identifier rubyid_clear_original_referer'>clear_original_referer</span>
-  <span class='id identifier rubyid_session'>session</span><span class='period'>.</span><span class='id identifier rubyid_delete'>delete</span><span class='lparen'>(</span><span class='symbol'>:original_referer</span><span class='rparen'>)</span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
-  <h3 class="signature " id="original_referer-instance_method">
-  
-    #<strong>original_referer</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(private)</span>
-  
-
-  
-
-  
-</h3><div class="docstring">
-  <div class="discussion">
-    <p>讀取 referer</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
+16
+17
+18
 19
 20
-21</pre>
+21
+22
+23
+24
+25
+26</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/admin/application_controller.rb', line 19</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/admin/application_controller.rb', line 15</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_original_referer'>original_referer</span>
-  <span class='id identifier rubyid_session'>session</span><span class='lbracket'>[</span><span class='symbol'>:original_referer</span><span class='rbracket'>]</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_check_jwt!'>check_jwt!</span>
+  <span class='id identifier rubyid_jwt'>jwt</span> <span class='op'>=</span> <span class='id identifier rubyid_cookies'>cookies</span><span class='lbracket'>[</span><span class='symbol'>:admin_jwt</span><span class='rbracket'>]</span>
+
+  <span class='kw'>return</span> <span class='kw'>unless</span> <span class='id identifier rubyid_jwt'>jwt</span>
+
+  <span class='const'><span class='object_link'><a href="../JsonWebToken.html" title="JsonWebToken (class)">JsonWebToken</a></span></span><span class='period'>.</span><span class='id identifier rubyid_decode'><span class='object_link'><a href="../JsonWebToken.html#decode-class_method" title="JsonWebToken.decode (method)">decode</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_jwt'>jwt</span><span class='rparen'>)</span>
+<span class='kw'>rescue</span> <span class='const'>JWT</span><span class='op'>::</span><span class='const'>ExpiredSignature</span>
+  <span class='id identifier rubyid_cookies'>cookies</span><span class='lbracket'>[</span><span class='symbol'>:admin_jwt</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_current_admin'>current_admin</span><span class='period'>.</span><span class='id identifier rubyid_issue_jwt'>issue_jwt</span> <span class='kw'>if</span> <span class='id identifier rubyid_admin_signed_in?'>admin_signed_in?</span>
+<span class='kw'>rescue</span>
+  <span class='id identifier rubyid_sign_out'>sign_out</span><span class='lparen'>(</span><span class='id identifier rubyid_current_admin'>current_admin</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_admin_signed_in?'>admin_signed_in?</span>
+  <span class='id identifier rubyid_redirect_to'>redirect_to</span> <span class='id identifier rubyid_new_admin_session_path'>new_admin_session_path</span><span class='comma'>,</span> <span class='label'>flash:</span> <span class='lbrace'>{</span> <span class='label'>notice:</span> <span class='const'>I18n</span><span class='period'>.</span><span class='id identifier rubyid_t'>t</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>messages.error.jwt_token_been_modified</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='rbrace'>}</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -316,55 +254,15 @@
       <pre class="lines">
 
 
-23
-24
-25</pre>
+11
+12
+13</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/admin/application_controller.rb', line 23</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/admin/application_controller.rb', line 11</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_sidebar_menu_items'>sidebar_menu_items</span>
   <span class='ivar'>@sidebar_menu_items</span> <span class='op'>||=</span> <span class='const'>YAML</span><span class='period'>.</span><span class='id identifier rubyid_safe_load'>safe_load</span><span class='lparen'>(</span><span class='const'>ERB</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_read'>read</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='op'>::</span><span class='const'>Rails</span><span class='period'>.</span><span class='id identifier rubyid_root'>root</span><span class='embexpr_end'>}</span><span class='tstring_content'>/app/controllers/admin/sidebar_menu_items.yml</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_result'>result</span><span class='rparen'>)</span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
-  <h3 class="signature " id="write_original_referer-instance_method">
-  
-    #<strong>write_original_referer</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(private)</span>
-  
-
-  
-
-  
-</h3><div class="docstring">
-  <div class="discussion">
-    <p>紀錄 referer</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-9
-10
-11</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/admin/application_controller.rb', line 9</span>
-
-<span class='kw'>def</span> <span class='id identifier rubyid_write_original_referer'>write_original_referer</span>
-  <span class='id identifier rubyid_session'>session</span><span class='lbracket'>[</span><span class='symbol'>:original_referer</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_request'>request</span><span class='period'>.</span><span class='id identifier rubyid_referer'>referer</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
