@@ -15,12 +15,18 @@ module MetaTagsManageable
 
   included do
     before_action :set_basic_meta_tags
+    before_action :autoload_page_title_for_meta_tags
   end
 
   private
 
-  def redefine_meta_tags(options)
-    set_meta_tags DEFAULT_PAGE_META_TAGS.deep_merge(options)
+  def autoload_page_title_for_meta_tags
+    title = [
+      I18n.t("page_titles.#{controller_path.sub('/', '.')}.main_title"),
+      I18n.t("page_titles.#{controller_path.sub('/', '.')}.#{action_name}")
+    ]
+
+    set_meta_tags title: title
   end
 
   def set_basic_meta_tags

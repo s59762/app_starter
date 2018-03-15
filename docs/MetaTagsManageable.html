@@ -131,7 +131,7 @@
         <li class="private ">
   <span class="summary_signature">
     
-      <a href="#redefine_meta_tags-instance_method" title="#redefine_meta_tags (instance method)">#<strong>redefine_meta_tags</strong>(options)  &#x21d2; Object </a>
+      <a href="#autoload_page_title_for_meta_tags-instance_method" title="#autoload_page_title_for_meta_tags (instance method)">#<strong>autoload_page_title_for_meta_tags</strong>  &#x21d2; Object </a>
     
 
     
@@ -183,9 +183,9 @@
 
     
       <div class="method_details first">
-  <h3 class="signature first" id="redefine_meta_tags-instance_method">
+  <h3 class="signature first" id="autoload_page_title_for_meta_tags-instance_method">
   
-    #<strong>redefine_meta_tags</strong>(options)  &#x21d2; <tt>Object</tt>  <span class="extras">(private)</span>
+    #<strong>autoload_page_title_for_meta_tags</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(private)</span>
   
 
   
@@ -197,15 +197,25 @@
       <pre class="lines">
 
 
-22
 23
-24</pre>
+24
+25
+26
+27
+28
+29
+30</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/concerns/meta_tags_manageable.rb', line 22</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/concerns/meta_tags_manageable.rb', line 23</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_redefine_meta_tags'>redefine_meta_tags</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_set_meta_tags'>set_meta_tags</span> <span class='const'><span class='object_link'><a href="#DEFAULT_PAGE_META_TAGS-constant" title="MetaTagsManageable::DEFAULT_PAGE_META_TAGS (constant)">DEFAULT_PAGE_META_TAGS</a></span></span><span class='period'>.</span><span class='id identifier rubyid_deep_merge'>deep_merge</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_autoload_page_title_for_meta_tags'>autoload_page_title_for_meta_tags</span>
+  <span class='id identifier rubyid_title'>title</span> <span class='op'>=</span> <span class='lbracket'>[</span>
+    <span class='const'>I18n</span><span class='period'>.</span><span class='id identifier rubyid_t'>t</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>page_titles.</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_controller_path'>controller_path</span><span class='period'>.</span><span class='id identifier rubyid_sub'>sub</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>/</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>.</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>.main_title</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='comma'>,</span>
+    <span class='const'>I18n</span><span class='period'>.</span><span class='id identifier rubyid_t'>t</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>page_titles.</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_controller_path'>controller_path</span><span class='period'>.</span><span class='id identifier rubyid_sub'>sub</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>/</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>.</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>.</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_action_name'>action_name</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='rbracket'>]</span>
+
+  <span class='id identifier rubyid_set_meta_tags'>set_meta_tags</span> <span class='label'>title:</span> <span class='id identifier rubyid_title'>title</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -227,12 +237,6 @@
       <pre class="lines">
 
 
-26
-27
-28
-29
-30
-31
 32
 33
 34
@@ -292,10 +296,16 @@
 88
 89
 90
-91</pre>
+91
+92
+93
+94
+95
+96
+97</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/concerns/meta_tags_manageable.rb', line 26</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/concerns/meta_tags_manageable.rb', line 32</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_set_basic_meta_tags'>set_basic_meta_tags</span>
   <span class='id identifier rubyid_set_meta_tags'>set_meta_tags</span> <span class='label'>site:</span> <span class='const'><span class='object_link'><a href="SiteConfig.html" title="SiteConfig (class)">SiteConfig</a></span></span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>meta_tags.site_name</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>

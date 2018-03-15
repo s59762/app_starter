@@ -2,7 +2,7 @@
 defaults: &defaults
   meta_tags:
     site_name: 'AppStarter'
-    reverse: true
+    reverse: false
     separator: '::'
     description: 'odd Digital Design Studio application template.'
     keywords: 'web-design, web-develop'
