@@ -1,4 +1,16 @@
 module MetaTagsManageable
+  DEFAULT_PAGE_META_TAGS = {
+    title: '',
+    reverse: SiteConfig['meta_tags.reverse'],
+    description: SiteConfig['meta_tags.description'],
+    keywords: SiteConfig['meta_tags.keywords'],
+    og: {
+      title: :title,
+      description: :description,
+      image: []
+    }
+  }.freeze
+
   extend ActiveSupport::Concern
 
   included do
@@ -7,12 +19,16 @@ module MetaTagsManageable
 
   private
 
+  def redefine_meta_tags(options)
+    set_meta_tags DEFAULT_PAGE_META_TAGS.deep_merge(options)
+  end
+
   def set_basic_meta_tags
-    set_meta_tags site: 'AppStarter',
-                  reverse: true,
-                  separator: ' | ',
-                  description: 'odd Digital Design Studio application template.',
-                  keywords: 'web-design, web-develop',
+    set_meta_tags site: SiteConfig['meta_tags.site_name'],
+                  reverse: SiteConfig['meta_tags.reverse'],
+                  separator: SiteConfig['meta_tags.separator'],
+                  description: SiteConfig['meta_tags.description'],
+                  keywords: SiteConfig['meta_tags.keywords'],
                   icon: [
                     {
                       href: '/favicon.png',
@@ -68,9 +84,9 @@ module MetaTagsManageable
                     }
                   ],
                   og: {
-                    site_name: 'AppStarter',
-                    type: 'website',
-                    locale: 'zh_TW'
+                    site_name: :site,
+                    type: SiteConfig['meta_tags.type'],
+                    locale: SiteConfig['meta_tags.locale']
                   }
   end
 end

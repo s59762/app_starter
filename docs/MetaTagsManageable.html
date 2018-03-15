@@ -94,6 +94,26 @@
 </div>
 
 
+  <h2>Constant Summary</h2>
+  <dl class="constants">
+    
+      <dt id="DEFAULT_PAGE_META_TAGS-constant" class="">DEFAULT_PAGE_META_TAGS =
+        
+      </dt>
+      <dd><pre class="code"><span class='lbrace'>{</span>
+  <span class='label'>title:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+  <span class='label'>reverse:</span> <span class='const'><span class='object_link'><a href="SiteConfig.html" title="SiteConfig (class)">SiteConfig</a></span></span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>meta_tags.reverse</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
+  <span class='label'>description:</span> <span class='const'><span class='object_link'><a href="SiteConfig.html" title="SiteConfig (class)">SiteConfig</a></span></span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>meta_tags.description</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
+  <span class='label'>keywords:</span> <span class='const'><span class='object_link'><a href="SiteConfig.html" title="SiteConfig (class)">SiteConfig</a></span></span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>meta_tags.keywords</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
+  <span class='label'>og:</span> <span class='lbrace'>{</span>
+    <span class='label'>title:</span> <span class='symbol'>:title</span><span class='comma'>,</span>
+    <span class='label'>description:</span> <span class='symbol'>:description</span><span class='comma'>,</span>
+    <span class='label'>image:</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='rbrace'>}</span>
+<span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+    
+  </dl>
+
 
 
 
@@ -107,6 +127,28 @@
     </h2>
 
     <ul class="summary">
+      
+        <li class="private ">
+  <span class="summary_signature">
+    
+      <a href="#redefine_meta_tags-instance_method" title="#redefine_meta_tags (instance method)">#<strong>redefine_meta_tags</strong>(options)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  <span class="note title private">private</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
       
         <li class="private ">
   <span class="summary_signature">
@@ -141,7 +183,37 @@
 
     
       <div class="method_details first">
-  <h3 class="signature first" id="set_basic_meta_tags-instance_method">
+  <h3 class="signature first" id="redefine_meta_tags-instance_method">
+  
+    #<strong>redefine_meta_tags</strong>(options)  &#x21d2; <tt>Object</tt>  <span class="extras">(private)</span>
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+22
+23
+24</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/concerns/meta_tags_manageable.rb', line 22</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_redefine_meta_tags'>redefine_meta_tags</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_set_meta_tags'>set_meta_tags</span> <span class='const'><span class='object_link'><a href="#DEFAULT_PAGE_META_TAGS-constant" title="MetaTagsManageable::DEFAULT_PAGE_META_TAGS (constant)">DEFAULT_PAGE_META_TAGS</a></span></span><span class='period'>.</span><span class='id identifier rubyid_deep_merge'>deep_merge</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="set_basic_meta_tags-instance_method">
   
     #<strong>set_basic_meta_tags</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(private)</span>
   
@@ -155,22 +227,6 @@
       <pre class="lines">
 
 
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
 26
 27
 28
@@ -220,17 +276,33 @@
 72
 73
 74
-75</pre>
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/concerns/meta_tags_manageable.rb', line 10</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/concerns/meta_tags_manageable.rb', line 26</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_set_basic_meta_tags'>set_basic_meta_tags</span>
-  <span class='id identifier rubyid_set_meta_tags'>set_meta_tags</span> <span class='label'>site:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>AppStarter</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
-                <span class='label'>reverse:</span> <span class='kw'>true</span><span class='comma'>,</span>
-                <span class='label'>separator:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'> | </span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
-                <span class='label'>description:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>odd Digital Design Studio application template.</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
-                <span class='label'>keywords:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>web-design, web-develop</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+  <span class='id identifier rubyid_set_meta_tags'>set_meta_tags</span> <span class='label'>site:</span> <span class='const'><span class='object_link'><a href="SiteConfig.html" title="SiteConfig (class)">SiteConfig</a></span></span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>meta_tags.site_name</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
+                <span class='label'>reverse:</span> <span class='const'><span class='object_link'><a href="SiteConfig.html" title="SiteConfig (class)">SiteConfig</a></span></span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>meta_tags.reverse</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
+                <span class='label'>separator:</span> <span class='const'><span class='object_link'><a href="SiteConfig.html" title="SiteConfig (class)">SiteConfig</a></span></span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>meta_tags.separator</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
+                <span class='label'>description:</span> <span class='const'><span class='object_link'><a href="SiteConfig.html" title="SiteConfig (class)">SiteConfig</a></span></span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>meta_tags.description</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
+                <span class='label'>keywords:</span> <span class='const'><span class='object_link'><a href="SiteConfig.html" title="SiteConfig (class)">SiteConfig</a></span></span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>meta_tags.keywords</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
                 <span class='label'>icon:</span> <span class='lbracket'>[</span>
                   <span class='lbrace'>{</span>
                     <span class='label'>href:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>/favicon.png</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
@@ -286,9 +358,9 @@
                   <span class='rbrace'>}</span>
                 <span class='rbracket'>]</span><span class='comma'>,</span>
                 <span class='label'>og:</span> <span class='lbrace'>{</span>
-                  <span class='label'>site_name:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>AppStarter</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
-                  <span class='label'>type:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>website</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
-                  <span class='label'>locale:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>zh_TW</span><span class='tstring_end'>&#39;</span></span>
+                  <span class='label'>site_name:</span> <span class='symbol'>:site</span><span class='comma'>,</span>
+                  <span class='label'>type:</span> <span class='const'><span class='object_link'><a href="SiteConfig.html" title="SiteConfig (class)">SiteConfig</a></span></span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>meta_tags.type</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
+                  <span class='label'>locale:</span> <span class='const'><span class='object_link'><a href="SiteConfig.html" title="SiteConfig (class)">SiteConfig</a></span></span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>meta_tags.locale</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
                 <span class='rbrace'>}</span>
 <span class='kw'>end</span></pre>
     </td>
