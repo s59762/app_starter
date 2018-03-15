@@ -1,0 +1,8 @@
+<%# disallow all robots unless in production env %>
+<%- unless Rails.env.production? %>
+User-agent: *
+Disallow: /
+<%- else %>
+User-agent: *
+Allow: /
+<%- end %>

@@ -1,0 +1,19 @@
+# config/app.yml for rails-settings-cached
+defaults: &defaults
+  meta_tags:
+    site_name: 'AppStarter'
+    reverse: false
+    separator: '::'
+    description: 'odd Digital Design Studio application template.'
+    keywords: 'web-design, web-develop'
+    type: 'website'
+    locale: 'zh_TW'
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults

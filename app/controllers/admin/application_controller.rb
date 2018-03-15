@@ -1,4 +1,5 @@
 class Admin::ApplicationController < ActionController::Base
+  include MetaTagsManageable
   include RefererRecordable
 
   protect_from_forgery with: :exception
