@@ -15,14 +15,14 @@
           :type="form.errorClassAt('password')"
           :message="form.errors.get('password')")
     b-input(type="password"
-            :placeholder="actionLocaleText('admin', 'leave_empty_for_default_password')"
+            :placeholder="messageLocaleText('help.leave_empty_for_default_password')"
             v-model="form.password"
             @input="form.errors.clear('password')")
   b-field(:label="attributeLocaleText('admin', 'password_confirmation')"
           :type="form.errorClassAt('password_confirmation')"
           :message="form.errors.get('password_confirmation')")
     b-input(type="password"
-            :placeholder="actionLocaleText('admin', 'please_re_enter_password_for_confirmation')"
+            :placeholder="messageLocaleText('help.please_re_enter_password_for_confirmation')"
             v-model="form.password_confirmation"
             @input="form.errors.clear('password_confirmation')")
 

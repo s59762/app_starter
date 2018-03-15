@@ -12,7 +12,7 @@
               :message="form.errors.get('new_password')")
         b-input(type="password"
                 v-model="form.new_password"
-                :placeholder="actionLocaleText('admin', 'if_do_not_want_to_change_password_leave_empty')"
+                :placeholder="messageLocaleText('help.if_do_not_want_to_change_password_leave_empty')"
                 @input="form.errors.clear('new_password')")
 
       b-field(:label="attributeLocaleText('admin', 'password_confirmation')"
@@ -20,7 +20,7 @@
               :message="form.errors.get('password_confirmation')")
         b-input(type="password"
                 v-model="form.password_confirmation"
-                :placeholder="actionLocaleText('admin', 'if_do_not_want_to_change_password_leave_empty')"
+                :placeholder="messageLocaleText('help.if_do_not_want_to_change_password_leave_empty')"
                 @input="form.errors.clear('password_confirmation')")
 
   //- general fields
