@@ -4,8 +4,7 @@ html
     meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
     meta name="viewport" content="width=device-width, initial-scale=1.0"
 
-    / RENAME: change TITLE for project
-    title AppStarter
+    = display_meta_tags
     = csrf_meta_tags
     = stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
