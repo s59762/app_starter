@@ -27,10 +27,10 @@ Rails.application.routes.draw do
                         sessions: 'devise/admins/sessions'
                       }
 
+  get '/robot' => 'pages#robot'
   root 'pages#index'
 
   draw :admin
   draw :api_v1_web
-
   draw :sidekiq
 end
