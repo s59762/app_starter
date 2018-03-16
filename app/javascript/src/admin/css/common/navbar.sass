@@ -27,12 +27,16 @@
   > .nav-right
     justify-content: flex-end
   .sidebar-toggle
+    $ipad-pro-width: 1024px
+
     cursor: pointer
     display: flex
     align-items: center
     justify-content: center
     width: 44px
     height: 44px
+    +from($ipad-pro-width)
+      display: none
   .options-btn
     margin-right: 0.5rem
     &.is-active .button

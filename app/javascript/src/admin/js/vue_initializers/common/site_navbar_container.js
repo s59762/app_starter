@@ -18,7 +18,7 @@ export default {
   // created() {},
   beforeMount() {
     const { body } = document
-    const DISKTOP_WIDTH = 768
+    const DISKTOP_WIDTH = 1024
     const RATIO = 3
     const handler = () => {
       if (!document.hidden) {

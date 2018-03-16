@@ -1,8 +1,8 @@
 <template lang="pug">
 
-nav.navbar.is-fixed-top.level.animated
+nav.common-site-navbar.navbar.is-fixed-top.level.animated
   .nav-left
-    .sidebar-toggle.is-hidden-tablet(@click="toggleSidebar")
+    .sidebar-toggle(@click="toggleSidebar")
       i.fa.fa-bars
   .nav-center
     .brand-logo
