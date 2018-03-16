@@ -16,7 +16,7 @@ html
       flash-message(v-for="(message, index) in flashMessages" :message-type="message[0]" :message="message[1]" :key="index")
 
     // [vue site_navbar_container]
-    .site-navbar(data-vue="site_navbar_container")
+    .common-site-navbar-container(data-vue="site_navbar_container")
       site-navbar(:logout-path=("'#{destroy_admin_session_path}'"))
 
     // [vue site_sidebar_menu_container]
