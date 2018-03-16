@@ -65,15 +65,13 @@ namespace :deploy do
     task :precompile_local do
       local_assets_dir = './public/assets/'
       local_packs_dir = './public/packs/'
+      temp_packs_dir = './tmp/packs/'
 
-      # clean up first prevent fail with webpacker.
-      run_locally { execute "rm -rf #{local_assets_dir}" }
-      run_locally { execute "rm -rf #{local_packs_dir}" }
+      # move current pack assets to tmp
+      run_locally { execute "mv #{local_packs_dir} #{temp_packs_dir}" }
 
       # compile assets locally
-      run_locally do
-        execute "RAILS_ENV=#{fetch(:stage)} bundle exec rake assets:precompile"
-      end
+      run_locally { execute "RAILS_ENV=#{fetch(:stage)} bundle exec rake assets:precompile" }
 
       # rsync to each server
       on roles(fetch(:assets_roles, [:web])) do
@@ -84,9 +82,12 @@ namespace :deploy do
         run_locally { execute "rsync -av --delete #{local_packs_dir} #{remote_packs_dir}" }
       end
 
-      # clean up
+      # clean up assets that synced to remote server successfully
       run_locally { execute "rm -rf #{local_assets_dir}" }
       run_locally { execute "rm -rf #{local_packs_dir}" }
+
+      # move current assets back from tmp
+      run_locally { execute "mv #{temp_packs_dir} #{local_packs_dir}" }
     end
   end
 end
