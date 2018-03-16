@@ -7,7 +7,8 @@ import mutations from './mutations'
 Vue.use(Vuex)
 
 const state = {
-  flashMessages: []
+  flashMessages: [],
+  queryString: {}
 }
 
 export default new Vuex.Store({
