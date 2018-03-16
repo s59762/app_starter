@@ -1,6 +1,6 @@
 <template lang="pug">
 
-li
+li.common-site-sidebar-list-item-with-submenus
   a.list-item-link(@click="toggleSubmenu"
                    :class="activeClass")
     .icon
@@ -19,12 +19,12 @@ li
 </template>
 
 <script>
-import siteSidebarMenuItemMixin from '../mixins/site_sidebar_menu_item_mixin'
+import listItemMixin from '../../mixins/site_sidebar/list_item_mixin'
 
 export default {
   // components: {},
 
-  mixins: [siteSidebarMenuItemMixin],
+  mixins: [listItemMixin],
 
   // props: {},
 
@@ -36,7 +36,9 @@ export default {
 
   computed: {
     submenuActiveClass() {
-      if (this.submenuActive) { return 'is-active' }
+      if (this.submenuActive) {
+        return 'is-active'
+      }
     }
   },
 
@@ -52,7 +54,9 @@ export default {
     },
 
     submenuItemActiveItem(submenu) {
-      if (submenu.action == document.querySelector('body').className && this.submenuActive) { return 'is-active' }
+      if (submenu.action == document.querySelector('body').className && this.submenuActive) {
+        return 'is-active'
+      }
     }
   }
 }

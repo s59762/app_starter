@@ -20,7 +20,7 @@ html
       site-navbar(:logout-path=("'#{destroy_admin_session_path}'"))
 
     // [vue site_sidebar_menu_container]
-    .site-sidebar-menu-container(data-vue="site_sidebar_menu_container")
+    .common-site-sidebar-container(data-vue="site_sidebar_menu_container")
       sidebar-menu(data-sidebar-menu-items=(sidebar_menu_items.to_json))
 
     .site-main-container.sidebar-is-opened
