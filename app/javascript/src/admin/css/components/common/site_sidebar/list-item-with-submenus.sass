@@ -1,0 +1,25 @@
+.common-site-sidebar-list-item-with-submenus
+  @extend .common-site-sidebar-list-item
+
+  > .submenu-list
+    margin: 0
+    margin-left: .6rem
+    overflow: hidden
+
+  .list-item-link
+    > .submenu-active-indicator
+      .fa
+        transition: all .3s
+      &.is-active .fa
+        transform: rotate(90deg)
+
+  .submenu-list-link
+    position: relative
+    > .icon
+      visibility: hidden
+      position: absolute
+      top: 4px
+      left: -12px
+      color: $c-site-sidebar-submenu-link-active
+      &.is-active
+        visibility: visible

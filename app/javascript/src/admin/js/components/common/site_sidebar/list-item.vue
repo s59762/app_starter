@@ -1,6 +1,6 @@
 <template lang="pug">
 
-li
+li.common-site-sidebar-list-item
   a.list-item-link(:href="menu.path"
                    :class="activeClass")
     .icon
@@ -10,12 +10,12 @@ li
 </template>
 
 <script>
-import siteSidebarMenuItemMixin from '../mixins/site_sidebar_menu_item_mixin'
+import listItemMixin from '../../mixins/site_sidebar/list_item_mixin'
 
 export default {
   // components: {},
 
-  mixins: [siteSidebarMenuItemMixin],
+  mixins: [listItemMixin]
 
   // props: {},
 

@@ -1,11 +1,7 @@
-import SiteNavbar from '../../components/common/site-navbar.vue'
-
 export default {
-  components: {
-    SiteNavbar
-  }
+  // components: {},
 
-  // mixins: {},
+  // mixins: [],
 
   // props: {},
 

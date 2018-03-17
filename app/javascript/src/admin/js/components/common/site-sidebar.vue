@@ -1,22 +1,23 @@
 <template lang="pug">
 
-transition(enter-active-class="slideInLeft"
-           leave-active-class="slideOutLeft")
-  aside.menu.site-sidebar.animated(v-show="sidebarIsOpen"
-                                   :class="sidebarOpenedClass")
+transition(enter-active-class="animated slideInLeft"
+           leave-active-class="animated slideOutLeft")
+
+  aside.common-site-sidebar.menu(v-show="sidebarIsOpen"
+                                 :class="sidebarOpenedClass")
+
     template(v-for="item in menuItems")
-      p.menu-label
-        | {{item.title}}
-      sidebar-menu(:menus="item.menus")
+      p.menu-label {{item.title}}
+      menu-list(:menus="item.menus")
 
 </template>
 
 <script>
-import SidebarMenu from './site-sidebar-menu.vue'
+import MenuList from './site_sidebar/menu-list.vue'
 
 export default {
   components: {
-    SidebarMenu
+    MenuList
   },
 
   data() {

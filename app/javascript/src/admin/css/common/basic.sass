@@ -1,7 +1,11 @@
+html
+  background-image: url('../../images/bg/paper.png')
+
 .odd-container
   +clearfix
   position: relative
   margin: 0 auto
+  padding: 1rem
   // +from($desktop)
   //   max-width: $desktop - (2 * $gap) - $v-site-sidebar-width
   //   width: $desktop - (2 * $gap) - $v-site-sidebar-width
@@ -26,11 +30,12 @@
   //   width: $fullhd - (2 * $gap) - $v-site-sidebar-width
 
 .content-header
-  margin-bottom: 1rem
+  margin-bottom: 2rem
   padding: 0.5rem
   padding-top: 0.2rem
-  background-color: #eee
+  background-color: $white
   border-top: 5px solid $c-content-header-border
+  box-shadow: 0 0 10px #ccc
   .page-title
     font-size: 1.2rem
     font-weight: bold
@@ -53,7 +58,7 @@
   > .box-footer,
     +clearfix
   .box-title
-    margin-bottom: 0.5rem
+    margin-bottom: 1rem
     font-size: 1.3rem
     font-weight: bolder
     border-bottom: 1px solid #ddd
