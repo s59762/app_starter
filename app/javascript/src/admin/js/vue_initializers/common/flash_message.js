@@ -12,7 +12,7 @@ export default {
   },
 
   beforeMount() {
-    const { body } = document
+    const body = document.body
     const DISKTOP_WIDTH = 1024
     const RATIO = 3
     const handler = () => {
