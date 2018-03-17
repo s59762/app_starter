@@ -7,6 +7,8 @@ zh-TW:
       dashboard:
         main_title: 資訊面板
         show: 網站狀態簡報
+        titles:
+          basic_data_stat: 基本資料狀態
       admins:
         main_title: 人員管理
         index: 列表

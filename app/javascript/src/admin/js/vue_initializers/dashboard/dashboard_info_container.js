@@ -1,5 +1,9 @@
+import SectionBox from '../../components/dashboard_parts/section-box'
+
 export default {
-  // components: {},
+  components: {
+    SectionBox
+  }
 
   // mixins: [],
 
