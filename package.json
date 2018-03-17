@@ -17,6 +17,7 @@
     "js-cookie": "^2.2.0",
     "jsonapi-normalizer": "^1.2.0",
     "lodash.clonedeep": "^4.5.0",
+    "lodash.debounce": "^4.0.8",
     "lodash.merge": "^4.6.0",
     "node-sass": "^4.6.1",
     "pug": "^2.0.0-rc.4",
