@@ -1,11 +1,14 @@
 .dashboard-parts-simple-stat-tile
   > .notification
     border-radius: 0
+    &:hover
+      transform: scale(1.05)
 
   // Notification
   .notification
     overflow: hidden
     padding: 0
+    transition: transform .3s
     > .icon
       $icon-offset: 3rem
 
@@ -15,6 +18,7 @@
       transform: translate($icon-offset, -$icon-offset)
       font-size: 10rem
       transition: all .3s
+      opacity: 0.15
 
   // Content Wrapper
   .content-wrapper
@@ -33,10 +37,12 @@
     top: 50%
     transform: translateY(-50%)
     > .stat
-      font-size: 2rem
+      font-size: 1.5rem
+      font-weight: 900
       transition: all .3s
     > .stat .unit
       font-size: .8rem
+      font-weight: 100
       transition: all .3s
     > .title
       font-size: 1.2rem
@@ -52,5 +58,3 @@
         background-color: $color
         box-shadow: 0 0 10px lighten($color, 10)
         color: $color-invert
-        > .icon
-          color: lighten($color, 2.5)

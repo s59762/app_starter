@@ -8,7 +8,7 @@
       .inner
         .stat-info-wrapper
           .stat
-            span.numbers {{number}}
+            span.numbers
             span.unit / {{unit}}
           .title {{title}}
 
@@ -18,12 +18,13 @@
 <script>
 import debounce from 'lodash.debounce'
 import { ResizeSensor } from 'css-element-queries'
+import CountUp from 'countup.js'
 
 const DEFAULT_STYLE = {
   width: 160,
   iconFontSize: 10,
   iconOffset: 3,
-  numberFontSize: 2,
+  numberFontSize: 1.5,
   unitFontSize: 0.8,
   titleFontSize: 1.2,
   statMarginBottom: 1.5
@@ -35,7 +36,7 @@ export default {
   props: {
     size: {
       type: String,
-      default: ''
+      default: null
     },
 
     icon: {
@@ -59,20 +60,28 @@ export default {
     },
 
     number: {
-      type: Number,
+      type: [String, Number],
       default: 0
     }
   },
-
   // data() {
   //   return {}
   // },
-
   computed: {
-    sizeClass() {
-      if (this.size) {
-        return `is-${this.size}`
-      }
+    iconElement() {
+      return this.$el.querySelector('.notification .icon')
+    },
+
+    numbersElement() {
+      return this.$el.querySelector('.notification .numbers')
+    },
+
+    unitElement() {
+      return this.$el.querySelector('.stat-info-wrapper .unit')
+    },
+
+    titleElement() {
+      return this.$el.querySelector('.stat-info-wrapper .title')
     },
 
     iconClass() {
@@ -80,39 +89,36 @@ export default {
     },
 
     tileClass() {
-      return `is-${this.type} ${this.sizeClass}`
+      if (this.size) {
+        return `is-${this.type} is-${this.size}`
+      } else {
+        return `is-${this.type}`
+      }
     },
 
-    iconStyle() {
-      return this.$el.querySelector('.notification .icon').style
+    normalizedNumber() {
+      return Number(this.number)
     },
 
-    numbersStyle() {
-      return this.$el.querySelector('.notification .numbers').style
-    },
-
-    unitStyle() {
-      return this.$el.querySelector('.stat-info-wrapper .unit').style
-    },
-
-    titleStyle() {
-      return this.$el.querySelector('.stat-info-wrapper .title').style
+    counter() {
+      return new CountUp(this.numbersElement, 0, this.normalizedNumber)
     }
   },
   // created() {},
   mounted() {
     new ResizeSensor(this.$el, debounce(this.adjustSize, 200))
     this.adjustSize()
+    this.countUp()
   },
 
   methods: {
     adjustSize() {
-      this.iconStyle.fontSize = `${DEFAULT_STYLE.iconFontSize * this.calculateSizeRatio()}rem`
-      this.iconStyle.transform = `translate(${DEFAULT_STYLE.iconOffset *
+      this.iconElement.style.fontSize = `${DEFAULT_STYLE.iconFontSize * this.calculateSizeRatio()}rem`
+      this.iconElement.style.transform = `translate(${DEFAULT_STYLE.iconOffset *
         this.calculateSizeRatio()}rem, -${DEFAULT_STYLE.iconOffset * this.calculateSizeRatio()}rem)`
-      this.numbersStyle.fontSize = `${DEFAULT_STYLE.numberFontSize * this.calculateSizeRatio()}rem`
-      this.unitStyle.fontSize = `${DEFAULT_STYLE.unitFontSize * this.calculateSizeRatio()}rem`
-      this.titleStyle.fontSize = `${DEFAULT_STYLE.titleFontSize * this.calculateSizeRatio()}rem`
+      this.numbersElement.style.fontSize = `${DEFAULT_STYLE.numberFontSize * this.calculateSizeRatio()}rem`
+      this.unitElement.style.fontSize = `${DEFAULT_STYLE.unitFontSize * this.calculateSizeRatio()}rem`
+      this.titleElement.style.fontSize = `${DEFAULT_STYLE.titleFontSize * this.calculateSizeRatio()}rem`
     },
 
     calculateCurrentWidth() {
@@ -121,6 +127,10 @@ export default {
 
     calculateSizeRatio() {
       return this.calculateCurrentWidth() / DEFAULT_STYLE.width
+    },
+
+    countUp() {
+      this.counter.start()
     }
   }
 }
