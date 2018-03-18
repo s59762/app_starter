@@ -25,3 +25,4 @@ zh-TW:
     admin_is_suspended: 管理員 %{name} 已停權
     admin_is_unsuspended: 管理員 %{name} 已復權
     admin_updated_succefully: 管理員資料已更新
+    there_is_no_data_for_now: 目前沒有資料
