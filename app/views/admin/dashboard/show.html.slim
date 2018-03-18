@@ -5,12 +5,26 @@
 .dashboard-info-container(data-vue="dashboard_info_container")
   section-box(:title="pageTitleLocaleText('admin', 'dashboard', 'titles.basic_data_stat')")
     .tile.is-ancestor
-      .tile.is-parent.is-4
-        .tile.is-child.notification.is-info
-          p 1
-      .tile.is-parent.is-4
-        .tile.is-child.notification.is-info
-          p 1
-      .tile.is-parent.is-4
-        .tile.is-child.notification.is-info
-          p 1
+      .tile.is-vertical
+        .tile.is-vertical
+          .tile
+            simple-stat-tile(icon="users"
+                           type="danger")
+            simple-stat-tile(type="info")
+            simple-stat-tile(icon="users"
+                            type="danger")
+            simple-stat-tile(type="info")
+          .tile
+            simple-stat-tile(icon="users"
+                           type="danger")
+            simple-stat-tile(type="info")
+            simple-stat-tile(icon="users"
+                            type="danger")
+            simple-stat-tile(type="info")
+        .tile
+          simple-stat-tile(type="warning")
+          simple-stat-tile(type="light")
+      .tile
+        simple-stat-tile
+    .tile.is-ancestor
+      simple-stat-tile

@@ -1,0 +1,56 @@
+.dashboard-parts-simple-stat-tile
+  > .notification
+    border-radius: 0
+
+  // Notification
+  .notification
+    overflow: hidden
+    padding: 0
+    > .icon
+      $icon-offset: 3rem
+
+      position: absolute
+      bottom: 0
+      left: 0
+      transform: translate($icon-offset, -$icon-offset)
+      font-size: 10rem
+      transition: all .3s
+
+  // Content Wrapper
+  .content-wrapper
+    position: relative
+    width: 100%
+    padding-bottom: 100%
+    text-align: center
+    > .inner
+      width: 100%
+      height: 100%
+
+  // Stat Info Wrapper
+  .stat-info-wrapper
+    position: absolute
+    width: 100%
+    top: 50%
+    transform: translateY(-50%)
+    > .stat
+      font-size: 2rem
+      transition: all .3s
+    > .stat .unit
+      font-size: .8rem
+      transition: all .3s
+    > .title
+      font-size: 1.2rem
+      opacity: .8
+      transition: all .3s
+
+  // color
+  @each $name, $pair in $colors
+    $color: nth($pair, 1)
+    $color-invert: nth($pair, 2)
+    &.is-#{$name}
+      > .notification
+        background-color: $color
+        box-shadow: 0 0 10px lighten($color, 10)
+        color: $color-invert
+        > .icon
+          color: lighten($color, 2.5)
