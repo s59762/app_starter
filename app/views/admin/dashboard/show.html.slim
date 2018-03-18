@@ -3,17 +3,20 @@
 = cell('admin/common').call(:content_header)
 
 .dashboard-info-container(data-vue="dashboard_info_container")
-  .box.content-box
-    .box-header.with-border
-      h2.box-title test
+  section-box(:title="pageTitleLocaleText('admin', 'dashboard', 'titles.basic_data_stat')")
     .tile.is-ancestor
-      .tile
-        .tile.is-parent.is-4
-          .tile.is-child.notification.is-info
-            p 1
-        .tile.is-parent.is-4
-          .tile.is-child.notification.is-info
-            p 1
-        .tile.is-parent.is-4
-          .tile.is-child.notification.is-info
-            p 1
+      .tile.
+        simple-stat-tile(title="本日訂單"
+                          icon="file-text"
+                          number="9"
+                          unit="張")
+        simple-stat-tile(title="本日應出貨"
+                          icon="truck"
+                          type="warning"
+                          number="12"
+                          unit="單")
+        simple-stat-tile(title="會員數"
+                          icon="users"
+                          type="info"
+                          number="19873"
+                          unit="人")
