@@ -14,6 +14,9 @@ namespace :api do
 
       # User resource
       resources :users, only: %i[index show]
+
+      # Site config
+      resource :site_config, only: %[show], controller: 'site_config'
     end
   end
 end
