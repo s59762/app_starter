@@ -9,9 +9,15 @@ export default {
   //   return {}
   // },
 
-  // computed: {},
+  computed: {
+    configs() {
+      return this.$store.getters['siteConfigs/allConfigs']
+    }
+  },
 
-  // created() {},
+  created() {
+    this.$store.dispatch('siteConfigs/fetchConfigs')
+  }
 
   // mounted() {},
 
