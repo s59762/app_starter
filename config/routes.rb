@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     instance_eval(File.read(Rails.root.join("config/routes/#{routes_name}.rb")))
   end
 
-  devise_for :users, path: 'user',
+  devise_for :users, path: :user,
                      skip: %w[password],
                      path_names: {
                        sign_in: 'login',
