@@ -21,8 +21,9 @@ zh-TW:
       please_re_enter_password_for_confirmation: 請再輸入一次密碼做為確認
       leave_empty_for_default_password: 不設定密碼將會使用預設密碼 `qwerasdf`
     server_side_500_error: 抱歉，伺服器發生問題，請稍後再試
-    admin_added_succefully: 已新增管理員
+    admin_added_successfully: 已新增管理員
     admin_is_suspended: 管理員 %{name} 已停權
     admin_is_unsuspended: 管理員 %{name} 已復權
-    admin_updated_succefully: 管理員資料已更新
+    admin_updated_successfully: 管理員資料已更新
     there_is_no_data_for_now: 目前沒有資料
+    system_config_updated_successfully: 系統設定已成功更新

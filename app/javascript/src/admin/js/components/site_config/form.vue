@@ -134,7 +134,9 @@ export default {
   // mounted() {},
   methods: {
     updateMetaTags() {
-      this.$store.dispatch('siteConfigs/updateMetaTags', this.metaTagsRequestBody())
+      this.form.dispatch('siteConfigs/updateMetaTags', this.metaTagsRequestBody).then(() => {
+        this.form.addFlashMessage(['success', this.messageLocaleText('system_config_updated_successfully')])
+      })
     }
   }
 }

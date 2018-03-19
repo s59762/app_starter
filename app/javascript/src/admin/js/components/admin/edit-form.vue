@@ -114,7 +114,7 @@ export default {
           resource: this.requestBody
         })
         .then(response => {
-          this.form.addFlashMessage(['success', this.messageLocaleText('admin_updated_succefully')])
+          this.form.addFlashMessage(['success', this.messageLocaleText('admin_updated_successfully')])
           this.$parent.close()
         })
     }

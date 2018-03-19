@@ -21,7 +21,7 @@ export default class Siteconfig extends ModelBase {
    * @returns {Promise} 回傳 response 或 errors
    */
   updateMetaTags(metaTags) {
-    return axios.put(`${this.api_base_path}/${this.api_version}/${this.scope}/site_config/meta_tags`)
+    return axios.put(`${this.api_base_path}/${this.api_version}/${this.scope}/site_config/meta_tags`, metaTags)
   }
 
   storeConfigs(state, response) {
