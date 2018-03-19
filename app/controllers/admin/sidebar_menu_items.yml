@@ -1,4 +1,4 @@
-- title: 一般資訊
+- title: <%= I18n.t('page_titles.admin.sidebar.general_info') %>
   menus:
     - path: <%= Rails.application.routes.url_helpers.admin_dashboard_path %>
       active_by: <%= Rails.application.routes.url_helpers.admin_dashboard_path %>
@@ -13,7 +13,7 @@
       icon: fa-users
       title: <%= I18n.t('page_titles.admin.users.main_title') %>
 
-- title: 商品資訊
+- title: <%= I18n.t('page_titles.admin.sidebar.product_info') %>
   menus:
     - path: '#'
       active_by: '/admin/products'
@@ -31,7 +31,7 @@
           path: <%= Rails.application.routes.url_helpers.admin_dashboard_path %>
           title: 匯出
 
-- title: 訂單資訊
+- title: <%= I18n.t('page_titles.admin.sidebar.order_info') %>
   menus:
     - path: '#'
       active_by: '/admin/orders'
@@ -63,3 +63,9 @@
           icon: fa-download
           path: <%= Rails.application.routes.url_helpers.admin_dashboard_path %>
           title: 匯出
+- title: <%= I18n.t('page_titles.admin.sidebar.system_config') %>
+  menus:
+    - path: <%= Rails.application.routes.url_helpers.admin_system_config_path %>
+      active_by: <%= Rails.application.routes.url_helpers.admin_system_config_path %>
+      icon: fa-gears
+      title: <%= I18n.t('page_titles.admin.system_config.main_title') %>

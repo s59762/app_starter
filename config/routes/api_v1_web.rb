@@ -14,6 +14,11 @@ namespace :api do
 
       # User resource
       resources :users, only: %i[index show]
+
+      # Site config
+      resource :site_config, only: %i[show], controller: 'site_config' do
+        resource :meta_tags, only: %i[update], controller: 'site_config/meta_tags'
+      end
     end
   end
 end

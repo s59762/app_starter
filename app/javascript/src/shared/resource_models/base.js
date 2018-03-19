@@ -55,9 +55,7 @@ export default class ModelBase {
    * @memberof ModelBase
    */
   show(id, options = {}) {
-    return axios.get(
-      `${this.api_base_path}/${this.api_version}/${this.scope}/${this.resource_type}/${id}`
-    )
+    return axios.get(`${this.api_base_path}/${this.api_version}/${this.scope}/${this.resource_type}/${id}`)
   }
 
   /**
@@ -68,10 +66,7 @@ export default class ModelBase {
    * @memberof ModelBase
    */
   create(resource) {
-    return axios.post(
-      `${this.api_base_path}/${this.api_version}/${this.scope}/${this.resource_type}`,
-      resource
-    )
+    return axios.post(`${this.api_base_path}/${this.api_version}/${this.scope}/${this.resource_type}`, resource)
   }
 
   /**
@@ -83,10 +78,7 @@ export default class ModelBase {
    * @memberof ModelBase
    */
   update(id, resource) {
-    return axios.put(
-      `${this.api_base_path}/${this.api_version}/${this.scope}/${this.resource_type}/${id}`,
-      resource
-    )
+    return axios.put(`${this.api_base_path}/${this.api_version}/${this.scope}/${this.resource_type}/${id}`, resource)
   }
 
   /**
@@ -97,9 +89,7 @@ export default class ModelBase {
    * @memberof ModelBase
    */
   destroy(id) {
-    return axios.delete(
-      `${this.api_base_path}/${this.api_version}/${this.scope}/${this.resource_type}/${id}`
-    )
+    return axios.delete(`${this.api_base_path}/${this.api_version}/${this.scope}/${this.resource_type}/${id}`)
   }
 
   // ------------------------------------------------------------------------ //

@@ -1,0 +1,32 @@
+zh-TW:
+  # model and attributes name
+  activerecord: &default
+    models:
+      site_config:
+        one: 系統設定
+        other: 系統設定
+
+    attributes:
+      site_config:
+        meta_tags: 網頁索引設定
+        site_name: 網站名稱
+        separator: 分隔符
+        reverse: 反向排序
+        description: 網站描述
+        keywords: 關鍵字
+        type: 類型
+        locale: 語系
+
+    errors:
+      models:
+        site_config:
+          attributes:
+  activemodel: *default
+
+  # Enums
+  enums:
+    site_config:
+
+  # AASM state machine
+  aasm_state:
+    site_config:

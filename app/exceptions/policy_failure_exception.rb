@@ -1,9 +1,9 @@
 # Policy 驗證不符時使用的
-class PolicyFaliureException < ApplicationException
+class PolicyFailureException < ApplicationException
   def initialize(description)
     @status = :forbidden
     @code = :policy_validate_failure
-    @message = 'jwt authentication failed'
+    @message = 'this operation not suit with policies'
     @description = description
   end
 end

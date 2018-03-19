@@ -24,18 +24,6 @@ module Api
       @current_api_user ||= @api_auth.call
     end
 
-    # 驗證當前使用者身份
-    #
-    # @param [String] role 欲驗證的身份 type
-    #
-    # @example 驗證是否為 Admin
-    # signed_in_as?('Admin')
-    #
-    # @return [Boolean]
-    def signed_in_as?(role)
-      jwt_payload[:type] == role
-    end
-
     # 驗證當前使用者身份是否為 'Admin'
     def admin_signed_in?
       current_api_user.class.name == 'Admin'
@@ -46,6 +34,25 @@ module Api
     # @return [Hash] payload 內容
     def jwt_payload
       @api_auth.payload
+    end
+
+    # 在 Action 執行之前驗證 api user type 是否為 Admin
+    #
+    # @raise [PolicyFaliureException] 使用者不是 Admin 身份時 raise exception
+    def for_admin_only!
+      raise PolicyFailureException, %(this api is for admin only.) unless signed_in_as?('Admin')
+    end
+
+    # 驗證當前使用者身份
+    #
+    # @param [String] role 欲驗證的身份 type
+    #
+    # @example 驗證是否為 Admin
+    # signed_in_as?('Admin')
+    #
+    # @return [Boolean]
+    def signed_in_as?(role)
+      jwt_payload['type'] == role
     end
   end
 end

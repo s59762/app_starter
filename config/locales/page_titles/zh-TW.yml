@@ -1,6 +1,11 @@
 zh-TW:
   page_titles:
     admin:
+      sidebar:
+        general_info: 一般資訊
+        product_info: 商品資訊
+        order_info: 訂單資訊
+        system_config: 系統管理
       login:
         title: 請先登入
         subtitle: 本頁面僅限 Admin 帳號使用
@@ -23,6 +28,13 @@ zh-TW:
       profile:
         main_title: 管理員個人檔案
         show: 編輯
+      system_config:
+        main_title: 系統設定
+        show: 選項列表
+        meta_tags_config: 網站 MetaTags 設定
+        site_title_style: 網站標題樣式
+        style_preview: 樣式預覽
+        seo_config: SEO 選項設定
     user:
       login:
         title: 請先登入

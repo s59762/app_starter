@@ -1,0 +1,70 @@
+{
+  // See https://go.microsoft.com/fwlink/?LinkId=733558
+  // for the documentation about the tasks.json format
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "booting up services",
+      "type": "shell",
+      "command": "bin/server",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "never",
+        "panel": "shared"
+      }
+    },
+
+    {
+      "label": "rails server",
+      "type": "shell",
+      "command": "rails s",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "never",
+        "panel": "shared"
+      }
+    },
+
+    {
+      "label": "rails server with remote debugger",
+      "type": "shell",
+      "command": "rdebug-ide --port 1234 --host 0.0.0.0 -- bin/rails s -b 0.0.0.0",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "never",
+        "panel": "shared"
+      }
+    },
+
+    {
+      "label": "rails server with dashboard",
+      "type": "shell",
+      "command": "rails-dashboard rails s",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "never",
+        "panel": "shared"
+      }
+    },
+
+    {
+      "label": "cap production deploy",
+      "type": "shell",
+      "command": "cap production deploy && say 部署完成！",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always"
+      }
+    },
+
+    {
+      "label": "cap staging deploy",
+      "type": "shell",
+      "command": "cap staging deploy BRANCH=staging && say 部署完成！",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always"
+      }
+    }
+  ]
+}

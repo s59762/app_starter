@@ -5,6 +5,7 @@ import * as actions from './actions'
 import mutations from './mutations'
 import admins from '../../../shared/store_modules/admins'
 import users from '../../../shared/store_modules/users'
+import siteConfigs from '../../../shared/store_modules/site_configs'
 
 Vue.use(Vuex)
 
@@ -26,6 +27,7 @@ export default new Vuex.Store({
   mutations,
   modules: {
     admins,
-    users
+    users,
+    siteConfigs
   }
 })

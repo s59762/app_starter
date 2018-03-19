@@ -23,6 +23,11 @@ crumb :admin_users do
   parent :admin_root
 end
 
+crumb :admin_system_config do
+  link I18n.t('page_titles.admin.system_config.main_title'), admin_admins_path, icon: 'fa-gears'
+  parent :admin_root
+end
+
 # crumb :projects do
 #   link "Projects", projects_path
 # end

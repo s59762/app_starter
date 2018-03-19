@@ -1,0 +1,7 @@
+- breadcrumb :admin_system_config
+
+= cell('admin/common').call(:content_header)
+
+.site-config-container(data-vue="site_config_container")
+  b-loading(:active.sync="isLoading")
+  site-config-form(:configs="configs")

@@ -88,3 +88,31 @@ GET {{host_v1}}users?page[number]=1&page[size]=10&sort=-id HTTP/1.1
 Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlhdCI6MTUxOTg5NTkxMywicm9sZSI6InN1cGVyIiwidHlwZSI6IkFkbWluIiwicmVmIjoid2ViIn0.HjYEKFCiS80llONdgSLzOie4ZQ_ggRS62zwfthneWoQ
 
 ###
+
+// ************************************************************************** //
+//                              SITE CONFIG                                   //
+// ************************************************************************** //
+
+# get all site configs
+GET {{host_v1}}site_config HTTP/1.1
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlhdCI6MTUxOTg5NTkxMywicm9sZSI6InN1cGVyIiwidHlwZSI6IkFkbWluIiwicmVmIjoid2ViIn0.HjYEKFCiS80llONdgSLzOie4ZQ_ggRS62zwfthneWoQ
+
+###
+
+# update meta tags config
+PUT {{host_v1}}/site_config/meta_tags HTTP/1.1
+content-type: application/vnd.api+json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlhdCI6MTUxOTg5NTkxMywicm9sZSI6InN1cGVyIiwidHlwZSI6IkFkbWluIiwicmVmIjoid2ViIn0.HjYEKFCiS80llONdgSLzOie4ZQ_ggRS62zwfthneWoQ
+
+{
+  "data": {
+    "type": "sita-configs",
+    "attributes": {
+      "site_name": "AppStarter",
+      "reverse": false,
+      "separator": "::",
+      "description": "odd Digital Design Studio application template.",
+      "keywords": "web-design, web-develop"
+    }
+  }
+}

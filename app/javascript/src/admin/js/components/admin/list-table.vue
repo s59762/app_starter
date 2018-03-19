@@ -79,7 +79,7 @@ div
           p
             b-icon(icon='times'
                   size='is-large')
-          p 目前沒有資料
+          p {{messageLocaleText('there_is_no_data_for_now')}}
 
 </template>
 

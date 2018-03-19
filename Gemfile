@@ -53,6 +53,10 @@ group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'web-console', '>= 3.3.0'
 
+  # for vscode remote debug
+  gem 'debase'
+  gem 'ruby-debug-ide'
+
   # add schema comments in related files
   gem 'annotate'
 
