@@ -31,6 +31,10 @@ zh-TW:
       system_config:
         main_title: 系統設定
         show: 選項列表
+        meta_tags_config: 網站 MetaTags 設定
+        site_title_style: 網站標題樣式
+        style_preview: 樣式預覽
+        seo_config: SEO 選項設定
     user:
       login:
         title: 請先登入

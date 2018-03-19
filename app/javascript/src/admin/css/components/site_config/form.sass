@@ -1,0 +1,52 @@
+.site-config-form
+
+  .section
+    padding: 2rem 1rem
+    border: 1px solid $light
+    &:not(:last-child)
+      margin-bottom: .5rem
+    &:hover,
+    &:focus
+      border-color: darken($light, 5)
+    > .section-title
+      margin-bottom: 1.5rem
+      padding-bottom: 0.5rem
+      border-bottom: 1px solid $light
+      font-size: 1.1rem
+      font-weight: bold
+
+  .style-preview-container
+    > .subtitle
+      font-size: .9rem
+      font-weight: bold
+    > .browser-mock
+      margin-top: 3rem
+
+  .browser-mock
+    $tab-offset: -2.22rem
+    $browser-frame-radius: 8px
+
+    width: 100%
+    height: 100px
+    background-color: darken($light, 10)
+    +border-bottom-radius($browser-frame-radius)
+    +border-right-radius($browser-frame-radius)
+    .tab
+      display: inline-block
+      padding: 0.5rem 1rem
+      font-size: .8rem
+      font-weight: bold
+      color: lighten($grey, 5)
+      background-color: darken($light, 5)
+      border-bottom: none
+      transform: translateY($tab-offset)
+      +border-top-radius($browser-frame-radius)
+    .url-input
+      background-color: $light
+      width: 95%
+      margin: 0 auto
+      padding: .6em
+      border-radius: 5px
+      color: darken($light, 20)
+      font-size: .8rem
+      transform: translateY($tab-offset + 1rem)

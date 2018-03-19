@@ -1,5 +1,9 @@
+import SiteConfigForm from '../../components/site_config/form'
+
 export default {
-  // components: {},
+  components: {
+    SiteConfigForm
+  },
 
   // mixins: [],
 
@@ -12,6 +16,10 @@ export default {
   computed: {
     configs() {
       return this.$store.getters['siteConfigs/allConfigs']
+    },
+
+    isLoading() {
+      return this.$store.getters['siteConfigs/isLoading']
     }
   },
 

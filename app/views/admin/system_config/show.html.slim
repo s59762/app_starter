@@ -3,8 +3,5 @@
 = cell('admin/common').call(:content_header)
 
 .site-config-container(data-vue="site_config_container")
-  .box.content-box.is-primary
-    .box-header.with-border
-      h2.box-title 網站 MetaTags 設定
-    .box-body
-      .box.form-container-box.is-default
+  b-loading(:active.sync="isLoading")
+  site-config-form(:configs="configs")
