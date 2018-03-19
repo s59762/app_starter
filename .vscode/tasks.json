@@ -1,0 +1,22 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "cap production deploy",
+      "type": "shell",
+      "command": "cap production deploy && say 部署完成！",
+      "problemMatcher": [],
+      "presentation": {
+      "reveal": "always"
+    },
+
+    {
+      "label": "cap staging deploy",
+      "type": "shell",
+      "command": "cap staging deploy BRANCH=staging && say 部署完成！",
+      "problemMatcher": [],
+      "presentation": {
+      "reveal": "always"
+    }
+  ]
+}
