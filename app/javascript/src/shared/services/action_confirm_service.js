@@ -14,8 +14,7 @@ export default class ActionConfirmService {
    */
   constructor(options = {}) {
     this.scope = options.scope || 'admin'
-    this.title =
-      options.title || I18n.t(`messages.confirmations.please_confirm_your_operation_first`)
+    this.title = options.title || I18n.t(`messages.confirmations.please_confirm_your_operation_first`)
     this.text = options.text || I18n.t(`messages.confirmations.are_you_sure_want_to_continue`)
     this.type = options.type || 'warning'
     this.showCancelButton = options.showCancelButton || true

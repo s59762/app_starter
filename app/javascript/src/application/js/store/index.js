@@ -3,10 +3,12 @@ import Vuex from 'vuex'
 import * as getters from './getters'
 import * as actions from './actions'
 import mutations from './mutations'
+import CurrentUserAssignService from '../../../shared/services/current_user_assign_service'
 
 Vue.use(Vuex)
 
 const state = {
+  currentUser: CurrentUserAssignService.call('user'),
   flashMessages: [],
   queryString: {}
 }
