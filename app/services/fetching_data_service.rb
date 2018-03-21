@@ -3,7 +3,7 @@
 class FetchingDataService
   attr_reader :resource, :model, :paginate_options, :filter_options, :sort_options, :search_options, :options
 
-  PAGE_SIZE_LIMIT = 100.freeze
+  PAGE_SIZE_LIMIT = 100
 
   # init 時須提供要 query data 的對象，以及 client 端提供的 params
   #

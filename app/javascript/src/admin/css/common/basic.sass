@@ -28,6 +28,12 @@ html
   // +from($fullhd)
   //   max-width: $fullhd - (2 * $gap) - $v-site-sidebar-width
   //   width: $fullhd - (2 * $gap) - $v-site-sidebar-width
+  &.is-fixed
+    +from($widescreen)
+      max-width: $widescreen * 1.255 - (2 * $gap) - $v-site-sidebar-width
+    &.is-wider
+      +from($widescreen)
+        max-width: $widescreen * 1.5 - (2 * $gap) - $v-site-sidebar-width
 
 .content-header
   margin-bottom: 2rem
