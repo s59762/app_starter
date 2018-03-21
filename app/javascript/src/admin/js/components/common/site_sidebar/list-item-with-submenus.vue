@@ -1,6 +1,6 @@
 <template lang="pug">
 
-li.common-site-sidebar-list-item-with-submenus
+li.common-site-sidebar-list-item-with-submenus(v-if="isValidPolicy")
   a.list-item-link(@click="toggleSubmenu"
                    :class="activeClass")
     .icon
@@ -10,6 +10,7 @@ li.common-site-sidebar-list-item-with-submenus
       i.fa.fa-angle-right
   b-collapse(:open.sync="submenuActive")
     ul.submenu-list
+      //- TODO: 這邊要拆成 component 才能獨立驗證 policy
       li(v-for="submenu in menu.submenus")
         a.submenu-list-link(:href="submenu.path")
           .icon(:class="submenuItemActiveItem(submenu)")

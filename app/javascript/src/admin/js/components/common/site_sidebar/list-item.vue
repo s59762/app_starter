@@ -1,6 +1,6 @@
 <template lang="pug">
 
-li.common-site-sidebar-list-item
+li.common-site-sidebar-list-item(v-if="isValidPolicy")
   a.list-item-link(:href="menu.path"
                    :class="activeClass")
     .icon

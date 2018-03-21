@@ -5,10 +5,9 @@ transition(enter-active-class="animated slideInLeft"
 
   aside.common-site-sidebar.menu(v-show="sidebarIsOpen"
                                  :class="sidebarOpenedClass")
-
-    template(v-for="item in menuItems")
-      p.menu-label {{item.title}}
-      menu-list(:menus="item.menus")
+    menu-list(v-for="item in menuItems"
+              :menus="item.menus"
+              :title="item.title")
 
 </template>
 

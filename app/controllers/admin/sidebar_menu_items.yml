@@ -4,14 +4,20 @@
       active_by: <%= Rails.application.routes.url_helpers.admin_dashboard_path %>
       icon: fa-tachometer
       title: <%= I18n.t('page_titles.admin.dashboard.main_title') %>
+      policy: dashboard
+      action: show
     - path: <%= Rails.application.routes.url_helpers.admin_admins_path %>
       active_by: <%= Rails.application.routes.url_helpers.admin_admins_path %>
       icon: fa-user-md
       title: <%= I18n.t('page_titles.admin.admins.main_title') %>
+      policy: admin
+      action: index
     - path: <%= Rails.application.routes.url_helpers.admin_users_path %>
       active_by: <%= Rails.application.routes.url_helpers.admin_users_path %>
       icon: fa-users
       title: <%= I18n.t('page_titles.admin.users.main_title') %>
+      policy: user
+      action: index
 
 - title: <%= I18n.t('page_titles.admin.sidebar.product_info') %>
   menus:
@@ -20,6 +26,8 @@
       icon: fa-tags
       title: 商品管理
       has_submenu: true
+      policy: product
+      action: index
       submenus:
         - action: orders-index
           icon: fa-list
@@ -38,6 +46,8 @@
       icon: fa-file-text-o
       title: 訂單管理
       has_submenu: true
+      policy: orders
+      action: index
       submenus:
         - action: orders-index
           icon: fa-list
@@ -53,6 +63,8 @@
       icon: fa-truck
       title: 出貨管理
       has_submenu: true
+      policy: shipping
+      action: index
       submenus:
         - action: orders-index
           icon: fa-list
@@ -69,3 +81,5 @@
       active_by: <%= Rails.application.routes.url_helpers.admin_system_config_path %>
       icon: fa-gears
       title: <%= I18n.t('page_titles.admin.system_config.main_title') %>
+      policy: systemConfig
+      action: show
