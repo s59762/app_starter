@@ -26,6 +26,10 @@ class FetchingDataService
     validate_page_size!
   end
 
+  def self.call(resource, params, options = {})
+    new(resource, params, options).call
+  end
+
   def call
     try_query_with_paginate(@result)
     try_query_with_filter(@result)

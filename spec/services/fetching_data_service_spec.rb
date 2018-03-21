@@ -4,7 +4,7 @@ RSpec.describe FetchingDataService, type: :service do
   context '如果 `options[:check_paginate]` 為真，而 params 中不包含 paginate options 時' do
     it '應該要 raise exception' do
       params = {}
-      expect { FetchingDataService.new(Admin, params, {check_paginate: true}) }.to raise_error ParametersFailureException
+      expect { FetchingDataService.call(Admin, params, {check_paginate: true}) }.to raise_error ParametersFailureException
     end
   end
 
@@ -24,7 +24,7 @@ RSpec.describe FetchingDataService, type: :service do
           }
         }
       }
-      subject(:result) { FetchingDataService.new(Admin, params).call }
+      subject(:result) { FetchingDataService.call(Admin, params) }
 
       it '應該只會拿到 1 個 Admin' do
         expect(result.length).to eq 1
@@ -37,7 +37,7 @@ RSpec.describe FetchingDataService, type: :service do
           sort: '-id'
         }
       }
-      subject(:result) { FetchingDataService.new(Admin, params).call }
+      subject(:result) { FetchingDataService.call(Admin, params) }
 
       it '結果的第一筆應該是 admin_5' do
         expect(result.first).to eq admin_5
@@ -51,7 +51,7 @@ RSpec.describe FetchingDataService, type: :service do
           sort: '-id'
         }
       }
-      subject(:result) { FetchingDataService.new(Admin, params).call }
+      subject(:result) { FetchingDataService.call(Admin, params) }
 
       it '結果應該僅包含 suspended 的 admins' do
         expect(result.length).to eq 2
@@ -75,7 +75,7 @@ RSpec.describe FetchingDataService, type: :service do
           }
         }
       }
-      subject(:result) { FetchingDataService.new(Admin, params).call }
+      subject(:result) { FetchingDataService.call(Admin, params) }
 
       it '結果應該僅有 2 筆資料' do
         expect(result.length).to eq 2

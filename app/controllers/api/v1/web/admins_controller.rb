@@ -2,7 +2,7 @@ class Api::V1::Web::AdminsController < Api::V1::Web::BaseController
   before_action :for_admin_only!, except: %i[show]
 
   def index
-    @admins = FetchingDataService.new(Admin, params).call
+    @admins = FetchingDataService.call(Admin, params)
 
     render json: @admins,
            meta: pagination_dict(@admins)
