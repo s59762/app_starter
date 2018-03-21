@@ -37,4 +37,8 @@ class User < ApplicationRecord
                         type: 'User',
                         ref: 'web')
   end
+
+  def guest?
+    false
+  end
 end

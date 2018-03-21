@@ -21,7 +21,9 @@ module Api
     #
     # @return [Object] 會回傳 user model 的 instance
     def current_api_user
-      @current_api_user ||= @api_auth.call
+      @current_api_user ||= @api_auth ?
+        @api_auth.call :
+        Null::User.new('user')
     end
 
     # 驗證當前使用者身份是否為 'Admin'

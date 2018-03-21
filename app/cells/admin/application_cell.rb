@@ -20,6 +20,6 @@ class Admin::ApplicationCell < Cell::ViewModel
 
   # 建立 Null::User object，使用者未登入時會使用到這個方法
   def null_user
-    @null_user ||= Null::User.new
+    @null_user ||= Null::User.new('admin')
   end
 end
