@@ -8,7 +8,7 @@ const tryStoreMetaToVuex = function(state, response) {
   const metaObj = response.data.meta
 
   if (metaObj) {
-    state.meta = metaObj
+    state.meta = merge({}, state.meta, metaObj)
   }
 }
 
