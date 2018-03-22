@@ -294,12 +294,12 @@
       <pre class="lines">
 
 
-28
-29
-30</pre>
+30
+31
+32</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/concerns/api/jwt_authenticatable.rb', line 28</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/concerns/api/jwt_authenticatable.rb', line 30</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_admin_signed_in?'>admin_signed_in?</span>
   <span class='id identifier rubyid_current_api_user'>current_api_user</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Admin</span><span class='tstring_end'>&#39;</span></span>
@@ -410,13 +410,17 @@
 
 23
 24
-25</pre>
+25
+26
+27</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'app/controllers/concerns/api/jwt_authenticatable.rb', line 23</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_current_api_user'>current_api_user</span>
-  <span class='ivar'>@current_api_user</span> <span class='op'>||=</span> <span class='ivar'>@api_auth</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span>
+  <span class='ivar'>@current_api_user</span> <span class='op'>||=</span> <span class='ivar'>@api_auth</span> <span class='op'>?</span>
+    <span class='ivar'>@api_auth</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span> <span class='op'>:</span>
+    <span class='const'>Null</span><span class='op'>::</span><span class='const'>User</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>user</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -465,12 +469,12 @@
       <pre class="lines">
 
 
-42
-43
-44</pre>
+44
+45
+46</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/concerns/api/jwt_authenticatable.rb', line 42</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/concerns/api/jwt_authenticatable.rb', line 44</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_for_admin_only!'>for_admin_only!</span>
   <span class='id identifier rubyid_raise'>raise</span> <span class='const'><span class='object_link'><a href="../PolicyFailureException.html" title="PolicyFailureException (class)">PolicyFailureException</a></span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>%(</span><span class='tstring_content'>this api is for admin only.</span><span class='tstring_end'>)</span></span> <span class='kw'>unless</span> <span class='id identifier rubyid_signed_in_as?'>signed_in_as?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Admin</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -522,12 +526,12 @@
       <pre class="lines">
 
 
-35
-36
-37</pre>
+37
+38
+39</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/concerns/api/jwt_authenticatable.rb', line 35</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/concerns/api/jwt_authenticatable.rb', line 37</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_jwt_payload'>jwt_payload</span>
   <span class='ivar'>@api_auth</span><span class='period'>.</span><span class='id identifier rubyid_payload'>payload</span>
@@ -607,12 +611,12 @@
       <pre class="lines">
 
 
-54
-55
-56</pre>
+56
+57
+58</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/concerns/api/jwt_authenticatable.rb', line 54</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/concerns/api/jwt_authenticatable.rb', line 56</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_signed_in_as?'>signed_in_as?</span><span class='lparen'>(</span><span class='id identifier rubyid_role'>role</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_jwt_payload'>jwt_payload</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>type</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='id identifier rubyid_role'>role</span>
