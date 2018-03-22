@@ -10,7 +10,7 @@ class Api::ApiController < ActionController::API
   private
 
   def pagination_dict(collection)
-    return if params[:page].blank?
+    return {} if params[:page].blank?
 
     {
       current_page: collection.current_page,
