@@ -14,7 +14,6 @@ export default {
 
   data() {
     return {
-      isUsingCreatedHook: false,
       resourceType: 'admins',
       currentUrlPath: '/admin/admins/',
       isNewAdminFormActive: false

@@ -77,7 +77,6 @@ export default {
 
   data() {
     return {
-      isUsingCreatedHook: true,
       resourceType: 'users',
       currentUrlPath: '/admin/users',
       currentFilter: 0,
@@ -93,9 +92,11 @@ export default {
     users() {
       return this.$store.getters['users/allResources']
     }
-  }
+  },
 
-  // created() {},
+  created() {
+    this.fetchingInitialData()
+  }
 
   // mounted() {},
 

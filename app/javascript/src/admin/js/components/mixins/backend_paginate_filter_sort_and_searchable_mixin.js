@@ -85,31 +85,6 @@ export default {
     }
   },
 
-  /*
-   * 根據這到達此頁時的 URL QueryString 來決定如何送出 request 給 API。
-   *
-   * 在 `options` 變數的賦值過程中檢是否當前的 URL 有給自訂設定，若沒有則使用在 data
-   * 中指定的預設值。接著透過 vuex action 取得 admins list，然後同樣透過 vuex action
-   * 更新 queryString 的內容與 URL。
-   *
-   * 最後監聽 `window.onpopstate` 事件，若發生時（使用者按下瀏覽器的上一頁或下一頁）
-   * 重新取得正確的資料，並更新 vuex store 中 queryString 為當前 URL 的內容。
-   */
-  created() {
-    if (this.isUsingCreatedHook) {
-      let options = this.checkCurrentQueryStringOptionsFromURL()
-
-      this.fetchData(options)
-      this.updateQueryString(options)
-
-      // TODO: onpopstate 時沒有把 sort 狀態更新到 table 上，需要再檢查。
-      window.onpopstate = event => {
-        this.fetchData(event.state)
-        this.$store.dispatch('updateQueryStringFromURL')
-      }
-    }
-  },
-
   methods: {
     /**
      * 這個方法會用於 Vue instance created hook 中。在 created 後檢查當前的 URL 所給
@@ -248,9 +223,7 @@ export default {
      * @returns {boolean|Object} 若有找到有效的 search option，會回傳 search options object，若沒有的話回傳 false
      */
     parseSearchOptionsFromURL(queryStringObj) {
-      const searchOptionKeys = Object.keys(queryStringObj).filter(
-        key => key.substring(0, 2) === 'q['
-      )
+      const searchOptionKeys = Object.keys(queryStringObj).filter(key => key.substring(0, 2) === 'q[')
       let newSearchOptions = {}
 
       searchOptionKeys.forEach(element => {
@@ -294,6 +267,29 @@ export default {
           options.pageSize
         }&sort=${options.sort}&filter=${options.filter}${this.parsedSearchOptions}`
       })
+    },
+
+    /*
+    * 獲取此頁面需要的初始資料
+    *
+    * 在 `options` 變數的賦值過程中檢是否當前的 URL 有給自訂設定，若沒有則使用在 data
+    * 中指定的預設值。接著透過 vuex action 從 Server 取得資料，然後同樣透過 vuex
+    * action 更新 queryString 的內容與 URL。
+    *
+    * 最後，監聽 `window.onpopstate` 事件，若發生時（使用者使用瀏覽器的上一頁或下一頁功能）
+    * 重新取得正確的資料，並更新 vuex store 中 queryString 為當前 URL 的內容。
+    */
+    fetchingInitialData() {
+      let options = this.checkCurrentQueryStringOptionsFromURL()
+
+      this.fetchData(options)
+      this.updateQueryString(options)
+
+      // TODO: onpopstate 時沒有把 sort 狀態更新到 table 上，需要再檢查。
+      window.onpopstate = event => {
+        this.fetchData(event.state)
+        this.$store.dispatch('updateQueryStringFromURL')
+      }
     }
   }
 }

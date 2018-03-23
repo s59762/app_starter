@@ -100,7 +100,6 @@ export default {
 
   data() {
     return {
-      isUsingCreatedHook: true,
       resourceType: 'admins',
       currentUrlPath: '/admin/admins',
       currentFilter: 0,
@@ -116,9 +115,11 @@ export default {
     admins() {
       return this.$store.getters['admins/allResources']
     }
-  }
+  },
 
-  // created() {},
+  created() {
+    this.fetchingInitialData()
+  }
 
   // mounted() {},
 
