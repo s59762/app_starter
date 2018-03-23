@@ -12,5 +12,7 @@
 
 class ProductCategory < ApplicationRecord
   belongs_to :parent, class_name: 'ProductCategory', optional: true
-  has_many :sub_categories, class_name: 'ProductCategory', foreign_key: 'parent_id'
+  has_many :sub_categories, class_name: 'ProductCategory', foreign_key: 'parent_id', dependent: :destroy
+
+  scope :top_level_only, -> { where(parent_id: nil) }
 end

@@ -10,7 +10,13 @@
 
 
 // ************************************************************************** //
-//                                 ADMIN                                      //
+                     ###    ########  ##     ## #### ##    ##
+                    ## ##   ##     ## ###   ###  ##  ###   ##
+                  ##    ##  ##     ## #### ####  ##  ####  ##
+                  ##     ## ##     ## ## ### ##  ##  ## ## ##
+                  ######### ##     ## ##     ##  ##  ##  ####
+                  ##     ## ##     ## ##     ##  ##  ##   ###
+                  ##     ## ########  ##     ## #### ##    ##
 // ************************************************************************** //
 
 # Get available admin roles
@@ -74,7 +80,13 @@ Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlhdCI6M
 ###
 
 // ************************************************************************** //
-//                                  USER                                      //
+                    ##     ##  ######  ######## ########
+                    ##     ## ##    ## ##       ##     ##
+                    ##     ## ##       ##       ##     ##
+                    ##     ##  ######  ######   ########
+                    ##     ##       ## ##       ##   ##
+                    ##     ## ##    ## ##       ##    ##
+                    #######   ######  ######## ##     ##
 // ************************************************************************** //
 
 # get users list
@@ -90,7 +102,81 @@ Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlhdCI6M
 ###
 
 // ************************************************************************** //
-//                              SITE CONFIG                                   //
+########  ########   #######  ########  ##     ##  ######  ########     ######     ###    ######## ########  ######    #######  ########  ##    ##
+##     ## ##     ## ##     ## ##     ## ##     ## ##    ##    ##       ##    ##   ## ##      ##    ##       ##    ##  ##     ## ##     ##  ##  ##
+##     ## ##     ## ##     ## ##     ## ##     ## ##          ##       ##        ##   ##     ##    ##       ##        ##     ## ##     ##   ####
+########  ########  ##     ## ##     ## ##     ## ##          ##       ##       ##     ##    ##    ######   ##   #### ##     ## ########     ##
+##        ##   ##   ##     ## ##     ## ##     ## ##          ##       ##       #########    ##    ##       ##    ##  ##     ## ##   ##      ##
+##        ##    ##  ##     ## ##     ## ##     ## ##    ##    ##       ##    ## ##     ##    ##    ##       ##    ##  ##     ## ##    ##     ##
+##        ##     ##  #######  ########   #######   ######     ##        ######  ##     ##    ##    ########  ######    #######  ##     ##    ##
+// ************************************************************************** //
+
+# get all product categories
+GET {{host_v1}}product_categories HTTP/1.1
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlhdCI6MTUxOTg5NTkxMywicm9sZSI6InN1cGVyIiwidHlwZSI6IkFkbWluIiwicmVmIjoid2ViIn0.HjYEKFCiS80llONdgSLzOie4ZQ_ggRS62zwfthneWoQ
+
+###
+
+# create a product category
+POST {{host_v1}}product_categories HTTP/1.1
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlhdCI6MTUxOTg5NTkxMywicm9sZSI6InN1cGVyIiwidHlwZSI6IkFkbWluIiwicmVmIjoid2ViIn0.HjYEKFCiS80llONdgSLzOie4ZQ_ggRS62zwfthneWoQ
+content-type: application/vnd.api+json
+
+{
+  "data": {
+    "type": "product-categories",
+    "attributes": {
+      "name": "生活用品",
+      "description": "滿足你對品味的堅持"
+    }
+  }
+}
+
+###
+
+# create a sub product category
+POST {{host_v1}}product_categories HTTP/1.1
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlhdCI6MTUxOTg5NTkxMywicm9sZSI6InN1cGVyIiwidHlwZSI6IkFkbWluIiwicmVmIjoid2ViIn0.HjYEKFCiS80llONdgSLzOie4ZQ_ggRS62zwfthneWoQ
+content-type: application/vnd.api+json
+
+{
+  "data": {
+    "type": "product-categories",
+    "attributes": {
+      "name": "沙發",
+      "description": "精選高品質真皮",
+      "parent_id": "26"
+    }
+  }
+}
+
+###
+
+# update a product category
+PUT {{host_v1}}product_categories/26 HTTP/1.1
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlhdCI6MTUxOTg5NTkxMywicm9sZSI6InN1cGVyIiwidHlwZSI6IkFkbWluIiwicmVmIjoid2ViIn0.HjYEKFCiS80llONdgSLzOie4ZQ_ggRS62zwfthneWoQ
+content-type: application/vnd.api+json
+
+{
+  "data": {
+    "type": "product-categories",
+    "attributes": {
+      "name": "單椅",
+      "description": "精選高品質真皮"
+    }
+  }
+}
+
+###
+
+// ************************************************************************** //
+ ######  #### ######## ########     ######   #######  ##    ## ######## ####  ######
+##    ##  ##     ##    ##          ##    ## ##     ## ###   ## ##        ##  ##    ##
+##        ##     ##    ##          ##       ##     ## ####  ## ##        ##  ##
+ ######   ##     ##    ######      ##       ##     ## ## ## ## ######    ##  ##   ####
+      ##  ##     ##    ##          ##       ##     ## ##  #### ##        ##  ##    ##
+##    ##  ##     ##    ##          ##    ## ##     ## ##   ### ##        ##  ##    ##
+ ######  ####    ##    ########     ######   #######  ##    ## ##       ####  ######
 // ************************************************************************** //
 
 # get all site configs
