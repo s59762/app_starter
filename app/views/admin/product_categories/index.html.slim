@@ -2,7 +2,9 @@
 
 = cell('admin/common').call(:content_header)
 
-/ .box.content-box.is-primary(data-vue="user_list_table")
-/   .box-header.with-border
-/   .box-body
-/     user-list-table
+.box.content-box.is-primary(data-vue="product_category_list_container")
+  .box-header.with-border
+    new-product-category-button
+  .box-body
+    product-category-list-table
+

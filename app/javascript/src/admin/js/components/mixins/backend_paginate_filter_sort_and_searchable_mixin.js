@@ -14,7 +14,6 @@ export default {
 
   data() {
     return {
-      isUsingCreatedHook: false, //             [OPTION] 是否使用 mixin 預設的 created hook
       resourceType: 'resourceType', //          [OPTION] resource 的 type，用於 `#fetchData` 中指定 vuex 的 module
       currentUrlPath: '/absolute/path', //      [OPTION] 當前頁面的絕對路徑，於更新 URL 時使用
 
@@ -261,11 +260,27 @@ export default {
      * @param {Object} options query options
      */
     updateQueryString(options) {
+      let newQueryString = this.currentUrlPath + '?'
+
+      if (options.pageNumber) {
+        newQueryString += `&page[number]=${options.pageNumber}`
+      }
+      if (options.pageSize) {
+        newQueryString += `&page[size]=${options.pageSize}`
+      }
+      if (options.sort) {
+        newQueryString += `&sort=${options.sort}`
+      }
+      if (options.filter) {
+        newQueryString += `&filter=${options.filter}`
+      }
+      if (this.parsedSearchOptions) {
+        newQueryString += `&${this.parsedSearchOptions}`
+      }
+
       this.$store.dispatch('updateQueryString', {
         options,
-        newQueryString: `${this.currentUrlPath}?page[number]=${options.pageNumber}&page[size]=${
-          options.pageSize
-        }&sort=${options.sort}&filter=${options.filter}${this.parsedSearchOptions}`
+        newQueryString
       })
     },
 

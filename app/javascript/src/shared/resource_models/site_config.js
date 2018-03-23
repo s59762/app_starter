@@ -3,7 +3,7 @@ import axios from 'axios'
 
 export default class Siteconfig extends ModelBase {
   constructor() {
-    super({ resource_type: 'siteConfigs' })
+    super({ resource_type: 'site_config' })
   }
 
   /**
@@ -21,7 +21,10 @@ export default class Siteconfig extends ModelBase {
    * @returns {Promise} 回傳 response 或 errors
    */
   updateMetaTags(metaTags) {
-    return axios.put(`${this.api_base_path}/${this.api_version}/${this.scope}/site_config/meta_tags`, metaTags)
+    return axios.put(
+      `${this.api_base_path}/${this.api_version}/${this.scope}/${this.resource_type}/meta_tags`,
+      metaTags
+    )
   }
 
   storeConfigs(state, response) {
