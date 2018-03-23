@@ -21,6 +21,12 @@
 
 - title: <%= I18n.t('page_titles.admin.sidebar.product_info') %>
   menus:
+    - path: <%= Rails.application.routes.url_helpers.admin_product_categories_path %>
+      active_by: <%= Rails.application.routes.url_helpers.admin_product_categories_path %>
+      icon: fa-folder-open
+      title: <%= I18n.t('page_titles.admin.product_categories.main_title') %>
+      policy: productCategory
+      action: index
     - path: '#'
       active_by: '/admin/products'
       icon: fa-tags

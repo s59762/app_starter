@@ -20,6 +20,8 @@ zh-TW:
       if_do_not_want_to_change_password_leave_empty: 若不變更密碼請留空
       please_re_enter_password_for_confirmation: 請再輸入一次密碼做為確認
       leave_empty_for_default_password: 不設定密碼將會使用預設密碼 `qwerasdf`
+      site_config_meta_description_should_not_over_140_words: Google 建議不超過 140 字
+      site_config_meta_keywords_please_seprate_with_comma: 請以半形逗點分開，Google 建議不超過 3 個
     server_side_500_error: 抱歉，伺服器發生問題，請稍後再試
     admin_added_successfully: 已新增管理員
     admin_is_suspended: 管理員 %{name} 已停權
