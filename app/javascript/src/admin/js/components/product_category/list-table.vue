@@ -32,6 +32,14 @@ export default {
     // 最上層的 ProductCategory
     rootCategories() {
       return this.categories.filter(element => Object.keys(element.parent).length === 0)
+    },
+
+    secondLevelCategories() {
+      return this.findNextLevelCategoriesFor(this.rootCategories)
+    },
+
+    thirdLevelCategories() {
+      return this.findNextLevelCategoriesFor(this.secondLevelCategories)
     }
   },
 
@@ -39,8 +47,25 @@ export default {
 
   mounted() {
     this.fetchingInitialData()
-  }
+  },
 
-  // methods: {}
+  methods: {
+    findNextLevelCategoriesFor(parents) {
+      let nextLevelCategoriesID = []
+      let result = []
+
+      parents.forEach(parent => {
+        parent.sub_categories.forEach(element => {
+          nextLevelCategoriesID.push(element.id)
+        })
+      })
+
+      nextLevelCategoriesID.forEach(id => {
+        result.push(this.categories.find(element => element.id == id))
+      })
+
+      return result
+    }
+  }
 }
 </script>

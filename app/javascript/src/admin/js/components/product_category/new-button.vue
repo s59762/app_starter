@@ -1,20 +1,33 @@
 <template lang="pug">
 
-.product-category-new-button
+span.product-category-new-button
+  .button.is-small.is-primary(@click="openForm")
+    span.icon
+      i.fa.fa-plus
+    span {{actionLocaleText('admin', 'create', {model: modelNameLocaleText('product_category')})}}
+  b-modal(:active.sync="isFormActive")
+    new-product-category-form
+
 
 </template>
 
 <script>
+import NewProductCategoryForm from './new-form'
+
 export default {
-  // components: {},
+  components: {
+    NewProductCategoryForm
+  },
 
   // mixins: [],
 
   // props: {},
 
-  // data() {
-  //   return {}
-  // },
+  data() {
+    return {
+      isFormActive: false
+    }
+  },
 
   // computed: {},
 
@@ -22,6 +35,10 @@ export default {
 
   // mounted() {},
 
-  // methods: {}
+  methods: {
+    openForm() {
+      this.isFormActive = true
+    }
+  }
 }
 </script>
