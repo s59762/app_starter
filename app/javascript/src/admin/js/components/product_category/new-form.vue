@@ -37,14 +37,20 @@ export default {
 
   // mixins: [],
 
-  // props: {},
+  props: {
+    parentId: {
+      type: String,
+      default: null
+    }
+  },
 
   data() {
     return {
       form: new Form(
         {
           name: '',
-          description: ''
+          description: '',
+          parent_id: this.parentId
         },
         this.$store.dispatch,
         this.$store.getters['productCategories/errors']

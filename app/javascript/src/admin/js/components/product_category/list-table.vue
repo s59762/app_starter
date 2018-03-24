@@ -24,8 +24,10 @@
                      centered)
         i.sub-categories-indicator.fa(:class="hasSubCategories(props.row)")
 
-      b-table-column(:label="actionLocaleText('admin', 'options')"
-                     width="50")
+      b-table-column(:label="actionLocaleText('admin', 'options')")
+        new-sub-category-button(:parent="props.row"
+                                @product-category-added="categoryAddedHandler")
+        | &nbsp;
         edit-button(:category="props.row")
 
     template(slot="detail"
@@ -46,12 +48,14 @@
 <script>
 import EditButton from './edit-button'
 import SubCategoriesTable from './sub-categories-table'
+import NewSubCategoryButton from './new-sub-category-button'
 import backendPaginateFilterSortAndSearchableMixin from '../../components/mixins/backend_paginate_filter_sort_and_searchable_mixin'
 
 export default {
   components: {
     EditButton,
-    SubCategoriesTable
+    SubCategoriesTable,
+    NewSubCategoryButton
   },
 
   mixins: [backendPaginateFilterSortAndSearchableMixin],
@@ -94,6 +98,10 @@ export default {
       } else {
         return ''
       }
+    },
+
+    categoryAddedHandler() {
+      this.$emit('product-category-added')
     }
   }
 }
