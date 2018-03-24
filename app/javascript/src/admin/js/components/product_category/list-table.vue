@@ -78,22 +78,14 @@ export default {
     // 最上層的 ProductCategory
     rootCategories() {
       return this.categories.filter(element => Object.keys(element.parent).length === 0)
-    },
-
-    secondLevelCategories() {
-      return this.findNextLevelCategoriesFor(this.rootCategories)
-    },
-
-    thirdLevelCategories() {
-      return this.findNextLevelCategoriesFor(this.secondLevelCategories)
     }
   },
 
-  // created() {},
-
-  mounted() {
+  created() {
     this.fetchingInitialData()
   },
+
+  // mounted() {},
 
   methods: {
     hasSubCategories(parent) {
