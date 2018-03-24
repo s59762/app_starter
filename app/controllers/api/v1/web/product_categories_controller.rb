@@ -1,9 +1,8 @@
 class Api::V1::Web::ProductCategoriesController < Api::V1::Web::BaseController
   def index
-    @categories = FetchingDataService.call(ProductCategory.top_level_only, params)
+    @categories = FetchingDataService.call(ProductCategory, params).includes(:parent, :sub_categories)
 
     render json: @categories,
-           include: ['sub_categories', 'sub_categories.sub_categories'],
            show_sub_categories: true
   end
 
@@ -14,7 +13,8 @@ class Api::V1::Web::ProductCategoriesController < Api::V1::Web::BaseController
 
     form.save
 
-    render json: form.model
+    render json: form.model,
+           show_sub_categories: true
   end
 
   def update
@@ -24,7 +24,8 @@ class Api::V1::Web::ProductCategoriesController < Api::V1::Web::BaseController
 
     form.save
 
-    render json: form.model
+    render json: form.model,
+           show_sub_categories: true
   end
 
   private

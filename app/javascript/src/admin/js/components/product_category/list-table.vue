@@ -9,7 +9,8 @@
           @sort="onSort"
           :total="totalCount"
           :loading="isLoading"
-          :hoverable="true")
+          :hoverable="true"
+          detailed)
 
     template(slot-scope="props")
 
@@ -26,6 +27,12 @@
         | {{props.row.name}}
 
       b-table-column(:label="actionLocaleText('admin', 'options')")
+        edit-button(:category="props.row")
+
+    template(slot="detail"
+             slot-scope="props")
+      //- TODO: show sub categories
+      .temp Sub Categories here
 
     template(slot='empty')
       section.section
@@ -38,10 +45,13 @@
 </template>
 
 <script>
+import EditButton from './edit-button'
 import backendPaginateFilterSortAndSearchableMixin from '../../components/mixins/backend_paginate_filter_sort_and_searchable_mixin'
 
 export default {
-  // components: {},
+  components: {
+    EditButton
+  },
 
   mixins: [backendPaginateFilterSortAndSearchableMixin],
 

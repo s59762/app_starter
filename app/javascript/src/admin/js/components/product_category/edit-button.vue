@@ -1,27 +1,27 @@
 <template lang="pug">
 
-span
-  .button.is-small.is-info(@click="openEditForm")
+span.product-category-edit-button
+  .button.is-small.is-info(@click="openForm")
     span.icon
       i.fa.fa-pencil
     span {{actionLocaleText('admin', 'edit')}}
-  b-modal(:active.sync="isEditAdminFormActive")
-    edit-admin-form.form-modal(:admin="admin")
+  b-modal(:active.sync="isFormActive")
+    edit-form.form-modal(:category="category")
 
 </template>
 
 <script>
-import EditAdminForm from '../../components/admin/edit-form'
+import EditForm from './edit-form'
 
 export default {
   components: {
-    EditAdminForm
+    EditForm
   },
 
   // mixins: [],
 
   props: {
-    admin: {
+    category: {
       type: Object,
       required: true
     }
@@ -29,7 +29,7 @@ export default {
 
   data() {
     return {
-      isEditAdminFormActive: false
+      isFormActive: false
     }
   },
 
@@ -40,8 +40,8 @@ export default {
   // mounted() {},
 
   methods: {
-    openEditForm() {
-      this.isEditAdminFormActive = true
+    openForm() {
+      this.isFormActive = true
     }
   }
 }
