@@ -10,8 +10,10 @@ zh-TW:
       product_category:
         name: 分類名稱
         description: 敘述
-        parent: 父類別
-        sub_categories: 子類別
+        parent: 父分類
+        has_sub_categories: 擁有子分類
+        sub_categories: 子分類
+        sub_category_name: 子分類名稱
 
     errors:
       models:

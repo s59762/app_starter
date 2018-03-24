@@ -2,7 +2,6 @@
 
 .product-category-list-table
   b-table(:data="rootCategories"
-          paginated
           backend-sorting
           :default-sort="sortField"
           :default-sort-direction="sortOrder"
@@ -10,29 +9,29 @@
           :total="totalCount"
           :loading="isLoading"
           :hoverable="true"
-          detailed)
+          detailed
+          detail-key="id")
 
     template(slot-scope="props")
-
-      b-table-column(field="id"
-                    label="ID"
-                    sortable
-                    numbric
-                    width="50")
-        | {{props.row.id}}
 
       b-table-column(field="name"
                     :label="attributeLocaleText('product_category', 'name')"
                     sortable)
         | {{props.row.name}}
 
-      b-table-column(:label="actionLocaleText('admin', 'options')")
+      b-table-column(field="name"
+                     :label="attributeLocaleText('product_category', 'has_sub_categories')"
+                     centered)
+        i.sub-categories-indicator.fa(:class="hasSubCategories(props.row)")
+
+      b-table-column(:label="actionLocaleText('admin', 'options')"
+                     width="50")
         edit-button(:category="props.row")
 
     template(slot="detail"
              slot-scope="props")
-      //- TODO: show sub categories
-      .temp Sub Categories here
+
+      sub-categories-table(:parent="props.row")
 
     template(slot='empty')
       section.section
@@ -46,11 +45,13 @@
 
 <script>
 import EditButton from './edit-button'
+import SubCategoriesTable from './sub-categories-table'
 import backendPaginateFilterSortAndSearchableMixin from '../../components/mixins/backend_paginate_filter_sort_and_searchable_mixin'
 
 export default {
   components: {
-    EditButton
+    EditButton,
+    SubCategoriesTable
   },
 
   mixins: [backendPaginateFilterSortAndSearchableMixin],
@@ -95,21 +96,12 @@ export default {
   },
 
   methods: {
-    findNextLevelCategoriesFor(parents) {
-      let nextLevelCategoriesID = []
-      let result = []
-
-      parents.forEach(parent => {
-        parent.sub_categories.forEach(element => {
-          nextLevelCategoriesID.push(element.id)
-        })
-      })
-
-      nextLevelCategoriesID.forEach(id => {
-        result.push(this.categories.find(element => element.id == id))
-      })
-
-      return result
+    hasSubCategories(parent) {
+      if (parent.sub_categories.length > 0) {
+        return 'fa-check-circle'
+      } else {
+        return ''
+      }
     }
   }
 }
