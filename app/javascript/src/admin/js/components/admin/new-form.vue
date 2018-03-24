@@ -105,7 +105,10 @@ export default {
   methods: {
     submitForm() {
       this.form.dispatch('admins/addResource', this.requestBody).then(() => {
-        this.form.addFlashMessage(['success', this.messageLocaleText('admin_added_successfully')])
+        this.form.addFlashMessage([
+          'success',
+          this.messageLocaleText('resource_added_successfully', { resource: this.modelNameLocaleText('admin') })
+        ])
         this.$parent.close()
         this.$emit('admin-added')
       })

@@ -132,7 +132,10 @@ export default {
   methods: {
     updateMetaTags() {
       this.form.dispatch('siteConfigs/updateMetaTags', this.metaTagsRequestBody).then(() => {
-        this.form.addFlashMessage(['success', this.messageLocaleText('system_config_updated_successfully')])
+        this.form.addFlashMessage([
+          'success',
+          this.messageLocaleText('resource_updated_successfully', { resource: this.modelNameLocaleText('site_config') })
+        ])
       })
     }
   }
