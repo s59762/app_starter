@@ -1,6 +1,39 @@
 <template lang="pug">
 
 .product-category-list-table
+  b-table(:data="rootCategories"
+          paginated
+          backend-sorting
+          :default-sort="sortField"
+          :default-sort-direction="sortOrder"
+          @sort="onSort"
+          :total="totalCount"
+          :loading="isLoading"
+          :hoverable="true")
+
+    template(slot-scope="props")
+
+      b-table-column(field="id"
+                    label="ID"
+                    sortable
+                    numbric
+                    width="50")
+        | {{props.row.id}}
+
+      b-table-column(field="name"
+                    :label="attributeLocaleText('product_category', 'name')"
+                    sortable)
+        | {{props.row.name}}
+
+      b-table-column(:label="actionLocaleText('admin', 'options')")
+
+    template(slot='empty')
+      section.section
+        .content.has-text-grey.has-text-centered
+          p
+            b-icon(icon='times'
+                  size='is-large')
+          p {{messageLocaleText('there_is_no_data_for_now')}}
 
 </template>
 
@@ -20,6 +53,8 @@ export default {
       currentUrlPath: '/admin/product_categories',
       currentPage: null,
       pageSize: null,
+      sortOrder: 'asc',
+      sortField: 'id',
       availableFilters: ['']
     }
   },

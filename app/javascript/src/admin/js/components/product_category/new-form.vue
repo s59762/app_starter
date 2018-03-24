@@ -85,6 +85,7 @@ export default {
           })
         ])
         this.$parent.close()
+        this.$emit('product-category-added')
       })
     }
   }

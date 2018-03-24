@@ -13,8 +13,16 @@ export default {
   // props: {},
 
   data() {
-    return {}
-  }
+    return {
+      resourceType: 'productCategories',
+      currentUrlPath: '/admin/product_categories',
+      currentPage: null,
+      pageSize: null,
+      sortOrder: 'asc',
+      sortField: 'id',
+      availableFilters: ['']
+    }
+  },
 
   // computed: {},
 
@@ -22,5 +30,11 @@ export default {
 
   // mounted() {},
 
-  // methods: {}
+  methods: {
+    categoryAddedHandler() {
+      const options = this.checkCurrentQueryStringOptionsFromURL()
+
+      this.fetchData(options)
+    }
+  }
 }

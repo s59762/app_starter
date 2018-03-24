@@ -1,6 +1,6 @@
 class Api::V1::Web::ProductCategoriesController < Api::V1::Web::BaseController
   def index
-    @categories = ProductCategory.top_level_only
+    @categories = FetchingDataService.call(ProductCategory.top_level_only, params)
 
     render json: @categories,
            include: ['sub_categories', 'sub_categories.sub_categories'],

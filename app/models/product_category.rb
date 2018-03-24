@@ -11,6 +11,15 @@
 #
 
 class ProductCategory < ApplicationRecord
+  FILTERABLE_FIELDS = %w[
+    all
+  ].freeze
+  SORTABLE_FIELDS = %w[
+    id
+    name
+    created_at
+  ].freeze
+
   belongs_to :parent, class_name: 'ProductCategory', optional: true
   has_many :sub_categories, class_name: 'ProductCategory', foreign_key: 'parent_id', dependent: :destroy
 

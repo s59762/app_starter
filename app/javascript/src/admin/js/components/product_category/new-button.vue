@@ -6,7 +6,7 @@ span.product-category-new-button
       i.fa.fa-plus
     span {{actionLocaleText('admin', 'create', {model: modelNameLocaleText('product_category')})}}
   b-modal(:active.sync="isFormActive")
-    new-product-category-form
+    new-product-category-form(@product-category-added="categoryAddedHandler")
 
 
 </template>
@@ -38,6 +38,10 @@ export default {
   methods: {
     openForm() {
       this.isFormActive = true
+    },
+
+    categoryAddedHandler() {
+      this.$emit('product-category-added')
     }
   }
 }
