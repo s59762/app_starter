@@ -70,7 +70,9 @@ html
     border-bottom: 1px solid #ddd
   .box-tools
     padding: .5rem 0
-    float: right
+    +clearfix
+    > .tools
+      float: right
 
 .form-container-box
   +clearfix

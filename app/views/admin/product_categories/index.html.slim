@@ -1,0 +1,12 @@
+- breadcrumb :admin_product_categories
+
+= cell('admin/common').call(:content_header)
+
+.box.content-box.is-primary(data-vue="product_category_list_container")
+  .box-header.with-border
+  .box-tools
+    .tools
+      new-product-category-button(@product-category-added="categoryAddedHandler")
+  .box-body
+    product-category-list-table(@product-category-added="categoryAddedHandler")
+

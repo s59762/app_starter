@@ -28,7 +28,7 @@ export default {
     },
 
     reloadAdminListTable() {
-      let options = this.checkCurrentQueryStringOptionsFromURL()
+      const options = this.checkCurrentQueryStringOptionsFromURL()
 
       this.fetchData(options)
     }

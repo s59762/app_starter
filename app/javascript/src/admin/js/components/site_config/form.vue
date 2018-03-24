@@ -46,9 +46,8 @@
             b-input(type="textarea"
                     placeholder="e.g. Jone Doe"
                     v-model="form.description"
-                    @input="form.errors.clear('description')"
-                    has-counter)
-          p.help 建議不超過 140 字
+                    @input="form.errors.clear('description')")
+          p.help {{messageLocaleText('help.site_config_meta_description_should_not_over_140_words')}}
           br
           b-field(:label="attributeLocaleText('site_config', 'keywords')"
                   :type="form.errorClassAt('keywords')"
@@ -57,7 +56,7 @@
                     placeholder="e.g. Jone Doe"
                     v-model="form.keywords"
                     @input="form.errors.clear('keywords')")
-          p.help 請以半形逗點分開，建議不超過 3 個
+          p.help {{messageLocaleText('help.site_config_meta_keywords_please_seprate_with_comma')}}
 
     .is-pulled-right
       .button.is-primary(@click="updateMetaTags") {{actionLocaleText('admin', 'update_config')}}
@@ -133,7 +132,10 @@ export default {
   methods: {
     updateMetaTags() {
       this.form.dispatch('siteConfigs/updateMetaTags', this.metaTagsRequestBody).then(() => {
-        this.form.addFlashMessage(['success', this.messageLocaleText('system_config_updated_successfully')])
+        this.form.addFlashMessage([
+          'success',
+          this.messageLocaleText('resource_updated_successfully', { resource: this.modelNameLocaleText('site_config') })
+        ])
       })
     }
   }

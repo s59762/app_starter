@@ -1,7 +1,7 @@
 <template lang="pug">
 
 span
-  .button.is-small.is-success(@click="openEditForm")
+  .button.is-small.is-info(@click="openEditForm")
     span.icon
       i.fa.fa-pencil
     span {{actionLocaleText('admin', 'edit')}}

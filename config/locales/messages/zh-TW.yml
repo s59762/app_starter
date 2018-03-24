@@ -2,28 +2,31 @@
 zh-TW:
   messages:
     confirmations:
-      please_confirm_your_operation_first: 請先確認您要進行的動作
       are_you_sure_want_to_continue: 確定要繼續嗎？
+      are_you_sure_want_to_delete_for: 您確定要刪除%{model}嗎？
+      please_confirm_your_operation_first: 請先確認您要進行的動作
+      this_action_can_not_retrieve: 這個動作將無法復原
       you_will_suspend_this_admin: 您將會將此管理員停權，暫停帳號的功能。
       you_will_unsuspend_this_admin: 您將會將此管理員復權，恢復帳號的功能。
-      this_action_can_not_retrieve: 這個動作將無法復原
-      are_you_sure_want_to_delete_for: 您確定要刪除%{model}嗎？
-    failure:
-      validation_failure: 請您檢查表單後再試一次
-      token_authenticate_failure: 身份認證失敗，請嘗試重新登入
-      token_expired: 憑證已過期
-      parameters_failure: 您提供的參數不符合規範
-      policy_validate_failure: 您的帳號並不能執行這個動作
     error:
       jwt_token_been_modified: 您的身份憑證可能遭到竄改，請重新登入取得正確的憑證。
+    failure:
+      parameters_failure: 您提供的參數不符合規範
+      policy_validate_failure: 您的帳號並不能執行這個動作
+      token_authenticate_failure: 身份認證失敗，請嘗試重新登入
+      token_expired: 憑證已過期
+      validation_failure: 請您檢查表單後再試一次
     help:
       if_do_not_want_to_change_password_leave_empty: 若不變更密碼請留空
       please_re_enter_password_for_confirmation: 請再輸入一次密碼做為確認
       leave_empty_for_default_password: 不設定密碼將會使用預設密碼 `qwerasdf`
-    server_side_500_error: 抱歉，伺服器發生問題，請稍後再試
-    admin_added_successfully: 已新增管理員
+      site_config_meta_description_should_not_over_140_words: Google 建議不超過 140 字
+      site_config_meta_keywords_please_seprate_with_comma: 請以半形逗點分開，Google 建議不超過 3 個
     admin_is_suspended: 管理員 %{name} 已停權
     admin_is_unsuspended: 管理員 %{name} 已復權
-    admin_updated_successfully: 管理員資料已更新
+    resource_added_successfully: '%{resource}已成功新增'
+    resource_updated_successfully: '%{resource}已成功更新'
+    server_side_500_error: 抱歉，伺服器發生問題，請稍後再試
     there_is_no_data_for_now: 目前沒有資料
-    system_config_updated_successfully: 系統設定已成功更新
+    there_is_no_sub_categories_for_now: 目前沒有子分類
+    this_column_is_optional: 此欄位為選填

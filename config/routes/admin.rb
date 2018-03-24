@@ -16,6 +16,9 @@ namespace :admin do
   # user management
   resources :users, only: %i[index show]
 
+  # product category management
+  resources :product_categories, only: %i[index]
+
   # system config
   resource :system_config, only: %i[show], controller: 'system_config'
 end

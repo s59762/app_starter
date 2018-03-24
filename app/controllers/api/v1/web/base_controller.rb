@@ -10,7 +10,7 @@ class Api::V1::Web::BaseController < Api::ApiController
         reverse: ::SiteConfig['meta_tags.reverse'],
         separator: ::SiteConfig['meta_tags.separator'],
         description: ::SiteConfig['meta_tags.description'],
-        keywords: ::SiteConfig['meta_tags.keywords'],
+        keywords: ::SiteConfig['meta_tags.keywords']
       }
     }
   end
