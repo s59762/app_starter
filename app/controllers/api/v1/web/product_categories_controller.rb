@@ -3,7 +3,8 @@ class Api::V1::Web::ProductCategoriesController < Api::V1::Web::BaseController
     @categories = ProductCategory.top_level_only
 
     render json: @categories,
-           include: ['sub_categories', 'sub_categories.sub_categories']
+           include: ['sub_categories', 'sub_categories.sub_categories'],
+           show_sub_categories: true
   end
 
   def create

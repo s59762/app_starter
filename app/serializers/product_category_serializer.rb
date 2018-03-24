@@ -15,5 +15,5 @@ class ProductCategorySerializer < ApplicationSerializer
              :description
 
   belongs_to :parent, class_name: 'ProductCategory', optional: true
-  has_many :sub_categories, class_name: 'ProductCategory', foreign_key: 'parent_id'
+  has_many :sub_categories, class_name: 'ProductCategory', foreign_key: 'parent_id', if: -> { instance_options[:show_sub_categories] }
 end
