@@ -90,7 +90,7 @@ export default {
         .then(() => {
           this.form.dispatch('addFlashMessage', [
             'success',
-            this.messageLocaleText('resource_added_successfully', {
+            this.messageLocaleText('resource_updated_successfully', {
               resource: this.modelNameLocaleText('product_category')
             })
           ])
