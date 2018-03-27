@@ -298,7 +298,7 @@ export default {
       let options = this.checkCurrentQueryStringOptionsFromURL()
 
       this.fetchData(options)
-      this.updateQueryString(options)
+      // this.updateQueryString(options) // remove this can make [onpopstate] work correctlly with turbolinks, do not know why...
 
       // TODO: onpopstate 時沒有把 sort 狀態更新到 table 上，需要再檢查。
       window.onpopstate = event => {

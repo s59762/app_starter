@@ -49,7 +49,8 @@ export const toggleSidebar = ({ commit }, option) => {
 export const updateQueryString = ({ commit }, { options, newQueryString }) => {
   let title = document.title
 
-  window.history.pushState(options, title, newQueryString)
+  // using `turbolinks: true` option can make onpopstate work correctlly.
+  window.history.pushState(Object.assign(options, { turbolinks: true }), title, newQueryString)
   commit(types.UPDATE_QUERY_STRING)
 }
 
