@@ -34,6 +34,7 @@ ActiveRecord::Migration.maintain_test_schema!
 RSpec.configure do |config|
   config.before(:suite) do
     DatabaseCleaner.clean_with(:deletion)
+    Webpacker.compile
   end
   config.before(:each) do
     DatabaseCleaner.strategy = :transaction
@@ -64,7 +65,11 @@ RSpec.configure do |config|
     end
   end
 
-  Capybara.javascript_driver = :webkit
+  Capybara.register_driver :selenium do |app|
+    Capybara::Selenium::Driver.new(app)
+  end
+  Capybara.current_driver = :selenium
+  Capybara.run_server = true
 
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
