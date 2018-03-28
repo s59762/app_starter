@@ -30,19 +30,19 @@ div
       b-tab-item(label="已停權"
                  icon="ban")
 
-  b-table(:data="admins"
-          paginated
-          backend-pagination
-          :currentPage="currentPage"
-          :perPage="pageSize"
-          @page-change="onPageChange"
-          backend-sorting
-          :default-sort="sortField"
-          :default-sort-direction="sortOrder"
-          @sort="onSort"
-          :total="totalCount"
-          :loading="isLoading"
-          :hoverable="true")
+  b-table#admin-list(:data="admins"
+                     paginated
+                     backend-pagination
+                     :currentPage="currentPage"
+                     :perPage="pageSize"
+                     @page-change="onPageChange"
+                     backend-sorting
+                     :default-sort="sortField"
+                     :default-sort-direction="sortOrder"
+                     @sort="onSort"
+                     :total="totalCount"
+                     :loading="isLoading"
+                     :hoverable="true")
 
     template(slot-scope="props")
 

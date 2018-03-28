@@ -6,7 +6,7 @@
   .box-header.with-border
     .box-tools
       .tools
-        .button.is-small.is-primary(@click="showNewAdminForm") ＋新增成員
+        #new-admin-button.button.is-small.is-primary(@click="showNewAdminForm") ＋新增成員
         b-modal(:active.sync="isNewAdminFormActive")
           new-admin-form.form-modal(@admin-added="reloadAdminListTable")
   .box-body

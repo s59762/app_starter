@@ -40,7 +40,7 @@ RSpec.configure do |config|
     DatabaseCleaner.strategy = :transaction
   end
   config.before(:each, js: true) do
-    DatabaseCleaner.strategy = :deletion
+    DatabaseCleaner.strategy = :truncation
   end
   config.before(:each) do
     DatabaseCleaner.start
@@ -65,11 +65,13 @@ RSpec.configure do |config|
     end
   end
 
-  Capybara.register_driver :selenium do |app|
-    Capybara::Selenium::Driver.new(app)
-  end
+  # Capybara.register_driver :selenium do |app|
+  #   Capybara::Selenium::Driver.new(app)
+  # end
+  Capybara.javascript_driver = :selenium
   Capybara.current_driver = :selenium
-  Capybara.run_server = true
+  config.include Capybara::DSL
+  # Capybara.run_server = true
 
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"

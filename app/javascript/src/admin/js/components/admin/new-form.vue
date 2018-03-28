@@ -6,41 +6,41 @@
   b-field(:label="attributeLocaleText('admin', 'email')"
           :type="form.errorClassAt('email')"
           :message="form.errors.get('email')")
-    b-input(type="text"
-            placeholder="e.g. name@example.com"
-            v-model="form.email"
-            @input="form.errors.clear('email')")
+    b-input#admin-email(type="text"
+                        placeholder="e.g. name@example.com"
+                        v-model="form.email"
+                        @input="form.errors.clear('email')")
 
   b-field(:label="attributeLocaleText('admin', 'password')"
           :type="form.errorClassAt('password')"
           :message="form.errors.get('password')")
-    b-input(type="password"
-            :placeholder="messageLocaleText('help.leave_empty_for_default_password')"
-            v-model="form.password"
-            @input="form.errors.clear('password')")
+    b-input#admin-password(type="password"
+                           :placeholder="messageLocaleText('help.leave_empty_for_default_password')"
+                           v-model="form.password"
+                           @input="form.errors.clear('password')")
   b-field(:label="attributeLocaleText('admin', 'password_confirmation')"
           :type="form.errorClassAt('password_confirmation')"
           :message="form.errors.get('password_confirmation')")
-    b-input(type="password"
-            :placeholder="messageLocaleText('help.please_re_enter_password_for_confirmation')"
-            v-model="form.password_confirmation"
-            @input="form.errors.clear('password_confirmation')")
+    b-input#admin-password-confirmation(type="password"
+                                        :placeholder="messageLocaleText('help.please_re_enter_password_for_confirmation')"
+                                        v-model="form.password_confirmation"
+                                        @input="form.errors.clear('password_confirmation')")
 
   b-field(:label="attributeLocaleText('admin', 'name')"
           :type="form.errorClassAt('name')"
           :message="form.errors.get('name')")
-    b-input(type="text"
-            placeholder="e.g. Jone Doe"
-            v-model="form.name"
-            @input="form.errors.clear('name')")
+    b-input#admin-name(type="text"
+                       placeholder="e.g. Jone Doe"
+                       v-model="form.name"
+                       @input="form.errors.clear('name')")
 
   b-field(:label="attributeLocaleText('admin', 'role')"
           :type="form.errorClassAt('role')"
           :message="form.errors.get('role')")
-    b-select(v-model="form.role"
-             :loading="isLoading"
-             @input="form.errors.clear('role')"
-             expanded)
+    b-select#admin-role(v-model="form.role"
+                        :loading="isLoading"
+                        @input="form.errors.clear('role')"
+                        expanded)
       option(v-for="role in availableRoles"
              :value="role")
         | {{enumLocaleText('admin', 'role', role)}}
@@ -48,7 +48,7 @@
   br
 
   .is-pulled-right
-    .button.is-primary(@click="submitForm") {{actionLocaleText('admin', 'submit')}}
+    button#admin-submit.button.is-primary(@click="submitForm") {{actionLocaleText('admin', 'submit')}}
 
 </template>
 
