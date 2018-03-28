@@ -16,20 +16,20 @@ RSpec.feature "Admin::UsersManagement", type: :feature do
     end
 
     it '可以透過完整 Email 搜尋找到特定使用者' do
-      find('#search-user-panel').click
+      find('[data-behavior="search-user-panel"]').click
 
-      fill_in 'search-by-user-email', with: user_2.email
-      click_button 'search-button'
+      find('[data-behavior="search-by-user-email-field"]').set user_2.email
+      find('[data-behavior="search-button"]').click
 
       expect(page).to have_content(user_2.email)
       expect(page).to have_no_content(user_1.email)
     end
 
     it '可以透過 Email 模糊搜尋找到特定使用者' do
-      find('#search-user-panel').click
+      find('[data-behavior="search-user-panel"]').click
 
-      fill_in 'search-by-user-email', with: user_1.email.split('@').first
-      click_button 'search-button'
+      find('[data-behavior="search-by-user-email-field"]').set user_1.email.split('@').first
+      find('[data-behavior="search-button"]').click
 
       expect(page).to have_content(user_1.email)
       expect(page).to have_no_content(user_2.email)

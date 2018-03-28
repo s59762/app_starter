@@ -33,10 +33,8 @@ RSpec.feature "Admin::AdminsManagement", type: :feature do
 
   describe '編輯成員', js: true do
     it '可以透過編輯按鈕修改成員資料' do
-      sleep 1
-
-      admin_row = all('[data-behavior="admin-list"] tbody tr')[1]
-      admin_row.find('[data-behavior="edit-button"]').click
+      find('[data-behavior="admin-list"] tbody tr', match: :first)
+      all('[data-behavior="admin-list"] tbody tr')[1].find('[data-behavior="edit-button"]').click
 
       find('[data-behavior="admin-name"]').set '編輯過了'
 

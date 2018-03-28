@@ -2,24 +2,29 @@
 
 div
   b-collapse.panel(:open.sync="isSearchOptionsOpen")
-    .panel-heading#search-user-panel(slot="trigger") {{actionLocaleText('admin', 'search_for', { model_name: modelNameLocaleText('user') })}}
+    .panel-heading(slot="trigger"
+                   data-behavior="search-user-panel") {{actionLocaleText('admin', 'search_for', { model_name: modelNameLocaleText('user') })}}
     .panel-block
       .column.is-5
         b-field
-          b-input#search-by-user-email(type="text"
-                                       v-model="searchOptions.email_cont"
-                                       :placeholder="actionLocaleText('admin', 'search_by', { attribute_name: attributeLocaleText('user', 'email') })"
-                                       icon="envelope")
+          b-input(type="text"
+                  v-model="searchOptions.email_cont"
+                  :placeholder="actionLocaleText('admin', 'search_by', { attribute_name: attributeLocaleText('user', 'email') })"
+                  icon="envelope"
+                  data-behavior="search-by-user-email-field")
       .column.is-5
         b-field
-          b-input#search-by-user-name(type="text"
-                                      v-model="searchOptions.name_cont"
-                                      :placeholder="actionLocaleText('admin', 'search_by', { attribute_name: attributeLocaleText('user', 'name') })"
-                                      icon="user")
+          b-input(type="text"
+                  v-model="searchOptions.name_cont"
+                  :placeholder="actionLocaleText('admin', 'search_by', { attribute_name: attributeLocaleText('user', 'name') })"
+                  icon="user"
+                  data-behavior="search-by-user-name-field")
       .column.is-1
-        button#reset-button.button.is-default.is-block(@click="resetSearchOptions") {{actionLocaleText('admin', 'reset_search')}}
+        button.button.is-default.is-block(@click="resetSearchOptions"
+                                          data-behavior="reset-search") {{actionLocaleText('admin', 'reset_search')}}
       .column.is-1
-        button#search-button.button.is-primary.is-block(@click="onSearchHandler") {{actionLocaleText('admin', 'search')}}
+        button.button.is-primary.is-block(@click="onSearchHandler"
+                                          data-behavior="search-button") {{actionLocaleText('admin', 'search')}}
 
   b-table(:data="users"
           paginated
