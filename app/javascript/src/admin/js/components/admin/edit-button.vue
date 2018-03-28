@@ -1,7 +1,8 @@
 <template lang="pug">
 
 span
-  .button.is-small.is-info(@click="openEditForm")
+  button.button.is-small.is-info(@click="openEditForm"
+                                 data-behavior="edit-button")
     span.icon
       i.fa.fa-pencil
     span {{actionLocaleText('admin', 'edit')}}
