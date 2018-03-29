@@ -9,6 +9,7 @@
     b-input(type="text"
             placeholder="e.g. 居家用品"
             v-model="form.name"
+            data-behavior="product-category-name-field"
             @input="form.errors.clear('name')")
 
   b-field(:label="attributeLocaleText('product_category', 'description')"
@@ -17,6 +18,7 @@
     b-input(type="textarea"
             :placeholder="messageLocaleText('this_column_is_optional')"
             v-model="form.description"
+            data-behavior="product-category-description-field"
             @input="form.errors.clear('description')")
 
 
@@ -25,6 +27,7 @@
 
   .is-pulled-right
     .button.is-primary(@click="submitForm"
+                       data-behavior="submit-button"
                        :class="isLoadingClass") {{actionLocaleText('admin', 'submit')}}
 
 </template>

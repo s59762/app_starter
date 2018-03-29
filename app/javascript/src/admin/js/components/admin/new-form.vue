@@ -9,6 +9,7 @@
     b-input(type="text"
             placeholder="e.g. name@example.com"
             v-model="form.email"
+            data-behavior="admin-email"
             @input="form.errors.clear('email')")
 
   b-field(:label="attributeLocaleText('admin', 'password')"
@@ -17,6 +18,7 @@
     b-input(type="password"
             :placeholder="messageLocaleText('help.leave_empty_for_default_password')"
             v-model="form.password"
+            data-behavior="admin-password"
             @input="form.errors.clear('password')")
   b-field(:label="attributeLocaleText('admin', 'password_confirmation')"
           :type="form.errorClassAt('password_confirmation')"
@@ -24,6 +26,7 @@
     b-input(type="password"
             :placeholder="messageLocaleText('help.please_re_enter_password_for_confirmation')"
             v-model="form.password_confirmation"
+            data-behavior="admin-password-confirmation"
             @input="form.errors.clear('password_confirmation')")
 
   b-field(:label="attributeLocaleText('admin', 'name')"
@@ -32,6 +35,7 @@
     b-input(type="text"
             placeholder="e.g. Jone Doe"
             v-model="form.name"
+            data-behavior="admin-name"
             @input="form.errors.clear('name')")
 
   b-field(:label="attributeLocaleText('admin', 'role')"
@@ -39,6 +43,7 @@
           :message="form.errors.get('role')")
     b-select(v-model="form.role"
              :loading="isLoading"
+             data-behavior="admin-role"
              @input="form.errors.clear('role')"
              expanded)
       option(v-for="role in availableRoles"
@@ -48,7 +53,8 @@
   br
 
   .is-pulled-right
-    .button.is-primary(@click="submitForm") {{actionLocaleText('admin', 'submit')}}
+    button.button.is-primary(@click="submitForm"
+                             data-behavior="submit-button") {{actionLocaleText('admin', 'submit')}}
 
 </template>
 

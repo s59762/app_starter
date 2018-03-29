@@ -34,12 +34,13 @@ ActiveRecord::Migration.maintain_test_schema!
 RSpec.configure do |config|
   config.before(:suite) do
     DatabaseCleaner.clean_with(:deletion)
+    Webpacker.compile
   end
   config.before(:each) do
     DatabaseCleaner.strategy = :transaction
   end
   config.before(:each, js: true) do
-    DatabaseCleaner.strategy = :deletion
+    DatabaseCleaner.strategy = :truncation
   end
   config.before(:each) do
     DatabaseCleaner.start
@@ -52,6 +53,7 @@ RSpec.configure do |config|
     c.cassette_library_dir = 'spec/vcr'
     c.hook_into :webmock
     c.allow_http_connections_when_no_cassette = true
+    c.ignore_localhost = true
   end
 
   Shoulda::Matchers.configure do |config|
@@ -64,7 +66,13 @@ RSpec.configure do |config|
     end
   end
 
-  Capybara.javascript_driver = :webkit
+  # Capybara.register_driver :selenium do |app|
+  #   Capybara::Selenium::Driver.new(app)
+  # end
+  Capybara.javascript_driver = :selenium
+  Capybara.current_driver = :selenium
+  config.include Capybara::DSL
+  # Capybara.run_server = true
 
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"

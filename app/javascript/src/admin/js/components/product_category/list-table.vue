@@ -10,7 +10,8 @@
           :loading="isLoading"
           :hoverable="true"
           detailed
-          detail-key="id")
+          detail-key="id"
+          data-behavior="product-category-list")
 
     template(slot-scope="props")
 

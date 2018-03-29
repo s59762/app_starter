@@ -1,7 +1,8 @@
 <template lang="pug">
 
 span.product-category-new-button
-  .button.is-small.is-primary(@click="openForm")
+  .button.is-small.is-primary(@click="openForm"
+                              data-behavior="new-product-category-button")
     span.icon
       i.fa.fa-plus
     span {{actionLocaleText('admin', 'create', {model: modelNameLocaleText('product_category')})}}

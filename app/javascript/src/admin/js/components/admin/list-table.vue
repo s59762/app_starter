@@ -42,7 +42,8 @@ div
           @sort="onSort"
           :total="totalCount"
           :loading="isLoading"
-          :hoverable="true")
+          :hoverable="true"
+          data-behavior="admin-list")
 
     template(slot-scope="props")
 

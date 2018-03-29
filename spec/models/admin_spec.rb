@@ -24,5 +24,23 @@
 require 'rails_helper'
 
 RSpec.describe Admin, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe '#issue_jwt' do
+    let!(:admin) { create(:admin) }
+    let!(:expected_jwt_payload) do
+      {
+        sub: admin.id,
+        type: 'Admin',
+        role: admin.role,
+        ref: 'web'
+      }
+    end
+    subject(:issued_jwt_payload) { JsonWebToken.decode(admin.issue_jwt).with_indifferent_access }
+
+    it '要能發行供 web frontend client 使用的 JWT' do
+      expect(subject[:sub]).to eq expected_jwt_payload[:sub]
+      expect(subject[:type]).to eq expected_jwt_payload[:type]
+      expect(subject[:role]).to eq expected_jwt_payload[:role]
+      expect(subject[:ref]).to eq expected_jwt_payload[:ref]
+    end
+  end
 end
