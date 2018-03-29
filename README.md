@@ -4,24 +4,24 @@ This is a rails application starter-kit @odd.
 
 ## How to use
 
-1. clone this repo.
-2. `cp -r app_starter YOUR_PROJECT_NAME` and goto project path.
-3. exec `bin/setup` in terminal for setting up application.
-4. global search for `RENAME:`, change name for your project instead of `AppStarter` or `app_starter_`
-5. `bin/server` to start services.
-6. using `rails s` for development server.
+1.  clone this repo.
+2.  `cp -r app_starter YOUR_PROJECT_NAME` and goto project path.
+3.  exec `bin/setup` in terminal for setting up application.
+4.  global search for `RENAME:`, change name for your project instead of `AppStarter` or `app_starter_`
+5.  `bin/server` to start services.
+6.  using `rails s` for development server.
 
 After all, go to `http://localhost:3000` and start coding!
 
-### Suggestion
+### Requirement
 
-You can use [rails-dashboard](https://www.npmjs.com/package/rails-dashboard) for booting up rails server. But be careful rails server maybe shutdown randomlly after update application config or `Gemfile`.
+We using [overmind](https://github.com/DarthSim/overmind) instead of foreman for booting up services that defined in Procfile. Please check if `overmind` are installed in your system before using `bin/server` script.
 
 ### Warning!
 
 `bin/setup` should **ONLY** execute at very first time. This script will remove git history and re-init for project.
 
-## Extra functions
+## Extra features
 
 ### Remote pry
 
@@ -49,24 +49,4 @@ Visit `http://localhost:1080/` you will get a web mail interface, and all emails
 
 ### EspressoMartini
 
-This gem is build for generate general file templates in our daily development life.
-
-#### Generating locale files for Model
-
-`rails generate martini:locale:model [MODEL] [LANGUAGE]`
-
-example:
-
-`rails g martini:locale:model user zh-TW`
-
-This will generate a template file at path `app/config/locales/models/user/zh-TW.yml`.
-
-#### Generating locale files for Cell
-
-`rails generate martini:locale:cell [CELL] [LANGUAGE]`
-
-example:
-
-`rails g espresso:locale:cell user zh-TW`
-
-This will generate a template file at path `app/config/locales/cells/user/zh-TW.yml`
+This gem is build for generate general file templates in our daily development life. Repo [here](https://github.com/oracle-design/espresso_martini).

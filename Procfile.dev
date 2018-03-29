@@ -1,4 +1,5 @@
 docker: docker-compose up
-webpacker: ./bin/webpack-dev-server
+rails: rails s -p 3000
+assets: ./bin/webpack-dev-server
 guard: bundle exec guard
 yard: bundle exec yard server --reload

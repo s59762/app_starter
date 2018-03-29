@@ -87,9 +87,6 @@ group :development do
   # page proformence monitor
   gem 'rack-mini-profiler', require: false
 
-  # foreman for multi-process management
-  gem 'foreman'
-
   # generator for service objects, form objects, PORO, policy objects.
   gem 'pattern_generator' # FIXIT: we should fork this gem and update form template
 
