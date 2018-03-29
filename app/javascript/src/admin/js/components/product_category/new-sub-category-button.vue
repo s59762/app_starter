@@ -1,7 +1,8 @@
 <template lang="pug">
 
 span.product-category-new-sub-category-button
-  .button.is-small.is-primary(@click="openForm")
+  .button.is-small.is-primary(@click="openForm"
+                              data-behavior="new-sub-category-button")
     span.icon
       i.fa.fa-plus
     span {{actionLocaleText('admin', 'create', {model: attributeLocaleText('product_category', 'sub_categories')})}}

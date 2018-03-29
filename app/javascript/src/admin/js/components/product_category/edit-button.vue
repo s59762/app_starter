@@ -1,7 +1,8 @@
 <template lang="pug">
 
 span.product-category-edit-button
-  .button.is-small.is-info(@click="openForm")
+  .button.is-small.is-info(@click="openForm"
+                           data-behavior="edit-product-category-button")
     span.icon
       i.fa.fa-pencil
     span {{actionLocaleText('admin', 'edit')}}
