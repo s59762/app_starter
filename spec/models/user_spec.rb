@@ -20,5 +20,29 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe '#guest?' do
+    let!(:user) { create(:user) }
+
+    it '一個註冊使用者，其身份不會是「訪客」' do
+      expect(user.guest?).to be_falsey
+    end
+  end
+
+  describe '#issue_jwt' do
+    let!(:user) { create(:user) }
+    let!(:expected_jwt_payload) do
+      {
+        sub: user.id,
+        type: 'User',
+        ref: 'web'
+      }
+    end
+    subject(:issued_jwt_payload) { JsonWebToken.decode(user.issue_jwt).with_indifferent_access }
+
+    it '要能發行供 web frontend client 使用的 JWT' do
+      expect(subject[:sub]).to eq expected_jwt_payload[:sub]
+      expect(subject[:type]).to eq expected_jwt_payload[:type]
+      expect(subject[:ref]).to eq expected_jwt_payload[:ref]
+    end
+  end
 end
