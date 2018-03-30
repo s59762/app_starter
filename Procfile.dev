@@ -1,5 +1,7 @@
 docker: docker-compose up
-rails: rails s -p 3000
+web: rails s -p 3000
+sidekiq: bundle exec sidekiq -q default -q mailers
 assets: ./bin/webpack-dev-server
 guard: bundle exec guard
 yard: bundle exec yard server --reload
+bullet: tail -f log/bullet.log

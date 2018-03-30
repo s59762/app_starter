@@ -1,2 +1,2 @@
 #!/bin/bash -i
-overmind restart guard yard rails
+overmind restart guard yard web sidekiq
