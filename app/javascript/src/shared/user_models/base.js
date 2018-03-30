@@ -6,7 +6,7 @@
  */
 export default class UserModelBase {
   constructor(jwtPayload) {
-    this.id = jwtPayload.sub
+    this.id = jwtPayload.sub.toString()
     this.role = jwtPayload.role
     this.type = jwtPayload.type
     this.issuedAt = jwtPayload.iat
