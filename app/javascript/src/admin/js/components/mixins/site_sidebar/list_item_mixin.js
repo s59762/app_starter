@@ -10,9 +10,11 @@ export default {
     }
   },
 
-  // data() {
-  //   return {}
-  // },
+  data() {
+    return {
+      isHidden: false
+    }
+  },
 
   computed: {
     isActive() {
@@ -41,8 +43,9 @@ export default {
       const currentUser = this.$store.getters['currentUser']
       const validateResult = new policy(currentUser)[this.menu.action]()
 
-      if (!validateResult) {
-        this.$emit('menu-hidden')
+      if (!validateResult && !this.isHidden) {
+        this.isHidden = true
+        this.$emit('menu-hidden', this.menu)
       }
 
       return validateResult

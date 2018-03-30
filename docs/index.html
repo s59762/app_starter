@@ -64,25 +64,25 @@
 <h2>How to use</h2>
 
 <ol>
-<li>clone this repo.</li>
-<li><code>cp -r app_starter YOUR_PROJECT_NAME</code> and goto project path.</li>
-<li>exec <code>bin/setup</code> in terminal for setting up application.</li>
-<li>global search for <code>RENAME:</code>, change name for your project instead of <code>AppStarter</code> or <code>app_starter_</code></li>
-<li><code>bin/server</code> to start services.</li>
-<li>using <code>rails s</code> for development server.</li>
+<li> clone this repo.</li>
+<li> <code>cp -r app_starter YOUR_PROJECT_NAME</code> and goto project path.</li>
+<li> exec <code>bin/setup</code> in terminal for setting up application.</li>
+<li> global search for <code>RENAME:</code>, change name for your project instead of <code>AppStarter</code> or <code>app_starter_</code></li>
+<li> <code>bin/server</code> to start services.</li>
+<li> using <code>rails s</code> for development server.</li>
 </ol>
 
 <p>After all, go to <code>http://localhost:3000</code> and start coding!</p>
 
-<h3>Suggestion</h3>
+<h3>Requirement</h3>
 
-<p>You can use <a href="https://www.npmjs.com/package/rails-dashboard">rails-dashboard</a> for booting up rails server. But be careful rails server maybe shutdown randomlly after update application config or <code>Gemfile</code>.</p>
+<p>We using <a href="https://github.com/DarthSim/overmind">overmind</a> instead of foreman for booting up services that defined in Procfile. Please check if <code>overmind</code> are installed in your system before using <code>bin/server</code> script.</p>
 
 <h3>Warning!</h3>
 
 <p><code>bin/setup</code> should <strong>ONLY</strong> execute at very first time. This script will remove git history and re-init for project.</p>
 
-<h2>Extra functions</h2>
+<h2>Extra features</h2>
 
 <h3>Remote pry</h3>
 
@@ -112,27 +112,7 @@
 
 <h3>EspressoMartini</h3>
 
-<p>This gem is build for generate general file templates in our daily development life.</p>
-
-<h4>Generating locale files for Model</h4>
-
-<p><code>rails generate martini:locale:model [MODEL] [LANGUAGE]</code></p>
-
-<p>example:</p>
-
-<p><code>rails g martini:locale:model user zh-TW</code></p>
-
-<p>This will generate a template file at path <code>app/config/locales/models/user/zh-TW.yml</code>.</p>
-
-<h4>Generating locale files for Cell</h4>
-
-<p><code>rails generate martini:locale:cell [CELL] [LANGUAGE]</code></p>
-
-<p>example:</p>
-
-<p><code>rails g espresso:locale:cell user zh-TW</code></p>
-
-<p>This will generate a template file at path <code>app/config/locales/cells/user/zh-TW.yml</code></p>
+<p>This gem is build for generate general file templates in our daily development life. Repo <a href="https://github.com/oracle-design/espresso_martini">here</a>.</p>
 </div></div>
 
       
