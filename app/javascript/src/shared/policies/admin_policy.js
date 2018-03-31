@@ -1,8 +1,8 @@
 import PolicyBase from './policy_base'
 
 export default class AdminPolicy extends PolicyBase {
-  constructor(user) {
-    super(user)
+  constructor(user, record = null) {
+    super(user, record)
   }
 
   index() {

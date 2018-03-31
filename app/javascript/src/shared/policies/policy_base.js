@@ -5,7 +5,7 @@
  * @class PolicyBase
  */
 export default class PolicyBase {
-  constructor(user, record = null) {
+  constructor(user, record) {
     this.user = user
     this.record = record
   }
