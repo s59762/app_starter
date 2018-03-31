@@ -58,7 +58,8 @@ div
                     sortable)
         | {{timeAgoLocaleText(props.row.created_at)}}
 
-      b-table-column(:label="actionLocaleText('admin', 'options')")
+      b-table-column(:label="actionLocaleText('admin', 'options')"
+                     numeric)
 
     template(slot='empty')
       section.section

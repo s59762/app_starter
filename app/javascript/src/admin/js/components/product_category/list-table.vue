@@ -25,7 +25,8 @@
                      centered)
         i.sub-categories-indicator.fa(:class="hasSubCategories(props.row)")
 
-      b-table-column(:label="actionLocaleText('admin', 'options')")
+      b-table-column(:label="actionLocaleText('admin', 'options')"
+                     numeric)
         new-sub-category-button(:parent="props.row"
                                 @product-category-added="categoryAddedHandler")
         | &nbsp;
