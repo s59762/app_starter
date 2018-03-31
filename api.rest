@@ -5,6 +5,7 @@
 
 # define variables here
 @host_v1 = http://localhost:3000/api/v1/web/
+@adminJWT = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlhdCI6MTUxOTg5NTkxMywicm9sZSI6InN1cGVyIiwidHlwZSI6IkFkbWluIiwicmVmIjoid2ViIn0.HjYEKFCiS80llONdgSLzOie4ZQ_ggRS62zwfthneWoQ
 
 // ========================================================================== //
 
@@ -20,26 +21,26 @@
 // ************************************************************************** //
 
 # Get available admin roles
+# @name adminAvaliableRoles
 GET {{host_v1}}admins/roles HTTP/1.1
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlhdCI6MTUxOTg5NTkxMywicm9sZSI6InN1cGVyIiwidHlwZSI6IkFkbWluIiwicmVmIjoid2ViIn0.HjYEKFCiS80llONdgSLzOie4ZQ_ggRS62zwfthneWoQ
+Authorization: Bearer {{adminJWT}}
 
 ###
 
 # get admin list
+# support paginate and sort, filter, search with query string
+# like `page[number]=1&page[size]=10&sort=-id&filter=actived`
+# @name adminList
 GET {{host_v1}}admins HTTP/1.1
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlhdCI6MTUxOTg5NTkxMywicm9sZSI6InN1cGVyIiwidHlwZSI6IkFkbWluIiwicmVmIjoid2ViIn0.HjYEKFCiS80llONdgSLzOie4ZQ_ggRS62zwfthneWoQ
+Authorization: Bearer {{adminJWT}}
 
-###
-
-# get Admin list with paginate, sort, and filter options
-GET {{host_v1}}admins?page[number]=1&page[size]=10&sort=-id&filter=actived HTTP/1.1
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlhdCI6MTUxOTg5NTkxMywicm9sZSI6InN1cGVyIiwidHlwZSI6IkFkbWluIiwicmVmIjoid2ViIn0.HjYEKFCiS80llONdgSLzOie4ZQ_ggRS62zwfthneWoQ
 ###
 
 # add a new Admin
+# @name newAdmin
 POST {{host_v1}}admins HTTP/1.1
 content-type: application/vnd.api+json
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlhdCI6MTUxOTg5NTkxMywicm9sZSI6InN1cGVyIiwidHlwZSI6IkFkbWluIiwicmVmIjoid2ViIn0.HjYEKFCiS80llONdgSLzOie4ZQ_ggRS62zwfthneWoQ
+Authorization: Bearer {{adminJWT}}
 
 {
   "data": {
@@ -56,15 +57,16 @@ Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlhdCI6M
 ###
 
 # edit an Admin
-PUT {{host_v1}}admins/38 HTTP/1.1
+# @name editedAdmin
+PUT {{host_v1}}admins/{{adminList.response.body.data[0].id}} HTTP/1.1
 content-type: application/vnd.api+json
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlhdCI6MTUxOTg5NTkxMywicm9sZSI6InN1cGVyIiwidHlwZSI6IkFkbWluIiwicmVmIjoid2ViIn0.HjYEKFCiS80llONdgSLzOie4ZQ_ggRS62zwfthneWoQ
+Authorization: Bearer {{adminJWT}}
 
 {
   "data": {
     "type": "admins",
     "attributes": {
-      "name": "test500",
+      "name": "test50",
       "role": "super"
     }
   }
@@ -73,9 +75,10 @@ Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlhdCI6M
 ###
 
 # suspend an Admin
-PUT {{host_v1}}admins/36/suspend HTTP/1.1
+# @name suspendedAdmin
+PUT {{host_v1}}admins/{{adminList.response.body.data[0].id}}/suspend HTTP/1.1
 content-type: application/vnd.api+json
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlhdCI6MTUxOTg5NTkxMywicm9sZSI6InN1cGVyIiwidHlwZSI6IkFkbWluIiwicmVmIjoid2ViIn0.HjYEKFCiS80llONdgSLzOie4ZQ_ggRS62zwfthneWoQ
+Authorization: Bearer {{adminJWT}}
 
 ###
 
@@ -90,14 +93,10 @@ Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlhdCI6M
 // ************************************************************************** //
 
 # get users list
+# support paginate and sort, filter, search with query string
+# @name userList
 GET {{host_v1}}users HTTP/1.1
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlhdCI6MTUxOTg5NTkxMywicm9sZSI6InN1cGVyIiwidHlwZSI6IkFkbWluIiwicmVmIjoid2ViIn0.HjYEKFCiS80llONdgSLzOie4ZQ_ggRS62zwfthneWoQ
-
-###
-
-# get users list with paginate and sort options
-GET {{host_v1}}users?page[number]=1&page[size]=10&sort=-id HTTP/1.1
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlhdCI6MTUxOTg5NTkxMywicm9sZSI6InN1cGVyIiwidHlwZSI6IkFkbWluIiwicmVmIjoid2ViIn0.HjYEKFCiS80llONdgSLzOie4ZQ_ggRS62zwfthneWoQ
+Authorization: Bearer {{adminJWT}}
 
 ###
 
@@ -112,14 +111,16 @@ Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlhdCI6M
 // ************************************************************************** //
 
 # get all product categories
+# @name productCategoryList
 GET {{host_v1}}product_categories HTTP/1.1
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlhdCI6MTUxOTg5NTkxMywicm9sZSI6InN1cGVyIiwidHlwZSI6IkFkbWluIiwicmVmIjoid2ViIn0.HjYEKFCiS80llONdgSLzOie4ZQ_ggRS62zwfthneWoQ
+Authorization: Bearer {{adminJWT}}
 
 ###
 
 # create a product category
+# @name newProductCategory
 POST {{host_v1}}product_categories HTTP/1.1
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlhdCI6MTUxOTg5NTkxMywicm9sZSI6InN1cGVyIiwidHlwZSI6IkFkbWluIiwicmVmIjoid2ViIn0.HjYEKFCiS80llONdgSLzOie4ZQ_ggRS62zwfthneWoQ
+Authorization: Bearer {{adminJWT}}
 content-type: application/vnd.api+json
 
 {
@@ -136,7 +137,7 @@ content-type: application/vnd.api+json
 
 # create a sub product category
 POST {{host_v1}}product_categories HTTP/1.1
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlhdCI6MTUxOTg5NTkxMywicm9sZSI6InN1cGVyIiwidHlwZSI6IkFkbWluIiwicmVmIjoid2ViIn0.HjYEKFCiS80llONdgSLzOie4ZQ_ggRS62zwfthneWoQ
+Authorization: Bearer {{adminJWT}}
 content-type: application/vnd.api+json
 
 {
@@ -153,8 +154,8 @@ content-type: application/vnd.api+json
 ###
 
 # update a product category
-PUT {{host_v1}}product_categories/26 HTTP/1.1
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlhdCI6MTUxOTg5NTkxMywicm9sZSI6InN1cGVyIiwidHlwZSI6IkFkbWluIiwicmVmIjoid2ViIn0.HjYEKFCiS80llONdgSLzOie4ZQ_ggRS62zwfthneWoQ
+PUT {{host_v1}}product_categories/{{productCategoryList.response.body.data[0].id}} HTTP/1.1
+Authorization: Bearer {{adminJWT}}
 content-type: application/vnd.api+json
 
 {
@@ -181,14 +182,14 @@ content-type: application/vnd.api+json
 
 # get all site configs
 GET {{host_v1}}site_config HTTP/1.1
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlhdCI6MTUxOTg5NTkxMywicm9sZSI6InN1cGVyIiwidHlwZSI6IkFkbWluIiwicmVmIjoid2ViIn0.HjYEKFCiS80llONdgSLzOie4ZQ_ggRS62zwfthneWoQ
+Authorization: Bearer {{adminJWT}}
 
 ###
 
 # update meta tags config
 PUT {{host_v1}}/site_config/meta_tags HTTP/1.1
 content-type: application/vnd.api+json
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlhdCI6MTUxOTg5NTkxMywicm9sZSI6InN1cGVyIiwidHlwZSI6IkFkbWluIiwicmVmIjoid2ViIn0.HjYEKFCiS80llONdgSLzOie4ZQ_ggRS62zwfthneWoQ
+Authorization: Bearer {{adminJWT}}
 
 {
   "data": {
