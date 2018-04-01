@@ -1,9 +1,9 @@
 const { environment } = require('@rails/webpacker')
-const merge = require('webpack-merge')
 const webpack = require('webpack')
+const vue = require('./loaders/vue')
 
 // Add an additional plugin of your choosing : ProvidePlugin
-environment.plugins.set(
+environment.plugins.append(
   'Provide',
   new webpack.ProvidePlugin({
     Rails: 'rails-ujs',
@@ -14,12 +14,14 @@ environment.plugins.set(
   })
 )
 
-environment.loaders.set('import-glob', {
+environment.loaders.append('vue', vue)
+
+environment.loaders.append('import-glob', {
   test: /\.sass$/,
   use: 'import-glob-loader'
 })
 
-environment.loaders.set('pug', {
+environment.loaders.append('pug', {
   test: /\.pug$/,
   use: 'pug-loader'
 })

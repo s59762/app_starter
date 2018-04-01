@@ -8,7 +8,7 @@ import UserModelBase from './base'
 export default class Guest extends UserModelBase {
   constructor() {
     super({
-      sub: null,
+      sub: 0,
       type: 'Guest',
       role: 'guest'
     })
