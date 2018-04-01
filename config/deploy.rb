@@ -4,11 +4,11 @@ require 'capistrano-db-tasks'
 
 # config valid only for Capistrano 3.1
 
-set :application, 'AppStarter' # RENAME: change to your app name
+set :application, ENV['app_name'].classify
 # set :repo_url, 'git@github.com:oracle-design/kaishall.git'
-set :repo_url, 'git@github.com:oracle-design/app_starter.git' # RENAME: change to your repo
+set :repo_url, %(git@github.com:oracle-design/#{ENV['app_name']}.git)
 set :branch, 'master'
-set :deploy_to, '/home/deployer/websites/app_starter' # RENAME: change to your deploy path
+set :deploy_to, %(/home/deployer/websites/#{ENV['app_name']})
 
 set :linked_files, %w[config/database.yml]
 set :linked_files, %w[config/database.yml config/application.yml config/secrets.yml]

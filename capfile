@@ -20,12 +20,13 @@ require 'capistrano/rbenv'
 set :rbenv_type, :user # or :system, depends on your rbenv setup
 set :rbenv_ruby, '2.4.3'
 
-require 'capistrano/bundler'
-require 'capistrano/rails'
-require 'slackistrano/capistrano'
-require 'capistrano/sidekiq'
 require 'capistrano-db-tasks' # DB tasks
-require "whenever/capistrano" # update corn jobs via whenever
+require 'capistrano/bundler'
+require 'capistrano/figaro'
+require 'capistrano/rails'
+require 'capistrano/sidekiq'
+require 'slackistrano/capistrano'
+require 'whenever/capistrano' # update corn jobs via whenever
 
 # Loads custom tasks from `lib/capistrano/tasks' if you have any defined.
 Dir.glob('lib/capistrano/tasks/*.cap').each { |r| import r }

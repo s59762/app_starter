@@ -9,7 +9,6 @@ gem 'coffee-rails', '~> 4.2'
 gem 'jbuilder', '~> 2.5'
 gem 'puma', '~> 3.7'
 gem 'rails', '~> 5.1.6'
-gem 'redis'
 gem 'sass-rails', '~> 5.0'
 gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'
@@ -59,6 +58,7 @@ group :development do
   gem 'capistrano'
   gem 'capistrano-bundler'
   gem 'capistrano-db-tasks', require: false
+  gem 'capistrano-figaro'
   gem 'capistrano-rails'
   gem 'capistrano-rbenv', github: 'capistrano/rbenv'
   gem 'capistrano-sidekiq'
@@ -83,6 +83,8 @@ gem 'carrierwave' # file upload
 gem 'figaro' # enviroment variables
 gem 'mini_magick' # image process
 gem 'sidekiq' # job
+gem 'redis'
+gem 'redis-namespace'
 gem 'whenever', require: false # for cron job
 
 # Database
