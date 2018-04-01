@@ -20,60 +20,40 @@ group :development, :test do
   gem 'hirb'
   gem 'pry-remote'
 
-  # RSpec
-  gem 'rspec-rails'
-  gem 'shoulda-matchers'
-
-  # Time Mock
-  gem 'timecop'
-
-  # mock data for 3rd party API
-  gem 'vcr'
-  gem 'webmock'
-
-  # Adds support for Capybara system testing and selenium driver
-  gem 'capybara', '~> 2.13'
+  # Test
+  gem 'capybara', '~> 2.13' # Adds support for Capybara system testing and selenium driver
   gem 'capybara-screenshot'
+  gem 'database_cleaner'
+  gem 'factory_bot_rails'
+  gem 'faker'
+  gem 'rspec-rails'
   gem 'selenium-webdriver'
+  gem 'shoulda-matchers'
+  gem 'simplecov', require: false, group: :test
+  gem 'timecop' # Time Mock
+  gem 'vcr' # mock data for 3rd party API
+  gem 'webmock'
 
   # guard
   gem 'guard-livereload'
   gem 'guard-pow'
   gem 'guard-rspec', require: false
   gem 'terminal-notifier-guard'
-
-  # factory bot + faker for test data
-  gem 'database_cleaner'
-  gem 'factory_bot_rails'
-  gem 'faker'
-
-  gem 'simplecov', require: false, group: :test
 end
 
 group :development do
-  # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
+  # Development tools
+  gem 'annotate' # add schema comments in related files
+  gem 'better_errors' # better error page
+  gem 'binding_of_caller' # better errors need this gem
+  gem 'bullet' # detect N+1 query
+  gem 'debase' # for vscode remote debug
   gem 'listen', '>= 3.0.5', '< 3.2'
+  gem 'pattern_generator' # generator for service objects, form objects, PORO, policy objects.
+  gem 'rack-mini-profiler', require: false # page proformence monitor
+  gem 'rubocop', '~> 0.49.0' # Linter
+  gem 'ruby-debug-ide' # for vscode remote debug
   gem 'web-console', '>= 3.3.0'
-
-  # for vscode remote debug
-  gem 'debase'
-  gem 'ruby-debug-ide'
-
-  # add schema comments in related files
-  gem 'annotate'
-
-  # better error page
-  gem 'better_errors'
-  gem 'binding_of_caller'
-
-  # support for chrome rails panel
-  gem 'meta_request'
-
-  # Linter
-  gem 'rubocop', '~> 0.49.0'
-
-  # detect N+1 query
-  gem 'bullet'
 
   # Deploy tools
   gem 'capistrano'
@@ -84,100 +64,57 @@ group :development do
   gem 'capistrano-sidekiq'
   gem 'slackistrano'
 
-  # page proformence monitor
-  gem 'rack-mini-profiler', require: false
-
-  # generator for service objects, form objects, PORO, policy objects.
-  gem 'pattern_generator' # FIXIT: we should fork this gem and update form template
-
   # Documentation
   gem 'github-markup'
+  gem 'i18n-js' # i18n for js world
   gem 'redcarpet'
   gem 'yard'
-
-  # i18n for js world
-  gem 'i18n-js'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
-# pg adapter
-gem 'pg'
-
-# users authenticate
-gem 'devise'
-gem 'jwt'
-
-# Oauth
-gem 'koala', '~> 2.2'
-gem 'omniauth'
-gem 'omniauth-facebook'
-
-# CORS
-gem 'rack-cors', require: 'rack/cors'
-
-# Serializer
-gem 'active_model_serializers', '~> 0.10.7'
-
-# paginate
-gem 'kaminari'
-
-# odd Tools set
+# Development tools
+gem 'awesome_rails_console' # Debug tools
 gem 'espresso_martini', github: 'oracle-design/espresso_martini'
 
-# using slim as view template
-gem 'slim-rails'
+# So backend tools
+gem 'carrierwave' # file upload
+gem 'figaro' # enviroment variables
+gem 'mini_magick' # image process
+gem 'sidekiq' # job
+gem 'whenever', require: false # for cron job
 
-# Debug tools
-gem 'awesome_rails_console'
+# Database
+gem 'aasm' # aasm state machine
+gem 'by_star' # query DB based on time
+gem 'friendly_id', '~> 5.1.0' # friendly ID
+gem 'money-rails', '~>1' # for currency management
+gem 'pg' # postgresSQL adapter
+gem 'rails-settings-cached' # App settings function
+gem 'ransack' # for meta search
 
-# App settings function
-gem 'rails-settings-cached'
+# Authentication
+gem 'devise' # users authenticate
+gem 'jwt' # jwt
+gem 'koala', '~> 2.2' # facebook graph API wrapper
+gem 'omniauth' # Oauth
+gem 'omniauth-facebook' # Oauth for facebook
 
-# store sensitive settings
-gem 'figaro'
+# Server-side validation or API related
+gem 'active_model_serializers', '~> 0.10.7' # Serializer
+gem 'kaminari' # paginate
+gem 'pundit' # authorization
+gem 'rack-cors', require: 'rack/cors' # CORS
+gem 'reform' # for Form Object
+gem 'reform-rails' # for Form Object
 
-# for View components and cache
-gem 'cells'
-gem 'cells-rails'
-gem 'cells-slim'
-
-# for Form Object
-gem 'reform'
-gem 'reform-rails'
-
-# file upload and image process
-gem 'carrierwave'
-gem 'mini_magick'
-
-# SEO
+# Server-side rendered view
+gem 'cells' # for View components and cache
+gem 'cells-rails' # for View components and cache
+gem 'cells-slim' # for View components and cache
 gem 'favicon_maker'
+gem 'gretel' # breadcrumb
 gem 'meta-tags'
-
-# job
-gem 'sidekiq'
-
-# authorization
-gem 'pundit'
-
-# query DB based on time
-gem 'by_star'
-
-# aasm state machine
-gem 'aasm'
-
-# friendly ID
-gem 'friendly_id', '~> 5.1.0'
-
-# breadcrumb
-gem 'gretel'
-
-# for eamil
-gem 'roadie-rails', '~> 1.0'
-
-# for cron job
-gem 'whenever', require: false
-
-# for meta search
-gem 'ransack'
+gem 'roadie-rails', '~> 1.0' # for eamil
+gem 'slim-rails' # using slim as view template

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature "Admin::AdminsManagement", type: :feature do
+RSpec.feature 'Admin::AdminsManagement', type: :feature do
   let!(:admin_1) { create(:admin) }
   let!(:admin_2) { create(:admin) }
 
