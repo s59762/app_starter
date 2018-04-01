@@ -8,7 +8,7 @@ end
 gem 'coffee-rails', '~> 4.2'
 gem 'jbuilder', '~> 2.5'
 gem 'puma', '~> 3.7'
-gem 'rails', '~> 5.1.4'
+gem 'rails', '~> 5.1.6'
 gem 'redis'
 gem 'sass-rails', '~> 5.0'
 gem 'turbolinks', '~> 5'
