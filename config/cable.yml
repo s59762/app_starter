@@ -7,5 +7,4 @@ test:
 production:
   adapter: redis
   url: redis://localhost:6379/1
-  # RENAME: change prefix name for your project instead of `app_starter_`
-  channel_prefix: app_starter_production
+  channel_prefix: <%= ENV['app_name'] %>_

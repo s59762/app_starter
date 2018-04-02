@@ -24,6 +24,7 @@ class ProductCategory < ApplicationRecord
   #       新增 root_category_id 到 table. 用來辨識根分類是什麼。 這樣可以方便一次找出所有根分類的商品
   belongs_to :parent, class_name: 'ProductCategory', optional: true
   has_many :sub_categories, class_name: 'ProductCategory', foreign_key: 'parent_id', dependent: :destroy
+  has_many :products, foreign_key: 'category_id'
 
   scope :top_level_only, -> { where(parent_id: nil) }
 end

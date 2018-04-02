@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180323071032) do
+ActiveRecord::Schema.define(version: 20180402063143) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,17 @@ ActiveRecord::Schema.define(version: 20180323071032) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
+  create_table "pghero_query_stats", force: :cascade do |t|
+    t.text "database"
+    t.text "user"
+    t.text "query"
+    t.bigint "query_hash"
+    t.float "total_time"
+    t.bigint "calls"
+    t.datetime "captured_at"
+    t.index ["database", "captured_at"], name: "index_pghero_query_stats_on_database_and_captured_at"
+  end
+
   create_table "product_categories", force: :cascade do |t|
     t.string "name"
     t.string "description"
@@ -43,6 +54,24 @@ ActiveRecord::Schema.define(version: 20180323071032) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["parent_id"], name: "index_product_categories_on_parent_id"
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.bigint "category_id"
+    t.integer "cover"
+    t.integer "original_price_cents", default: 0, null: false
+    t.string "original_price_currency", default: "TWD", null: false
+    t.integer "sell_price_cents", default: 0, null: false
+    t.string "sell_price_currency", default: "TWD", null: false
+    t.integer "discounted_price_cents", default: 0, null: false
+    t.string "discounted_price_currency", default: "TWD", null: false
+    t.boolean "is_preorder", default: false
+    t.jsonb "properties", default: []
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_products_on_category_id"
   end
 
   create_table "settings", force: :cascade do |t|
@@ -73,4 +102,5 @@ ActiveRecord::Schema.define(version: 20180323071032) do
   end
 
   add_foreign_key "product_categories", "product_categories", column: "parent_id"
+  add_foreign_key "products", "product_categories", column: "category_id"
 end

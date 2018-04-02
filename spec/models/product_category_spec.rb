@@ -35,4 +35,5 @@ RSpec.describe ProductCategory, type: :model do
 
   # associations
   it { should have_many :sub_categories }
+  it { should have_many :products }
 end

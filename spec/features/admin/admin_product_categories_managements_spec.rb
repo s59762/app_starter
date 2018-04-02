@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature "Admin::ProductCategoriesManagements", type: :feature do
+RSpec.feature 'Admin::ProductCategoriesManagements', type: :feature do
   let!(:category_1) { create(:product_category, name: '生活用品') }
   let!(:sub_category_1_of_category_1) { create(:product_category, name: '肥皂', parent_id: category_1.id) }
   let!(:category_2) { create(:product_category, name: '電玩遊戲') }
@@ -101,7 +101,6 @@ RSpec.feature "Admin::ProductCategoriesManagements", type: :feature do
       end
     end
   end
-
 
   def open_all_detail_view_for_table_rows
     all('[data-behavior="product-category-list"] tbody tr').each do |row|

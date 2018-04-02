@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature "Admin::UsersManagement", type: :feature do
+RSpec.feature 'Admin::UsersManagement', type: :feature do
   let!(:user_1) { create(:user, email: 'test1@odd.com', password: 'qwerasdf') }
   let!(:user_2) { create(:user, email: 'test2@odd.com', password: 'qwerasdf') }
 
