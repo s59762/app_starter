@@ -123,6 +123,29 @@
         <li class="public ">
   <span class="summary_signature">
     
+      <a href="#money_to_integer-class_method" title="money_to_integer (class method)">.<strong>money_to_integer</strong>(*fields)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Money 的欄位會是 Currency Object，在這邊可以把回傳內容變更為 Object 中的 fractional.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
       <a href="#to_unix_time-class_method" title="to_unix_time (class method)">.<strong>to_unix_time</strong>(*fields)  &#x21d2; Object </a>
     
 
@@ -154,7 +177,80 @@
 
     
       <div class="method_details first">
-  <h3 class="signature first" id="to_unix_time-class_method">
+  <h3 class="signature first" id="money_to_integer-class_method">
+  
+    .<strong>money_to_integer</strong>(*fields)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Money 的欄位會是 Currency Object，在這邊可以把回傳內容變更為 Object 中的 fractional</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>fields</span>
+      
+      
+        <span class='type'>(<tt>Symble</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>要轉換的欄位名稱</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/serializers/application_serializer.rb', line 26</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_money_to_integer'>money_to_integer</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_fields'>fields</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_fields'>fields</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_field'>field</span><span class='op'>|</span>
+    <span class='comment'># 動態產生 methods，僅回傳 fractional attribute
+</span>    <span class='comment'>#
+</span>    <span class='comment'># @return [Integer]
+</span>    <span class='id identifier rubyid_define_method'>define_method</span> <span class='id identifier rubyid_field'>field</span> <span class='kw'>do</span>
+      <span class='id identifier rubyid_object'>object</span><span class='period'>.</span><span class='id identifier rubyid_send'>send</span><span class='lparen'>(</span><span class='id identifier rubyid_field'>field</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_fractional'>fractional</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="to_unix_time-class_method">
   
     .<strong>to_unix_time</strong>(*fields)  &#x21d2; <tt>Object</tt> 
   
