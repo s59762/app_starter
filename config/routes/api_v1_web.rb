@@ -18,6 +18,9 @@ namespace :api do
       # ProductCategory resource
       resources :product_categories, only: %i[index create update]
 
+      # Product resource
+      resources :products, only: %i[index create update]
+
       # Site config
       resource :site_config, only: %i[show], controller: 'site_config' do
         resource :meta_tags, only: %i[update], controller: 'site_config/meta_tags'
