@@ -82,9 +82,9 @@ gem 'espresso_martini', github: 'oracle-design/espresso_martini'
 gem 'carrierwave' # file upload
 gem 'figaro' # enviroment variables
 gem 'mini_magick' # image process
-gem 'sidekiq' # job
 gem 'redis'
 gem 'redis-namespace'
+gem 'sidekiq' # job
 gem 'whenever', require: false # for cron job
 
 # Database
