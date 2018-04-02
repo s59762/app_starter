@@ -245,6 +245,53 @@ content-type: application/vnd.api+json
 
 ###
 
+# create a new product
+PUT {{host_v1}}/products/{{productList.response.body.data[0].id}} HTTP/1.1
+Authorization: Bearer {{adminJWT}}
+content-type: application/vnd.api+json
+
+{
+  "data": {
+    "type": "product",
+    "attributes": {
+      "name": "布面色塊獨立筒彈簧沙發",
+      "description": "好坐美觀香噴噴",
+      "category_id": "",
+      "cover": "",
+      "price": {
+        "original": 10001,
+        "sell": 20001,
+        "discounted": 15800
+      },
+      "is_preorder": false,
+      "properties": [
+        {
+          "name": "品牌",
+          "value": "ALESSI",
+          "unit": ""
+        },
+        {
+          "name": "顏色",
+          "value": "彩色",
+          "unit": ""
+        },
+        {
+          "name": "重量",
+          "value": "19",
+          "unit": "公斤"
+        },
+        {
+          "name": "尺寸",
+          "value": "3.21 x 0.8 x 1.2",
+          "unit": "m"
+        }
+      ]
+    }
+  }
+}
+
+###
+
 // ************************************************************************** //
  ######  #### ######## ########     ######   #######  ##    ## ######## ####  ######
 ##    ##  ##     ##    ##          ##    ## ##     ## ###   ## ##        ##  ##    ##
