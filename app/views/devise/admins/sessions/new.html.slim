@@ -10,7 +10,7 @@ section.hero.is-fullheight.login-form-container
           = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
             .field
               .control
-                = f.text_field :email, class: 'input is-large', placeholder: Admin.human_attribute_name(:email), autofocus: true
+                = f.email_field :email, class: 'input is-large', placeholder: Admin.human_attribute_name(:email), autofocus: true
             .field
               .control
                 = f.password_field :password, autocomplete: "off", class: 'input is-large', placeholder: Admin.human_attribute_name(:password)
