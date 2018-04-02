@@ -4,4 +4,20 @@ class Api::V1::Web::ProductsController < Api::V1::Web::BaseController
 
     render json: @products
   end
+
+  def create
+    form = Admin::ProductForm.new(Product.new)
+
+    return raise ValidationFailureException, form unless form.validate(product_params)
+
+    form.save
+
+    render json: form.model
+  end
+
+  private
+
+  def product_params
+    ActiveModelSerializers::Deserialization.jsonapi_parse(params)
+  end
 end
