@@ -33,5 +33,4 @@ class AdminSerializer < ApplicationSerializer
              :is_suspended
 
   to_unix_time :last_sign_in_at, :created_at
-  link(:self) { api_v1_web_admin_path(object) }
 end

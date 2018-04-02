@@ -1,0 +1,34 @@
+zh-TW:
+  # model and attributes name
+  activerecord: &default
+    models:
+      product:
+        one: 商品
+        other: 商品
+
+    attributes:
+      product:
+        category: 分類
+        cover: 封面圖片
+        description: 商品描述
+        discounted_price: 折扣價
+        images: 商品圖片
+        is_preorder: 預購商品
+        name: 品名
+        original_price: 進貨成本
+        properties: 商品規格
+        sell_price: 售價
+
+    errors:
+      models:
+        product:
+          attributes:
+  activemodel: *default
+
+  # Enums
+  enums:
+    product:
+
+  # AASM state machine
+  aasm_state:
+    product:
