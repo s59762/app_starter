@@ -25,4 +25,13 @@ class Product < ApplicationRecord
            :discounted_price_cents
 
   belongs_to :category, class_name: 'ProductCategory', optional: true
+
+  # @param [Array] properties 搜尋 jsonb 欄位
+  # @example 搜尋品牌為 ALESSI 的商品
+  #   ```rb
+  #   Product.search_by_properties([{name: '品牌', value: 'ALESSI'}])
+  #   Product.search_by_properties([{name: '品牌'}])
+  #   Product.search_by_properties([{value: 'ALESSI'}])
+  #   ```
+  scope :search_by_properties, ->(values) { where('properties @> ?', values.to_json) }
 end

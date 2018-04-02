@@ -103,7 +103,35 @@
   
 </div>
 
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>== Schema Information</p>
 
+<p>Table name: products</p>
+
+<p>id                        :integer          not null, primary key
+ name                      :string
+ description               :text
+ category_id               :integer
+ cover                     :integer
+ original_price_cents      :integer          default(0), not null
+ original_price_currency   :string           default(&quot;TWD&quot;), not null
+ sell_price_cents          :integer          default(0), not null
+ sell_price_currency       :string           default(&quot;TWD&quot;), not null
+ discounted_price_cents    :integer          default(0), not null
+ discounted_price_currency :string           default(&quot;TWD&quot;), not null
+ is_preorder               :boolean          default(FALSE)
+ properties                :jsonb
+ created_at                :datetime         not null
+ updated_at                :datetime         not null</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
 
 
 
@@ -154,7 +182,7 @@
   
   
   <h3 class="inherited">Methods inherited from <span class='object_link'><a href="ApplicationSerializer.html" title="ApplicationSerializer (class)">ApplicationSerializer</a></span></h3>
-  <p class="inherited"><span class='object_link'><a href="ApplicationSerializer.html#to_unix_time-class_method" title="ApplicationSerializer.to_unix_time (method)">to_unix_time</a></span></p>
+  <p class="inherited"><span class='object_link'><a href="ApplicationSerializer.html#money_to_integer-class_method" title="ApplicationSerializer.money_to_integer (method)">money_to_integer</a></span>, <span class='object_link'><a href="ApplicationSerializer.html#to_unix_time-class_method" title="ApplicationSerializer.to_unix_time (method)">to_unix_time</a></span></p>
 
   
 
@@ -187,14 +215,14 @@
       <pre class="lines">
 
 
-21
-22
-23
-24
-25</pre>
+43
+44
+45
+46
+47</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/serializers/product_serializer.rb', line 21</span>
+      <pre class="code"><span class="info file"># File 'app/serializers/product_serializer.rb', line 43</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_discount_rate'>discount_rate</span>
   <span class='kw'>return</span> <span class='kw'>nil</span> <span class='kw'>unless</span> <span class='id identifier rubyid_object'>object</span><span class='period'>.</span><span class='id identifier rubyid_discounted_price'>discounted_price</span><span class='period'>.</span><span class='id identifier rubyid_present?'>present?</span>

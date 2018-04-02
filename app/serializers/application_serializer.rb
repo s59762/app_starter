@@ -19,4 +19,18 @@ class ApplicationSerializer < ActiveModel::Serializer
       end
     end
   end
+
+  # Money 的欄位會是 Currency Object，在這邊可以把回傳內容變更為 Object 中的 fractional
+  #
+  # @param fields [Symble] 要轉換的欄位名稱
+  def self.money_to_integer(*fields)
+    fields.each do |field|
+      # 動態產生 methods，僅回傳 fractional attribute
+      #
+      # @return [Integer]
+      define_method field do
+        object.send(field).fractional
+      end
+    end
+  end
 end

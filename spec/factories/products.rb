@@ -21,13 +21,13 @@
 
 FactoryBot.define do
   factory :product do
-    name "MyString"
+    name 'MyString'
     original_price 100
     sell_price 1000
     discounted_price 880
     is_preorder false
     properties ''
-    description "MyText"
+    description 'MyText'
     association :category, factory: :product_category
   end
 end

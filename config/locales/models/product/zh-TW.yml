@@ -23,6 +23,9 @@ zh-TW:
       models:
         product:
           attributes:
+            price:
+              wrong_type: '%{key} 必須為 Integer, 並大於或等於 0'
+              invalid_key: '%{key} 為不合法的 key，僅能接受 original, sell, discounted'
   activemodel: *default
 
   # Enums
