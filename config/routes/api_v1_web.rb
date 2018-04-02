@@ -19,7 +19,7 @@ namespace :api do
       resources :product_categories, only: %i[index create update]
 
       # Product resource
-      resources :products, only: %i[index create update]
+      resources :products, only: %i[index show create update]
 
       # Site config
       resource :site_config, only: %i[show], controller: 'site_config' do

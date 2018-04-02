@@ -5,6 +5,12 @@ class Api::V1::Web::ProductsController < Api::V1::Web::BaseController
     render json: @products
   end
 
+  def show
+    @product = Product.find(params[:id])
+
+    render json: @product
+  end
+
   def create
     form = Admin::ProductForm.new(Product.new)
 

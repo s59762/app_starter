@@ -190,6 +190,14 @@ content-type: application/vnd.api+json
 
 ###
 
+# get one product info
+# @name product
+GET {{host_v1}}/products/{{productList.response.body.data[0].id}} HTTP/1.1
+Authorization: Bearer {{adminJWT}}
+content-type: application/vnd.api+json
+
+###
+
 # create a new product
 POST {{host_v1}}/products HTTP/1.1
 Authorization: Bearer {{adminJWT}}
