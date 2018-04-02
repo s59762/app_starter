@@ -18,8 +18,9 @@ set :linked_dirs, %w[log tmp/pids tmp/cache tmp/sockets vendor/bundle public/sys
 # set :keep_releases, 5
 
 # Slack integration
-set :slack_webhook, 'https://hooks.slack.com/services/XXXXXXXXX/XXXXXXXXX/XXXXXXXXX'
-set :slack_team, 'XXXXXXXXX'
+set :slack_webhook, ENV['slack_webhook']
+set :slack_team, ENV['slack_team']
+set :slack_channel, ENV['slack_channels'].split(',')
 
 set :slack_icon_url,         -> { 'http://gravatar.com/avatar/885e1c523b7975c4003de162d8ee8fee?r=g&s=40' }
 set :slack_icon_emoji,       -> { ':shipit:' } # will override icon_url, Must be a string (ex: ':shipit:')
@@ -27,7 +28,7 @@ set :slack_channel,          -> { '#deploy-notification' }
 set :slack_username,         -> { 'Deploy-Bot' }
 set :slack_run_starting,     -> { true }
 set :slack_run_finished,     -> { true }
-set :slack_msg_updating,     -> { ":rocket: #{ENV['USER'] || ENV['USERNAME']} 正在進行一個...部署的...動作，正在將 #{fetch :application} 的 #{fetch :branch} 分支部署到 Production :computer:" }
+set :slack_msg_updating,     -> { ":rocket: #{ENV['USER'] || ENV['USERNAME']} 正在將 #{fetch :application} 的 #{fetch :branch} 分支部署到 #{fetch(:stage)} :computer:" }
 set :slack_msg_updated, -> { ":pray: #{fetch :application} 部署成功，#{ENV['USER'] || ENV['USERNAME']} 好棒棒 :kissing_heart:" }
 set :slack_fields_updated, [
   {
@@ -47,7 +48,7 @@ set :slack_fields_updated, [
   }
 ]
 
-set :slack_msg_failed, -> { ":shit: #{fetch :application} 部署失敗，我覺得 #{ENV['USER'] || ENV['USERNAME']} 你還是快去檢查 Log 吧？ :no_good:" }
+set :slack_msg_failed, -> { ":shit: #{fetch :application} 部署失敗。 :no_good:" }
 
 set :sidekiq_queue, %i[default mailers]
 
