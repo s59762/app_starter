@@ -5,13 +5,6 @@ class FetchingDataService
 
   PAGE_SIZE_LIMIT = 100
 
-  # init 時須提供要 query data 的對象，以及 client 端提供的 params
-  #
-  # @param [Object] resource 可以是 Model 的 class，或是 ActiveRecord::Relation 物件
-  # @param [Hash] params client 端提供的 params
-  # @param [Hash] options 提供可自訂的選項。`check_paginate` 可設定是否要求 client 端必須提供 paginate params。
-  #
-  # @raise [ParametersFailureException] 若 `options[:check_paginate]` 為真，params 中不包含 paginate_params 時 raise exception
   def initialize(resource, params, options = {})
     @resource = resource
     @model = resource.name.constantize
@@ -26,6 +19,13 @@ class FetchingDataService
     validate_page_size!
   end
 
+  # init 時須提供要 query data 的對象，以及 client 端提供的 params
+  #
+  # @param [Object] resource 可以是 Model 的 class，或是 ActiveRecord::Relation 物件
+  # @param [Hash] params client 端提供的 params
+  # @param [Hash] options 提供可自訂的選項。`check_paginate` 可設定是否要求 client 端必須提供 paginate params。
+  #
+  # @raise [ParametersFailureException] 若 `options[:check_paginate]` 為真，params 中不包含 paginate_params 時 raise exception
   def self.call(resource, params, options = {})
     new(resource, params, options).call
   end

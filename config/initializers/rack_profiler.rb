@@ -3,5 +3,5 @@ if Rails.env.development?
 
   # initialization is skipped so trigger it
   Rack::MiniProfilerRails.initialize!(Rails.application)
-  Rack::MiniProfiler.config.disable_caching = false # defaults to true
+  # Rack::MiniProfiler.config.disable_caching = false # defaults to true
 end

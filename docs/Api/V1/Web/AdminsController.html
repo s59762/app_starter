@@ -325,9 +325,9 @@ end</p>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_index'>index</span>
   <span class='ivar'>@admins</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../FetchingDataService.html" title="FetchingDataService (class)">FetchingDataService</a></span></span><span class='period'>.</span><span class='id identifier rubyid_call'><span class='object_link'><a href="../../../FetchingDataService.html#call-class_method" title="FetchingDataService.call (method)">call</a></span></span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="../../../Admin.html" title="Admin (class)">Admin</a></span></span><span class='comma'>,</span> <span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span>
+  <span class='ivar'>@result</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../Api.html" title="Api (module)">Api</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../CheckCachedDataService.html" title="Api::CheckCachedDataService (class)">CheckCachedDataService</a></span></span><span class='period'>.</span><span class='id identifier rubyid_call'><span class='object_link'><a href="../../CheckCachedDataService.html#call-class_method" title="Api::CheckCachedDataService.call (method)">call</a></span></span><span class='lparen'>(</span><span class='ivar'>@admins</span><span class='comma'>,</span> <span class='id identifier rubyid_request'>request</span><span class='rparen'>)</span>
 
-  <span class='id identifier rubyid_render'>render</span> <span class='label'>json:</span> <span class='ivar'>@admins</span><span class='comma'>,</span>
-         <span class='label'>meta:</span> <span class='id identifier rubyid_pagination_dict'>pagination_dict</span><span class='lparen'>(</span><span class='ivar'>@admins</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_render'>render</span> <span class='label'>json:</span> <span class='ivar'>@result</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
