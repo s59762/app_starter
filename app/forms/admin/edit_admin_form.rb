@@ -27,6 +27,6 @@ class Admin::EditAdminForm < ApplicationForm
   end
 
   def assign_new_password
-    model.password = new_password
+    model.password = new_password if new_password.present?
   end
 end
