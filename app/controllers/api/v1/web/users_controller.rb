@@ -1,8 +1,8 @@
 class Api::V1::Web::UsersController < Api::V1::Web::BaseController
   def index
-    @users = FetchingDataService.call(User, params)
+    users = FetchingDataService.call(User, params)
+    result = Api::DataCacheService.call(users, request)
 
-    render json: @users,
-           meta: pagination_dict(@users)
+    render json: result
   end
 end

@@ -2,10 +2,11 @@ class Api::V1::Web::AdminsController < Api::V1::Web::BaseController
   before_action :for_admin_only!, except: %i[show]
 
   def index
-    @admins = FetchingDataService.call(Admin, params)
+    binding.remote_pry
+    admins = FetchingDataService.call(Admin, params)
+    result = Api::DataCacheService.call(admins, request)
 
-    render json: @admins,
-           meta: pagination_dict(@admins)
+    render json: result
   end
 
   # def show
