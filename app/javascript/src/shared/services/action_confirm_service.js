@@ -24,7 +24,14 @@ export default class ActionConfirmService {
     this.customClass = options.customClass || ''
   }
 
-  confirm(callback) {
+  /**
+   * 確認是否要執行動作
+   *
+   * @param {Function} callback 帶入一個 function，若使用者確認的話可直接執行
+   * @param {any} [cancelCallback=null] 可選擇性地帶入一個 function 在使用者選擇取消動作時執行，若不帶入則不做任何動作
+   * @memberof ActionConfirmService
+   */
+  confirm(callback, cancelCallback = null) {
     swal({
       title: this.title,
       text: this.text,
@@ -37,6 +44,10 @@ export default class ActionConfirmService {
     }).then(result => {
       if (result.value) {
         callback()
+      } else {
+        if (cancelCallback) {
+          cancelCallback()
+        }
       }
     })
   }
