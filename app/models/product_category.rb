@@ -11,9 +11,7 @@
 #
 
 class ProductCategory < ApplicationRecord
-  FILTERABLE_FIELDS = %w[
-    all
-  ].freeze
+  FILTERABLE_FIELDS = %w[].freeze
   SORTABLE_FIELDS = %w[
     id
     name

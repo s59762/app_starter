@@ -5,20 +5,28 @@
 </template>
 
 <script>
+import backendPaginateFilterSortAndSearchableMixin from '../mixins/backend_paginate_filter_sort_and_searchable_mixin'
+
 export default {
   // components: {},
 
-  // mixins: [],
+  mixins: [backendPaginateFilterSortAndSearchableMixin],
 
   // props: {},
 
-  // data() {
-  //   return {}
-  // },
+  data() {
+    return {
+      resourceType: 'products',
+      currentUrlPath: '/admin/products',
+      availableFilters: ['']
+    }
+  },
 
   // computed: {},
 
-  // created() {},
+  created() {
+    this.fetchingInitialData()
+  }
 
   // mounted() {},
 
