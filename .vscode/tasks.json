@@ -15,17 +15,6 @@
     },
 
     {
-      "label": "rails server",
-      "type": "shell",
-      "command": "rails s",
-      "problemMatcher": [],
-      "presentation": {
-        "reveal": "never",
-        "panel": "shared"
-      }
-    },
-
-    {
       "label": "rails server with remote debugger",
       "type": "shell",
       "command": "rdebug-ide --port 1234 --host 0.0.0.0 -- bin/rails s -b 0.0.0.0",
