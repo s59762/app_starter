@@ -1,3 +1,16 @@
 - breadcrumb :admin_products
 
 = cell('admin/common').call(:content_header)
+
+.box.content-box.is-primary(data-vue="product_list_container")
+  .box-header.with-border
+    .box-tools
+      .tools
+        a.button.is-small.is-primary(href=(new_admin_product_path)
+                                     data-behavior="new-product-button")
+          .icon
+            i.fa.fa-plus
+          span
+            | {{actionLocaleText('admin', 'new', { model: modelNameLocaleText('product') })}}
+  .box-body
+    product-list-table
