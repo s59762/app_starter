@@ -28,22 +28,22 @@
       policy: productCategory
       action: index
     - path: '#'
-      active_by: '/admin/products'
+      active_by: <%= Rails.application.routes.url_helpers.admin_products_path %>
       icon: fa-tags
-      title: 商品管理
+      title: <%= I18n.t('page_titles.admin.products.main_title') %>
       has_submenu: true
       policy: product
       action: index
       submenus:
-        - action: orders-index
+        - action: products-index
           icon: fa-list
-          path: <%= Rails.application.routes.url_helpers.admin_dashboard_path %>
-          title: 列表
+          path: <%= Rails.application.routes.url_helpers.admin_products_path %>
+          title: <%= I18n.t('page_titles.admin.products.index') %>
 
-        - action: export-show
-          icon: fa-download
-          path: <%= Rails.application.routes.url_helpers.admin_dashboard_path %>
-          title: 匯出
+        - action: products-new
+          icon: fa-pencil
+          path: <%= Rails.application.routes.url_helpers.new_admin_product_path %>
+          title: <%= I18n.t('page_titles.admin.products.new') %>
 
 - title: <%= I18n.t('page_titles.admin.sidebar.order_info') %>
   menus:

@@ -1,6 +1,6 @@
 <template lang="pug">
 
-div(v-if="hasMenus")
+.common-site-sidebar-menu-list(v-if="hasMenus")
   p.menu-label {{title}}
   ul.common-site-sidebar-menu-list.menu-list
     div(:is="hasSubmenu(menu)"
