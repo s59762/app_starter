@@ -1,16 +1,6 @@
 import axios from 'axios'
 import Vue from 'vue/dist/vue.esm'
-import normalize from 'jsonapi-normalizer'
-import merge from 'lodash.merge'
 import FetchingDataOptionsService from '../services/fetching_data_options_service'
-
-const tryStoreMetaToVuex = function(state, response) {
-  const metaObj = response.data.meta
-
-  if (metaObj) {
-    state.meta = merge({}, state.meta, metaObj)
-  }
-}
 
 /**
  * Model 層的基礎，包含了所有 Models 都會用到的方法
@@ -90,96 +80,5 @@ export default class ModelBase {
    */
   destroy(id) {
     return axios.delete(`${this.api_base_path}/${this.api_version}/${this.scope}/${this.resource_type}/${id}`)
-  }
-
-  // ------------------------------------------------------------------------ //
-  // --------------------------- For Mutations ------------------------------ //
-  // ------------------------------------------------------------------------ //
-
-  /**
-   * 把 response 中的所有 resources 內容加入 vuex store 中
-   *
-   * @param {object} state vuex state
-   * @param {object} response raw response from server
-   * @memberof ModelBase
-   */
-  storeResourcesToEntities(state, response) {
-    const normalizedResult = normalize(response.data)
-
-    tryStoreMetaToVuex(state, response)
-    state.entities = merge({}, state.entities, normalizedResult.entities[this.resource_type])
-    state.result = merge([], state.result, normalizedResult.result[this.resource_type])
-  }
-
-  /**
-   * 清除原本 vuex store 的內容把 response 中的所有 resources 內容放到 vuex store 中
-   *
-   * @param {object} state vuex state
-   * @param {object} response raw response from server
-   * @memberof ModelBase
-   */
-  replaceEntities(state, response) {
-    const normalizedResult = normalize(response.data)
-
-    tryStoreMetaToVuex(state, response)
-    state.entities = normalizedResult.entities[this.resource_type] || {}
-    state.result = normalizedResult.result[this.resource_type] || []
-  }
-
-  /**
-   * 把單筆 resource 內容放到 vuex store 中
-   *
-   * @param {object} state vuex state
-   * @param {object} response raw response from server
-   * @memberof ModelBase
-   */
-  storeOneResourceToEntities(state, response) {
-    const normalizedResult = normalize(response.data)
-    const id = Object.keys(normalizedResult.entities[this.resource_type])[0]
-
-    tryStoreMetaToVuex(state, response)
-    Vue.set(state.entities, id, normalizedResult.entities[this.resource_type][id])
-  }
-
-  /**
-   * 把單筆 resource 從 vuex store 移除
-   *
-   * @param {object} state vuex state
-   * @param {object} id resource ID
-   * @memberof ModelBase
-   */
-  removeOneResourceFromEntities(state, id) {
-    const index = state.result.indexOf(id)
-
-    Vue.delete(state.entities, id)
-    state.result.splice(index, 1)
-  }
-
-  /**
-   * 把單筆 resource ID 放到 vuex store 的 result 最前面
-   *
-   * @param {object} state vuex state
-   * @param {object} response raw response from server
-   * @memberof ModelBase
-   */
-  unshiftResourceToResult(state, response) {
-    const normalizedResult = normalize(response.data)
-    const id = Object.keys(normalizedResult.entities[this.resource_type])[0]
-
-    state.result.unshift(id)
-  }
-
-  /**
-   * 把單筆 resource ID 放到 vuex store 的 result 最後面
-   *
-   * @param {object} state vuex state
-   * @param {object} response raw response from server
-   * @memberof ModelBase
-   */
-  pushResourceToResult(state, response) {
-    const normalizedResult = normalize(response.data)
-    const id = Object.keys(normalizedResult.entities[this.resource_type])[0]
-
-    state.result.push(id)
   }
 }
