@@ -8,40 +8,40 @@
     .panel-heading(slot="trigger") {{actionLocaleText('admin', 'change_password')}}
     .panel-block
       b-field(:label="attributeLocaleText('admin', 'new_password')"
-              :type="form.errorClassAt('new_password')"
-              :message="form.errors.get('new_password')")
+              :type="errors.errorClassAt('new_password')"
+              :message="errors.get('new_password')")
         b-input(type="password"
                 v-model="form.new_password"
                 :placeholder="messageLocaleText('help.if_do_not_want_to_change_password_leave_empty')"
                 data-behavior="admin-password"
-                @input="form.errors.clear('new_password')")
+                @input="errors.clear('new_password')")
 
       b-field(:label="attributeLocaleText('admin', 'password_confirmation')"
-              :type="form.errorClassAt('password_confirmation')"
-              :message="form.errors.get('password_confirmation')")
+              :type="errors.errorClassAt('password_confirmation')"
+              :message="errors.get('password_confirmation')")
         b-input(type="password"
                 v-model="form.password_confirmation"
                 :placeholder="messageLocaleText('help.if_do_not_want_to_change_password_leave_empty')"
                 data-behavior="admin-password-confirmation"
-                @input="form.errors.clear('password_confirmation')")
+                @input="errors.clear('password_confirmation')")
 
   //- general fields
   b-field(:label="attributeLocaleText('admin', 'name')"
-          :type="form.errorClassAt('name')"
-          :message="form.errors.get('name')")
+          :type="errors.errorClassAt('name')"
+          :message="errors.get('name')")
     b-input(type="text"
             placeholder="e.g. Jone Doe"
             v-model="form.name"
             data-behavior="admin-name"
-            @input="form.errors.clear('name')")
+            @input="errors.clear('name')")
 
   b-field(:label="attributeLocaleText('admin', 'role')"
-          :type="form.errorClassAt('role')"
-          :message="form.errors.get('role')")
+          :type="errors.errorClassAt('role')"
+          :message="errors.get('role')")
     b-select(v-model="form.role"
              :loading="isLoading"
              data-behavior="admin-role"
-             @input="form.errors.clear('role')"
+             @input="errors.clear('role')"
              expanded)
       option(v-for="role in availableRoles"
              :value="role")
@@ -70,22 +70,16 @@ export default {
 
   data() {
     return {
-      form: new Form(
-        {
-          password: '',
-          new_password: '',
-          password_confirmation: '',
-          name: this.admin.name,
-          role: this.admin.role
-        },
-        this.$store.dispatch,
-        this.$store.getters['admins/errors']
-      ),
+      form: new Form(this.admin),
       isEditPasswordInputOpen: false
     }
   },
 
   computed: {
+    errors() {
+      return this.$store.getters['admins/errors']
+    },
+
     isLoading() {
       return this.$store.getters['admins/isLoading']
     },
@@ -113,18 +107,13 @@ export default {
 
   methods: {
     submitForm() {
-      this.form
-        .dispatch('admins/updateResource', {
-          id: this.admin.id,
-          resource: this.requestBody
-        })
-        .then(response => {
-          this.form.addFlashMessage([
-            'success',
-            this.messageLocaleText('resource_updated_successfully', { resource: this.modelNameLocaleText('admin') })
-          ])
-          this.$parent.close()
-        })
+      this.$store.dispatch('admins/updateResource', this.form.sync()).then(response => {
+        this.$store.dispatch('addFlashMessage', [
+          'success',
+          this.messageLocaleText('resource_updated_successfully', { resource: this.modelNameLocaleText('admin') })
+        ])
+        this.$parent.close()
+      })
     }
   }
 }

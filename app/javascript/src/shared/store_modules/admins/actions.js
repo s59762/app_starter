@@ -1,7 +1,7 @@
 import * as types from './mutation-types'
-import AdminModel from '../../resource_models/admin'
+import Admin from '../../resource_models/admin'
 
-const Admin = new AdminModel()
+// const Admin = new AdminModel()
 
 /**
  * 從 Server 取得所有 Admin 可用的 roles 選項
@@ -36,7 +36,7 @@ export const allResources = ({ dispatch, commit }, options) => {
   commit(types.FETCH_ADMINS_START)
 
   return new Promise((resolve, reject) => {
-    Admin.index(options)
+    Admin.all(options)
       .then(response => {
         commit(types.FETCH_ADMINS_SUCCESS, response)
 
@@ -61,7 +61,7 @@ export const getResource = ({ dispatch, commit }, id) => {
   commit(types.GET_ADMIN_START)
 
   return new Promise((resolve, reject) => {
-    Admin.show(id)
+    Admin.find(id)
       .then(response => {
         commit(types.GET_ADMIN_SUCCESS, response)
 
@@ -82,11 +82,12 @@ export const getResource = ({ dispatch, commit }, id) => {
  * @param {Object} resource JSON:API 規格的 request body
  * @returns {promise} response or errors
  */
-export const addResource = ({ dispatch, commit }, resource) => {
+export const addResource = ({ dispatch, commit }, model) => {
   commit(types.ADD_ADMIN_START)
 
   return new Promise((resolve, reject) => {
-    Admin.create(resource)
+    model
+      .save()
       .then(response => {
         commit(types.ADD_ADMIN_SUCCESS, response)
 
@@ -108,11 +109,12 @@ export const addResource = ({ dispatch, commit }, resource) => {
  * @param {Object} resource JSON:API 規格的 request body
  * @returns {promise} response or errors
  */
-export const updateResource = ({ dispatch, commit }, { id, resource }) => {
+export const updateResource = ({ dispatch, commit }, model) => {
   commit(types.UPDATE_ADMIN_START)
 
   return new Promise((resolve, reject) => {
-    Admin.update(id, resource)
+    model
+      .save()
       .then(response => {
         commit(types.UPDATE_ADMIN_SUCCESS, response)
 
@@ -133,13 +135,14 @@ export const updateResource = ({ dispatch, commit }, { id, resource }) => {
  * @param {number} id 指定的 resource ID
  * @returns {promise} response or errors
  */
-export const deleteResource = ({ dispatch, commit }, id) => {
+export const deleteResource = ({ dispatch, commit }, model) => {
   commit(types.DELETE_ADMIN_START)
 
   return new Promise((resolve, reject) => {
-    Admin.destroy(id)
+    model
+      .destroy()
       .then(response => {
-        commit(types.DELETE_ADMIN_SUCCESS, id)
+        commit(types.DELETE_ADMIN_SUCCESS, model.id)
 
         resolve(response)
       })
@@ -158,11 +161,12 @@ export const deleteResource = ({ dispatch, commit }, id) => {
  * @param {number} id 指定的 resource ID
  * @returns {promise} response or errors
  */
-export const suspendResource = ({ dispatch, commit }, id) => {
+export const suspendResource = ({ dispatch, commit }, model) => {
   commit(types.UPDATE_ADMIN_START)
 
   return new Promise((resolve, reject) => {
-    Admin.suspend(id)
+    model
+      .suspend()
       .then(response => {
         commit(types.UPDATE_ADMIN_SUCCESS, response)
 

@@ -4,47 +4,47 @@
   h3.subtitle {{pageTitleLocaleText('admin', 'admins', 'new')}}
 
   b-field(:label="attributeLocaleText('admin', 'email')"
-          :type="form.errorClassAt('email')"
-          :message="form.errors.get('email')")
+          :type="errors.errorClassAt('email')"
+          :message="errors.get('email')")
     b-input(type="text"
             placeholder="e.g. name@example.com"
             v-model="form.email"
             data-behavior="admin-email"
-            @input="form.errors.clear('email')")
+            @input="errors.clear('email')")
 
   b-field(:label="attributeLocaleText('admin', 'password')"
-          :type="form.errorClassAt('password')"
-          :message="form.errors.get('password')")
+          :type="errors.errorClassAt('password')"
+          :message="errors.get('password')")
     b-input(type="password"
             :placeholder="messageLocaleText('help.leave_empty_for_default_password')"
             v-model="form.password"
             data-behavior="admin-password"
-            @input="form.errors.clear('password')")
+            @input="errors.clear('password')")
   b-field(:label="attributeLocaleText('admin', 'password_confirmation')"
-          :type="form.errorClassAt('password_confirmation')"
-          :message="form.errors.get('password_confirmation')")
+          :type="errors.errorClassAt('password_confirmation')"
+          :message="errors.get('password_confirmation')")
     b-input(type="password"
             :placeholder="messageLocaleText('help.please_re_enter_password_for_confirmation')"
             v-model="form.password_confirmation"
             data-behavior="admin-password-confirmation"
-            @input="form.errors.clear('password_confirmation')")
+            @input="errors.clear('password_confirmation')")
 
   b-field(:label="attributeLocaleText('admin', 'name')"
-          :type="form.errorClassAt('name')"
-          :message="form.errors.get('name')")
+          :type="errors.errorClassAt('name')"
+          :message="errors.get('name')")
     b-input(type="text"
             placeholder="e.g. Jone Doe"
             v-model="form.name"
             data-behavior="admin-name"
-            @input="form.errors.clear('name')")
+            @input="errors.clear('name')")
 
   b-field(:label="attributeLocaleText('admin', 'role')"
-          :type="form.errorClassAt('role')"
-          :message="form.errors.get('role')")
+          :type="errors.errorClassAt('role')"
+          :message="errors.get('role')")
     b-select(v-model="form.role"
              :loading="isLoading"
              data-behavior="admin-role"
-             @input="form.errors.clear('role')"
+             @input="errors.clear('role')"
              expanded)
       option(v-for="role in availableRoles"
              :value="role")
@@ -60,6 +60,7 @@
 
 <script>
 import Form from '../../../../shared/form'
+import Admin from '../../../../shared/resource_models/admin'
 
 export default {
   // components: {},
@@ -67,21 +68,15 @@ export default {
   // props: {},
   data() {
     return {
-      form: new Form(
-        {
-          email: '',
-          password: '',
-          password_confirmation: '',
-          name: '',
-          role: ''
-        },
-        this.$store.dispatch,
-        this.$store.getters['admins/errors']
-      )
+      form: new Form(new Admin())
     }
   },
 
   computed: {
+    errors() {
+      return this.$store.getters['admins/errors']
+    },
+
     isLoading() {
       return this.$store.getters['admins/isLoading']
     },
@@ -110,8 +105,8 @@ export default {
 
   methods: {
     submitForm() {
-      this.form.dispatch('admins/addResource', this.requestBody).then(() => {
-        this.form.addFlashMessage([
+      this.$store.dispatch('admins/addResource', this.form.sync()).then(() => {
+        this.$store.dispatch('addFlashMessage', [
           'success',
           this.messageLocaleText('resource_added_successfully', { resource: this.modelNameLocaleText('admin') })
         ])

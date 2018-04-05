@@ -1,4 +1,5 @@
 import normalize from 'jsonapi-normalizer'
+import Vue from 'vue/dist/vue.esm'
 import merge from 'lodash.merge'
 
 /**
