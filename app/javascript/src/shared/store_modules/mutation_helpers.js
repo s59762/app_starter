@@ -133,4 +133,11 @@ export default class MutationHelpers {
 
     state.configs = result
   }
+
+  /**
+   * 把 admin roles 列表寫入 vuex store。
+   */
+  receiveAvailableRoles(state, response) {
+    state.availableRoles = response.data.data
+  }
 }
