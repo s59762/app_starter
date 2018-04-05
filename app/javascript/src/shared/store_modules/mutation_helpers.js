@@ -120,4 +120,17 @@ export default class MutationHelpers {
 
     state.result.push(id)
   }
+
+  /**
+   * 僅用於把 site config 的內容放到 vuex 時使用。因為這並不是標準 JSON:API 格式
+   *
+   * @param {any} state
+   * @param {any} response
+   * @memberof MutationHelpers
+   */
+  storeSiteConfigs(state, response) {
+    const result = response.data
+
+    state.configs = result
+  }
 }

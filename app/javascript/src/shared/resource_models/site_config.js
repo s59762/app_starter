@@ -12,7 +12,7 @@ export default class Siteconfig extends ModelBase {
    * @returns {Promise} 回傳 response 或 errors
    */
   show() {
-    return axios.get(`${this.api_base_path}/${this.api_version}/${this.scope}/site_config`)
+    return axios.get(`${this.api_base_path}/${this.api_version}/${this.scope}/${this.resource_type}`)
   }
 
   /**
@@ -25,11 +25,5 @@ export default class Siteconfig extends ModelBase {
       `${this.api_base_path}/${this.api_version}/${this.scope}/${this.resource_type}/meta_tags`,
       metaTags
     )
-  }
-
-  storeConfigs(state, response) {
-    const result = response.data
-
-    state.configs = result
   }
 }
