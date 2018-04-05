@@ -30,7 +30,8 @@ class AdminSerializer < ApplicationSerializer
              :name,
              :role,
              :sign_in_count,
-             :is_suspended
+             :is_suspended,
+             :updated_at
 
-  to_unix_time :last_sign_in_at, :created_at
+  to_unix_time :last_sign_in_at, :created_at, :updated_at
 end

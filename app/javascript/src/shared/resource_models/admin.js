@@ -7,20 +7,18 @@ const SCOPE = 'web'
 const RESOURCE_TYPE = 'admins'
 const API_BASE_PATH = `${API_PATH}/${API_VERSION}/${SCOPE}/${RESOURCE_TYPE}`
 const ATTRIBUTES = [
-  'id',
   'avatar',
+  'created_at',
   'email',
-  'password',
-  'new_password',
-  'password_confirmation',
-  'name',
-  'role',
+  'id',
   'is_suspended',
   'last_sign_in_at',
+  'name',
+  'role',
   'sing_in_count',
-  'created_at'
+  'updated_at'
 ]
-const EDITABLE_ATTRIBUTES = ['email', 'password', 'new_password', 'password_confirmation', 'name', 'role']
+const EDITABLE_ATTRIBUTES = ['email', 'name', 'new_password', 'password', 'password_confirmation', 'role']
 
 export default class Admin {
   constructor(attributes = {}) {
@@ -104,7 +102,7 @@ export default class Admin {
       })
     } else {
       EDITABLE_ATTRIBUTES.forEach(attr => {
-        result[attr] = this[attr]
+        result[attr] = this[attr] || null
       })
     }
 
