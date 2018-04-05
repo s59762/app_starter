@@ -1,3 +1,5 @@
+import ProductCategory from '../../resource_models/product_category'
+
 /**
  * @returns {boolean} 這個 module 是否正在與 API 溝通中
  */
@@ -13,7 +15,7 @@ export const isLoading = state => {
  */
 export const allResources = state => {
   if (state.result) {
-    return state.result.map(id => state.entities[id])
+    return state.result.map(id => new ProductCategory(state.entities[id]))
   }
 }
 
@@ -24,7 +26,7 @@ export const allResources = state => {
  * @returns {object} Resource 物件
  */
 export const findResourceById = state => id => {
-  return state.entities[id]
+  return new ProductCategory(state.entities[id])
 }
 
 /**

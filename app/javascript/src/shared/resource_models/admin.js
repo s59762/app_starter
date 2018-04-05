@@ -25,7 +25,7 @@ const EDITABLE_ATTRIBUTES = ['email', 'password', 'new_password', 'password_conf
 export default class Admin {
   constructor(attributes = {}) {
     ATTRIBUTES.forEach(attr => {
-      this[attr] = attributes[attr] || ''
+      this[attr] = attributes[attr] || null
     })
   }
 
@@ -112,7 +112,7 @@ export default class Admin {
   }
 
   isNewRecord() {
-    return this.id === ''
+    return this.id === null
   }
 
   requestBody() {
