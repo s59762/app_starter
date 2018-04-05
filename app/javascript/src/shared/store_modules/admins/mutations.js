@@ -1,7 +1,7 @@
 import * as types from './mutation-types'
-import AdminModel from '../../resource_models/admin'
+import MutationHelpers from '../mutation_helpers'
 
-const Admin = new AdminModel()
+const helpers = new MutationHelpers('admins')
 
 export default {
   [types.FETCH_ADMIN_ROLES_START](state) {
@@ -9,7 +9,7 @@ export default {
   },
 
   [types.FETCH_ADMIN_ROLES_SUCCESS](state, response) {
-    Admin.receiveAvailableRoles(state, response)
+    helpers.receiveAvailableRoles(state, response)
 
     state.isCallingAPI = false
   },
@@ -19,14 +19,14 @@ export default {
   },
 
   [types.FETCH_ADMINS_SUCCESS](state, response) {
-    Admin.replaceEntities(state, response)
+    helpers.replaceEntities(state, response)
 
     state.meta = response.data.meta
     state.isCallingAPI = false
   },
 
   [types.GET_RELATED_ADMINS_SUCCESS](state, response) {
-    Admin.storeResourcesToEntities(state, response)
+    helpers.storeResourcesToEntities(state, response)
 
     state.isCallingAPI = false
   },
@@ -36,7 +36,7 @@ export default {
   },
 
   [types.GET_ADMIN_SUCCESS](state, response) {
-    Admin.storeOneResourceToEntities(state, response)
+    helpers.storeOneResourceToEntities(state, response)
 
     state.meta = response.data.meta
     state.isCallingAPI = false
@@ -47,8 +47,8 @@ export default {
   },
 
   [types.ADD_ADMIN_SUCCESS](state, response) {
-    Admin.storeOneResourceToEntities(state, response)
-    Admin.pushResourceToResult(state, response)
+    helpers.storeOneResourceToEntities(state, response)
+    helpers.pushResourceToResult(state, response)
 
     state.isCallingAPI = false
   },
@@ -58,7 +58,7 @@ export default {
   },
 
   [types.UPDATE_ADMIN_SUCCESS](state, response) {
-    Admin.storeOneResourceToEntities(state, response)
+    helpers.storeOneResourceToEntities(state, response)
 
     state.isCallingAPI = false
   },
@@ -68,7 +68,7 @@ export default {
   },
 
   [types.DELETE_ADMIN_SUCCESS](state, id) {
-    Admin.removeOneResourceFromEntities(state, id)
+    helpers.removeOneResourceFromEntities(state, id)
 
     state.isCallingAPI = false
   },

@@ -1,7 +1,7 @@
 import * as types from './mutation-types'
-import SiteConfigModel from '../../resource_models/site_config'
+import MutationHelpers from '../mutation_helpers'
 
-const SiteConfig = new SiteConfigModel()
+const helpers = new MutationHelpers('site_config')
 
 export default {
   [types.GET_SITE_CONFIG_START](state) {
@@ -9,7 +9,7 @@ export default {
   },
 
   [types.GET_SITE_CONFIG_SUCCESS](state, response) {
-    SiteConfig.storeConfigs(state, response)
+    helpers.storeSiteConfigs(state, response)
 
     state.isCallingAPI = false
   },
@@ -19,7 +19,7 @@ export default {
   },
 
   [types.UPDATE_SITE_CONFIG_SUCCESS](state, response) {
-    SiteConfig.storeConfigs(state, response)
+    helpers.storeSiteConfigs(state, response)
 
     state.isCallingAPI = false
   },

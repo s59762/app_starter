@@ -1,7 +1,5 @@
 import * as types from './mutation-types'
-import ProductCategoryModel from '../../resource_models/product_category'
-
-const ProductCategory = new ProductCategoryModel()
+import ProductCategory from '../../resource_models/product_category'
 
 /**
  * 從 Server 取得所有 Resource
@@ -14,7 +12,7 @@ export const allResources = ({ dispatch, commit }, options) => {
   commit(types.FETCH_PRODUCT_CATEGORIES_START)
 
   return new Promise((resolve, reject) => {
-    ProductCategory.index(options)
+    ProductCategory.all(options)
       .then(response => {
         commit(types.FETCH_PRODUCT_CATEGORIES_SUCCESS, response)
 
@@ -39,7 +37,7 @@ export const getResource = ({ dispatch, commit }, id) => {
   commit(types.GET_PRODUCT_CATEGORY_START)
 
   return new Promise((resolve, reject) => {
-    ProductCategory.show(id)
+    ProductCategory.find(id)
       .then(response => {
         commit(types.GET_PRODUCT_CATEGORY_SUCCESS, response)
 
@@ -60,11 +58,12 @@ export const getResource = ({ dispatch, commit }, id) => {
  * @param {object} resource JSON:API 規格的 request body
  * @returns {promise} response or errors
  */
-export const addResource = ({ dispatch, commit }, resource) => {
+export const addResource = ({ dispatch, commit }, model) => {
   commit(types.ADD_PRODUCT_CATEGORY_START)
 
   return new Promise((resolve, reject) => {
-    ProductCategory.create(resource)
+    model
+      .save()
       .then(response => {
         commit(types.ADD_PRODUCT_CATEGORY_SUCCESS, response)
 
@@ -86,11 +85,12 @@ export const addResource = ({ dispatch, commit }, resource) => {
  * @param {object} resource JSON:API 規格的 request body
  * @returns {promise} response or errors
  */
-export const updateResource = ({ dispatch, commit }, { id, resource }) => {
+export const updateResource = ({ dispatch, commit }, model) => {
   commit(types.UPDATE_PRODUCT_CATEGORY_START)
 
   return new Promise((resolve, reject) => {
-    ProductCategory.update(id, resource)
+    model
+      .save()
       .then(response => {
         commit(types.UPDATE_PRODUCT_CATEGORY_SUCCESS, response)
 
@@ -111,13 +111,14 @@ export const updateResource = ({ dispatch, commit }, { id, resource }) => {
  * @param {number} id 指定的 resource ID
  * @returns {promise} response or errors
  */
-export const deleteResource = ({ dispatch, commit }, id) => {
+export const deleteResource = ({ dispatch, commit }, model) => {
   commit(types.DELETE_PRODUCT_CATEGORY_START)
 
   return new Promise((resolve, reject) => {
-    ProductCategory.destroy(id)
+    model
+      .destroy()
       .then(response => {
-        commit(types.DELETE_PRODUCT_CATEGORY_SUCCESS, id)
+        commit(types.DELETE_PRODUCT_CATEGORY_SUCCESS, model.id)
 
         resolve(response)
       })

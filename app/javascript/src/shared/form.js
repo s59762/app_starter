@@ -6,13 +6,12 @@ export default class Form {
    * @param {function} dispatcher vuex store dispatch function
    * @param {Object} errors Errors instance in vuex store
    */
-  constructor(data, dispatcher, errors) {
-    this.originalData = data
-    this.dispatcher = dispatcher
-    this.errors = errors
+  constructor(model) {
+    this.model = model
+    this.originalData = model.attributes()
 
-    for (let field in data) {
-      this[field] = data[field]
+    for (let field in this.originalData) {
+      this[field] = this.originalData[field]
     }
   }
 
@@ -51,41 +50,16 @@ export default class Form {
   }
 
   /**
-   * 檢查欄位錯誤，回傳標示錯誤的 css class name
+   * 把使用者填寫的資料 sync 到 model 中
    *
-   * @param {any} columnName 要檢查的欄位名稱
-   * @returns {string} 若有欄位錯誤回傳 'is-danger'
+   * @return {Object} model object
+   * @memberof Form
    */
-  errorClassAt(columnName) {
-    return this.errors.has(columnName) ? 'is-danger' : ''
-  }
+  sync() {
+    for (let attr in this.originalData) {
+      this.model[attr] = this[attr]
+    }
 
-  /**
-   * 分發 action 到 vuex
-   *
-   * @param {any} actionName
-   * @returns {Object} 回傳 Promise 物件，成功的話回傳 response，失敗則回傳 errors 內容
-   */
-  dispatch(actionName, payload) {
-    return new Promise((resolve, reject) => {
-      this.dispatcher(actionName, payload)
-        .then(response => {
-          this.reset()
-
-          resolve(response)
-        })
-        .catch(() => {
-          reject(this.errors)
-        })
-    })
-  }
-
-  /**
-   * 新增 flash message 到 vuex store，讓前端顯示訊息。
-   *
-   * @param {array} message 格式為 `['flashType', 'messageContent']`
-   */
-  addFlashMessage(message) {
-    this.dispatcher('addFlashMessage', message)
+    return this.model
   }
 }

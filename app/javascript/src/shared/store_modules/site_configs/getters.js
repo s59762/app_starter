@@ -1,3 +1,5 @@
+import SiteConfig from '../../resource_models/site_config'
+
 /**
  * @returns {boolean} 這個 module 是否正在與 API 溝通中
  */
@@ -12,7 +14,7 @@ export const isLoading = state => {
  * @returns {array} 所有 Resource
  */
 export const allConfigs = state => {
-  return state.configs
+  return new SiteConfig(state.configs)
 }
 
 /**

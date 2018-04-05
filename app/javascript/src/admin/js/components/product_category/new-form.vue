@@ -4,22 +4,22 @@
   h3.subtitle {{pageTitleLocaleText('admin', 'product_categories', 'new')}}
 
   b-field(:label="attributeLocaleText('product_category', 'name')"
-          :type="form.errorClassAt('name')"
-          :message="form.errors.get('name')")
+          :type="errors.errorClassAt('name')"
+          :message="errors.get('name')")
     b-input(type="text"
             placeholder="e.g. 居家用品"
             v-model="form.name"
             data-behavior="product-category-name-field"
-            @input="form.errors.clear('name')")
+            @input="errors.clear('name')")
 
   b-field(:label="attributeLocaleText('product_category', 'description')"
-          :type="form.errorClassAt('description')"
-          :message="form.errors.get('description')")
+          :type="errors.errorClassAt('description')"
+          :message="errors.get('description')")
     b-input(type="textarea"
             :placeholder="messageLocaleText('this_column_is_optional')"
             v-model="form.description"
             data-behavior="product-category-description-field"
-            @input="form.errors.clear('description')")
+            @input="errors.clear('description')")
 
 
 
@@ -34,6 +34,7 @@
 
 <script>
 import Form from '../../../../shared/form'
+import ProductCategory from '../../../../shared/resource_models/product_category'
 
 export default {
   // components: {},
@@ -49,19 +50,15 @@ export default {
 
   data() {
     return {
-      form: new Form(
-        {
-          name: '',
-          description: '',
-          parent_id: this.parentId
-        },
-        this.$store.dispatch,
-        this.$store.getters['productCategories/errors']
-      )
+      form: new Form(new ProductCategory({ parent_id: this.parentId }))
     }
   },
 
   computed: {
+    errors() {
+      return this.$store.getters['productCategories/errors']
+    },
+
     isLoading() {
       return this.$store.getters['productCategories/isLoading']
     },
@@ -86,8 +83,8 @@ export default {
 
   methods: {
     submitForm() {
-      this.form.dispatch('productCategories/addResource', this.requestBody).then(() => {
-        this.form.dispatch('addFlashMessage', [
+      this.$store.dispatch('productCategories/addResource', this.form.sync()).then(() => {
+        this.$store.dispatch('addFlashMessage', [
           'success',
           this.messageLocaleText('resource_added_successfully', {
             resource: this.modelNameLocaleText('product_category')

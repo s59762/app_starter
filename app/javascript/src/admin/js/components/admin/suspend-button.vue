@@ -52,10 +52,7 @@ export default {
       if (this.admin.is_suspended) {
         return ['notice', this.messageLocaleText('admin_is_suspended', { name: this.admin.name })]
       } else {
-        return [
-          'success',
-          this.messageLocaleText('admin_is_unsuspended', { name: this.admin.name })
-        ]
+        return ['success', this.messageLocaleText('admin_is_unsuspended', { name: this.admin.name })]
       }
     },
 
@@ -77,7 +74,7 @@ export default {
     },
 
     suspendAdmin() {
-      this.$store.dispatch('admins/suspendResource', this.admin.id).then(() => {
+      this.$store.dispatch('admins/suspendResource', this.admin).then(() => {
         this.$store.dispatch('addFlashMessage', this.flashMessage)
       })
     }

@@ -1,7 +1,7 @@
 import * as types from './mutation-types'
-import ProductModel from '../../resource_models/product'
+import MutationHelpers from '../mutation_helpers'
 
-const Product = new ProductModel()
+const helpers = new MutationHelpers('products')
 
 export default {
   [types.FETCH_PRODUCTS_START](state) {
@@ -9,13 +9,13 @@ export default {
   },
 
   [types.FETCH_PRODUCTS_SUCCESS](state, response) {
-    Product.replaceEntities(state, response)
+    helpers.replaceEntities(state, response)
 
     state.isCallingAPI = false
   },
 
   [types.GET_RELATED_PRODUCTS_SUCCESS](state, response) {
-    Product.storeResourcesToEntities(state, response)
+    helpers.storeResourcesToEntities(state, response)
 
     state.isCallingAPI = false
   },
@@ -25,7 +25,7 @@ export default {
   },
 
   [types.GET_PRODUCT_SUCCESS](state, response) {
-    Product.storeOneResourceToEntities(state, response)
+    helpers.storeOneResourceToEntities(state, response)
 
     state.isCallingAPI = false
   },
@@ -35,8 +35,8 @@ export default {
   },
 
   [types.ADD_PRODUCT_SUCCESS](state, response) {
-    Product.storeOneResourceToEntities(state, response)
-    Product.pushResourceToResult(state, response)
+    helpers.storeOneResourceToEntities(state, response)
+    helpers.pushResourceToResult(state, response)
 
     state.isCallingAPI = false
   },
@@ -46,7 +46,7 @@ export default {
   },
 
   [types.UPDATE_PRODUCT_SUCCESS](state, response) {
-    Product.storeOneResourceToEntities(state, response)
+    helpers.storeOneResourceToEntities(state, response)
 
     state.isCallingAPI = false
   },
@@ -56,7 +56,7 @@ export default {
   },
 
   [types.DELETE_PRODUCT_SUCCESS](state, id) {
-    Product.removeOneResourceFromEntities(state, id)
+    helpers.removeOneResourceFromEntities(state, id)
 
     state.isCallingAPI = false
   },

@@ -260,27 +260,30 @@ export default {
      * @param {Object} options query options
      */
     updateQueryString(options) {
-      let newQueryString = this.currentUrlPath + '?'
+      let result = ''
 
       if (options.pageNumber) {
-        newQueryString += `&page[number]=${options.pageNumber}`
+        result += `&page[number]=${options.pageNumber}`
       }
       if (options.pageSize) {
-        newQueryString += `&page[size]=${options.pageSize}`
+        result += `&page[size]=${options.pageSize}`
       }
       if (options.sort) {
-        newQueryString += `&sort=${options.sort}`
+        result += `&sort=${options.sort}`
       }
       if (options.filter) {
-        newQueryString += `&filter=${options.filter}`
+        result += `&filter=${options.filter}`
       }
       if (this.parsedSearchOptions) {
-        newQueryString += `&${this.parsedSearchOptions}`
+        result += `&${this.parsedSearchOptions}`
+      }
+      if (result[0] === '&') {
+        result = result.substr(1)
       }
 
       this.$store.dispatch('updateQueryString', {
         options,
-        newQueryString
+        newQueryString: `${this.currentUrlPath}?${result}`
       })
     },
 
@@ -300,7 +303,6 @@ export default {
       this.fetchData(options)
       // this.updateQueryString(options) // remove this can make [onpopstate] work correctlly with turbolinks, do not know why...
 
-      // TODO: onpopstate 時沒有把 sort 狀態更新到 table 上，需要再檢查。
       window.onpopstate = event => {
         this.fetchData(event.state)
         this.$store.dispatch('updateQueryStringFromURL')

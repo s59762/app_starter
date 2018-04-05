@@ -1,18 +1,26 @@
-import ModelBase from './base'
 import axios from 'axios'
 
-export default class Siteconfig extends ModelBase {
-  constructor() {
-    super({ resource_type: 'site_config' })
-  }
+const API_PATH = '/api'
+const API_VERSION = 'v1'
+const SCOPE = 'web'
+const RESOURCE_TYPE = 'site_config'
+const API_BASE_PATH = `${API_PATH}/${API_VERSION}/${SCOPE}/${RESOURCE_TYPE}`
+const ATTRIBUTES = ['meta_tags']
+const EDITABLE_ATTRIBUTES = ['meta_tags']
 
+export default class SiteConfig {
+  constructor(attributes = {}) {
+    ATTRIBUTES.forEach(attr => {
+      this[attr] = attributes[attr] || null
+    })
+  }
   /**
    * 對 API 送出請求，拿回 site configs
    *
    * @returns {Promise} 回傳 response 或 errors
    */
-  show() {
-    return axios.get(`${this.api_base_path}/${this.api_version}/${this.scope}/site_config`)
+  static all() {
+    return axios.get(`${API_BASE_PATH}`)
   }
 
   /**
@@ -20,16 +28,35 @@ export default class Siteconfig extends ModelBase {
    *
    * @returns {Promise} 回傳 response 或 errors
    */
-  updateMetaTags(metaTags) {
-    return axios.put(
-      `${this.api_base_path}/${this.api_version}/${this.scope}/${this.resource_type}/meta_tags`,
-      metaTags
-    )
+  updateMetaTags() {
+    return axios.put(`${API_BASE_PATH}/meta_tags`, this.metaTagsRequestBody())
   }
 
-  storeConfigs(state, response) {
-    const result = response.data
+  /**
+   *  Helpers
+   */
+  attributes(options = {}) {
+    let result = {}
 
-    state.configs = result
+    if (options.all) {
+      ATTRIBUTES.forEach(attr => {
+        result[attr] = this[attr]
+      })
+    } else {
+      EDITABLE_ATTRIBUTES.forEach(attr => {
+        result[attr] = this[attr]
+      })
+    }
+
+    return result
+  }
+
+  metaTagsRequestBody() {
+    return {
+      data: {
+        type: RESOURCE_TYPE,
+        attributes: this.meta_tags
+      }
+    }
   }
 }

@@ -22,7 +22,8 @@ class UserSerializer < ApplicationSerializer
              :email,
              :id,
              :last_sign_in_at,
-             :sign_in_count
+             :sign_in_count,
+             :updated_at
 
-  to_unix_time :last_sign_in_at, :created_at
+  to_unix_time :last_sign_in_at, :created_at, :updated_at
 end

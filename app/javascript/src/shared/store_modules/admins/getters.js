@@ -1,3 +1,5 @@
+import Admin from '../../resource_models/admin'
+
 /**
  * @returns {boolean} 這個 module 是否正在與 API 溝通中
  */
@@ -22,7 +24,7 @@ export const availableRoles = state => {
  */
 export const allResources = state => {
   if (state.result) {
-    return state.result.map(id => state.entities[id])
+    return state.result.map(id => new Admin(state.entities[id]))
   }
 }
 
@@ -33,7 +35,7 @@ export const allResources = state => {
  * @returns {Object} Resource 物件
  */
 export const findResourceById = state => id => {
-  return state.entities[id]
+  return new Admin(state.entities[id])
 }
 
 /**

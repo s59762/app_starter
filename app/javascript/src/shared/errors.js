@@ -36,6 +36,16 @@ export default class Errors {
   }
 
   /**
+   * 檢查欄位錯誤，回傳標示錯誤的 css class name
+   *
+   * @param {any} columnName 要檢查的欄位名稱
+   * @returns {string} 若有欄位錯誤回傳 'is-danger'
+   */
+  errorClassAt(columnName) {
+    return this.has(columnName) ? 'is-danger' : ''
+  }
+
+  /**
    * 列出所有錯誤訊息內容
    *
    * @returns {Object} 所有錯誤訊息內容

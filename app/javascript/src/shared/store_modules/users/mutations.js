@@ -1,7 +1,7 @@
 import * as types from './mutation-types'
-import UserModel from '../../resource_models/user'
+import MutationHelpers from '../mutation_helpers'
 
-const User = new UserModel()
+const helpers = new MutationHelpers('users')
 
 export default {
   [types.FETCH_USERS_START](state) {
@@ -9,14 +9,14 @@ export default {
   },
 
   [types.FETCH_USERS_SUCCESS](state, response) {
-    User.replaceEntities(state, response)
+    helpers.replaceEntities(state, response)
 
     state.meta = response.data.meta
     state.isCallingAPI = false
   },
 
   [types.GET_RELATED_USERS_SUCCESS](state, response) {
-    User.storeResourcesToEntities(state, response)
+    helpers.storeResourcesToEntities(state, response)
 
     state.isCallingAPI = false
   },
@@ -26,7 +26,7 @@ export default {
   },
 
   [types.GET_USER_SUCCESS](state, response) {
-    User.storeOneResourceToEntities(state, response)
+    helpers.storeOneResourceToEntities(state, response)
 
     state.meta = response.data.meta
     state.isCallingAPI = false
@@ -37,8 +37,8 @@ export default {
   },
 
   [types.ADD_USER_SUCCESS](state, response) {
-    User.storeOneResourceToEntities(state, response)
-    User.pushResourceToResult(state, response)
+    helpers.storeOneResourceToEntities(state, response)
+    helpers.pushResourceToResult(state, response)
 
     state.isCallingAPI = false
   },
@@ -48,7 +48,7 @@ export default {
   },
 
   [types.UPDATE_USER_SUCCESS](state, response) {
-    User.storeOneResourceToEntities(state, response)
+    helpers.storeOneResourceToEntities(state, response)
 
     state.isCallingAPI = false
   },
@@ -58,7 +58,7 @@ export default {
   },
 
   [types.DELETE_USER_SUCCESS](state, id) {
-    User.removeOneResourceFromEntities(state, id)
+    helpers.removeOneResourceFromEntities(state, id)
 
     state.isCallingAPI = false
   },
