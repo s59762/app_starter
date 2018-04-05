@@ -1,5 +1,4 @@
 import axios from 'axios'
-import Vue from 'vue/dist/vue.esm'
 import FetchingDataOptionsService from '../services/fetching_data_options_service'
 
 /**
