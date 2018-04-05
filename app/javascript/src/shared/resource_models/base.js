@@ -15,9 +15,9 @@ export default class ModelBase {
    * @memberof ModelBase
    */
   constructor(options) {
-    this.api_base_path = '/api'
-    this.api_version = 'v1'
-    this.scope = 'web'
+    this.api_base_path = options.api_base_path || '/api'
+    this.api_version = options.api_version || 'v1'
+    this.scope = options.scope || 'web'
     this.resource_type = options.resource_type
   }
 
