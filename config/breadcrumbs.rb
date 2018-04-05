@@ -28,6 +28,16 @@ crumb :admin_product_categories do
   parent :admin_root
 end
 
+crumb :admin_products do
+  link I18n.t('page_titles.admin.products.main_title'), admin_products_path, icon: 'fa-tags'
+  parent :admin_root
+end
+
+crumb :admin_products_new do
+  link I18n.t('page_titles.admin.products.new'), admin_products_path, icon: 'fa-pencil'
+  parent :admin_products
+end
+
 crumb :admin_system_config do
   link I18n.t('page_titles.admin.system_config.main_title'), admin_admins_path, icon: 'fa-gears'
   parent :admin_root

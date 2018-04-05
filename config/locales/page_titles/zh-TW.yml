@@ -31,6 +31,12 @@ zh-TW:
         new: 新增分類
         show: 詳細資料
         edit: 編輯分類
+      products:
+        main_title: 商品管理
+        index: 列表
+        new: 新增商品
+        show: 詳細資料
+        edit: 編輯商品
       profile:
         main_title: 管理員個人檔案
         show: 編輯

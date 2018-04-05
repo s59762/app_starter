@@ -18,7 +18,12 @@ export default {
 
   computed: {
     isActive() {
-      return window.location.pathname == this.menu.active_by
+      const activeIndentity = `/${window.location.pathname
+        .split('/')
+        .slice(1, 3)
+        .join('/')}`
+
+      return activeIndentity == this.menu.active_by
     },
 
     activeClass() {

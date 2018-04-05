@@ -1,44 +1,22 @@
 import * as types from './mutation-types'
-import AdminModel from '../../resource_models/admin'
+import ProductModel from '../../resource_models/product'
 
-const Admin = new AdminModel()
-
-/**
- * 從 Server 取得所有 Admin 可用的 roles 選項
- *
- * @returns {promise} response or errors
- */
-export const fetchAvailableRoles = ({ dispatch, commit }) => {
-  commit(types.FETCH_ADMIN_ROLES_START)
-
-  return new Promise((resolve, reject) => {
-    Admin.roles()
-      .then(response => {
-        commit(types.FETCH_ADMIN_ROLES_SUCCESS, response)
-
-        resolve(response)
-      })
-      .catch(errors => {
-        commit(types.API_REQUEST_FAIL, errors)
-        dispatch('errorMessageHandler', errors, { root: true })
-
-        reject(errors)
-      })
-  })
-}
+const Product = new ProductModel()
 
 /**
  * 從 Server 取得所有 Resource
  *
+ * @param {object} options 可傳入 paginate options 或其他 filter 功能。
+ *
  * @returns {promise} response or errors
  */
 export const allResources = ({ dispatch, commit }, options) => {
-  commit(types.FETCH_ADMINS_START)
+  commit(types.FETCH_PRODUCTS_START)
 
   return new Promise((resolve, reject) => {
-    Admin.index(options)
+    Product.index(options)
       .then(response => {
-        commit(types.FETCH_ADMINS_SUCCESS, response)
+        commit(types.FETCH_PRODUCTS_SUCCESS, response)
 
         resolve(response)
       })
@@ -58,12 +36,12 @@ export const allResources = ({ dispatch, commit }, options) => {
  * @returns {promise} response or errors
  */
 export const getResource = ({ dispatch, commit }, id) => {
-  commit(types.GET_ADMIN_START)
+  commit(types.GET_PRODUCT_START)
 
   return new Promise((resolve, reject) => {
-    Admin.show(id)
+    Product.show(id)
       .then(response => {
-        commit(types.GET_ADMIN_SUCCESS, response)
+        commit(types.GET_PRODUCT_SUCCESS, response)
 
         resolve(response)
       })
@@ -79,16 +57,16 @@ export const getResource = ({ dispatch, commit }, id) => {
 /**
  * 新增 Resource 到 Server
  *
- * @param {Object} resource JSON:API 規格的 request body
+ * @param {object} resource JSON:API 規格的 request body
  * @returns {promise} response or errors
  */
 export const addResource = ({ dispatch, commit }, resource) => {
-  commit(types.ADD_ADMIN_START)
+  commit(types.ADD_PRODUCT_START)
 
   return new Promise((resolve, reject) => {
-    Admin.create(resource)
+    Product.create(resource)
       .then(response => {
-        commit(types.ADD_ADMIN_SUCCESS, response)
+        commit(types.ADD_PRODUCT_SUCCESS, response)
 
         resolve(response)
       })
@@ -105,16 +83,16 @@ export const addResource = ({ dispatch, commit }, resource) => {
  * 從 Server 更新一筆 resource 的內容
  *
  * @param {number} id 指定的 resource ID
- * @param {Object} resource JSON:API 規格的 request body
+ * @param {object} resource JSON:API 規格的 request body
  * @returns {promise} response or errors
  */
 export const updateResource = ({ dispatch, commit }, { id, resource }) => {
-  commit(types.UPDATE_ADMIN_START)
+  commit(types.UPDATE_PRODUCT_START)
 
   return new Promise((resolve, reject) => {
-    Admin.update(id, resource)
+    Product.update(id, resource)
       .then(response => {
-        commit(types.UPDATE_ADMIN_SUCCESS, response)
+        commit(types.UPDATE_PRODUCT_SUCCESS, response)
 
         resolve(response)
       })
@@ -134,37 +112,12 @@ export const updateResource = ({ dispatch, commit }, { id, resource }) => {
  * @returns {promise} response or errors
  */
 export const deleteResource = ({ dispatch, commit }, id) => {
-  commit(types.DELETE_ADMIN_START)
+  commit(types.DELETE_PRODUCT_START)
 
   return new Promise((resolve, reject) => {
-    Admin.destroy(id)
+    Product.destroy(id)
       .then(response => {
-        commit(types.DELETE_ADMIN_SUCCESS, id)
-
-        resolve(response)
-      })
-      .catch(errors => {
-        commit(types.API_REQUEST_FAIL, errors)
-        dispatch('errorMessageHandler', errors, { root: true })
-
-        reject(errors)
-      })
-  })
-}
-
-/**
- * toggle Admin `is_suspended` 的狀態
- *
- * @param {number} id 指定的 resource ID
- * @returns {promise} response or errors
- */
-export const suspendResource = ({ dispatch, commit }, id) => {
-  commit(types.UPDATE_ADMIN_START)
-
-  return new Promise((resolve, reject) => {
-    Admin.suspend(id)
-      .then(response => {
-        commit(types.UPDATE_ADMIN_SUCCESS, response)
+        commit(types.DELETE_PRODUCT_SUCCESS, id)
 
         resolve(response)
       })
@@ -180,12 +133,12 @@ export const suspendResource = ({ dispatch, commit }, id) => {
 /**
  * 收到多筆其他 resource 的 relationships
  *
- * @param {Object} response axios response object
+ * @param {object} response axios response object
  * @returns {promise} response or errors
  */
 export const receiveResourcesFromRelationships = ({ commit }, response) => {
   return new Promise((resolve, reject) => {
-    commit(types.GET_RELATED_ADMINS_SUCCESS, response)
+    commit(types.GET_RELATED_PRODUCTS_SUCCESS, response)
 
     resolve(response)
   })
@@ -194,12 +147,12 @@ export const receiveResourcesFromRelationships = ({ commit }, response) => {
 /**
  * 收到單筆其他 resource 的 relationship
  *
- * @param {Object} response axios response object
+ * @param {object} response axios response object
  * @returns {promise} response or errors
  */
 export const getResourceFromRelationship = ({ commit }, response) => {
   return new Promise((resolve, reject) => {
-    commit(types.GET_ADMIN_SUCCESS, response)
+    commit(types.GET_PRODUCT_SUCCESS, response)
 
     resolve(response)
   })

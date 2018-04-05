@@ -248,7 +248,7 @@ export default {
      */
     fetchData(options) {
       this.currentPage = options.pageNumber
-      this.$store.dispatch(`${this.resourceType}/fetchAllResources`, options)
+      this.$store.dispatch(`${this.resourceType}/allResources`, options)
     },
 
     /**

@@ -43,6 +43,12 @@ export default {
     }
   },
 
+  watch: {
+    isActive(value) {
+      this.submenuActive = value
+    }
+  },
+
   // created() {},
 
   mounted() {

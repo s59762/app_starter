@@ -10,7 +10,7 @@ const ProductCategory = new ProductCategoryModel()
  *
  * @returns {promise} response or errors
  */
-export const fetchAllResources = ({ dispatch, commit }, options) => {
+export const allResources = ({ dispatch, commit }, options) => {
   commit(types.FETCH_PRODUCT_CATEGORIES_START)
 
   return new Promise((resolve, reject) => {

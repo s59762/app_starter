@@ -7,7 +7,11 @@
     .box-tools
       .tools
         button.button.is-small.is-primary(@click="showNewAdminForm"
-                                          data-behavior="new-admin-button") ＋新增成員
+                                          data-behavior="new-admin-button")
+          .icon
+            i.fa.fa-plus
+          span
+            | {{actionLocaleText('admin', 'new', { model: modelNameLocaleText('admin') })}}
         b-modal(:active.sync="isNewAdminFormActive")
           new-admin-form.form-modal(@admin-added="reloadAdminListTable")
   .box-body
