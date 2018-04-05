@@ -7,6 +7,16 @@ const DEFAULT_PAGE_SIZE = 25
  * @class FetchingDataOptionsService
  */
 export default class FetchingDataOptionsService {
+  static call(options) {
+    let result = `${this.pagenate(options)}${this.sort(options)}${this.filter(options)}${this.search(options)}`
+
+    if (result[0] === '&') {
+      result = result.substr(1)
+    }
+
+    return result
+  }
+
   /**
    * 處理分頁選項
    *

@@ -29,11 +29,9 @@ export default class ModelBase {
    */
   index(options = {}) {
     return axios.get(
-      `${this.api_base_path}/${this.api_version}/${this.scope}/${
-        this.resource_type
-      }?${FetchingDataOptionsService.pagenate(options)}${FetchingDataOptionsService.sort(
+      `${this.api_base_path}/${this.api_version}/${this.scope}/${this.resource_type}?${FetchingDataOptionsService.call(
         options
-      )}${FetchingDataOptionsService.filter(options)}${FetchingDataOptionsService.search(options)}`
+      )}`
     )
   }
 
