@@ -9,27 +9,27 @@
       .columns
         .column.is-7
           b-field(:label="attributeLocaleText('site_config', 'site_name')"
-                  :type="form.errorClassAt('site_name')"
-                  :message="form.errors.get('site_name')")
+                  :type="errors.errorClassAt('site_name')"
+                  :message="errors.get('site_name')")
             b-input(type="text"
                     placeholder="Your Site Name"
                     v-model="form.site_name"
-                    @input="form.errors.clear('site_name')")
+                    @input="errors.clear('site_name')")
 
           b-field(:label="attributeLocaleText('site_config', 'separator')"
-                  :type="form.errorClassAt('separator')"
-                  :message="form.errors.get('separator')")
+                  :type="errors.errorClassAt('separator')"
+                  :message="errors.get('separator')")
             b-input(type="text"
                     placeholder="e.g. :: or ||"
                     v-model="form.separator"
-                    @input="form.errors.clear('separator')")
+                    @input="errors.clear('separator')")
           b-field(:label="attributeLocaleText('site_config', 'reverse')"
-                  :type="form.errorClassAt('reverse')"
-                  :message="form.errors.get('reverse')")
+                  :type="errors.errorClassAt('reverse')"
+                  :message="errors.get('reverse')")
             b-switch(v-model="form.reverse"
                       size="is-large"
                       type="is-success"
-                      @input="form.errors.clear('reverse')")
+                      @input="errors.clear('reverse')")
         .style-preview-container.column.is-5
           h4.subtitle {{pageTitleLocaleText('admin', 'system_config', 'style_preview')}}
           .browser-mock
@@ -41,21 +41,21 @@
       .columns
         .column.is-7
           b-field(:label="attributeLocaleText('site_config', 'description')"
-                  :type="form.errorClassAt('description')"
-                  :message="form.errors.get('description')")
+                  :type="errors.errorClassAt('description')"
+                  :message="errors.get('description')")
             b-input(type="textarea"
                     placeholder="e.g. Jone Doe"
                     v-model="form.description"
-                    @input="form.errors.clear('description')")
+                    @input="errors.clear('description')")
           p.help {{messageLocaleText('help.site_config_meta_description_should_not_over_140_words')}}
           br
           b-field(:label="attributeLocaleText('site_config', 'keywords')"
-                  :type="form.errorClassAt('keywords')"
-                  :message="form.errors.get('keywords')")
+                  :type="errors.errorClassAt('keywords')"
+                  :message="errors.get('keywords')")
             b-input(type="text"
                     placeholder="e.g. Jone Doe"
                     v-model="form.keywords"
-                    @input="form.errors.clear('keywords')")
+                    @input="errors.clear('keywords')")
           p.help {{messageLocaleText('help.site_config_meta_keywords_please_seprate_with_comma')}}
 
     .is-pulled-right
@@ -64,7 +64,7 @@
 </template>
 
 <script>
-import Form from '../../../../shared/form'
+import Form from '../../../../shared/forms/site_config_meta_tags_form'
 
 export default {
   // components: {},
@@ -78,17 +78,7 @@ export default {
 
   watch: {
     configs() {
-      this.form = new Form(
-        {
-          site_name: this.configs.meta_tags.site_name,
-          reverse: this.configs.meta_tags.reverse,
-          separator: this.configs.meta_tags.separator,
-          description: this.configs.meta_tags.description,
-          keywords: this.configs.meta_tags.keywords
-        },
-        this.$store.dispatch,
-        this.$store.getters['siteConfigs/errors']
-      )
+      this.form = new Form(this.configs)
     },
 
     titlePreview(value) {
@@ -103,6 +93,10 @@ export default {
   },
 
   computed: {
+    errors() {
+      return this.$store.getters['siteConfigs/errors']
+    },
+
     isConfigsNotEmpty() {
       return Object.keys(this.configs).length > 0
     },
@@ -131,8 +125,8 @@ export default {
   // mounted() {},
   methods: {
     updateMetaTags() {
-      this.form.dispatch('siteConfigs/updateMetaTags', this.metaTagsRequestBody).then(() => {
-        this.form.addFlashMessage([
+      this.$store.dispatch('siteConfigs/updateMetaTags', this.form.sync()).then(() => {
+        this.$store.dispatch('addFlashMessage', [
           'success',
           this.messageLocaleText('resource_updated_successfully', { resource: this.modelNameLocaleText('site_config') })
         ])

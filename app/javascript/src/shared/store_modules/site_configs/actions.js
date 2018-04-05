@@ -1,7 +1,5 @@
 import * as types from './mutation-types'
-import SiteConfigModel from '../../resource_models/site_config'
-
-const SiteConfig = new SiteConfigModel()
+import SiteConfig from '../../resource_models/site_config'
 
 /**
  * 從 Server 取得所有 SiteConfig
@@ -14,7 +12,7 @@ export const fetchConfigs = ({ dispatch, commit }) => {
   commit(types.GET_SITE_CONFIG_START)
 
   return new Promise((resolve, reject) => {
-    SiteConfig.show()
+    SiteConfig.all()
       .then(response => {
         commit(types.GET_SITE_CONFIG_SUCCESS, response)
 
@@ -34,11 +32,12 @@ export const fetchConfigs = ({ dispatch, commit }) => {
  *
  * @returns {promise} response or errors
  */
-export const updateMetaTags = ({ dispatch, commit }, metaTags) => {
+export const updateMetaTags = ({ dispatch, commit }, model) => {
   commit(types.UPDATE_SITE_CONFIG_START)
 
   return new Promise((resolve, reject) => {
-    SiteConfig.updateMetaTags(metaTags)
+    model
+      .updateMetaTags()
       .then(response => {
         commit(types.UPDATE_SITE_CONFIG_SUCCESS, response)
 
