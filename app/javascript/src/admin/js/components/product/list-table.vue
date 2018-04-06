@@ -44,13 +44,14 @@
                      :label="attributeLocaleText('product', 'discounted_price')"
                      sortable
                      numbric)
-        | {{props.row.displayPrice('discounted')}}（{{props.row.displayDiscountRate()}}）
+        | {{props.row.displayPrice('discounted')}}
+        span(v-if="hasDiscount(props.row)") （{{props.row.displayDiscountRate()}}）
 
       b-table-column.preorder-column(field="is_preorder"
                                      :label="attributeLocaleText('product', 'is_preorder')"
                                      sortable
                                      numbric)
-        i.fa(:class="preorderIcon(props.row.is_preorder)")
+        i.fa(:class="preorderIcon(props.row)")
 
       b-table-column(:label="actionLocaleText('admin', 'options')"
                     numeric)
@@ -97,12 +98,16 @@ export default {
   // mounted() {},
 
   methods: {
-    preorderIcon(isPreorder) {
-      if (isPreorder) {
+    preorderIcon(product) {
+      if (product.is_preorder) {
         return 'fa-check-circle'
       } else {
         return 'fa-times-circle'
       }
+    },
+
+    hasDiscount(product) {
+      return product.discount_rate < 1
     }
   }
 }
