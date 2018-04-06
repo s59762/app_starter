@@ -6,7 +6,6 @@ import Guest from '../user_models/guest'
 /**
  * 在 vuex 中建立 currentUser state
  *
- *
  * @export
  * @class CurrentUserAssignService
  */

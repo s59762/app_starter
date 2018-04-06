@@ -1,6 +1,6 @@
-import FormBase from './form_base'
+import FormBase from '../form_base'
 
-export default class SiteConfigMetaTagsFrom extends FormBase {
+export default class AdminSiteConfigMetaTagsFrom extends FormBase {
   constructor(model) {
     super({
       attributes() {

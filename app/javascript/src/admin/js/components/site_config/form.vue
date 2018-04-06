@@ -64,7 +64,7 @@
 </template>
 
 <script>
-import Form from '../../../../shared/forms/site_config_meta_tags_form'
+import Form from '../../../../shared/forms/admin/site_config_meta_tags_form'
 
 export default {
   // components: {},
