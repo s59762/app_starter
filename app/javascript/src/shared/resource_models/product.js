@@ -113,4 +113,34 @@ export default class Product {
       }
     }
   }
+
+  displayDiscountRate() {
+    const rateNumber = this.discount_rate
+      .toFixed(2)
+      .toString()
+      .split('.')[1]
+
+    return `${rateNumber} ${I18n.t('activerecord.attributes.product.discount_unit')}`
+  }
+
+  displayPrice(price) {
+    let rawValue = 0
+
+    switch (price) {
+      case 'original':
+        rawValue = this.original_price
+        break
+      case 'sell':
+        rawValue = this.sell_price
+        break
+      case 'discounted':
+        rawValue = this.discounted_price
+        break
+      default:
+        rawValue = this.sell_price
+        break
+    }
+
+    return `${rawValue / 100} ${I18n.t('activerecord.attributes.product.price_unit')}`
+  }
 }

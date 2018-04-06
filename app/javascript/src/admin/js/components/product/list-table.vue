@@ -1,7 +1,7 @@
 <template lang="pug">
 
 .product-list-table
-  b-table(:data="projects"
+  b-table(:data="products"
           paginated
           backend-pagination
           :currentPage="currentPage"
@@ -32,25 +32,25 @@
                      :label="attributeLocaleText('product', 'original_price')"
                      sortable
                      numbric)
-        | {{props.row.original_price}}
+        | {{props.row.displayPrice('original')}}
 
       b-table-column(field="sell_price"
                      :label="attributeLocaleText('product', 'sell_price')"
                      sortable
                      numbric)
-        | {{props.row.sell_price}}
+        | {{props.row.displayPrice('sell')}}
 
       b-table-column(field="discounted_price"
                      :label="attributeLocaleText('product', 'discounted_price')"
                      sortable
                      numbric)
-        | {{props.row.discounted_price}}
+        | {{props.row.displayPrice('discounted')}}（{{props.row.displayDiscountRate()}}）
 
-      b-table-column(field="is_preorder"
-                     :label="attributeLocaleText('product', 'is_preorder')"
-                     sortable
-                     numbric)
-        | {{props.row.is_preorder}}
+      b-table-column.preorder-column(field="is_preorder"
+                                     :label="attributeLocaleText('product', 'is_preorder')"
+                                     sortable
+                                     numbric)
+        i.fa(:class="preorderIcon(props.row.is_preorder)")
 
       b-table-column(:label="actionLocaleText('admin', 'options')"
                     numeric)
@@ -85,17 +85,25 @@ export default {
   },
 
   computed: {
-    projects() {
+    products() {
       return this.$store.getters['products/all']
     }
   },
 
   created() {
     this.fetchingInitialData()
-  }
+  },
 
   // mounted() {},
 
-  // methods: {}
+  methods: {
+    preorderIcon(isPreorder) {
+      if (isPreorder) {
+        return 'fa-check-circle'
+      } else {
+        return 'fa-times-circle'
+      }
+    }
+  }
 }
 </script>

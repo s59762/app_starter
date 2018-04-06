@@ -18,6 +18,8 @@ zh-TW:
         original_price: 進貨成本
         properties: 商品規格
         sell_price: 售價
+        discount_unit: 折
+        price_unit: 元
 
     errors:
       models:
