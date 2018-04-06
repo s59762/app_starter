@@ -1,0 +1,38 @@
+.product-new-form
+  .section:not(:last-child)
+    border-bottom: 1px solid $light
+
+  .properties-wrapper
+    > .section-title
+      font-size: 1rem
+      font-weight: bolder
+      margin-bottom: 1rem
+
+  .property-fields
+    position: relative
+    background-color: $light
+    padding: 1rem
+    margin-bottom: .8rem
+    border-radius: 8px
+    > .property-count
+      @extend %control-button-stype
+      left: -.5rem
+      background-color: $grey
+    > .delete-button
+      @extend %control-button-stype
+      right: -.5rem
+      background-color: $danger
+      box-shadow: 0 0 2px $dark
+      transition: box-shadow .3s
+      cursor: pointer
+      &:hover
+        box-shadow: 0 0 5px $black
+
+  %control-button-stype
+    position: absolute
+    top: -.5rem
+    width: 1.5rem
+    height: 1.5rem
+    color: $white
+    text-align: center
+    border-radius: 100%

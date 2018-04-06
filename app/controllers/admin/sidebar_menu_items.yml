@@ -40,11 +40,6 @@
           path: <%= Rails.application.routes.url_helpers.admin_products_path %>
           title: <%= I18n.t('page_titles.admin.products.index') %>
 
-        - action: products-new
-          icon: fa-pencil
-          path: <%= Rails.application.routes.url_helpers.new_admin_product_path %>
-          title: <%= I18n.t('page_titles.admin.products.new') %>
-
 - title: <%= I18n.t('page_titles.admin.sidebar.order_info') %>
   menus:
     - path: '#'

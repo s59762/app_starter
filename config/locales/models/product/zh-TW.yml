@@ -17,6 +17,9 @@ zh-TW:
         name: 品名
         original_price: 進貨成本
         properties: 商品規格
+        property_name: 規格名稱
+        property_value: 內容
+        property_unit: 單位
         sell_price: 售價
         discount_unit: 折
         price_unit: 元
@@ -33,6 +36,10 @@ zh-TW:
   # Enums
   enums:
     product:
+      is_preorder:
+        'true': 是
+        'false': 否
+        'null': 否
 
   # AASM state machine
   aasm_state:

@@ -19,16 +19,7 @@ const ATTRIBUTES = [
   'created_at',
   'discount_rate'
 ]
-const EDITABLE_ATTRIBUTES = [
-  'cover',
-  'description',
-  'discounted_price',
-  'is_preorder',
-  'name',
-  'original_price',
-  'properties',
-  'sell_price'
-]
+const EDITABLE_ATTRIBUTES = ['cover', 'description', 'price', 'is_preorder', 'name', 'properties']
 
 export default class Product {
   constructor(attributes = {}) {
@@ -106,6 +97,12 @@ export default class Product {
   }
 
   requestBody() {
+    const priceColumns = ['original', 'sell', 'discounted']
+
+    priceColumns.forEach(element => {
+      this.price[element] = parseInt(this.price[element])
+    })
+
     return {
       data: {
         type: RESOURCE_TYPE,
