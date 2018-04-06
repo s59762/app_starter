@@ -59,7 +59,7 @@
 </template>
 
 <script>
-import Form from '../../../../shared/form'
+import Form from '../../../../shared/forms/form_base'
 import Admin from '../../../../shared/resource_models/admin'
 
 export default {
@@ -83,15 +83,6 @@ export default {
 
     availableRoles() {
       return this.$store.getters['admins/availableRoles']
-    },
-
-    requestBody() {
-      return {
-        data: {
-          type: 'admins',
-          attributes: this.form.data()
-        }
-      }
     }
   },
 

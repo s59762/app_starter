@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import Form from '../../../../shared/form'
+import Form from '../../../../shared/forms/form_base'
 import ProductCategory from '../../../../shared/resource_models/product_category'
 
 export default {
@@ -65,15 +65,6 @@ export default {
 
     isLoadingClass() {
       return this.isLoading ? 'is-loading' : ''
-    },
-
-    requestBody() {
-      return {
-        data: {
-          type: 'product_categories',
-          attributes: this.form.data()
-        }
-      }
     }
   },
 
