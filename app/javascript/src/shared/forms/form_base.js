@@ -1,4 +1,4 @@
-export default class Form {
+export default class FormBase {
   /**
    * 建立 Form 的 instance
    *
@@ -10,9 +10,7 @@ export default class Form {
     this.model = model
     this.originalData = model.attributes()
 
-    for (let field in this.originalData) {
-      this[field] = this.originalData[field]
-    }
+    this.constructor.dataAssigner(this.originalData, this)
   }
 
   /**
@@ -21,22 +19,14 @@ export default class Form {
   data() {
     let data = {}
 
-    for (let property in this.originalData) {
-      data[property] = this[property]
-    }
-
-    return data
+    return this.constructor.dataDumper(this, data, this.originalData)
   }
 
   /**
    * 重置 Form
    */
   reset() {
-    for (let field in this.originalData) {
-      this[field] = this.originalData[field]
-    }
-
-    this.errors.clear()
+    this.constructor.dataAssigner(this.originalData, this)
   }
 
   /**
@@ -56,10 +46,20 @@ export default class Form {
    * @memberof Form
    */
   sync() {
-    for (let attr in this.originalData) {
-      this.model[attr] = this[attr]
+    return this.constructor.dataDumper(this, this.model, this.originalData)
+  }
+
+  static dataAssigner(source, target) {
+    for (let key in source) {
+      target[key] = source[key]
+    }
+  }
+
+  static dataDumper(source, target, originalData) {
+    for (let key in originalData) {
+      target[key] = source[key]
     }
 
-    return this.model
+    return target
   }
 }

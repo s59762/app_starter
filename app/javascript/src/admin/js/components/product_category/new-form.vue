@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import Form from '../../../../shared/form'
+import Form from '../../../../shared/forms/form_base'
 import ProductCategory from '../../../../shared/resource_models/product_category'
 
 export default {
