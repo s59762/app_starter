@@ -83,15 +83,6 @@ export default {
 
     availableRoles() {
       return this.$store.getters['admins/availableRoles']
-    },
-
-    requestBody() {
-      return {
-        data: {
-          type: 'admins',
-          attributes: this.form.data()
-        }
-      }
     }
   },
 

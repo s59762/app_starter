@@ -109,15 +109,6 @@ export default {
       } else {
         return result.join(' ')
       }
-    },
-
-    metaTagsRequestBody() {
-      return {
-        data: {
-          type: 'site-configs',
-          attributes: this.form.data()
-        }
-      }
     }
   },
 

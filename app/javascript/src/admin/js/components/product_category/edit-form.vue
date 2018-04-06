@@ -65,15 +65,6 @@ export default {
 
     isLoadingClass() {
       return this.isLoading ? 'is-loading' : ''
-    },
-
-    requestBody() {
-      return {
-        data: {
-          type: 'product_categories',
-          attributes: this.form.data()
-        }
-      }
     }
   },
 
