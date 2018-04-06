@@ -96,7 +96,7 @@ export default {
 
   computed: {
     users() {
-      return this.$store.getters['users/allResources']
+      return this.$store.getters['users/all']
     }
   },
 

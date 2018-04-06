@@ -8,7 +8,7 @@ import User from '../../resource_models/user'
  *
  * @returns {promise} response or errors
  */
-export const allResources = ({ dispatch, commit }, options) => {
+export const all = ({ dispatch, commit }, options) => {
   commit(types.FETCH_USERS_START)
 
   return new Promise((resolve, reject) => {
@@ -33,7 +33,7 @@ export const allResources = ({ dispatch, commit }, options) => {
  * @param {number} id 指定的 resource ID
  * @returns {promise} response or errors
  */
-export const getResource = ({ dispatch, commit }, id) => {
+export const find = ({ dispatch, commit }, id) => {
   commit(types.GET_USER_START)
 
   return new Promise((resolve, reject) => {
@@ -58,7 +58,7 @@ export const getResource = ({ dispatch, commit }, id) => {
  * @param {object} resource JSON:API 規格的 request body
  * @returns {promise} response or errors
  */
-export const addResource = ({ dispatch, commit }, model) => {
+export const create = ({ dispatch, commit }, model) => {
   commit(types.ADD_USER_START)
 
   return new Promise((resolve, reject) => {
@@ -85,7 +85,7 @@ export const addResource = ({ dispatch, commit }, model) => {
  * @param {object} resource JSON:API 規格的 request body
  * @returns {promise} response or errors
  */
-export const updateResource = ({ dispatch, commit }, model) => {
+export const update = ({ dispatch, commit }, model) => {
   commit(types.UPDATE_USER_START)
 
   return new Promise((resolve, reject) => {
@@ -111,7 +111,7 @@ export const updateResource = ({ dispatch, commit }, model) => {
  * @param {number} id 指定的 resource ID
  * @returns {promise} response or errors
  */
-export const deleteResource = ({ dispatch, commit }, model) => {
+export const destroy = ({ dispatch, commit }, model) => {
   commit(types.DELETE_USER_START)
 
   return new Promise((resolve, reject) => {

@@ -74,7 +74,7 @@ export default {
     },
 
     suspendAdmin() {
-      this.$store.dispatch('admins/suspendResource', this.admin).then(() => {
+      this.$store.dispatch('admins/suspend', this.admin).then(() => {
         this.$store.dispatch('addFlashMessage', this.flashMessage)
       })
     }

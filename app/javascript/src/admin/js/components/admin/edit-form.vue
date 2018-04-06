@@ -98,7 +98,7 @@ export default {
 
   methods: {
     submitForm() {
-      this.$store.dispatch('admins/updateResource', this.form.sync()).then(response => {
+      this.$store.dispatch('admins/update', this.form.sync()).then(response => {
         this.$store.dispatch('addFlashMessage', [
           'success',
           this.messageLocaleText('resource_updated_successfully', { resource: this.modelNameLocaleText('admin') })

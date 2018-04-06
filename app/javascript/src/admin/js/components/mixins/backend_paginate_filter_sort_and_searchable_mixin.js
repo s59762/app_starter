@@ -71,7 +71,7 @@ export default {
      * @returns {number}
      */
     totalCount() {
-      return this.$store.getters[`${this.resourceType}/metaInfo`].total_count
+      return this.$store.getters[`${this.resourceType}/meta`].total_count
     },
 
     /**
@@ -248,7 +248,7 @@ export default {
      */
     fetchData(options) {
       this.currentPage = options.pageNumber
-      this.$store.dispatch(`${this.resourceType}/allResources`, options)
+      this.$store.dispatch(`${this.resourceType}/all`, options)
     },
 
     /**

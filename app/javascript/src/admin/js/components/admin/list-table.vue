@@ -115,7 +115,7 @@ export default {
 
   computed: {
     admins() {
-      return this.$store.getters['admins/allResources']
+      return this.$store.getters['admins/all']
     }
   },
 

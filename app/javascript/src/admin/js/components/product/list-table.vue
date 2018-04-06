@@ -86,7 +86,7 @@ export default {
 
   computed: {
     projects() {
-      return this.$store.getters['products/allResources']
+      return this.$store.getters['products/all']
     }
   },
 

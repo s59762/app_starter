@@ -45,7 +45,7 @@ export default {
 
   computed: {
     categories() {
-      return this.$store.getters['productCategories/allResources']
+      return this.$store.getters['productCategories/all']
     },
 
     subCategories() {

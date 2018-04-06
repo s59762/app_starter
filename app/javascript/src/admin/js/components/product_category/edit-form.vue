@@ -74,7 +74,7 @@ export default {
 
   methods: {
     submitForm() {
-      this.$store.dispatch('productCategories/updateResource', this.form.sync()).then(() => {
+      this.$store.dispatch('productCategories/update', this.form.sync()).then(() => {
         this.$store.dispatch('addFlashMessage', [
           'success',
           this.messageLocaleText('resource_updated_successfully', {

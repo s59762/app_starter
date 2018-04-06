@@ -13,7 +13,7 @@ export const isLoading = state => {
  *
  * @returns {array} 所有 Resource
  */
-export const allResources = state => {
+export const all = state => {
   if (state.result) {
     return state.result.map(id => new User(state.entities[id]))
   }
@@ -25,7 +25,7 @@ export const allResources = state => {
  * @param {number} id
  * @returns {object} Resource 物件
  */
-export const findResourceById = state => id => {
+export const find = state => id => {
   return new User(state.entities[id])
 }
 
@@ -34,7 +34,7 @@ export const findResourceById = state => id => {
  *
  * @returns {object} meta info from API response
  */
-export const metaInfo = state => {
+export const meta = state => {
   return state.meta
 }
 

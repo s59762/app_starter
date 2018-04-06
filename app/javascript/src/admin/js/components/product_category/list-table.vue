@@ -78,7 +78,7 @@ export default {
 
   computed: {
     categories() {
-      return this.$store.getters['productCategories/allResources']
+      return this.$store.getters['productCategories/all']
     },
 
     // 最上層的 ProductCategory

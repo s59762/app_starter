@@ -22,7 +22,7 @@ export const allConfigs = state => {
  *
  * @returns {object} meta info from API response
  */
-export const metaInfo = state => {
+export const meta = state => {
   return state.meta
 }
 
