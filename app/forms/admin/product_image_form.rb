@@ -1,5 +1,5 @@
-class ProductImageForm < ApplicationForm
-  model Product
+class Admin::ProductImageForm < ApplicationForm
+  model Product::Image
 
   VALID_USE_CASES = %w[
     normal
@@ -18,9 +18,14 @@ class ProductImageForm < ApplicationForm
   def save
     ::ActiveRecord::Base.transaction do
       images.each do |file|
-        model.send("#{use_case}_images").create image: file[:file]
+        new_image = Product::Image.create image: file, use_case: use_case
+        created_image_ids << new_image.id
       end
     end
+  end
+
+  def created_image_ids
+    @created_image_ids ||= []
   end
 
   def valid_use_case?
