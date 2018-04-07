@@ -4,105 +4,133 @@
   .box-header.with-border
     h3.subtitle {{pageTitleLocaleText('admin', 'products', 'form')}}
   .box-body
-    section.section.basic-info-wrapper
-      b-field(:label="attributeLocaleText('product', 'name')"
-              :type="errors.errorClassAt('name')"
-              :message="errors.get('name')")
-        b-input(type="text"
-                placeholder="e.g. iMac Pro 3.8GHz"
-                v-model="form.name"
-                @input="errors.clear('name')")
+    .columns
+      //- input fields
+      .column.is-7
 
-      b-field(:label="attributeLocaleText('product', 'description')"
-              :type="errors.errorClassAt('description')"
-              :message="errors.get('description')")
-        b-input(type="textarea"
-                rows=8
-                placeholder="e.g. A powerful tool for your professional works."
-                v-model="form.description"
-                @input="errors.clear('description')")
+        //- basic info
+        section.section.basic-info-wrapper
+          b-field(:label="attributeLocaleText('product', 'name')"
+                  :type="errors.errorClassAt('name')"
+                  :message="errors.get('name')")
+            b-input(type="text"
+                    placeholder="e.g. iMac Pro 3.8GHz"
+                    v-model="form.name"
+                    @input="errors.clear('name')")
 
-      .columns
-        .column
-          b-field(:label="attributeLocaleText('product', 'original_price')"
-                  :type="errors.errorClassAt('price')"
-                  :message="errors.get('price')")
-            b-input(type="number"
-                    placeholder="e.g. 80000"
-                    v-model="form.price.original"
-                    @input="errors.clear('price')")
-        .column
-          b-field(:label="attributeLocaleText('product', 'sell_price')"
-                  :type="errors.errorClassAt('price')"
-                  :message="errors.get('price')")
-            b-input(type="number"
-                    placeholder="e.g. 100000"
-                    v-model="form.price.sell"
-                    @input="errors.clear('price')")
-        .column
-          b-field(:label="attributeLocaleText('product', 'discounted_price')"
-                  :type="errors.errorClassAt('price')"
-                  :message="errors.get('price')")
-            b-input(type="number"
-                    placeholder="e.g. 98000"
-                    v-model="form.price.discounted"
-                    @input="errors.clear('price')")
+          b-field(:label="attributeLocaleText('product', 'description')"
+                  :type="errors.errorClassAt('description')"
+                  :message="errors.get('description')")
+            quill-editor(v-model="form.description"
+                         ref="quill"
+                         :options="editorOptions")
 
-      b-field(:label="attributeLocaleText('product', 'is_preorder')"
-              :type="errors.errorClassAt('is_preorder')"
-              :message="errors.get('is_preorder')")
-        b-switch(v-model="form.is_preorder"
-                 type="is-success"
-                 @input="errors.clear('is_preorder')")
-          | {{enumLocaleText('product', 'is_preorder', form.is_preorder)}}
+        //- price info
+        section.section.price-info-wrapper
+          .columns
+            .column
+              b-field(:label="attributeLocaleText('product', 'original_price')"
+                      :type="errors.errorClassAt('price')"
+                      :message="errors.get('price')")
+                b-input(type="number"
+                        placeholder="e.g. 80000"
+                        v-model="form.price.original"
+                        @input="errors.clear('price')")
+            .column
+              b-field(:label="attributeLocaleText('product', 'sell_price')"
+                      :type="errors.errorClassAt('price')"
+                      :message="errors.get('price')")
+                b-input(type="number"
+                        placeholder="e.g. 100000"
+                        v-model="form.price.sell"
+                        @input="errors.clear('price')")
+            .column
+              b-field(:label="attributeLocaleText('product', 'discounted_price')"
+                      :type="errors.errorClassAt('price')"
+                      :message="errors.get('price')")
+                b-input(type="number"
+                        placeholder="e.g. 98000"
+                        v-model="form.price.discounted"
+                        @input="errors.clear('price')")
 
-    section.section.properties-wrapper
-      h4.section-title {{pageTitleLocaleText('admin', 'products', 'property_fields')}}
-      .property-fields(v-for="(property, index) in form.properties")
-        .property-count {{index + 1}}
-        .delete-button(@click="deleteProperty(index)")
-          i.fa.fa-close
-        .columns
-          .column
-            b-field(:label="attributeLocaleText('product', 'property_name')"
-                    :type="errors.errorClassAt('properties')"
-                    :message="errors.get('properties')")
-              b-input(type="text"
-                      placeholder="e.g. Weight"
-                      v-model="property.name"
-                      @input="errors.clear('properties')")
-          .column.is-6
-            b-field(:label="attributeLocaleText('product', 'property_value')"
-                    :type="errors.errorClassAt('properties')"
-                    :message="errors.get('properties')")
-              b-input(type="text"
-                      placeholder="e.g. 12"
-                      v-model="property.value"
-                      @input="errors.clear('properties')")
-          .column
-            b-field(:label="attributeLocaleText('product', 'property_unit')"
-                    :type="errors.errorClassAt('properties')"
-                    :message="errors.get('properties')")
-              b-input(type="text"
-                      placeholder="e.g. kg"
-                      v-model="property.unit"
-                      @input="errors.clear('properties')")
+        //- options
+        section.section.product-options-wrapper
+          b-field(:label="attributeLocaleText('product', 'is_preorder')"
+                  :type="errors.errorClassAt('is_preorder')"
+                  :message="errors.get('is_preorder')")
+            b-switch(v-model="form.is_preorder"
+                      type="is-success"
+                      @input="errors.clear('is_preorder')")
+              | {{enumLocaleText('product', 'is_preorder', form.is_preorder)}}
 
-      .add-property-button.button.is-default.is-block(@click="addProperty")
-        .icon
-          i.fa.fa-plus
-        span {{actionLocaleText('admin', 'add_product_property')}}
+        //- properties
+        section.section
+          h4.section-title {{pageTitleLocaleText('admin', 'products', 'property_fields')}}
+          .properties-wrapper
+            .property-fields(v-for="(property, index) in form.properties")
+              .property-count {{index + 1}}
+              .delete-button(@click="deleteProperty(index)")
+                i.fa.fa-close
+              .columns
+                .column
+                  b-field(:label="attributeLocaleText('product', 'property_name')"
+                          :type="errors.errorClassAt('properties')"
+                          :message="errors.get('properties')")
+                    b-input(type="text"
+                            placeholder="e.g. Weight"
+                            v-model="property.name"
+                            @input="errors.clear('properties')")
+                .column.is-6
+                  b-field(:label="attributeLocaleText('product', 'property_value')"
+                          :type="errors.errorClassAt('properties')"
+                          :message="errors.get('properties')")
+                    b-input(type="text"
+                            placeholder="e.g. 12"
+                            v-model="property.value"
+                            @input="errors.clear('properties')")
+                .column
+                  b-field(:label="attributeLocaleText('product', 'property_unit')"
+                          :type="errors.errorClassAt('properties')"
+                          :message="errors.get('properties')")
+                    b-input(type="text"
+                            placeholder="e.g. kg"
+                            v-model="property.unit"
+                            @input="errors.clear('properties')")
 
-    br
+          .add-property-button.button.is-default.is-block(@click="addProperty")
+            .icon
+              i.fa.fa-plus
+            span {{actionLocaleText('admin', 'add_product_property')}}
 
-    .is-pulled-right
-      .button.is-primary(@click="submitForm") {{actionLocaleText('admin', 'submit')}}
+        br
+
+        .is-pulled-right
+        .button.is-primary(@click="submitForm") {{actionLocaleText('admin', 'submit')}}
+      //- previews
+      .column
+        //- TODO: create a component for roughly preview input content
+        //- product-previewer(:product="this.form")
 
 </template>
 
 <script>
 import Product from '../../../../shared/resource_models/product'
 import Form from '../../../../shared/forms/form_base'
+// quill editor
+import { quillEditor, Quill } from 'vue-quill-editor'
+import { ImageExtend, QuillWatch } from 'quill-image-extend-module'
+Quill.register('modules/ImageExtend', ImageExtend)
+const toolbarOptions = [
+  [{ size: [false, 'small', 'large', 'huge'] }], // custom dropdown
+  [{ header: [false, 1, 2, 3] }],
+  ['bold', 'italic', 'underline', 'strike'], // toggled buttons
+  [{ align: [] }],
+  ['blockquote', 'code-block'],
+  [{ list: 'ordered' }, { list: 'bullet' }],
+  [{ indent: '-1' }, { indent: '+1' }], // outdent/indent
+  [{ color: [] }, { background: [] }], // dropdown with defaults from theme
+  ['clean']
+]
 
 const propertyTemplate = function() {
   return {
@@ -113,12 +141,35 @@ const propertyTemplate = function() {
 }
 
 export default {
-  // components: {},
+  components: {
+    quillEditor
+  },
   // mixins: [],
   // props: {},
   data() {
     return {
-      form: new Form(new Product())
+      form: new Form(new Product()),
+      editorOptions: {
+        placeholder: 'e.g. A powerfull tool for your professional works.',
+        modules: {
+          ImageExtend: {
+            loading: true,
+            name: 'img',
+            action: '/api/v1/testUpload',
+            response: res => {
+              return res.info
+            }
+          },
+          toolbar: {
+            container: toolbarOptions,
+            handlers: {
+              image: function() {
+                QuillWatch.emit(this.quill.id)
+              }
+            }
+          }
+        }
+      }
     }
   },
 
