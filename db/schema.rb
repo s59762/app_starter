@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(version: 20180407090621) do
   create_table "product_images", force: :cascade do |t|
     t.string "image"
     t.integer "use_case", default: 0
+    t.string "original_filename"
     t.bigint "product_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
