@@ -37,7 +37,7 @@ class Product < ApplicationRecord
 
   belongs_to :category, class_name: 'ProductCategory', optional: true
   has_many :images, class_name: 'Product::Image', dependent: :destroy
-  has_many :product_images, -> { where(use_case: :normal) }, class_name: 'Product::Image'
+  has_many :normal_images, -> { where(use_case: :normal) }, class_name: 'Product::Image'
   has_many :description_images, -> { where(use_case: :description) }, class_name: 'Product::Image'
 
   # @param [Array] properties 搜尋 jsonb 欄位
