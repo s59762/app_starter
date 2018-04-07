@@ -36,6 +36,9 @@ class Product < ApplicationRecord
            :discounted_price_cents
 
   belongs_to :category, class_name: 'ProductCategory', optional: true
+  has_many :images, class_name: 'Product::Image', dependent: :destroy
+  has_many :product_images, -> { where(use_case: :normal) }, class_name: 'Product::Image'
+  has_many :description_images, -> { where(use_case: :description) }, class_name: 'Product::Image'
 
   # @param [Array] properties 搜尋 jsonb 欄位
   # @example 搜尋品牌為 ALESSI 的商品
@@ -45,4 +48,7 @@ class Product < ApplicationRecord
   #   Product.search_by_properties([{value: 'ALESSI'}])
   #   ```
   scope :search_by_properties, ->(values) { where('properties @> ?', values.to_json) }
+
+  # this crazy query can list all brands...
+  # Product.where("properties @> ?", [{name: '品牌'}].to_json).select("json_array_elements(properties::json) ->> 'name' as name", "json_array_elements(properties::json) ->> 'value' as brand", "id").to_ary.select{|h| h[:name] == '品牌'}.map(&:brand)
 end
