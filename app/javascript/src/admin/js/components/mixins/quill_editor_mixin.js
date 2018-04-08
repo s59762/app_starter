@@ -1,5 +1,6 @@
 import Cookies from 'js-cookie'
 import { quillEditor, Quill } from 'vue-quill-editor'
+import ImageHandler from '../../../../shared/plugins/quill_image_handler_module/image_handler'
 
 const toolbarOptions = [
   [{ size: [false, 'small', 'large', 'huge'] }], // custom dropdown
@@ -13,6 +14,8 @@ const toolbarOptions = [
   ['clean']
 ]
 
+Quill.register('modules/ImageHandler', ImageHandler)
+
 export default {
   components: {
     quillEditor
@@ -24,13 +27,9 @@ export default {
         placeholder: 'e.g. A powerfull tool for your professional works.',
         modules: {
           toolbar: {
-            container: toolbarOptions,
-            handlers: {
-              image: function() {
-                QuillWatch.emit(this.quill.id)
-              }
-            }
-          }
+            container: toolbarOptions
+          },
+          ImageHandler: true
         }
       }
     }
