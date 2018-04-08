@@ -114,9 +114,22 @@
 </template>
 
 <script>
-import quillEditorMixin from '../mixins/quill_editor_mixin'
+import { quillEditor, Quill } from 'vue-quill-editor'
+import ImageHandler from '../../../../shared/plugins/quill_image_handler_module/image_handler'
 import Product from '../../../../shared/resource_models/product'
 import Form from '../../../../shared/forms/form_base'
+
+const toolbarOptions = [
+  [{ size: [false, 'small', 'large', 'huge'] }], // custom dropdown
+  [{ header: [false, 1, 2, 3] }],
+  ['bold', 'italic', 'underline', 'strike'], // toggled buttons
+  [{ align: [] }],
+  ['blockquote', 'code-block'],
+  [{ list: 'ordered' }, { list: 'bullet' }],
+  [{ indent: '-1' }, { indent: '+1' }], // outdent/indent
+  [{ color: [] }, { background: [] }], // dropdown with defaults from theme
+  ['clean']
+]
 
 const propertyTemplate = function() {
   return {
@@ -126,16 +139,36 @@ const propertyTemplate = function() {
   }
 }
 
-export default {
-  // components: {},
+Quill.register('modules/ImageHandler', ImageHandler)
 
-  mixins: [quillEditorMixin],
+export default {
+  components: {
+    quillEditor
+  },
+
+  // mixins: [],
 
   // props: {},
 
   data() {
     return {
-      form: new Form(new Product())
+      form: new Form(new Product()),
+      editorOptions: {
+        placeholder: 'e.g. A powerfull tool for your professional works.',
+        modules: {
+          toolbar: {
+            container: toolbarOptions
+          },
+          ImageHandler: {
+            dispatcher: this.$store.dispatch,
+            action: 'products/uploadImages',
+            imagesAttrName: 'product[images][]',
+            additionalFormData: formData => {
+              formData.append('product[use_case]', 'description')
+            }
+          }
+        }
+      }
     }
   },
 

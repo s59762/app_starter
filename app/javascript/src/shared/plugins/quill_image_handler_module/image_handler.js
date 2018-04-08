@@ -7,11 +7,17 @@ export default class ImageHandler {
     this.editor = this.quill.root
     this.editorContainer = this.editor.parentNode
 
+    this.dispatch = options.dispatcher || null
+    this.action = options.action || null
+    this.imagesAttrName = options.imagesAttrName || null
+    this.additionalFormData = options.additionalFormData
+
     // 監聽在 Editor 中發生的 `click`, `paste`, 和 `drop` 事件。
     this.editor.addEventListener('click', this.clickHandler.bind(this), false)
     this.editor.addEventListener('paste', this.pasteHandler.bind(this), false)
     this.editor.addEventListener('drop', this.dropHandler.bind(this), false)
     this.quill.on('text-change', this.deleteHandler)
+    console.log(options)
   }
 
   /**
@@ -25,7 +31,7 @@ export default class ImageHandler {
 
     if (event.dataTransfer && event.dataTransfer.files && event.dataTransfer.files.length) {
       setInsertPositionViaCaret(event)
-      base64encode(event.dataTransfer.files, this.insert.bind(this))
+      this.imageHandler(event.dataTransfer.files)
     }
   }
 
@@ -49,13 +55,22 @@ export default class ImageHandler {
     if (clipboardData && clipboardData.items && clipboardData.items.length) {
       event.preventDefault()
       event.stopPropagation()
-      base64encode(clipboardData.items, this.insert.bind(this))
+      this.imageHandler(clipboardData.items)
     }
   }
 
   deleteHandler(delta, oldDelta, source) {
     // console.log(delta, oldDelta)
     false
+  }
+
+  imageHandler(files) {
+    if (this.dispatch && this.action) {
+      let formData = generateFormData(files, this.imagesAttrName, this.additionalFormData)
+      console.log(formData)
+    } else {
+      base64encode(files, this.insert.bind(this))
+    }
   }
 
   /**
@@ -77,6 +92,18 @@ export default class ImageHandler {
 }
 
 // private methods
+
+function generateFormData(files, imagesAttrName, additionalFormData) {
+  let formData = new FormData()
+
+  for (let index in files) {
+    formData.append(imagesAttrName, files[index])
+  }
+
+  additionalFormData(formData)
+
+  return formData
+}
 
 /**
  * 嘗試把 drop 或 paste 事件中的檔案讀取出來。僅針對圖片做處理。
