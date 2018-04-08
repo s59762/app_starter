@@ -7,6 +7,8 @@
     .columns
       //- input fields
       .column.is-7
+        b-loading(:active.sync="isLoading"
+                  :is-full-page="false")
 
         //- basic info
         section.section.basic-info-wrapper
@@ -128,7 +130,7 @@ const toolbarOptions = [
   [{ list: 'ordered' }, { list: 'bullet' }],
   [{ indent: '-1' }, { indent: '+1' }], // outdent/indent
   [{ color: [] }, { background: [] }], // dropdown with defaults from theme
-  ['clean']
+  ['image', 'clean']
 ]
 
 const propertyTemplate = function() {
@@ -175,6 +177,10 @@ export default {
   computed: {
     errors() {
       return this.$store.getters['products/errors']
+    },
+
+    isLoading() {
+      return this.$store.getters['products/isLoading']
     }
   },
 

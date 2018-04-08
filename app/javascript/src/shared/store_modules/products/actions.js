@@ -53,6 +53,30 @@ export const find = ({ dispatch, commit }, id) => {
 }
 
 /**
+ * Upload Images for product description
+ *
+ * @returns {promise} response or errors
+ */
+export const uploadImages = ({ dispatch, commit }, formData) => {
+  commit(types.PRODUCT_IMAGE_UPLOAD_START)
+
+  return new Promise((resolve, reject) => {
+    Product.uploadImages(formData)
+      .then(response => {
+        commit(types.PRODUCT_IMAGE_UPLOAD_SUCCESS, response)
+
+        resolve(response)
+      })
+      .catch(errors => {
+        commit(types.API_REQUEST_FAIL, errors)
+        dispatch('errorMessageHandler', errors, { root: true })
+
+        reject(errors)
+      })
+  })
+}
+
+/**
  * 新增 Resource 到 Server
  *
  * @param {object} resource JSON:API 規格的 request body

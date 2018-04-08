@@ -9,7 +9,7 @@ export default class ImageHandler {
 
     this.dispatch = options.dispatcher || null
     this.action = options.action || null
-    this.imagesAttrName = options.imagesAttrName || null
+    this.imagesAttrName = options.imagesAttrName || 'image[]'
     this.additionalFormData = options.additionalFormData
 
     // 監聽在 Editor 中發生的 `click`, `paste`, 和 `drop` 事件。
@@ -64,10 +64,23 @@ export default class ImageHandler {
     false
   }
 
+  /**
+   * 處理從 paste 或 drop 事件得到的檔案
+   *
+   * @param {any} files
+   * @memberof ImageHandler
+   */
   imageHandler(files) {
+    // 若有透過 module options 設定 vuex dispatcher 和指定的 action，則透過 vuex 上傳圖片
     if (this.dispatch && this.action) {
       let formData = generateFormData(files, this.imagesAttrName, this.additionalFormData)
-      console.log(formData)
+
+      this.dispatch(this.action, formData).then(response => {
+        response.data.data.forEach(image => {
+          this.insert(image.attributes.url)
+        })
+      })
+      // 否則使用 base64 處理圖片
     } else {
       base64encode(files, this.insert.bind(this))
     }
@@ -93,12 +106,19 @@ export default class ImageHandler {
 
 // private methods
 
+/**
+ * 建立 formData 物件
+ *
+ * @param {Array} files 從 paste of drop 事件得到的檔案
+ * @param {string} 指定的圖片表單 name attribute
+ * @param {Function} 以 callback 的方式讓 FormData 可以加上額外的欄位
+ * @returns {Object} 回傳建立好的 FormData 物件
+ */
 function generateFormData(files, imagesAttrName, additionalFormData) {
   let formData = new FormData()
-
-  for (let index in files) {
-    formData.append(imagesAttrName, files[index])
-  }
+  ;[].forEach.call(files, file => {
+    formData.append(imagesAttrName, file)
+  })
 
   additionalFormData(formData)
 

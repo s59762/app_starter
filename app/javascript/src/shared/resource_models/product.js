@@ -47,6 +47,10 @@ export default class Product {
     return axios.get(`${API_BASE_PATH}/${id}?${FetchingDataOptionsService.call(options)}`)
   }
 
+  static uploadImages(formData) {
+    return axios.post(`${API_BASE_PATH}/images`, formData)
+  }
+
   /**
    * 把目前的 resource 內容存到 server。
    *

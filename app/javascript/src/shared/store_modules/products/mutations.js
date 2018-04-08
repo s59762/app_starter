@@ -61,6 +61,20 @@ export default {
     state.isCallingAPI = false
   },
 
+  [types.PRODUCT_IMAGE_UPLOAD_START](state) {
+    state.isCallingAPI = true
+  },
+
+  [types.PRODUCT_IMAGE_UPLOAD_SUCCESS](state, response) {
+    state.isCallingAPI = false
+
+    response.data.meta.ids.forEach(id => {
+      if (id) {
+        state.tempImageIds.push(id)
+      }
+    })
+  },
+
   [types.API_REQUEST_FAIL](state, errors) {
     state.errors.record(errors)
     state.isCallingAPI = false
