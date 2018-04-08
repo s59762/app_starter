@@ -114,23 +114,9 @@
 </template>
 
 <script>
+import quillEditorMixin from '../mixins/quill_editor_mixin'
 import Product from '../../../../shared/resource_models/product'
 import Form from '../../../../shared/forms/form_base'
-// quill editor
-import { quillEditor, Quill } from 'vue-quill-editor'
-import { ImageExtend, QuillWatch } from 'quill-image-extend-module'
-Quill.register('modules/ImageExtend', ImageExtend)
-const toolbarOptions = [
-  [{ size: [false, 'small', 'large', 'huge'] }], // custom dropdown
-  [{ header: [false, 1, 2, 3] }],
-  ['bold', 'italic', 'underline', 'strike'], // toggled buttons
-  [{ align: [] }],
-  ['blockquote', 'code-block'],
-  [{ list: 'ordered' }, { list: 'bullet' }],
-  [{ indent: '-1' }, { indent: '+1' }], // outdent/indent
-  [{ color: [] }, { background: [] }], // dropdown with defaults from theme
-  ['clean']
-]
 
 const propertyTemplate = function() {
   return {
@@ -141,35 +127,15 @@ const propertyTemplate = function() {
 }
 
 export default {
-  components: {
-    quillEditor
-  },
-  // mixins: [],
+  // components: {},
+
+  mixins: [quillEditorMixin],
+
   // props: {},
+
   data() {
     return {
-      form: new Form(new Product()),
-      editorOptions: {
-        placeholder: 'e.g. A powerfull tool for your professional works.',
-        modules: {
-          ImageExtend: {
-            loading: true,
-            name: 'img',
-            action: '/api/v1/testUpload',
-            response: res => {
-              return res.info
-            }
-          },
-          toolbar: {
-            container: toolbarOptions,
-            handlers: {
-              image: function() {
-                QuillWatch.emit(this.quill.id)
-              }
-            }
-          }
-        }
-      }
+      form: new Form(new Product())
     }
   },
 
@@ -181,6 +147,7 @@ export default {
 
   created() {
     this.form.properties = [propertyTemplate()]
+    this.form.image_ids = []
     this.form.price = {
       original: 0,
       sell: 0,
@@ -189,6 +156,7 @@ export default {
   },
 
   // mounted() {},
+
   methods: {
     addProperty() {
       this.form.properties.push(propertyTemplate())

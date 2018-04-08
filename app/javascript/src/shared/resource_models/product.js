@@ -19,7 +19,7 @@ const ATTRIBUTES = [
   'created_at',
   'discount_rate'
 ]
-const EDITABLE_ATTRIBUTES = ['cover', 'description', 'price', 'is_preorder', 'name', 'properties']
+const EDITABLE_ATTRIBUTES = ['cover', 'description', 'price', 'is_preorder', 'name', 'properties', 'image_ids']
 
 export default class Product {
   constructor(attributes = {}) {
@@ -85,7 +85,7 @@ export default class Product {
       })
     } else {
       EDITABLE_ATTRIBUTES.forEach(attr => {
-        result[attr] = this[attr]
+        result[attr] = this[attr] || null
       })
     }
 
