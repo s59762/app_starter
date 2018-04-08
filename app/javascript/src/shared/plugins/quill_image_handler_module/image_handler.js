@@ -21,6 +21,7 @@ export default class ImageHandler {
    */
   dropHandler(event) {
     event.preventDefault()
+    event.stopPropagation()
 
     if (event.dataTransfer && event.dataTransfer.files && event.dataTransfer.files.length) {
       setInsertPositionViaCaret(event)
@@ -46,22 +47,9 @@ export default class ImageHandler {
     const clipboardData = event.clipboardData
 
     if (clipboardData && clipboardData.items && clipboardData.items.length) {
-      // base64encode(clipboardData.items, this.insert.bind(this))
-      // base64encode(event.clipboardData.items, dataUrl => {
-      //   const selection = this.quill.getSelection()
-      //   if (selection) {
-      //     // we must be in a browser that supports pasting (like Firefox)
-      //     // so it has already been placed into the editor
-      //     setTimeout(() => {
-      //       this.insert(dataUrl)
-      //     }, 10)
-      //   } else {
-      //     console.log('ng')
-      //     // otherwise we wait until after the paste when this.quill.getSelection()
-      //     // will return a valid index
-      //     setTimeout(() => this.insert(dataUrl), 0)
-      //   }
-      // })
+      event.preventDefault()
+      event.stopPropagation()
+      base64encode(clipboardData.items, this.insert.bind(this))
     }
   }
 
@@ -97,6 +85,18 @@ export default class ImageHandler {
  * @param {Function} callback 所有檔案的內容會透過這個 callback 傳送。
  */
 function base64encode(files, callback) {
+  let originalUrl = false
+
+  // 在 paste 事件中，若 clipboard 中的檔案原本就擁有自己的 url 或 dataUrl，記錄到 origianlUrl 變數中
+  if (files[0].kind === 'string') {
+    files[0].getAsString(string => {
+      if (string.split('/')[0].match(/data:image|https?:/i)) {
+        originalUrl = string
+      }
+    })
+  }
+
+  // 找出事件中的 file 物件，若是圖片則進行處理
   ;[].forEach.call(files, file => {
     if (!file.type.match(/^image\/(gif|jpe?g|a?png)/i)) {
       return
@@ -104,8 +104,17 @@ function base64encode(files, callback) {
 
     const reader = new FileReader()
 
+    // FileReader onload 時
+    // 若這次 paste 事件有原始的 url，則使用原始資料來插入圖片
+    // 反之則使用 base64
     reader.onload = event => {
-      callback(event.target.result)
+      if (originalUrl) {
+        console.log('USE ORIGINAL')
+        callback(originalUrl)
+      } else {
+        console.log('USE BASE64')
+        callback(event.target.result)
+      }
     }
 
     // 嘗試把貼上的內容（DataTransferItem）透過 `#getAsFile` 取出檔案
