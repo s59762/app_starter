@@ -1,8 +1,20 @@
+import { _generateFormData } from './utils'
+
+const DEFAULT_OPTIONS = {
+  quill: null,
+  dispatcher: null,
+  action: null,
+  imagesAttrName: 'image[]',
+  additionalFormData: null
+}
+
 export default function imageButtonHandler(options = {}) {
+  options = Object.assign({}, DEFAULT_OPTIONS, options)
+
   let quill = options.quill
-  let dispatch = options.dispatcher || null
-  let action = options.action || null
-  let imagesAttrName = options.imagesAttrName || 'image[]'
+  let dispatch = options.dispatcher
+  let action = options.action
+  let imagesAttrName = options.imagesAttrName
   let additionalFormData = options.additionalFormData
   let fileInput = document.querySelector('.quill-image-input')
 
@@ -19,7 +31,7 @@ export default function imageButtonHandler(options = {}) {
 
       dispatch(action, formData).then(response => {
         response.data.data.forEach(image => {
-          insertImage(quill, image.attributes.url)
+          _insertImage(quill, image.attributes.url)
         })
       })
 
@@ -38,7 +50,7 @@ export default function imageButtonHandler(options = {}) {
  * @param {any} quill Quill editor instance
  * @param {any} dataUrl image path or dataURL
  */
-function insertImage(quill, dataUrl) {
+function _insertImage(quill, dataUrl) {
   let cursorIndex = (quill.getSelection() || {}).index
 
   if (cursorIndex === undefined) {
@@ -47,23 +59,4 @@ function insertImage(quill, dataUrl) {
 
   quill.insertEmbed(cursorIndex, 'image', dataUrl, 'user')
   quill.setSelection(cursorIndex + 1)
-}
-
-/**
- * 建立 formData 物件
- *
- * @param {Array} files 從 paste of drop 事件得到的檔案
- * @param {string} 指定的圖片表單 name attribute
- * @param {Function} 以 callback 的方式讓 FormData 可以加上額外的欄位
- * @returns {Object} 回傳建立好的 FormData 物件
- */
-function _generateFormData(files, imagesAttrName, additionalFormData) {
-  let formData = new FormData()
-  ;[].forEach.call(files, file => {
-    formData.append(imagesAttrName, file)
-  })
-
-  additionalFormData(formData)
-
-  return formData
 }
