@@ -1,5 +1,23 @@
 // private methods
 
+export function _checkForOwnImageUrl(files) {
+  return new Promise((resolve, reject) => {
+    if (files[0].kind === 'string') {
+      files[0].getAsString(string => {
+        if (string.split('/')[0].match(/^data:image|^https?:/i)) {
+          resolve(string)
+        } else if (string.match(/^<img/)) {
+          resolve(string.match(/\ssrc\s*=\s*['|"](.+?)['|"]/)[1])
+        } else {
+          reject()
+        }
+      })
+    } else {
+      reject()
+    }
+  })
+}
+
 /**
  * 建立 formData 物件
  *
@@ -11,7 +29,11 @@
 export function _generateFormData(files, imagesAttrName, additionalFormData) {
   let formData = new FormData()
   ;[].forEach.call(files, file => {
-    formData.append(imagesAttrName, file)
+    const blob = file.getAsFile ? file.getAsFile() : file
+
+    if (blob instanceof Blob) {
+      formData.append(imagesAttrName, blob)
+    }
   })
 
   additionalFormData(formData)
@@ -25,14 +47,16 @@ export function _generateFormData(files, imagesAttrName, additionalFormData) {
  * @param {File[]} files 事件中包含的檔案
  * @param {Function} callback 所有檔案的內容會透過這個 callback 傳送。
  */
-export function _base64encode(files, quill, callback) {
+export function _base64encode(files, callback) {
   let originalUrl = false
 
   // 在 paste 事件中，若 clipboard 中的檔案原本就擁有自己的 url 或 dataUrl，記錄到 origianlUrl 變數中
   if (files[0].kind === 'string') {
     files[0].getAsString(string => {
-      if (string.split('/')[0].match(/data:image|https?:/i)) {
+      if (string.split('/')[0].match(/^data:image|^https?:/i)) {
         originalUrl = string
+      } else if (string.match(/^<img/)) {
+        originalUrl = string.match(/\ssrc\s*=\s*['|"](.+?)['|"]/)[1]
       }
     })
   }
@@ -50,11 +74,11 @@ export function _base64encode(files, quill, callback) {
     // 反之則使用 base64
     reader.onload = event => {
       if (originalUrl) {
-        console.log('USE ORIGINAL')
-        callback(originalUrl, quill)
+        // console.log('USE ORIGINAL')
+        callback(originalUrl)
       } else {
-        console.log('USE BASE64')
-        callback(event.target.result, quill)
+        // console.log('USE BASE64')
+        callback(event.target.result)
       }
     }
 

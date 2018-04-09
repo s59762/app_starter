@@ -1,4 +1,4 @@
-import { _generateFormData, _base64encode, _setInsertPositionViaCaret } from './utils'
+import { _checkForOwnImageUrl, _generateFormData, _base64encode, _setInsertPositionViaCaret } from './utils'
 
 const DEFAULT_OPTIONS = {
   dispatcher: null,
@@ -63,9 +63,15 @@ export default class ImageHandler {
     const clipboardData = event.clipboardData
 
     if (clipboardData && clipboardData.items && clipboardData.items.length) {
-      event.preventDefault()
-      event.stopPropagation()
-      this.imageHandler(clipboardData.items)
+      if (
+        clipboardData.items[1] &&
+        clipboardData.items[1].kind === 'file' &&
+        clipboardData.items[1].type.match(/^image\/(gif|jpe?g|a?png)/i)
+      ) {
+        event.preventDefault()
+        event.stopPropagation()
+        this.imageHandler(clipboardData.items)
+      }
     }
   }
 
@@ -85,11 +91,17 @@ export default class ImageHandler {
     if (this.dispatch && this.action) {
       let formData = _generateFormData(files, this.imagesAttrName, this.additionalFormData)
 
-      this.dispatch(this.action, formData).then(response => {
-        response.data.data.forEach(image => {
-          this.insert(image.attributes.url).bind(this)
+      _checkForOwnImageUrl(files)
+        .then(url => {
+          this.insert(url)
         })
-      })
+        .catch(() => {
+          this.dispatch(this.action, formData).then(response => {
+            response.data.data.forEach(image => {
+              this.insert(image.attributes.url)
+            })
+          })
+        })
       // 否則使用 base64 處理圖片
     } else {
       _base64encode(files, this.insert.bind(this))
@@ -106,7 +118,7 @@ export default class ImageHandler {
     let cursorIndex = (this.quill.getSelection() || {}).index
 
     if (cursorIndex === undefined) {
-      cursorIndex = quill.getLength()
+      cursorIndex = this.quill.getLength()
     }
 
     this.quill.insertEmbed(cursorIndex, 'image', dataUrl, 'user')
