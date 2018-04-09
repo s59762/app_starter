@@ -22,7 +22,7 @@ namespace :api do
       resources :products, only: %i[index show create update] do
         collection do
           # Product image resource
-          resources :images, only: %i[create destroy], controller: 'products/images'
+          resources :images, only: %i[create], controller: 'products/images'
         end
       end
 

@@ -10,14 +10,6 @@ class Api::V1::Web::Products::ImagesController < Api::V1::Web::BaseController
     render json: created_images
   end
 
-  def destroy
-    image = Product::Image.find(params[:id])
-
-    image.destroy
-
-    render json: { message: ['image destroyed.']}
-  end
-
   private
 
   def image_params

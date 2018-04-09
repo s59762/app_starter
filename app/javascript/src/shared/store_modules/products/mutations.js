@@ -69,14 +69,6 @@ export default {
     state.isCallingAPI = false
   },
 
-  [types.DELETE_PRODUCT_IMAGE_START](state) {
-    state.isCallingAPI = true
-  },
-
-  [types.DELETE_PRODUCT_IMAGE_SUCCESS](state, response) {
-    state.isCallingAPI = false
-  },
-
   [types.API_REQUEST_FAIL](state, errors) {
     state.errors.record(errors)
     state.isCallingAPI = false

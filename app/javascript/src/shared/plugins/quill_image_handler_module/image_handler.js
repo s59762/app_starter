@@ -2,8 +2,7 @@ import { _checkForOwnImageUrl, _generateFormData, _base64encode, _setInsertPosit
 
 const DEFAULT_OPTIONS = {
   dispatcher: null,
-  createAction: null,
-  deleteAction: null,
+  action: null,
   imagesAttrName: 'image[]',
   additionalFormData: null
 }
@@ -20,8 +19,7 @@ export default class ImageHandler {
     this.editorContainer = this.editor.parentNode
 
     this.dispatch = options.dispatcher
-    this.createAction = options.createAction
-    this.deleteAction = options.deleteAction
+    this.action = options.action
     this.imagesAttrName = options.imagesAttrName
     this.additionalFormData = options.additionalFormData
 
@@ -90,7 +88,7 @@ export default class ImageHandler {
    */
   imageHandler(files) {
     // 若有透過 module options 設定 vuex dispatcher 和指定的 action，則透過 vuex 上傳圖片
-    if (this.dispatch && this.createAction) {
+    if (this.dispatch && this.action) {
       let formData = _generateFormData(files, this.imagesAttrName, this.additionalFormData)
 
       _checkForOwnImageUrl(files)
@@ -98,7 +96,7 @@ export default class ImageHandler {
           this.insert(url)
         })
         .catch(() => {
-          this.dispatch(this.createAction, formData).then(response => {
+          this.dispatch(this.action, formData).then(response => {
             response.data.data.forEach(image => {
               this.insert(image.attributes.url)
             })
