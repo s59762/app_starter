@@ -33,6 +33,9 @@ class ProductSerializer < ApplicationSerializer
              :discount_rate
 
   belongs_to :category, class_name: 'ProductCategory', optional: true
+  has_many :images, class_name: 'Product::Image', dependent: :destroy, if: -> { instance_options[:show_images] }
+  has_many :normal_images, class_name: 'Product::Image', if: -> { instance_options[:show_normal_images] }
+  has_many :description_images, class_name: 'Product::Image', if: -> { instance_options[:show_description_images] }
 
   to_unix_time :created_at
   money_to_integer :original_price,
@@ -41,7 +44,8 @@ class ProductSerializer < ApplicationSerializer
 
   # 折扣率
   def discount_rate
-    return nil unless object.discounted_price.present?
+    return 1.0 if object.discounted_price.zero?
+    return 1.0 if object.sell_price.zero?
 
     object.discounted_price / object.sell_price
   end

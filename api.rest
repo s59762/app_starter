@@ -292,6 +292,24 @@ content-type: application/vnd.api+json
 
 ###
 
+# upload images for product
+POST {{host_v1}}products/images HTTP/1.1
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+Authorization: Bearer {{adminJWT}}
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="product[use_case]"
+
+description
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="product[images][]"; filename="pic.jpg"
+Content-Type: image/jpeg
+
+< ./spec/images/pic.jpg
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+###
+
 // ************************************************************************** //
  ######  #### ######## ########     ######   #######  ##    ## ######## ####  ######
 ##    ##  ##     ##    ##          ##    ## ##     ## ###   ## ##        ##  ##    ##

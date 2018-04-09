@@ -1,0 +1,31 @@
+zh-TW:
+  # model and attributes name
+  activerecord: &default
+    models:
+      product/image:
+        one: 商品圖片
+        other: 商品圖片
+
+    attributes:
+      product/image:
+        image: 圖片
+        use_case: 用於
+
+    errors:
+      models:
+        product/image:
+          attributes:
+            use_case:
+              invalid_value: "`%{value}` 並不是合法的值，請輸入 `normal` 或 `description`。"
+  activemodel: *default
+
+  # Enums
+  enums:
+    product/image:
+      use_case:
+        normal: 商品
+        description: 敘述插圖
+
+  # AASM state machine
+  aasm_state:
+    product/image:

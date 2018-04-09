@@ -5,7 +5,7 @@ namespace :api do
       resources :admins, only: %i[index show create update] do
         collection do
           # get all roles that available for Admin
-          get :roles, controller: 'admins/roles', action: 'show'
+          get :roles, controller: 'admins/roles', action: :show
         end
 
         # suspend toggle an admin
@@ -19,7 +19,12 @@ namespace :api do
       resources :product_categories, only: %i[index create update]
 
       # Product resource
-      resources :products, only: %i[index show create update]
+      resources :products, only: %i[index show create update] do
+        collection do
+          # Product image resource
+          resources :images, only: %i[create destroy], controller: 'products/images'
+        end
+      end
 
       # Site config
       resource :site_config, only: %i[show], controller: 'site_config' do

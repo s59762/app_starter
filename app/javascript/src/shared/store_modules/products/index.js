@@ -7,6 +7,7 @@ const state = {
   entities: {},
   result: [],
   meta: {},
+  tempImageIds: [],
   isCallingAPI: false,
   errors: new Errors()
 }

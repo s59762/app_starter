@@ -1,19 +1,33 @@
 .product-new-form
-  .section:not(:last-child)
-    border-bottom: 1px solid $light
+  $divider-color: darken($light, 10)
+  %control-button-stype
+    position: absolute
+    top: -.5rem
+    width: 1.5rem
+    height: 1.5rem
+    color: $white
+    text-align: center
+    border-radius: 100%
 
-  .properties-wrapper
-    > .section-title
-      font-size: 1rem
-      font-weight: bolder
-      margin-bottom: 1rem
+  .section-title
+    font-size: 1rem
+    font-weight: bolder
+    margin-bottom: 1rem
+
+  .ql-editor
+    min-height: 500px
+
+  .section:not(:last-of-type)
+    border-bottom: 1px solid $divider-color
 
   .property-fields
     position: relative
     background-color: $light
     padding: 1rem
-    margin-bottom: .8rem
+    margin-bottom: 1rem
     border-radius: 8px
+    &:last-of-type
+      margin-bottom: 0.5rem
     > .property-count
       @extend %control-button-stype
       left: -.5rem
@@ -28,11 +42,29 @@
       &:hover
         box-shadow: 0 0 5px $black
 
-  %control-button-stype
-    position: absolute
-    top: -.5rem
-    width: 1.5rem
-    height: 1.5rem
-    color: $white
-    text-align: center
-    border-radius: 100%
+  .ql-snow .ql-picker.ql-size
+    .ql-picker-item[data-value="small"]::before,
+    .ql-picker-label[data-value="small"]::before
+      content: '小字'
+    .ql-picker-item::before,
+    .ql-picker-label::before
+      content: '一般'
+    .ql-picker-item[data-value="large"]::before,
+    .ql-picker-label[data-value="large"]::before
+      content: '大字'
+    .ql-picker-item[data-value="huge"]::before,
+    .ql-picker-label[data-value="huge"]::before
+      content: '巨大'
+  .ql-snow .ql-picker.ql-header
+    .ql-picker-label::before,
+    .ql-picker-item::before
+      content: '內文'
+    .ql-picker-label[data-value="1"]::before,
+    .ql-picker-item[data-value="1"]::before
+      content: '大標題'
+    .ql-picker-label[data-value="2"]::before,
+    .ql-picker-item[data-value="2"]::before
+      content: '副標題'
+    .ql-picker-label[data-value="3"]::before,
+    .ql-picker-item[data-value="3"]::before
+      content: '次標題'
