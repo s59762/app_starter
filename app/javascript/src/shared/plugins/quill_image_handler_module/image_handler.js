@@ -2,7 +2,8 @@ import { _checkForOwnImageUrl, _generateFormData, _base64encode, _setInsertPosit
 
 const DEFAULT_OPTIONS = {
   dispatcher: null,
-  action: null,
+  createAction: null,
+  deleteAction: null,
   imagesAttrName: 'image[]',
   additionalFormData: null
 }
@@ -19,7 +20,8 @@ export default class ImageHandler {
     this.editorContainer = this.editor.parentNode
 
     this.dispatch = options.dispatcher
-    this.action = options.action
+    this.createAction = options.createAction
+    this.deleteAction = options.deleteAction
     this.imagesAttrName = options.imagesAttrName
     this.additionalFormData = options.additionalFormData
 
@@ -28,6 +30,28 @@ export default class ImageHandler {
     this.editor.addEventListener('paste', this.pasteHandler.bind(this), false)
     this.editor.addEventListener('drop', this.dropHandler.bind(this), false)
     this.quill.on('text-change', this.deleteHandler)
+
+    const observer = new MutationObserver(mutations => {
+      mutations
+        .filter(mutation => mutation.type === 'childList' && mutation.removedNodes.length)
+        .forEach(childMutation => {
+          childMutation.removedNodes.forEach(node => {
+            // console.log(childMutation)
+            if (
+              childMutation.nextSibling === null &&
+              node.tagName === 'IMG' &&
+              node.src.match(/\/uploads\/product\/image\/image\//) &&
+              node.parentElement === null
+            ) {
+              const deletedImageId = node.src.match(/\/uploads\/product\/image\/image\/([0-9]+)/)[1]
+              this.dispatch(this.deleteAction, deletedImageId)
+            }
+          })
+        })
+    })
+    observer.observe(this.editor, { attributes: true, childList: true, subtree: true })
+
+    console.log(observer)
   }
 
   /**
@@ -88,7 +112,7 @@ export default class ImageHandler {
    */
   imageHandler(files) {
     // 若有透過 module options 設定 vuex dispatcher 和指定的 action，則透過 vuex 上傳圖片
-    if (this.dispatch && this.action) {
+    if (this.dispatch && this.createAction) {
       let formData = _generateFormData(files, this.imagesAttrName, this.additionalFormData)
 
       _checkForOwnImageUrl(files)
@@ -96,7 +120,7 @@ export default class ImageHandler {
           this.insert(url)
         })
         .catch(() => {
-          this.dispatch(this.action, formData).then(response => {
+          this.dispatch(this.createAction, formData).then(response => {
             response.data.data.forEach(image => {
               this.insert(image.attributes.url)
             })

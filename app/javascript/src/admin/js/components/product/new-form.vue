@@ -135,7 +135,8 @@ const toolbarOptions = [
 ]
 
 const imagesAttrName = 'product[images][]'
-const dispatchAction = 'products/uploadImages'
+const createAction = 'products/uploadImages'
+const deleteAction = 'products/deleteImage'
 const additionalFormData = formData => {
   formData.append('product[use_case]', 'description')
 }
@@ -167,7 +168,8 @@ export default {
         modules: {
           ImageHandler: {
             dispatcher: this.$store.dispatch,
-            action: dispatchAction,
+            createAction: createAction,
+            deleteAction: deleteAction,
             imagesAttrName: imagesAttrName,
             additionalFormData: additionalFormData
           },
@@ -179,7 +181,7 @@ export default {
                   imagesAttrName,
                   additionalFormData,
                   dispatcher: this.$store.dispatch,
-                  action: dispatchAction,
+                  action: createAction,
                   quill: this.$refs.quill.quill
                 })
               }
