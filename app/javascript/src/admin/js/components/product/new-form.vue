@@ -118,6 +118,7 @@
 <script>
 import { quillEditor, Quill } from 'vue-quill-editor'
 import ImageHandler from '../../../../shared/plugins/quill_image_handler_module/image_handler'
+import imageButtonHandler from '../../../../shared/plugins/quill_image_handler_module/image_button_handler'
 import Product from '../../../../shared/resource_models/product'
 import Form from '../../../../shared/forms/form_base'
 
@@ -132,6 +133,12 @@ const toolbarOptions = [
   [{ color: [] }, { background: [] }], // dropdown with defaults from theme
   ['image', 'clean']
 ]
+
+const imagesAttrName = 'product[images][]'
+const dispatchAction = 'products/uploadImages'
+const additionalFormData = formData => {
+  formData.append('product[use_case]', 'description')
+}
 
 const propertyTemplate = function() {
   return {
@@ -158,15 +165,24 @@ export default {
       editorOptions: {
         placeholder: 'e.g. A powerfull tool for your professional works.',
         modules: {
-          toolbar: {
-            container: toolbarOptions
-          },
           ImageHandler: {
             dispatcher: this.$store.dispatch,
-            action: 'products/uploadImages',
-            imagesAttrName: 'product[images][]',
-            additionalFormData: formData => {
-              formData.append('product[use_case]', 'description')
+            action: dispatchAction,
+            imagesAttrName: imagesAttrName,
+            additionalFormData: additionalFormData
+          },
+          toolbar: {
+            container: toolbarOptions,
+            handlers: {
+              image: () => {
+                imageButtonHandler({
+                  imagesAttrName,
+                  additionalFormData,
+                  dispatcher: this.$store.dispatch,
+                  action: dispatchAction,
+                  quill: this.$refs.quill.quill
+                })
+              }
             }
           }
         }

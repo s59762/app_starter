@@ -17,7 +17,6 @@ export default class ImageHandler {
     this.editor.addEventListener('paste', this.pasteHandler.bind(this), false)
     this.editor.addEventListener('drop', this.dropHandler.bind(this), false)
     this.quill.on('text-change', this.deleteHandler)
-    console.log(options)
   }
 
   /**
@@ -30,7 +29,7 @@ export default class ImageHandler {
     event.stopPropagation()
 
     if (event.dataTransfer && event.dataTransfer.files && event.dataTransfer.files.length) {
-      setInsertPositionViaCaret(event)
+      _setInsertPositionViaCaret(event)
       this.imageHandler(event.dataTransfer.files)
     }
   }
@@ -73,7 +72,7 @@ export default class ImageHandler {
   imageHandler(files) {
     // 若有透過 module options 設定 vuex dispatcher 和指定的 action，則透過 vuex 上傳圖片
     if (this.dispatch && this.action) {
-      let formData = generateFormData(files, this.imagesAttrName, this.additionalFormData)
+      let formData = _generateFormData(files, this.imagesAttrName, this.additionalFormData)
 
       this.dispatch(this.action, formData).then(response => {
         response.data.data.forEach(image => {
@@ -82,7 +81,7 @@ export default class ImageHandler {
       })
       // 否則使用 base64 處理圖片
     } else {
-      base64encode(files, this.insert.bind(this))
+      _base64encode(files, this.insert.bind(this))
     }
   }
 
@@ -114,7 +113,7 @@ export default class ImageHandler {
  * @param {Function} 以 callback 的方式讓 FormData 可以加上額外的欄位
  * @returns {Object} 回傳建立好的 FormData 物件
  */
-function generateFormData(files, imagesAttrName, additionalFormData) {
+function _generateFormData(files, imagesAttrName, additionalFormData) {
   let formData = new FormData()
   ;[].forEach.call(files, file => {
     formData.append(imagesAttrName, file)
@@ -131,7 +130,7 @@ function generateFormData(files, imagesAttrName, additionalFormData) {
  * @param {File[]} files 事件中包含的檔案
  * @param {Function} callback 所有檔案的內容會透過這個 callback 傳送。
  */
-function base64encode(files, callback) {
+function _base64encode(files, callback) {
   let originalUrl = false
 
   // 在 paste 事件中，若 clipboard 中的檔案原本就擁有自己的 url 或 dataUrl，記錄到 origianlUrl 變數中
@@ -179,7 +178,7 @@ function base64encode(files, callback) {
  *
  * @param {Event} event 瀏覽器的 Event 事件物件
  */
-function setInsertPositionViaCaret(event) {
+function _setInsertPositionViaCaret(event) {
   if (document.caretRangeFromPoint) {
     const selection = document.getSelection()
     const range = document.caretRangeFromPoint(event.clientX, event.clientY)
