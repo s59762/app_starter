@@ -7,8 +7,7 @@ class Api::V1::Web::Products::ImagesController < Api::V1::Web::BaseController
     form.save
     created_images = Product::Image.where(id: form.created_image_ids)
 
-    render json: created_images,
-           meta: {ids: form.created_image_ids}
+    render json: created_images
   end
 
   def destroy
@@ -16,7 +15,7 @@ class Api::V1::Web::Products::ImagesController < Api::V1::Web::BaseController
 
     image.destroy
 
-    render json: { message: ['image destroyed.'], meta: { id: image.id } }
+    render json: { message: ['image destroyed.']}
   end
 
   private

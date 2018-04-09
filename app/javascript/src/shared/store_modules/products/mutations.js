@@ -67,12 +67,6 @@ export default {
 
   [types.PRODUCT_IMAGE_UPLOAD_SUCCESS](state, response) {
     state.isCallingAPI = false
-
-    response.data.meta.ids.forEach(id => {
-      if (id) {
-        state.tempImageIds.push(id)
-      }
-    })
   },
 
   [types.DELETE_PRODUCT_IMAGE_START](state) {
@@ -81,11 +75,6 @@ export default {
 
   [types.DELETE_PRODUCT_IMAGE_SUCCESS](state, response) {
     state.isCallingAPI = false
-
-    if (state.tempImageIds) {
-      const index = state.tempImageIds.indexOf(response.data.meta.id)
-      state.tempImageIds.splice(index, 1)
-    }
   },
 
   [types.API_REQUEST_FAIL](state, errors) {

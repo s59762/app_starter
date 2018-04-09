@@ -131,7 +131,7 @@ const toolbarOptions = [
   [{ list: 'ordered' }, { list: 'bullet' }],
   [{ indent: '-1' }, { indent: '+1' }], // outdent/indent
   [{ color: [] }, { background: [] }], // dropdown with defaults from theme
-  ['image', 'clean']
+  ['image', 'video', 'clean']
 ]
 
 const imagesAttrName = 'product[images][]'
@@ -204,7 +204,6 @@ export default {
 
   created() {
     this.form.properties = [propertyTemplate()]
-    this.form.image_ids = []
     this.form.price = {
       original: 0,
       sell: 0,

@@ -44,7 +44,8 @@ class ProductSerializer < ApplicationSerializer
 
   # 折扣率
   def discount_rate
-    return nil unless object.discounted_price.present?
+    return 1.0 if object.discounted_price.zero?
+    return 1.0 if object.sell_price.zero?
 
     object.discounted_price / object.sell_price
   end

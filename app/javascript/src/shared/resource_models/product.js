@@ -19,7 +19,7 @@ const ATTRIBUTES = [
   'created_at',
   'discount_rate'
 ]
-const EDITABLE_ATTRIBUTES = ['cover', 'description', 'price', 'is_preorder', 'name', 'properties', 'image_ids']
+const EDITABLE_ATTRIBUTES = ['cover', 'description', 'price', 'is_preorder', 'name', 'properties']
 
 export default class Product {
   constructor(attributes = {}) {

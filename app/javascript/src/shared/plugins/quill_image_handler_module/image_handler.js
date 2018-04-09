@@ -30,28 +30,6 @@ export default class ImageHandler {
     this.editor.addEventListener('paste', this.pasteHandler.bind(this), false)
     this.editor.addEventListener('drop', this.dropHandler.bind(this), false)
     this.quill.on('text-change', this.deleteHandler)
-
-    const observer = new MutationObserver(mutations => {
-      mutations
-        .filter(mutation => mutation.type === 'childList' && mutation.removedNodes.length)
-        .forEach(childMutation => {
-          childMutation.removedNodes.forEach(node => {
-            // console.log(childMutation)
-            if (
-              childMutation.nextSibling === null &&
-              node.tagName === 'IMG' &&
-              node.src.match(/\/uploads\/product\/image\/image\//) &&
-              node.parentElement === null
-            ) {
-              const deletedImageId = node.src.match(/\/uploads\/product\/image\/image\/([0-9]+)/)[1]
-              this.dispatch(this.deleteAction, deletedImageId)
-            }
-          })
-        })
-    })
-    observer.observe(this.editor, { attributes: true, childList: true, subtree: true })
-
-    console.log(observer)
   }
 
   /**
