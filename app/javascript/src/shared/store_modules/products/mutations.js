@@ -75,6 +75,19 @@ export default {
     })
   },
 
+  [types.DELETE_PRODUCT_IMAGE_START](state) {
+    state.isCallingAPI = true
+  },
+
+  [types.DELETE_PRODUCT_IMAGE_SUCCESS](state, response) {
+    state.isCallingAPI = false
+
+    if (state.tempImageIds) {
+      const index = state.tempImageIds.indexOf(response.data.meta.id)
+      state.tempImageIds.splice(index, 1)
+    }
+  },
+
   [types.API_REQUEST_FAIL](state, errors) {
     state.errors.record(errors)
     state.isCallingAPI = false

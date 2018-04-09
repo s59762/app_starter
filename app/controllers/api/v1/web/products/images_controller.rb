@@ -16,7 +16,7 @@ class Api::V1::Web::Products::ImagesController < Api::V1::Web::BaseController
 
     image.destroy
 
-    render json: { message: ['image destroyed.'] }
+    render json: { message: ['image destroyed.'], meta: { id: image.id } }
   end
 
   private

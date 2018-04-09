@@ -51,6 +51,10 @@ export default class Product {
     return axios.post(`${API_BASE_PATH}/images`, formData)
   }
 
+  static deleteImage(id) {
+    return axios.delete(`${API_BASE_PATH}/images/${id}`)
+  }
+
   /**
    * 把目前的 resource 內容存到 server。
    *

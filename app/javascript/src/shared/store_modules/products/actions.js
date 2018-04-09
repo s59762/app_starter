@@ -77,6 +77,30 @@ export const uploadImages = ({ dispatch, commit }, formData) => {
 }
 
 /**
+ * delete image from product description
+ *
+ * @returns {promise} response or errors
+ */
+export const deleteImage = ({ dispatch, commit }, id) => {
+  commit(types.DELETE_PRODUCT_IMAGE_START)
+
+  return new Promise((resolve, reject) => {
+    Product.deleteImage(id)
+      .then(response => {
+        commit(types.DELETE_PRODUCT_IMAGE_SUCCESS, response)
+
+        resolve(response)
+      })
+      .catch(errors => {
+        commit(types.API_REQUEST_FAIL, errors)
+        dispatch('errorMessageHandler', errors, { root: true })
+
+        reject(errors)
+      })
+  })
+}
+
+/**
  * 新增 Resource 到 Server
  *
  * @param {object} resource JSON:API 規格的 request body
