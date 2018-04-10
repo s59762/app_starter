@@ -34,8 +34,7 @@
           .columns
             .column
               b-field(:label="attributeLocaleText('product', 'original_price')"
-                      :type="errors.errorClassAt('price')"
-                      :message="errors.get('price')")
+                      :type="errors.errorClassAt('price')")
                 b-input(type="number"
                         placeholder="e.g. 80000"
                         v-model="form.price.original"
@@ -43,8 +42,7 @@
                         @input="errors.clear('price')")
             .column
               b-field(:label="attributeLocaleText('product', 'sell_price')"
-                      :type="errors.errorClassAt('price')"
-                      :message="errors.get('price')")
+                      :type="errors.errorClassAt('price')")
                 b-input(type="number"
                         placeholder="e.g. 100000"
                         v-model="form.price.sell"
@@ -52,13 +50,13 @@
                         @input="errors.clear('price')")
             .column
               b-field(:label="attributeLocaleText('product', 'discounted_price')"
-                      :type="errors.errorClassAt('price')"
-                      :message="errors.get('price')")
+                      :type="errors.errorClassAt('price')")
                 b-input(type="number"
                         placeholder="e.g. 98000"
                         v-model="form.price.discounted"
                         data-behavior="product-discounted-price"
                         @input="errors.clear('price')")
+          p.has-text-danger.help(v-if="errors.has('price')") {{errors.get('price')}}
 
         //- options
         section.section.product-options-wrapper
