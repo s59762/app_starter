@@ -18,6 +18,7 @@
             b-input(type="text"
                     placeholder="e.g. iMac Pro 3.8GHz"
                     v-model="form.name"
+                    data-behavior="product-name"
                     @input="errors.clear('name')")
 
           b-field(:label="attributeLocaleText('product', 'description')"
@@ -25,6 +26,7 @@
                   :message="errors.get('description')")
             quill-editor(v-model="form.description"
                          ref="quill"
+                         data-behavior="product-description"
                          :options="editorOptions")
 
         //- price info
@@ -37,6 +39,7 @@
                 b-input(type="number"
                         placeholder="e.g. 80000"
                         v-model="form.price.original"
+                        data-behavior="product-original-price"
                         @input="errors.clear('price')")
             .column
               b-field(:label="attributeLocaleText('product', 'sell_price')"
@@ -45,6 +48,7 @@
                 b-input(type="number"
                         placeholder="e.g. 100000"
                         v-model="form.price.sell"
+                        data-behavior="product-sell-price"
                         @input="errors.clear('price')")
             .column
               b-field(:label="attributeLocaleText('product', 'discounted_price')"
@@ -53,6 +57,7 @@
                 b-input(type="number"
                         placeholder="e.g. 98000"
                         v-model="form.price.discounted"
+                        data-behavior="product-discounted-price"
                         @input="errors.clear('price')")
 
         //- options
@@ -62,6 +67,7 @@
                   :message="errors.get('is_preorder')")
             b-switch(v-model="form.is_preorder"
                       type="is-success"
+                      data-behavior="product-is-oreorder"
                       @input="errors.clear('is_preorder')")
               | {{enumLocaleText('product', 'is_preorder', form.is_preorder)}}
 
@@ -81,6 +87,7 @@
                     b-input(type="text"
                             placeholder="e.g. Weight"
                             v-model="property.name"
+                            data-behavior="product-property-name"
                             @input="errors.clear('properties')")
                 .column.is-6
                   b-field(:label="attributeLocaleText('product', 'property_value')"
@@ -89,6 +96,7 @@
                     b-input(type="text"
                             placeholder="e.g. 12"
                             v-model="property.value"
+                            data-behavior="product-property-value"
                             @input="errors.clear('properties')")
                 .column
                   b-field(:label="attributeLocaleText('product', 'property_unit')"
@@ -97,9 +105,11 @@
                     b-input(type="text"
                             placeholder="e.g. kg"
                             v-model="property.unit"
+                            data-behavior="product-property-unit"
                             @input="errors.clear('properties')")
 
-          .add-property-button.button.is-default.is-block(@click="addProperty")
+          .add-property-button.button.is-default.is-block(@click="addProperty"
+                                                          data-behavior="product-add-property-button")
             .icon
               i.fa.fa-plus
             span {{actionLocaleText('admin', 'add_product_property')}}
@@ -107,7 +117,8 @@
         br
 
         .is-pulled-right
-        .button.is-primary(@click="submitForm") {{actionLocaleText('admin', 'submit')}}
+        .button.is-primary(@click="submitForm"
+                           data-behavior="submit-button") {{actionLocaleText('admin', 'submit')}}
       //- previews
       .column
         //- TODO: create a component for roughly preview input content
@@ -119,6 +130,7 @@
 import { quillEditor, Quill } from 'vue-quill-editor'
 import ImageHandler from '../../../../shared/plugins/quill_image_handler_module/image_handler'
 import imageButtonHandler from '../../../../shared/plugins/quill_image_handler_module/image_button_handler'
+// import { ImageResize } from 'quill-image-resize-module'
 import Product from '../../../../shared/resource_models/product'
 import Form from '../../../../shared/forms/form_base'
 
@@ -149,6 +161,7 @@ const propertyTemplate = function() {
 }
 
 Quill.register('modules/ImageHandler', ImageHandler)
+// Quill.register('module/ImageResize', ImageResize)
 
 export default {
   components: {
@@ -171,6 +184,7 @@ export default {
             imagesAttrName: imagesAttrName,
             additionalFormData: additionalFormData
           },
+          // ImageResize: {},
           toolbar: {
             container: toolbarOptions,
             handlers: {
