@@ -24,10 +24,9 @@ export default class ImageHandler {
     this.additionalFormData = options.additionalFormData
 
     // 監聽在 Editor 中發生的 `click`, `paste`, 和 `drop` 事件。
-    this.editor.addEventListener('click', this.clickHandler.bind(this), false)
+    // this.editor.addEventListener('click', this.clickHandler.bind(this), false)
     this.editor.addEventListener('paste', this.pasteHandler.bind(this), false)
     this.editor.addEventListener('drop', this.dropHandler.bind(this), false)
-    this.quill.on('text-change', this.deleteHandler)
   }
 
   /**
@@ -73,11 +72,6 @@ export default class ImageHandler {
         this.imageHandler(clipboardData.items)
       }
     }
-  }
-
-  deleteHandler(delta, oldDelta, source) {
-    // console.log(delta, oldDelta)
-    false
   }
 
   /**

@@ -36,6 +36,8 @@ class Admin::ProductForm < ApplicationForm
       errors.add(:price, :invalid_key, key: key) unless VALID_PRICE_ATTRIBUTES.include?(key)
       errors.add(:price, :wrong_type, key: key) unless value.class.name == 'Integer' && value >= 0
     end
+
+    errors.add('price', :invalid_discounted_price) if price['discounted'] > price['sell']
   end
 
   private

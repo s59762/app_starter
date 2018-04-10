@@ -23,6 +23,7 @@ export default function imageButtonHandler(options = {}) {
     fileInput.setAttribute('type', 'file')
     fileInput.setAttribute('multiple', true)
     fileInput.classList.add('quill-image-input')
+    fileInput.id = 'quill-image-input'
     fileInput.style.display = 'none'
 
     fileInput.addEventListener('change', function() {
