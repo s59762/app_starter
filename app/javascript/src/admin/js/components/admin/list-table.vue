@@ -3,22 +3,22 @@
 div
   b-collapse.panel(:open.sync="isSearchOptionsOpen")
     .panel-heading(slot="trigger") {{actionLocaleText('admin', 'search_for', { model_name: modelNameLocaleText('admin') })}}
-    .panel-block
-      .column.is-5
+    .panel-block.is-multiline
+      .column.is-12-mobile
         b-field
           b-input(type="text"
                   v-model="searchOptions.email_cont"
                   :placeholder="actionLocaleText('admin', 'search_by', { attribute_name: attributeLocaleText('admin', 'email') })"
                   icon="envelope")
-      .column.is-5
+      .column.is-12-mobile
         b-field
           b-input(type="text"
                   v-model="searchOptions.name_cont"
                   :placeholder="actionLocaleText('admin', 'search_by', { attribute_name: attributeLocaleText('admin', 'name') })"
                   icon="user")
-      .column.is-1
+      .column.is-narrow
         .button.is-default.is-block(@click="resetSearchOptions") {{actionLocaleText('admin', 'reset_search')}}
-      .column.is-1
+      .column.is-narrow
         .button.is-primary.is-block(@click="onSearchHandler") {{actionLocaleText('admin', 'search')}}
 
   section

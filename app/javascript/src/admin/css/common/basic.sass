@@ -95,3 +95,22 @@ html
     font-size: 1rem
   .panel-block
     display: block
+
+.info-container-box
+  text-align: left
+  border-radius: 0
+  border-top: 3px solid $c-content-box-border
+  // Colors
+  @each $name, $pair in $colors
+    $color: nth($pair, 1)
+    $color-invert: nth($pair, 2)
+    &.is-#{$name}
+      border-color: $color
+  > .title
+    padding-bottom: 0.2rem
+    font-size: 1.1rem
+    border-bottom: 1px solid $grey
+
+.panel .panel-block
+  &.is-multiline
+    flex-wrap: wrap
