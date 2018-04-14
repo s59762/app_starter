@@ -27,7 +27,9 @@ Rails.application.routes.draw do
                         sessions: 'devise/admins/sessions'
                       }
 
-  get '/robot' => 'pages#robot'
+  # for bot only
+  resource :robot, only: [:show], controller: :robot
+
   root 'pages#index'
 
   draw :admin
