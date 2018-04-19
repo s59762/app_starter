@@ -89,7 +89,11 @@ export const save = ({ dispatch, commit }, model) => {
     model
       .save()
       .then(response => {
-        commit(types.ADD_ADMIN_SUCCESS, response)
+        if (model.isNewRecord()) {
+          commit(types.ADD_ADMIN_SUCCESS, response)
+        } else {
+          commit(types.UPDATE_ADMIN_SUCCESS, response)
+        }
 
         resolve(response)
       })

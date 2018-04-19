@@ -233,7 +233,7 @@ export default {
     },
 
     submitForm() {
-      this.$store.dispatch('products/create', this.form.sync()).then(() => {
+      this.$store.dispatch('products/save', this.form.sync()).then(() => {
         Turbolinks.visit('/admin/products?product_added=1')
       })
     }
