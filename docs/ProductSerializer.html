@@ -215,17 +215,19 @@
       <pre class="lines">
 
 
-43
-44
-45
 46
-47</pre>
+47
+48
+49
+50
+51</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/serializers/product_serializer.rb', line 43</span>
+      <pre class="code"><span class="info file"># File 'app/serializers/product_serializer.rb', line 46</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_discount_rate'>discount_rate</span>
-  <span class='kw'>return</span> <span class='kw'>nil</span> <span class='kw'>unless</span> <span class='id identifier rubyid_object'>object</span><span class='period'>.</span><span class='id identifier rubyid_discounted_price'>discounted_price</span><span class='period'>.</span><span class='id identifier rubyid_present?'>present?</span>
+  <span class='kw'>return</span> <span class='float'>1.0</span> <span class='kw'>if</span> <span class='id identifier rubyid_object'>object</span><span class='period'>.</span><span class='id identifier rubyid_discounted_price'>discounted_price</span><span class='period'>.</span><span class='id identifier rubyid_zero?'>zero?</span>
+  <span class='kw'>return</span> <span class='float'>1.0</span> <span class='kw'>if</span> <span class='id identifier rubyid_object'>object</span><span class='period'>.</span><span class='id identifier rubyid_sell_price'>sell_price</span><span class='period'>.</span><span class='id identifier rubyid_zero?'>zero?</span>
 
   <span class='id identifier rubyid_object'>object</span><span class='period'>.</span><span class='id identifier rubyid_discounted_price'>discounted_price</span> <span class='op'>/</span> <span class='id identifier rubyid_object'>object</span><span class='period'>.</span><span class='id identifier rubyid_sell_price'>sell_price</span>
 <span class='kw'>end</span></pre>
