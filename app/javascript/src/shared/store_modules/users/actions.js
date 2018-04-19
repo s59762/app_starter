@@ -53,46 +53,23 @@ export const find = ({ dispatch, commit }, id) => {
 }
 
 /**
- * 新增 Resource 到 Server
+ * 將 Resource 資料儲存到 Server。新資料會 create, 舊資料則 update。
  *
  * @param {object} resource JSON:API 規格的 request body
  * @returns {promise} response or errors
  */
-export const create = ({ dispatch, commit }, model) => {
-  commit(types.API_REQUEST_START, 'create')
+export const save = ({ dispatch, commit }, model) => {
+  commit(types.API_REQUEST_START, 'save')
 
   return new Promise((resolve, reject) => {
     model
       .save()
       .then(response => {
-        commit(types.ADD_USER_SUCCESS, response)
-
-        resolve(response)
-      })
-      .catch(errors => {
-        commit(types.API_REQUEST_FAIL, errors)
-        dispatch('errorMessageHandler', errors, { root: true })
-
-        reject(errors)
-      })
-  })
-}
-
-/**
- * 從 Server 更新一筆 resource 的內容
- *
- * @param {number} id 指定的 resource ID
- * @param {object} resource JSON:API 規格的 request body
- * @returns {promise} response or errors
- */
-export const update = ({ dispatch, commit }, model) => {
-  commit(types.API_REQUEST_START, 'update')
-
-  return new Promise((resolve, reject) => {
-    model
-      .save()
-      .then(response => {
-        commit(types.UPDATE_USER_SUCCESS, response)
+        if (model.isNewRecord()) {
+          commit(types.ADD_USER_SUCCESS, response)
+        } else {
+          commit(types.UPDATE_USER_SUCCESS, response)
+        }
 
         resolve(response)
       })
