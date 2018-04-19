@@ -13,7 +13,14 @@ class Admin::NewAdminForm < ApplicationForm
             :name,
             :role, presence: true
   validates_uniqueness_of :email
+  validate :valid_email?
   validate :password_ok?
+
+  def valid_email?
+    reg = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+
+    errors.add(:email, :invalid_email_format) unless reg.match?(email)
+  end
 
   # 驗證密碼是否輸入正確
   def password_ok?

@@ -45,6 +45,8 @@ zh-TW:
               password_mismatch: 兩次輸入的密碼不相同
             new_password:
               password_mismatch: 兩次輸入的密碼不相同
+            email:
+              invalid_email_format: Email 格式有誤
   activemodel: *default
 
   # Enums
