@@ -9,7 +9,7 @@ import Admin from '../../resource_models/admin'
  * @returns {promise} response or errors
  */
 export const fetchAvailableRoles = ({ dispatch, commit }) => {
-  commit(types.FETCH_ADMIN_ROLES_START)
+  commit(types.API_REQUEST_START, 'fetchAvailableRoles')
 
   return new Promise((resolve, reject) => {
     Admin.roles()
@@ -33,7 +33,7 @@ export const fetchAvailableRoles = ({ dispatch, commit }) => {
  * @returns {promise} response or errors
  */
 export const all = ({ dispatch, commit }, options) => {
-  commit(types.FETCH_ADMINS_START)
+  commit(types.API_REQUEST_START, 'all')
 
   return new Promise((resolve, reject) => {
     Admin.all(options)
@@ -58,7 +58,7 @@ export const all = ({ dispatch, commit }, options) => {
  * @returns {promise} response or errors
  */
 export const find = ({ dispatch, commit }, id) => {
-  commit(types.GET_ADMIN_START)
+  commit(types.API_REQUEST_START, 'find')
 
   return new Promise((resolve, reject) => {
     Admin.find(id)
@@ -83,7 +83,7 @@ export const find = ({ dispatch, commit }, id) => {
  * @returns {promise} response or errors
  */
 export const create = ({ dispatch, commit }, model) => {
-  commit(types.ADD_ADMIN_START)
+  commit(types.API_REQUEST_START, 'create')
 
   return new Promise((resolve, reject) => {
     model
@@ -110,7 +110,7 @@ export const create = ({ dispatch, commit }, model) => {
  * @returns {promise} response or errors
  */
 export const update = ({ dispatch, commit }, model) => {
-  commit(types.UPDATE_ADMIN_START)
+  commit(types.API_REQUEST_START, 'update')
 
   return new Promise((resolve, reject) => {
     model
@@ -136,7 +136,7 @@ export const update = ({ dispatch, commit }, model) => {
  * @returns {promise} response or errors
  */
 export const destroy = ({ dispatch, commit }, model) => {
-  commit(types.DELETE_ADMIN_START)
+  commit(types.API_REQUEST_START, 'destroy')
 
   return new Promise((resolve, reject) => {
     model
@@ -162,7 +162,7 @@ export const destroy = ({ dispatch, commit }, model) => {
  * @returns {promise} response or errors
  */
 export const suspend = ({ dispatch, commit }, model) => {
-  commit(types.UPDATE_ADMIN_START)
+  commit(types.API_REQUEST_START, 'suspend')
 
   return new Promise((resolve, reject) => {
     model

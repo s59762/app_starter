@@ -9,7 +9,7 @@ import Product from '../../resource_models/product'
  * @returns {promise} response or errors
  */
 export const all = ({ dispatch, commit }, options) => {
-  commit(types.FETCH_PRODUCTS_START)
+  commit(types.API_REQUEST_START, 'all')
 
   return new Promise((resolve, reject) => {
     Product.all(options)
@@ -34,7 +34,7 @@ export const all = ({ dispatch, commit }, options) => {
  * @returns {promise} response or errors
  */
 export const find = ({ dispatch, commit }, id) => {
-  commit(types.GET_PRODUCT_START)
+  commit(types.API_REQUEST_START, 'find')
 
   return new Promise((resolve, reject) => {
     Product.find(id)
@@ -58,7 +58,7 @@ export const find = ({ dispatch, commit }, id) => {
  * @returns {promise} response or errors
  */
 export const uploadImages = ({ dispatch, commit }, formData) => {
-  commit(types.PRODUCT_IMAGE_UPLOAD_START)
+  commit(types.API_REQUEST_START, 'uploadImages')
 
   return new Promise((resolve, reject) => {
     Product.uploadImages(formData)
@@ -83,7 +83,7 @@ export const uploadImages = ({ dispatch, commit }, formData) => {
  * @returns {promise} response or errors
  */
 export const create = ({ dispatch, commit }, model) => {
-  commit(types.ADD_PRODUCT_START)
+  commit(types.API_REQUEST_START, 'create')
 
   return new Promise((resolve, reject) => {
     model
@@ -110,7 +110,7 @@ export const create = ({ dispatch, commit }, model) => {
  * @returns {promise} response or errors
  */
 export const update = ({ dispatch, commit }, model) => {
-  commit(types.UPDATE_PRODUCT_START)
+  commit(types.API_REQUEST_START, 'update')
 
   return new Promise((resolve, reject) => {
     model
@@ -136,7 +136,7 @@ export const update = ({ dispatch, commit }, model) => {
  * @returns {promise} response or errors
  */
 export const destroy = ({ dispatch, commit }, model) => {
-  commit(types.DELETE_PRODUCT_START)
+  commit(types.API_REQUEST_START, 'destroy')
 
   return new Promise((resolve, reject) => {
     model

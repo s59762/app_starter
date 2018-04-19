@@ -4,10 +4,6 @@ import MutationHelpers from '../mutation_helpers'
 const helpers = new MutationHelpers('users')
 
 export default {
-  [types.FETCH_USERS_START](state) {
-    state.isCallingAPI = true
-  },
-
   [types.FETCH_USERS_SUCCESS](state, response) {
     helpers.replaceEntities(state, response)
 
@@ -21,19 +17,11 @@ export default {
     state.isCallingAPI = false
   },
 
-  [types.GET_USER_START](state) {
-    state.isCallingAPI = true
-  },
-
   [types.GET_USER_SUCCESS](state, response) {
     helpers.storeOneResourceToEntities(state, response)
 
     state.meta = response.data.meta
     state.isCallingAPI = false
-  },
-
-  [types.ADD_USER_START](state) {
-    state.isCallingAPI = true
   },
 
   [types.ADD_USER_SUCCESS](state, response) {
@@ -43,24 +31,20 @@ export default {
     state.isCallingAPI = false
   },
 
-  [types.UPDATE_USER_START](state) {
-    state.isCallingAPI = true
-  },
-
   [types.UPDATE_USER_SUCCESS](state, response) {
     helpers.storeOneResourceToEntities(state, response)
 
     state.isCallingAPI = false
   },
 
-  [types.DELETE_USER_START](state) {
-    state.isCallingAPI = true
-  },
-
   [types.DELETE_USER_SUCCESS](state, id) {
     helpers.removeOneResourceFromEntities(state, id)
 
     state.isCallingAPI = false
+  },
+
+  [types.API_REQUEST_START](state, type = 'not provided') {
+    state.isCallingAPI = true
   },
 
   [types.API_REQUEST_FAIL](state, errors) {

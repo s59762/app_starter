@@ -9,7 +9,7 @@ import User from '../../resource_models/user'
  * @returns {promise} response or errors
  */
 export const all = ({ dispatch, commit }, options) => {
-  commit(types.FETCH_USERS_START)
+  commit(types.API_REQUEST_START, 'all')
 
   return new Promise((resolve, reject) => {
     User.all(options)
@@ -34,7 +34,7 @@ export const all = ({ dispatch, commit }, options) => {
  * @returns {promise} response or errors
  */
 export const find = ({ dispatch, commit }, id) => {
-  commit(types.GET_USER_START)
+  commit(types.API_REQUEST_START, 'find')
 
   return new Promise((resolve, reject) => {
     User.find(id)
@@ -59,7 +59,7 @@ export const find = ({ dispatch, commit }, id) => {
  * @returns {promise} response or errors
  */
 export const create = ({ dispatch, commit }, model) => {
-  commit(types.ADD_USER_START)
+  commit(types.API_REQUEST_START, 'create')
 
   return new Promise((resolve, reject) => {
     model
@@ -86,7 +86,7 @@ export const create = ({ dispatch, commit }, model) => {
  * @returns {promise} response or errors
  */
 export const update = ({ dispatch, commit }, model) => {
-  commit(types.UPDATE_USER_START)
+  commit(types.API_REQUEST_START, 'update')
 
   return new Promise((resolve, reject) => {
     model
@@ -112,7 +112,7 @@ export const update = ({ dispatch, commit }, model) => {
  * @returns {promise} response or errors
  */
 export const destroy = ({ dispatch, commit }, model) => {
-  commit(types.DELETE_USER_START)
+  commit(types.API_REQUEST_START, 'destroy')
 
   return new Promise((resolve, reject) => {
     model
