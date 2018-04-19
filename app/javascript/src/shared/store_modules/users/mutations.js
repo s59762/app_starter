@@ -43,7 +43,7 @@ export default {
     state.isCallingAPI = false
   },
 
-  [types.API_REQUEST_START](state, type = 'not provided') {
+  [types.API_REQUEST_START](state, action = 'not provided') {
     state.isCallingAPI = true
   },
 
