@@ -9,7 +9,7 @@ import SiteConfig from '../../resource_models/site_config'
  * @returns {promise} response or errors
  */
 export const fetchConfigs = ({ dispatch, commit }) => {
-  commit(types.GET_SITE_CONFIG_START)
+  commit(types.API_REQUEST_START, 'fetchConfigs')
 
   return new Promise((resolve, reject) => {
     SiteConfig.all()
@@ -33,7 +33,7 @@ export const fetchConfigs = ({ dispatch, commit }) => {
  * @returns {promise} response or errors
  */
 export const updateMetaTags = ({ dispatch, commit }, model) => {
-  commit(types.UPDATE_SITE_CONFIG_START)
+  commit(types.API_REQUEST_START, 'updateMetaTags')
 
   return new Promise((resolve, reject) => {
     model

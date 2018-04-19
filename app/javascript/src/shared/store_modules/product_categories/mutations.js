@@ -4,10 +4,6 @@ import MutationHelpers from '../mutation_helpers'
 const helpers = new MutationHelpers('product_categories')
 
 export default {
-  [types.FETCH_PRODUCT_CATEGORIES_START](state) {
-    state.isCallingAPI = true
-  },
-
   [types.FETCH_PRODUCT_CATEGORIES_SUCCESS](state, response) {
     helpers.replaceEntities(state, response)
 
@@ -20,18 +16,10 @@ export default {
     state.isCallingAPI = false
   },
 
-  [types.GET_PRODUCT_CATEGORY_START](state) {
-    state.isCallingAPI = true
-  },
-
   [types.GET_PRODUCT_CATEGORY_SUCCESS](state, response) {
     helpers.storeOneResourceToEntities(state, response)
 
     state.isCallingAPI = false
-  },
-
-  [types.ADD_PRODUCT_CATEGORY_START](state) {
-    state.isCallingAPI = true
   },
 
   [types.ADD_PRODUCT_CATEGORY_SUCCESS](state, response) {
@@ -41,24 +29,20 @@ export default {
     state.isCallingAPI = false
   },
 
-  [types.UPDATE_PRODUCT_CATEGORY_START](state) {
-    state.isCallingAPI = true
-  },
-
   [types.UPDATE_PRODUCT_CATEGORY_SUCCESS](state, response) {
     helpers.storeOneResourceToEntities(state, response)
 
     state.isCallingAPI = false
   },
 
-  [types.DELETE_PRODUCT_CATEGORY_START](state) {
-    state.isCallingAPI = true
-  },
-
   [types.DELETE_PRODUCT_CATEGORY_SUCCESS](state, id) {
     helpers.removeOneResourceFromEntities(state, id)
 
     state.isCallingAPI = false
+  },
+
+  [types.API_REQUEST_START](state, type = 'not provided') {
+    state.isCallingAPI = true
   },
 
   [types.API_REQUEST_FAIL](state, errors) {

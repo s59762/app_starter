@@ -4,18 +4,10 @@ import MutationHelpers from '../mutation_helpers'
 const helpers = new MutationHelpers('admins')
 
 export default {
-  [types.FETCH_ADMIN_ROLES_START](state) {
-    state.isCallingAPI = true
-  },
-
   [types.FETCH_ADMIN_ROLES_SUCCESS](state, response) {
     helpers.receiveAvailableRoles(state, response)
 
     state.isCallingAPI = false
-  },
-
-  [types.FETCH_ADMINS_START](state) {
-    state.isCallingAPI = true
   },
 
   [types.FETCH_ADMINS_SUCCESS](state, response) {
@@ -31,19 +23,11 @@ export default {
     state.isCallingAPI = false
   },
 
-  [types.GET_ADMIN_START](state) {
-    state.isCallingAPI = true
-  },
-
   [types.GET_ADMIN_SUCCESS](state, response) {
     helpers.storeOneResourceToEntities(state, response)
 
     state.meta = response.data.meta
     state.isCallingAPI = false
-  },
-
-  [types.ADD_ADMIN_START](state) {
-    state.isCallingAPI = true
   },
 
   [types.ADD_ADMIN_SUCCESS](state, response) {
@@ -53,24 +37,20 @@ export default {
     state.isCallingAPI = false
   },
 
-  [types.UPDATE_ADMIN_START](state) {
-    state.isCallingAPI = true
-  },
-
   [types.UPDATE_ADMIN_SUCCESS](state, response) {
     helpers.storeOneResourceToEntities(state, response)
 
     state.isCallingAPI = false
   },
 
-  [types.DELETE_ADMIN_START](state) {
-    state.isCallingAPI = true
-  },
-
   [types.DELETE_ADMIN_SUCCESS](state, id) {
     helpers.removeOneResourceFromEntities(state, id)
 
     state.isCallingAPI = false
+  },
+
+  [types.API_REQUEST_START](state, type = 'not provided') {
+    state.isCallingAPI = true
   },
 
   [types.API_REQUEST_FAIL](state, errors) {

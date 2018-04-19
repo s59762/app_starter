@@ -9,7 +9,7 @@ import User from '../../resource_models/user'
  * @returns {promise} response or errors
  */
 export const all = ({ dispatch, commit }, options) => {
-  commit(types.FETCH_USERS_START)
+  commit(types.API_REQUEST_START, 'all')
 
   return new Promise((resolve, reject) => {
     User.all(options)
@@ -34,7 +34,7 @@ export const all = ({ dispatch, commit }, options) => {
  * @returns {promise} response or errors
  */
 export const find = ({ dispatch, commit }, id) => {
-  commit(types.GET_USER_START)
+  commit(types.API_REQUEST_START, 'find')
 
   return new Promise((resolve, reject) => {
     User.find(id)
@@ -53,46 +53,23 @@ export const find = ({ dispatch, commit }, id) => {
 }
 
 /**
- * 新增 Resource 到 Server
+ * 將 Resource 資料儲存到 Server。新資料會 create, 舊資料則 update。
  *
  * @param {object} resource JSON:API 規格的 request body
  * @returns {promise} response or errors
  */
-export const create = ({ dispatch, commit }, model) => {
-  commit(types.ADD_USER_START)
+export const save = ({ dispatch, commit }, model) => {
+  commit(types.API_REQUEST_START, 'save')
 
   return new Promise((resolve, reject) => {
     model
       .save()
       .then(response => {
-        commit(types.ADD_USER_SUCCESS, response)
-
-        resolve(response)
-      })
-      .catch(errors => {
-        commit(types.API_REQUEST_FAIL, errors)
-        dispatch('errorMessageHandler', errors, { root: true })
-
-        reject(errors)
-      })
-  })
-}
-
-/**
- * 從 Server 更新一筆 resource 的內容
- *
- * @param {number} id 指定的 resource ID
- * @param {object} resource JSON:API 規格的 request body
- * @returns {promise} response or errors
- */
-export const update = ({ dispatch, commit }, model) => {
-  commit(types.UPDATE_USER_START)
-
-  return new Promise((resolve, reject) => {
-    model
-      .save()
-      .then(response => {
-        commit(types.UPDATE_USER_SUCCESS, response)
+        if (model.isNewRecord()) {
+          commit(types.ADD_USER_SUCCESS, response)
+        } else {
+          commit(types.UPDATE_USER_SUCCESS, response)
+        }
 
         resolve(response)
       })
@@ -112,7 +89,7 @@ export const update = ({ dispatch, commit }, model) => {
  * @returns {promise} response or errors
  */
 export const destroy = ({ dispatch, commit }, model) => {
-  commit(types.DELETE_USER_START)
+  commit(types.API_REQUEST_START, 'destroy')
 
   return new Promise((resolve, reject) => {
     model
