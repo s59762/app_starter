@@ -4,25 +4,25 @@ div
   b-collapse.panel(:open.sync="isSearchOptionsOpen")
     .panel-heading(slot="trigger"
                    data-behavior="search-user-panel") {{actionLocaleText('admin', 'search_for', { model_name: modelNameLocaleText('user') })}}
-    .panel-block
-      .column.is-5
+    .panel-block.is-multiline
+      .column.is-12-mobile
         b-field
           b-input(type="text"
                   v-model="searchOptions.email_cont"
                   :placeholder="actionLocaleText('admin', 'search_by', { attribute_name: attributeLocaleText('user', 'email') })"
                   icon="envelope"
                   data-behavior="search-by-user-email-field")
-      .column.is-5
+      .column.is-12-mobile
         b-field
           b-input(type="text"
                   v-model="searchOptions.name_cont"
                   :placeholder="actionLocaleText('admin', 'search_by', { attribute_name: attributeLocaleText('user', 'name') })"
                   icon="user"
                   data-behavior="search-by-user-name-field")
-      .column.is-1
+      .column.is-narrow
         button.button.is-default.is-block(@click="resetSearchOptions"
                                           data-behavior="reset-search") {{actionLocaleText('admin', 'reset_search')}}
-      .column.is-1
+      .column.is-narrow
         button.button.is-primary.is-block(@click="onSearchHandler"
                                           data-behavior="search-button") {{actionLocaleText('admin', 'search')}}
 

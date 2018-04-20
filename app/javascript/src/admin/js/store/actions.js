@@ -61,6 +61,6 @@ export const updateQueryStringFromURL = ({ commit }) => {
   commit(types.UPDATE_QUERY_STRING)
 }
 
-export const toggleDevice = ({ commit }, device) => {
-  commit(types.TOGGLE_DEVICE, device)
+export const toggleDevice = ({ commit }, deviceInfo) => {
+  commit(types.TOGGLE_DEVICE, deviceInfo)
 }

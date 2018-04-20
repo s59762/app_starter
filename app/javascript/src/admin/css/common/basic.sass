@@ -2,16 +2,20 @@ html
   background-color: $c-site-background
   background-image: url('../images/bg/paper.png')
   +retina
+    $width: 79px
+    $height: 72px
     background-image: url('../images/bg/paper@2X.png')
-    background-size: 79px, 72px
+    background-size: $width, $height
 
 .odd-container
   +clearfix
   position: relative
   margin: 0 auto
-  padding: 1rem
-  +until($ipad-pro)
-    padding: 0.3rem
+  padding: ($gap / 5)
+  +from($iphone-plus)
+    padding: ($gap / 2)
+  +from($ipad-pro)
+    padding: $gap
   // +from($desktop)
   //   max-width: $desktop - (2 * $gap) - $v-site-sidebar-width
   //   width: $desktop - (2 * $gap) - $v-site-sidebar-width
@@ -59,6 +63,7 @@ html
 .content-box
   border-radius: 0
   border-top: 3px solid $c-content-box-border
+  padding: 0.8rem
   // Colors
   @each $name, $pair in $colors
     $color: nth($pair, 1)

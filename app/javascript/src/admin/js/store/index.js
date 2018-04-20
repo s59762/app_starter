@@ -17,7 +17,8 @@ const state = {
   flashMessages: [],
   queryString: {},
   device: {
-    isMobile: false
+    isMobile: false,
+    deviceType: ''
   },
   sidebar: {
     isOpen: false

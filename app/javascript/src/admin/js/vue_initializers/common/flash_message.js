@@ -13,19 +13,30 @@ export default {
 
   beforeMount() {
     const body = document.body
-    const DISKTOP_WIDTH = 1024
-    const RATIO = 3
+    const IPHONE_SE_WIDTH = 320
+    const IPHONE_PLUS_WIDTH = 414
+    const IPAD_PRO_WIDTH = 1024
+    const LEEWAY = 1
     const handler = () => {
       if (!document.hidden) {
         let rect = body.getBoundingClientRect()
-        let isMobile = rect.width - RATIO < DISKTOP_WIDTH
+        let isMobile = rect.width < IPAD_PRO_WIDTH + LEEWAY
+        let deviceType = ''
 
-        this.toggleDevice(isMobile ? 'mobile' : 'other')
+        if (isMobile && rect.width > IPHONE_SE_WIDTH) {
+          deviceType = rect.width > IPHONE_PLUS_WIDTH ? 'tablet' : 'iphone'
+        } else {
+          deviceType = isMobile ? 'iphone-se' : 'desktop'
+        }
+
+        this.toggleDevice({
+          isMobile,
+          deviceType
+        })
         this.toggleSidebar(!isMobile)
       }
     }
 
-    document.addEventListener('visibilitychange', handler)
     window.addEventListener('resize', debounce(handler, 200))
     handler()
   },

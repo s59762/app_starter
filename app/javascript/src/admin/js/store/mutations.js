@@ -26,7 +26,7 @@ export default {
     }
   },
 
-  [types.TOGGLE_DEVICE](state, device) {
-    state.device.isMobile = device === 'mobile'
+  [types.TOGGLE_DEVICE](state, deviceInfo) {
+    state.device = deviceInfo
   }
 }

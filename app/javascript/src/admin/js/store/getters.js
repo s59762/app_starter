@@ -19,6 +19,18 @@ export const sidebarIsOpen = state => {
   return state.sidebar.isOpen
 }
 
-export const deviceIsMobile = state => {
-  return state.device.isMobile
+export const deviceInfo = state => {
+  return state.device
+}
+
+export const isMobile = state => {
+  return state.device.isMobile && state.device.deviceType !== 'tablet'
+}
+
+export const isTablet = state => {
+  return state.device.isMobile && state.device.deviceType === 'tablet'
+}
+
+export const isDesktop = state => {
+  return state.device.deviceType === 'desktop'
 }
