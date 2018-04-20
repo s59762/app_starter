@@ -1,4 +1,6 @@
 .dashboard-parts-simple-stat-tile
+  $animation-duration: .3s
+
   > .notification
     border-radius: 0
     &:hover
@@ -8,7 +10,7 @@
   .notification
     overflow: hidden
     padding: 0
-    transition: transform .3s
+    transition: transform $animation-duration
     > .icon
       $icon-offset: 3rem
 
@@ -17,7 +19,7 @@
       left: 0
       transform: translate($icon-offset, -$icon-offset)
       font-size: 10rem
-      transition: all .3s
+      transition: all $animation-duration
       opacity: 0.15
 
   // Content Wrapper
@@ -39,15 +41,15 @@
     > .stat
       font-size: 1.5rem
       font-weight: 900
-      transition: all .3s
+      transition: all $animation-duration
     > .stat .unit
       font-size: .8rem
       font-weight: 100
-      transition: all .3s
+      transition: all $animation-duration
     > .title
       font-size: 1.2rem
       opacity: .8
-      transition: all .3s
+      transition: all $animation-duration
 
   // color
   @each $name, $pair in $colors

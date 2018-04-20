@@ -1,4 +1,7 @@
 .common-site-navbar
+  $toggle-btn-size: 44px
+  $toggle-btn-offset: .5rem
+
   > .nav-left,
   > .nav-center,
   > .nav-right
@@ -19,12 +22,12 @@
     display: flex
     align-items: center
     justify-content: center
-    width: 44px
-    height: 44px
+    width: $toggle-btn-size
+    height: $toggle-btn-size
     +from($ipad-pro)
       display: none
   .options-btn
-    margin-right: 0.5rem
+    margin-right: $toggle-btn-offset
     &.is-active .button
       background-color: $c-site-navibar-option-btn-active
   .dropdown-item

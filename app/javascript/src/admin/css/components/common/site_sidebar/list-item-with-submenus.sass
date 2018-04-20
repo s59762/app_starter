@@ -1,19 +1,22 @@
 .common-site-sidebar-list-item-with-submenus
+  $submenu-offset: .6rem
+  $animation-duration: .2s
+
   @extend .common-site-sidebar-list-item
 
   > .submenu-list
     margin: 0
-    margin-left: .6rem
+    margin-left: $submenu-offset
     overflow: hidden
 
   .list-item-link
     > .submenu-active-indicator
-      transition: all .2s
+      transition: all $animation-duration
       &.is-active
         transform: rotate(90deg)
         color: $info
       .fa
-        font-size: 1.1rem
+        font-size: $size-5
 
   .submenu-list-link
     position: relative

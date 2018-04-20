@@ -1,4 +1,6 @@
 .common-site-navbar-container
+  $shadow-size: 8px
+
   position: fixed
   top: 0
   left: 0
@@ -7,5 +9,5 @@
   > .common-site-navbar
     position: relative
     display: flex
-    box-shadow: 0 0 10px $c-site-navibar-shadow
+    box-shadow: 0 0 $shadow-size $c-site-navibar-shadow
     text-align: center

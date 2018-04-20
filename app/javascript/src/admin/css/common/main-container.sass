@@ -1,8 +1,10 @@
 .site-main-container
+  $animation-duration: .3s
+
   position: relative
   padding-top: $v-site-navibar-height
   min-height: 100vh
-  transition: margin-left .3s, transform .3s
+  transition: margin-left $animation-duration, transform $animation-duration
   &.sidebar-is-opened
     &:before
       display: block
@@ -12,7 +14,7 @@
       width: 100%
       height: 100%
       background-color: rgba($black, .5)
-      z-index: 9999
+      z-index: 999
     transform: translateX($v-site-sidebar-width)
     +from($ipad-pro)
       &:before
@@ -20,4 +22,4 @@
       margin-left: $v-site-sidebar-width
       transform: translateX(0)
   .breadcrumb
-    font-size: .75rem
+    font-size: $size-7
