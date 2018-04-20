@@ -54,6 +54,17 @@
       "presentation": {
         "reveal": "always"
       }
-    }
+    },
+
+    {
+      "label": "kill all overmind progress",
+      "type": "shell",
+      "command": "ps -ef | grep overmind | grep -v grep | awk '{print $2}' | xargs kill -9",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "never",
+        "panel": "shared"
+      }
+    },
   ]
 }
