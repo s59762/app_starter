@@ -35,11 +35,5 @@ module AppStarter
 
     # ActiveJob
     config.active_job.queue_adapter = :sidekiq
-
-    # middlewares
-    config.middleware.use(Rack::Tracker) do
-      handler :google_analytics, { tracker: SiteConfig['trackers.ga'], position: :body }
-      handler :facebook_pixel, { id: SiteConfig['trackers.facebook_pixel'] }
-    end
   end
 end

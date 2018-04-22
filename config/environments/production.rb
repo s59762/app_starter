@@ -101,4 +101,10 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  # trackers
+  config.middleware.use(Rack::Tracker) do
+    handler :google_analytics, { tracker: lambda { |env| SiteConfig['trackers.ga'] }, position: :body }
+    handler :facebook_pixel, { id: lambda { |env| SiteConfig['trackers.facebook_pixel'] } }
+  end
 end

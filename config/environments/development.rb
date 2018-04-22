@@ -73,4 +73,10 @@ Rails.application.configure do
     Bullet.console = true
     Bullet.rails_logger = true
   end
+
+  # trackers
+  config.middleware.use(Rack::Tracker) do
+    handler :google_analytics, { tracker: lambda { |env| SiteConfig['trackers.ga'] }, position: :body }
+    handler :facebook_pixel, { id: lambda { |env| SiteConfig['trackers.facebook_pixel'] } }
+  end
 end

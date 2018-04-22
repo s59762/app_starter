@@ -9,8 +9,8 @@ defaults: &defaults
     type: 'website'
     locale: 'zh_TW'
   trackers:
-    ga: 'UA-62565032-3'
-    facebook_pixel: '106055760088696'
+    ga: ''
+    facebook_pixel: ''
 
 development:
   <<: *defaults
