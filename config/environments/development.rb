@@ -22,7 +22,7 @@ Rails.application.configure do
     config.cache_store = :readthis_store, {
       expires_in: 1.weeks.to_i,
       namespace: %(#{ENV['app_name']}_cache),
-      redis: { url: ENV['redis_url'], driver: :hiredis },
+      redis: { url: "#{ENV['redis_url']}/#{ENV['redis_cache_db_no']}", driver: :hiredis },
       refresh: true
     }
 
