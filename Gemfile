@@ -121,3 +121,6 @@ gem 'gretel' # breadcrumb
 gem 'meta-tags'
 gem 'roadie-rails', '~> 1.0' # for eamil
 gem 'slim-rails' # using slim as view template
+
+# Tracking tools
+gem 'rack-tracker'

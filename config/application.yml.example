@@ -1,9 +1,11 @@
-app_name: app_starter # git repo name MUST same as this setting
+app_name: app_starter # RENAME: git repo name MUST same as this setting
 app_domain: localhost:3000
 http_protocol: http
 pg_username: oddesign
 pg_password: qwerasdf
 redis_url: redis://localhost:6379
+redis_sidekiq_db_no: ''
+redis_cache_db_no: '1'
 mailgun_user_name:
 mailgun_password:
 mailgun_api_key:

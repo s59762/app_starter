@@ -8,6 +8,9 @@ defaults: &defaults
     keywords: 'web-design, web-develop'
     type: 'website'
     locale: 'zh_TW'
+  trackers:
+    ga: 'UA-62565032-3'
+    facebook_pixel: '106055760088696'
 
 development:
   <<: *defaults
