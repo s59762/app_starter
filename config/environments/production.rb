@@ -103,8 +103,10 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   # trackers
-  config.middleware.use(Rack::Tracker) do
-    handler :google_analytics, { tracker: lambda { |env| SiteConfig['trackers.ga'] }, position: :body }
-    handler :facebook_pixel, { id: lambda { |env| SiteConfig['trackers.facebook_pixel'] } }
-  end
+  # TODO: https://github.com/railslove/rack-tracker/issues/105
+  # 可能因為新的 rails 會把 redirected 的內容 freeze，目前無法正常運作在有 redirect 的 action
+  # config.middleware.use(Rack::Tracker) do
+  #   handler :google_analytics, { tracker: lambda { |env| SiteConfig['trackers.ga'] }, position: :body }
+  #   handler :facebook_pixel, { id: lambda { |env| SiteConfig['trackers.facebook_pixel'] } }
+  # end
 end

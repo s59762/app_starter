@@ -1,6 +1,6 @@
 Rails.application.configure do
   # Verifies that versions and hashed value of the package contents in the project's package.json
-  config.webpacker.check_nyarn_integrity = true
+  config.webpacker.check_yarn_integrity = true
 
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -75,8 +75,10 @@ Rails.application.configure do
   end
 
   # trackers
-  config.middleware.use(Rack::Tracker) do
-    handler :google_analytics, { tracker: lambda { |env| SiteConfig['trackers.ga'] }, position: :body }
-    handler :facebook_pixel, { id: lambda { |env| SiteConfig['trackers.facebook_pixel'] } }
-  end
+  # TODO: https://github.com/railslove/rack-tracker/issues/105
+  # 可能因為新的 rails 會把 redirected 的內容 freeze，目前無法正常運作在有 redirect 的 action
+  # config.middleware.use(Rack::Tracker) do
+  #   handler :google_analytics, { tracker: lambda { |env| SiteConfig['trackers.ga'] }, position: :body }
+  #   handler :facebook_pixel, { id: lambda { |env| SiteConfig['trackers.facebook_pixel'] } }
+  # end
 end
