@@ -1,5 +1,5 @@
 class Admin::ProductForm < ApplicationForm
-  VALID_PRICE_ATTRIBUTES = %w[original sell discounted]
+  VALID_PRICE_ATTRIBUTES = %w(original sell discounted).freeze
   model Product
 
   properties :name,

@@ -14,7 +14,7 @@
 class Product::Image < ApplicationRecord
   belongs_to :product, optional: true
 
-  enum use_case: %i[normal description]
+  enum use_case: %i(normal description)
 
   mount_uploader :image, ProductImageUploader
 end

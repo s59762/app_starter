@@ -24,6 +24,6 @@ require 'rails_helper'
 RSpec.describe Product, type: :model do
   it { should belong_to :category }
   it { should have_many :images }
-  it { should have_many :product_images }
+  it { should have_many :images }
   it { should have_many :description_images }
 end

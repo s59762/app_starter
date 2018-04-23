@@ -11,12 +11,12 @@
 #
 
 class ProductCategory < ApplicationRecord
-  FILTERABLE_FIELDS = %w[].freeze
-  SORTABLE_FIELDS = %w[
+  FILTERABLE_FIELDS = %w().freeze
+  SORTABLE_FIELDS = %w(
     id
     name
     created_at
-  ].freeze
+  ).freeze
 
   # TODO: belongs_to `root_category`, class_name: 'ProductCategory'
   #       新增 root_category_id 到 table. 用來辨識根分類是什麼。 這樣可以方便一次找出所有根分類的商品

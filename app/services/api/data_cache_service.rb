@@ -100,6 +100,6 @@ class Api::DataCacheService
   end
 
   def show_indicator_in_development_log
-    Rails.logger.warn %(#{'='*25}\n DB HIT\n#{'='*25}) if Rails.env.development?
+    Rails.logger.warn %(#{'=' * 25}\n DB HIT\n#{'=' * 25}) if Rails.env.development?
   end
 end

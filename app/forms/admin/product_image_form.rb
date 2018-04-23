@@ -1,10 +1,10 @@
 class Admin::ProductImageForm < ApplicationForm
   model Product::Image
 
-  VALID_USE_CASES = %w[
+  VALID_USE_CASES = %w(
     normal
     description
-  ].freeze
+  ).freeze
 
   property :images, virtual: true
   property :use_case

@@ -50,7 +50,8 @@ group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'pattern_generator' # generator for service objects, form objects, PORO, policy objects.
   gem 'rack-mini-profiler', require: false # page proformence monitor
-  gem 'rubocop', '~> 0.55.0' # Linter
+  gem 'rubocop', '~> 0.52' # Linter
+  gem 'rubocop-airbnb'
   gem 'ruby-debug-ide' # for vscode remote debug
   gem 'web-console', '>= 3.6.1'
 
@@ -72,7 +73,7 @@ group :development do
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
+gem 'tzinfo-data', platforms: %i(mingw mswin x64_mingw jruby)
 
 # Development tools
 gem 'awesome_rails_console' # Debug tools

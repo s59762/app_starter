@@ -16,6 +16,8 @@ RSpec.describe FetchingDataService, type: :service do
     let!(:admin_5) { create(:admin, email: 'test5@special.com', password: 'qwerasdf', is_suspended: true) }
 
     context '若分頁指定每頁 1 筆資料' do
+      subject(:result) { FetchingDataService.call(Admin, params) }
+
       let(:params) do
         {
           page: {
@@ -24,7 +26,6 @@ RSpec.describe FetchingDataService, type: :service do
           }
         }
       end
-      subject(:result) { FetchingDataService.call(Admin, params) }
 
       it '應該只會拿到 1 個 Admin' do
         expect(result.length).to eq 1
@@ -32,12 +33,13 @@ RSpec.describe FetchingDataService, type: :service do
     end
 
     context '若指定以 id DESC 排序' do
+      subject(:result) { FetchingDataService.call(Admin, params) }
+
       let(:params) do
         {
           sort: '-id'
         }
       end
-      subject(:result) { FetchingDataService.call(Admin, params) }
 
       it '結果的第一筆應該是 admin_5' do
         expect(result.first).to eq admin_5
@@ -45,13 +47,14 @@ RSpec.describe FetchingDataService, type: :service do
     end
 
     context '若指定 filter 為 suspended，以 id DESC 排序' do
+      subject(:result) { FetchingDataService.call(Admin, params) }
+
       let(:params) do
         {
           filter: 'suspended',
           sort: '-id'
         }
       end
-      subject(:result) { FetchingDataService.call(Admin, params) }
 
       it '結果應該僅包含 suspended 的 admins' do
         expect(result.length).to eq 2
@@ -63,6 +66,8 @@ RSpec.describe FetchingDataService, type: :service do
     end
 
     context '若指定以 email_cont 搜尋 "special"，以 id DESC 排序，每頁 2 筆資料' do
+      subject(:result) { FetchingDataService.call(Admin, params) }
+
       let(:params) do
         {
           q: {
@@ -75,7 +80,6 @@ RSpec.describe FetchingDataService, type: :service do
           }
         }
       end
-      subject(:result) { FetchingDataService.call(Admin, params) }
 
       it '結果應該僅有 2 筆資料' do
         expect(result.length).to eq 2

@@ -18,12 +18,12 @@
 #
 
 class User < ApplicationRecord
-  FILTERABLE_FIELDS = %w[].freeze
-  SORTABLE_FIELDS = %w[
+  FILTERABLE_FIELDS = %w().freeze
+  SORTABLE_FIELDS = %w(
     id
     email
     created_at
-  ].freeze
+  ).freeze
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

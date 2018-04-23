@@ -25,7 +25,7 @@
 #
 # 管理員
 class Admin < ApplicationRecord
-  FILTERABLE_FIELDS = %w[
+  FILTERABLE_FIELDS = %w(
     content_manager
     accounter
     stock_manager
@@ -33,21 +33,21 @@ class Admin < ApplicationRecord
     owner
     actived
     suspended
-  ].freeze
-  SORTABLE_FIELDS = %w[
+  ).freeze
+  SORTABLE_FIELDS = %w(
     id
     email
     name
     role
     is_suspended
     created_at
-  ].freeze
+  ).freeze
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :recoverable, :rememberable, :trackable, :validatable
 
-  enum role: %i[content_manager accounter stock_manager super owner]
+  enum role: %i(content_manager accounter stock_manager super owner)
 
   scope :actived, -> { where(is_suspended: false) }
   scope :suspended, -> { where(is_suspended: true) }

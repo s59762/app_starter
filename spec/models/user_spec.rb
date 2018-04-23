@@ -29,6 +29,8 @@ RSpec.describe User, type: :model do
   end
 
   describe '#issue_jwt' do
+    subject(:issued_jwt_payload) { JsonWebToken.decode(user.issue_jwt).with_indifferent_access }
+
     let!(:user) { create(:user) }
     let!(:expected_jwt_payload) do
       {
@@ -37,7 +39,6 @@ RSpec.describe User, type: :model do
         ref: 'web'
       }
     end
-    subject(:issued_jwt_payload) { JsonWebToken.decode(user.issue_jwt).with_indifferent_access }
 
     it '要能發行供 web frontend client 使用的 JWT' do
       expect(subject[:sub]).to eq expected_jwt_payload[:sub]

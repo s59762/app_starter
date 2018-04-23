@@ -1,13 +1,13 @@
 class Admin::UpdateSiteConfigMetaTagsForm < ApplicationForm
   model SiteConfig
 
-  PROPERTIES = %i[
+  PROPERTIES = %i(
     site_name
     reverse
     separator
     description
     keywords
-  ].freeze
+  ).freeze
 
   properties :site_name,
              :reverse,

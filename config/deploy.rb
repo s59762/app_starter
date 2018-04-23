@@ -10,9 +10,9 @@ set :repo_url, %(git@github.com:oracle-design/#{ENV['app_name']}.git)
 set :branch, 'master'
 set :deploy_to, %(/home/deployer/websites/#{ENV['app_name']})
 
-set :linked_files, %w[config/database.yml]
-set :linked_files, %w[config/database.yml config/application.yml config/secrets.yml]
-set :linked_dirs, %w[log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system public/uploads]
+set :linked_files, %w(config/database.yml)
+set :linked_files, %w(config/database.yml config/application.yml config/secrets.yml)
+set :linked_dirs, %w(log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system public/uploads)
 
 # Default value for keep_releases is 5
 # set :keep_releases, 5
@@ -50,7 +50,7 @@ set :slack_fields_updated, [
 
 set :slack_msg_failed, -> { ":shit: #{fetch :application} 部署失敗。 :no_good:" }
 
-set :sidekiq_queue, %i[default mailers]
+set :sidekiq_queue, %i(default mailers)
 
 Rake::Task['deploy:compile_assets'].clear
 
