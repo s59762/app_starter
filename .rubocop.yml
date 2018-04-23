@@ -10,7 +10,7 @@ AllCops:
     - 'config/routes.rb'
     - 'config/routes/**/*'
 
-Lint/EndAlignment:
+Layout/EndAlignment:
   EnforcedStyleAlignWith: keyword
 
 Metrics/LineLength:

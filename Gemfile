@@ -7,10 +7,10 @@ end
 
 gem 'coffee-rails', '~> 4.2'
 gem 'jbuilder', '~> 2.5'
-gem 'puma', '~> 3.7'
-gem 'rails', '~> 5.1.6'
+gem 'puma', '~> 3.11.4'
+gem 'rails', '~> 5.2'
 gem 'sass-rails', '~> 5.0'
-gem 'turbolinks', '~> 5'
+gem 'turbolinks', '~> 5.1.1'
 gem 'uglifier', '>= 1.3.0'
 gem 'webpacker'
 
@@ -20,7 +20,7 @@ group :development, :test do
   gem 'pry-remote'
 
   # Test
-  gem 'capybara', '~> 2.13' # Adds support for Capybara system testing and selenium driver
+  gem 'capybara', '~> 3.0.2' # Adds support for Capybara system testing and selenium driver
   gem 'capybara-screenshot'
   gem 'database_cleaner'
   gem 'factory_bot_rails'
@@ -50,9 +50,9 @@ group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'pattern_generator' # generator for service objects, form objects, PORO, policy objects.
   gem 'rack-mini-profiler', require: false # page proformence monitor
-  gem 'rubocop', '~> 0.49.0' # Linter
+  gem 'rubocop', '~> 0.55.0' # Linter
   gem 'ruby-debug-ide' # for vscode remote debug
-  gem 'web-console', '>= 3.3.0'
+  gem 'web-console', '>= 3.6.1'
 
   # Deploy tools
   gem 'capistrano'
@@ -91,7 +91,7 @@ gem 'whenever', require: false # for cron job
 # Database
 gem 'aasm' # aasm state machine
 gem 'by_star' # query DB based on time
-gem 'friendly_id', '~> 5.1.0' # friendly ID
+gem 'friendly_id', '~> 5.2.3' # friendly ID
 gem 'money-rails', '~>1' # for currency management
 gem 'pg' # postgresSQL adapter
 gem 'rails-settings-cached' # App settings function
@@ -100,7 +100,7 @@ gem 'ransack' # for meta search
 # Authentication
 gem 'devise' # users authenticate
 gem 'jwt' # jwt
-gem 'koala', '~> 2.2' # facebook graph API wrapper
+gem 'koala', '~> 3.0.0' # facebook graph API wrapper
 gem 'omniauth' # Oauth
 gem 'omniauth-facebook' # Oauth for facebook
 
@@ -119,7 +119,7 @@ gem 'cells-slim' # for View components and cache
 gem 'favicon_maker'
 gem 'gretel' # breadcrumb
 gem 'meta-tags'
-gem 'roadie-rails', '~> 1.0' # for eamil
+gem 'roadie-rails', '~> 1.3.0' # for eamil
 gem 'slim-rails' # using slim as view template
 
 # Tracking tools
