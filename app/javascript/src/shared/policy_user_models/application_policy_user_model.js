@@ -1,16 +1,14 @@
+import PolicyUserModelBase from 'odd-policy_user_model'
+
 /**
  * User model 基礎，包含了所有 User 都會用到的方法
  *
  * @export
  * @class UserModelBase
  */
-export default class UserModelBase {
+export default class ApplicationPolicyUserModel extends PolicyUserModelBase {
   constructor(jwtPayload) {
-    this.id = jwtPayload.sub.toString()
-    this.role = jwtPayload.role
-    this.type = jwtPayload.type
-    this.issuedAt = jwtPayload.iat
-    this.expiredAt = jwtPayload.exp
+    super(jwtPayload)
   }
 
   isGuest() {
