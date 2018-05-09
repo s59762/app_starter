@@ -1,5 +1,5 @@
 import axios from 'axios'
-import FetchingDataOptionsService from '../services/fetching_data_options_service'
+import FetchingDataOptionsService from 'odd-fetching_data_options_service'
 import ResourceModelBase from 'odd-resource_model'
 
 const OPTIONS = {
