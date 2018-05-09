@@ -1,4 +1,4 @@
-import FormBase from '../form_base'
+import FormBase from 'odd-form_object'
 
 export default class AdminSiteConfigMetaTagsFrom extends FormBase {
   constructor(model) {

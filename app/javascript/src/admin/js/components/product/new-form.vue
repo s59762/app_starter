@@ -130,7 +130,7 @@ import ImageHandler from '../../../../shared/plugins/quill_image_handler_module/
 import imageButtonHandler from '../../../../shared/plugins/quill_image_handler_module/image_button_handler'
 // import { ImageResize } from 'quill-image-resize-module'
 import Product from '../../../../shared/resource_models/product'
-import Form from '../../../../shared/forms/form_base'
+import Form from 'odd-form_object'
 
 const toolbarOptions = [
   [{ size: [false, 'small', 'large', 'huge'] }], // custom dropdown
