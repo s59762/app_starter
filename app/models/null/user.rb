@@ -33,6 +33,14 @@ class Null::User
     true
   end
 
+  # 提供 Guest 用的 JWT
+  def issue_jwt
+    JsonWebToken.encode(sub: nil,
+                        iat: Time.current.to_i,
+                        type: 'Guest',
+                        ref: 'web')
+  end
+
   private
 
   def generate_role_methods

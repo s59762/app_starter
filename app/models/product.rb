@@ -20,16 +20,13 @@
 #
 
 class Product < ApplicationRecord
-  FILTERABLE_FIELDS = %w().freeze
-  SORTABLE_FIELDS = %w(
-    id
-    name
-    category_id
-    original_price
-    sell_price
-    discounted_price
-    created_at
-  ).freeze
+  allow_sort_fields :id,
+                    :name,
+                    :category_id,
+                    :original_price,
+                    :sell_price,
+                    :discounted_price,
+                    :created_at
 
   monetize :original_price_cents,
            :sell_price_cents,

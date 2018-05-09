@@ -9,7 +9,7 @@ class FetchingDataService
     @resource = resource
     @model = resource.name.constantize
     @paginate_options = params[:page] || {}
-    @filter_options = params[:filter] || {}
+    @filter_options = params[:filter]&.to_sym || {}
     @sort_options = params[:sort] || {}
     @search_options = params[:q] || {}
     @options = options
@@ -105,7 +105,7 @@ class FetchingDataService
   end
 
   def sort_field
-    @sort_field ||= sort_options[0] == '-' ? sort_options[1..-1] : sort_options[0..-1]
+    @sort_field ||= sort_options[0] == '-' ? sort_options[1..-1].to_sym : sort_options[0..-1].to_sym
   end
 
   def sort_direction
@@ -113,11 +113,11 @@ class FetchingDataService
   end
 
   def filterable_fields
-    model::FILTERABLE_FIELDS
+    model.allowed_filters
   end
 
   def sortable_fields
-    model::SORTABLE_FIELDS
+    model.allowed_sort_fields
   end
 
   def invalid_filter?
