@@ -56,7 +56,7 @@
 </template>
 
 <script>
-import Form from '../../../../shared/forms/form_base'
+import Form from 'odd-form_object'
 
 export default {
   // components: {},

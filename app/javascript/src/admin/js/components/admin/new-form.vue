@@ -59,7 +59,7 @@
 </template>
 
 <script>
-import Form from '../../../../shared/forms/form_base'
+import Form from 'odd-form_object'
 import Admin from '../../../../shared/resource_models/admin'
 
 export default {

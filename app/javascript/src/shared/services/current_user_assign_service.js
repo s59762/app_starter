@@ -1,7 +1,7 @@
 import JwtManageService from './jwt_manage_service'
-import Admin from '../user_models/admin'
-import User from '../user_models/user'
-import Guest from '../user_models/guest'
+import Admin from '../policy_user_models/admin'
+import User from '../policy_user_models/user'
+import Guest from '../policy_user_models/guest'
 
 /**
  * 在 vuex 中建立 currentUser state

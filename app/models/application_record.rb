@@ -3,6 +3,7 @@ class ApplicationRecord < ActiveRecord::Base
   self.abstract_class = true
 
   include BasicScopes
+  include WhitelistAssignable
 
   # 回傳 table 最後更新時間
   def self.latest_updated_at

@@ -18,12 +18,9 @@
 #
 
 class User < ApplicationRecord
-  FILTERABLE_FIELDS = %w().freeze
-  SORTABLE_FIELDS = %w(
-    id
-    email
-    created_at
-  ).freeze
+  allow_sort_fields :id,
+                    :email,
+                    :created_at
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
