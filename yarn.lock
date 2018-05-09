@@ -3423,6 +3423,10 @@ lodash.debounce@^4.0.8:
   version "4.0.8"
   resolved "https://registry.yarnpkg.com/lodash.debounce/-/lodash.debounce-4.0.8.tgz#82d79bff30a67c4005ffd5e2515300ad9ca4d7af"
 
+lodash.defaults@^4.2.0:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/lodash.defaults/-/lodash.defaults-4.2.0.tgz#d09178716ffea4dde9e5fb7b37f6f0802274580c"
+
 lodash.memoize@^4.1.2:
   version "4.1.2"
   resolved "https://registry.yarnpkg.com/lodash.memoize/-/lodash.memoize-4.1.2.tgz#bcc6c49a42a2840ed997f323eada5ecd182e0bfe"
@@ -3948,6 +3952,30 @@ object.pick@^1.3.0:
 obuf@^1.0.0, obuf@^1.1.1:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/obuf/-/obuf-1.1.2.tgz#09bea3343d41859ebd446292d11c9d4db619084e"
+
+"odd-error_object@https://github.com/FunnyQ/odd-error_object.git":
+  version "0.1.0"
+  resolved "https://github.com/FunnyQ/odd-error_object.git#72d33795df0c970f3f4066a3454dae8f8ef86e58"
+
+"odd-fetching_data_options_service@https://github.com/FunnyQ/odd-fetching_data_options_service.git":
+  version "0.1.1"
+  resolved "https://github.com/FunnyQ/odd-fetching_data_options_service.git#4d70cc450bc826bb6755699de0287ca7986456fd"
+
+"odd-form_object@https://github.com/FunnyQ/odd-form_object.git":
+  version "0.1.0"
+  resolved "https://github.com/FunnyQ/odd-form_object.git#c3af973489d63e55c59aa23eefbeab0fcef92624"
+
+"odd-policy_user_model@https://github.com/FunnyQ/odd-policy_user_model.git":
+  version "0.1.1"
+  resolved "https://github.com/FunnyQ/odd-policy_user_model.git#777d51ad75999d4a452fd094579a95384be61e04"
+
+"odd-resource_model@https://github.com/FunnyQ/odd-resource_model.git":
+  version "0.1.2"
+  resolved "https://github.com/FunnyQ/odd-resource_model.git#f92eadbeb3d6f5ceb24d272d461bf4970099e16a"
+  dependencies:
+    axios "^0.18.0"
+    lodash.defaults "^4.2.0"
+    odd-fetching_data_options_service "https://github.com/FunnyQ/odd-fetching_data_options_service.git"
 
 on-finished@~2.3.0:
   version "2.3.0"
