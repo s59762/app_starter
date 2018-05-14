@@ -8,7 +8,7 @@ import merge from 'lodash.merge'
  * @param {object} state Vuex state 物件
  * @param {object} response axios 從 server 拿到的 response 物件
  */
-const tryStoreMetaToVuex = function(state, response) {
+const tryStoreMetaToVuex = function (state, response) {
   const metaObj = response.data.meta
 
   if (metaObj) {
@@ -77,7 +77,7 @@ export default class MutationHelpers {
     const id = Object.keys(normalizedResult.entities[this.resource_type])[0]
 
     tryStoreMetaToVuex(state, response)
-    Vue.set(state.entities, id, normalizedResult.entities[this.resource_type][id])
+    Vue.set(state.entities, id, merge({}, state.entities[id], normalizedResult.entities[this.resource_type][id]))
   }
 
   /**
