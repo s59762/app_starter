@@ -3,6 +3,8 @@ import NewProductCategoryButton from '../../components/product_category/new-butt
 import backendPaginateFilterSortAndSearchableMixin from '../../components/mixins/backend_paginate_filter_sort_and_searchable_mixin'
 
 export default {
+  name: 'product-category-list-container',
+
   components: {
     ProductCategoryListTable,
     NewProductCategoryButton

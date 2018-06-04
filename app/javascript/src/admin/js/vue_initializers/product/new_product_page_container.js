@@ -1,6 +1,8 @@
 import NewProductForm from '../../components/product/new-form'
 
 export default {
+  name: 'new-product-page-container',
+
   components: {
     NewProductForm
   }

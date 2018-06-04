@@ -1,6 +1,8 @@
 import UserListTable from '../../components/user/list-table'
 
 export default {
+  name: 'user-list-container',
+
   components: {
     UserListTable
   }

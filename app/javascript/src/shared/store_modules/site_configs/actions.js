@@ -1,14 +1,10 @@
 import * as types from './mutation-types'
 import SiteConfig from '../../resource_models/site_config'
 
-/**
- * 從 Server 取得所有 SiteConfig
- *
- * @param {object} options 可傳入 paginate options 或其他 filter 功能。
- *
- * @returns {promise} response or errors
- */
-export const fetchConfigs = ({ dispatch, commit }) => {
+export const fetchConfigs = ({
+  dispatch,
+  commit
+}) => {
   commit(types.API_REQUEST_START, 'fetchConfigs')
 
   return new Promise((resolve, reject) => {
@@ -20,19 +16,19 @@ export const fetchConfigs = ({ dispatch, commit }) => {
       })
       .catch(errors => {
         commit(types.API_REQUEST_FAIL, errors)
-        dispatch('errorMessageHandler', errors, { root: true })
+        dispatch('errorMessageHandler', errors, {
+          root: true
+        })
 
         reject(errors)
       })
   })
 }
 
-/**
- * 更新 MetaTags 設定
- *
- * @returns {promise} response or errors
- */
-export const updateMetaTags = ({ dispatch, commit }, model) => {
+export const updateMetaTags = ({
+  dispatch,
+  commit
+}, model) => {
   commit(types.API_REQUEST_START, 'updateMetaTags')
 
   return new Promise((resolve, reject) => {
@@ -45,7 +41,9 @@ export const updateMetaTags = ({ dispatch, commit }, model) => {
       })
       .catch(errors => {
         commit(types.API_REQUEST_FAIL, errors)
-        dispatch('errorMessageHandler', errors, { root: true })
+        dispatch('errorMessageHandler', errors, {
+          root: true
+        })
 
         reject(errors)
       })

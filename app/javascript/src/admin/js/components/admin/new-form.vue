@@ -1,6 +1,6 @@
 <template lang="pug">
 
-.box.form-container-box.is-default.clearfix
+.vc-admin-new-form.box.form-container-box.is-default.clearfix
   h3.subtitle {{pageTitleLocaleText('admin', 'admins', 'new')}}
 
   b-field(:label="attributeLocaleText('admin', 'email')"
@@ -74,7 +74,7 @@ export default {
 
   computed: {
     errors() {
-      return this.$store.getters['admins/errors']
+      return this.form.model.errors
     },
 
     isLoading() {

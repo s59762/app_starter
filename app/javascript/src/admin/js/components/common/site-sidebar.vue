@@ -3,7 +3,7 @@
 transition(enter-active-class="animated slideInLeft"
            leave-active-class="animated slideOutLeft")
 
-  aside.common-site-sidebar.menu(v-show="sidebarIsOpen"
+  aside.vc-common-site-sidebar.menu(v-show="sidebarIsOpen"
                                  :class="sidebarOpenedClass")
     menu-list(v-for="item in menuItems"
               :menus="item.menus"

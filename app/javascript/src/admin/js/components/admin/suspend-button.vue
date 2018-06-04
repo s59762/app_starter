@@ -1,7 +1,7 @@
 <template lang="pug">
 
-.button.is-small(:class="buttonClass"
-                 @click="confirm")
+span.vc-admin-suspend-button.button.is-small(:class="buttonClass"
+                                      @click="confirm")
   span.icon
     i.fa(:class="buttonIcon")
   span {{buttonText}}

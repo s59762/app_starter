@@ -1,6 +1,6 @@
 <template lang="pug">
 
-.box.form-container-box.is-default.clearfix
+.vc-admin-edit-form.box.form-container-box.is-default.clearfix
   h3.subtitle {{pageTitleLocaleText('admin', 'admins', 'edit')}}
 
   //- change password fields
@@ -77,7 +77,7 @@ export default {
 
   computed: {
     errors() {
-      return this.$store.getters['admins/errors']
+      return this.form.model.errors
     },
 
     isLoading() {

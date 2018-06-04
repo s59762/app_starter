@@ -1,6 +1,6 @@
 <template lang="pug">
 
-.dashboard-parts-section-box.box.content-box(:class="typeClass")
+.vc-dashboard-parts-section-box.box.content-box(:class="typeClass")
   .box-header.with-border(v-if="title")
     h2.box-title {{title}}
 

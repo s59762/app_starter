@@ -1,6 +1,8 @@
 import SiteConfigForm from '../../components/site_config/form'
 
 export default {
+  name: 'site-config-container',
+
   components: {
     SiteConfigForm
   },

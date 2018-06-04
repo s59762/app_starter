@@ -1,6 +1,6 @@
 <template lang="pug">
 
-.product-category-edit-form.box.form-container-box.is-default.clearfix
+.vc-product-category-edit-form.box.form-container-box.is-default.clearfix
   h3.subtitle {{pageTitleLocaleText('admin', 'product_categories', 'edit')}}
 
   b-field(:label="attributeLocaleText('product_category', 'name')"
@@ -56,7 +56,7 @@ export default {
 
   computed: {
     errors() {
-      return this.$store.getters['productCategories/errors']
+      return this.form.model.errors
     },
 
     isLoading() {

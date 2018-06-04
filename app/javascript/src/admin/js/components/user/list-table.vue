@@ -1,6 +1,6 @@
 <template lang="pug">
 
-div
+div.vc-user-list-table
   b-collapse.panel(:open.sync="isSearchOptionsOpen")
     .panel-heading(slot="trigger"
                    data-behavior="search-user-panel") {{actionLocaleText('admin', 'search_for', { model_name: modelNameLocaleText('user') })}}

@@ -3,6 +3,8 @@ import AdminListTable from '../../components/admin/list-table'
 import backendPaginateFilterSortAndSearchableMixin from '../../components/mixins/backend_paginate_filter_sort_and_searchable_mixin'
 
 export default {
+  name: 'admin-list-container',
+
   components: {
     NewAdminForm,
     AdminListTable

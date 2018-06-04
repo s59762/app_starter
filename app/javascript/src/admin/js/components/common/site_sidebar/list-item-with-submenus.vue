@@ -1,6 +1,6 @@
 <template lang="pug">
 
-li.common-site-sidebar-list-item-with-submenus(v-if="isValidPolicy")
+li.vc-common-site-sidebar-list-item-with-submenus(v-if="isValidPolicy")
   a.list-item-link(@click="toggleSubmenu"
                    :class="activeClass")
     .icon

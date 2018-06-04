@@ -1,6 +1,6 @@
 <template lang="pug">
 
-span
+span.vc-admin-edit-button
   button.button.is-small.is-info(@click="openEditForm"
                                  data-behavior="edit-button")
     span.icon

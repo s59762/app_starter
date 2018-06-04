@@ -1,6 +1,6 @@
 <template lang="pug">
 
-.product-new-form.box.content-box.is-primary
+.vc-product-new-form.box.content-box.is-primary
   .box-header.with-border
     h3.subtitle {{pageTitleLocaleText('admin', 'products', 'form')}}
   .box-body
@@ -204,7 +204,7 @@ export default {
 
   computed: {
     errors() {
-      return this.$store.getters['products/errors']
+      return this.form.model.errors
     },
 
     isLoading() {

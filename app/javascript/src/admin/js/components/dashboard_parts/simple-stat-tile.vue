@@ -1,6 +1,6 @@
 <template lang="pug">
 
-.dashboard-parts-simple-stat-tile.tile.is-parent(:class="tileClass")
+.vc-dashboard-parts-simple-stat-tile.tile.is-parent(:class="tileClass")
   .tile.is-child.notification
     .icon
       i.fa(:class="iconClass")

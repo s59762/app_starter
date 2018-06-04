@@ -1,6 +1,6 @@
 <template lang="pug">
 
-div
+.vc-admin-list-table
   b-collapse.panel(:open.sync="isSearchOptionsOpen")
     .panel-heading(slot="trigger") {{actionLocaleText('admin', 'search_for', { model_name: modelNameLocaleText('admin') })}}
     .panel-block.is-multiline

@@ -1,6 +1,6 @@
 <template lang="pug">
 
-nav.common-site-navbar.navbar.is-fixed-top.level.animated
+nav.vc-common-site-navbar.navbar.is-fixed-top.level.animated
   .nav-left
     .sidebar-toggle(@click="toggleSidebar")
       i.fa.fa-bars

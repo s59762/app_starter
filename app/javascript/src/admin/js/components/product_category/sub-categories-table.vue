@@ -1,8 +1,8 @@
 <template lang="pug">
 
 
-b-table.product-category-sub-categories-table(:data="subCategories"
-                                              :hoverable="true")
+b-table.vc-product-category-sub-categories-table(:data="subCategories"
+                                                 :hoverable="true")
   template(slot-scope="props"
            slot="header")
 

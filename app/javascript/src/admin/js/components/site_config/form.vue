@@ -1,6 +1,6 @@
 <template lang="pug">
 
-.site-config-form.box.content-box.is-primary(v-if="isConfigsNotEmpty")
+.vc-site-config-form.box.content-box.is-primary(v-if="isConfigsNotEmpty")
   .box-header.with-border
     h2.box-title {{pageTitleLocaleText('admin', 'system_config', 'meta_tags_config')}}
   .box-body

@@ -1,6 +1,6 @@
 <template lang="pug">
 
-.product-category-list-table
+.vc-product-category-list-table
   b-table(:data="rootCategories"
           backend-sorting
           :default-sort="sortField"

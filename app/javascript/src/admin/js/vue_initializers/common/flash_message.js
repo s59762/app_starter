@@ -1,8 +1,12 @@
 import FlashMessage from '../../components/common/flash-message.vue'
-import { mapGetters } from 'vuex'
+import {
+  mapGetters
+} from 'vuex'
 import debounce from 'lodash.debounce'
 
 export default {
+  name: 'flash-message',
+
   components: {
     FlashMessage
   },

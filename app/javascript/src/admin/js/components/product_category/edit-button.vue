@@ -1,6 +1,6 @@
 <template lang="pug">
 
-span.product-category-edit-button
+span.vc-product-category-edit-button
   .button.is-small.is-info(@click="openForm"
                            data-behavior="edit-product-category-button")
     span.icon

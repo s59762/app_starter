@@ -8,9 +8,9 @@ GIT
 
 GIT
   remote: https://github.com/oracle-design/espresso_martini.git
-  revision: f399705136d77f8af8a5226619ebf22c16d549b4
+  revision: 61fb4f7a5531bb221106ceb8b9c60b358f6225bf
   specs:
-    espresso_martini (0.6.7)
+    espresso_martini (0.7.6)
 
 GEM
   remote: https://rubygems.org/

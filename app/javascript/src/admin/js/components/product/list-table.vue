@@ -1,6 +1,6 @@
 <template lang="pug">
 
-.product-list-table
+.vc-product-list-table
   b-table(:data="products"
           paginated
           backend-pagination
