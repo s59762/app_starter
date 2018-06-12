@@ -12,7 +12,7 @@ default: &default
 
 development:
   <<: *default
-  database: myapp_dev
+  database: <%= "#{ENV["app_name"]}_dev" %>
   username: <%= ENV["pg_username"] %>
   password: <%= ENV["pg_password"] %>
 
@@ -21,18 +21,18 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: myapp_test
+  database: <%= "#{ENV["app_name"]}_test" %>
   username: <%= ENV["pg_username"] %>
   password: <%= ENV["pg_password"] %>
 
 staging:
   <<: *default
-  database: myapp_staging
+  database: <%= "#{ENV["app_name"]}_staging" %>
   username: <%= ENV["pg_username"] %>
   password: <%= ENV["pg_password"] %>
 
 production:
   <<: *default
-  database: myapp
+  database: <%= ENV["app_name"] %>
   username: <%= ENV["pg_username"] %>
   password: <%= ENV["pg_password"] %>

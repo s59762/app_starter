@@ -1,10 +1,12 @@
 development:
-  adapter: async
+  adapter: redis
+  url: redis://localhost:6379/<%= ENV['redis_action_cable_db_no'] %>
+  channel_prefix: <%= ENV['app_name'] %>_development
 
 test:
   adapter: async
 
 production:
   adapter: redis
-  url: redis://localhost:6379/1
+  url: redis://localhost:6379/<%= ENV['redis_action_cable_db_no'] %>
   channel_prefix: <%= ENV['app_name'] %>_production

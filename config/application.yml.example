@@ -4,8 +4,9 @@ http_protocol: http
 pg_username: oddesign
 pg_password: qwerasdf
 redis_url: redis://localhost:6379
-redis_sidekiq_db_no: ''
+redis_sidekiq_db_no: '0'
 redis_cache_db_no: '1'
+redis_action_cable_db_no: '2'
 mailgun_user_name:
 mailgun_password:
 mailgun_api_key:

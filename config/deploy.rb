@@ -13,6 +13,8 @@ set :deploy_to, %(/home/deployer/websites/#{ENV['app_name']})
 set :linked_files, %w(config/database.yml)
 set :linked_files, %w(config/database.yml config/application.yml config/secrets.yml)
 set :linked_dirs, %w(log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system public/uploads)
+set :assets_dir, %w(public/uploads)
+set :local_assets_dir, %w(public/uploads)
 
 # Default value for keep_releases is 5
 # set :keep_releases, 5
@@ -50,7 +52,7 @@ set :slack_fields_updated, [
 
 set :slack_msg_failed, -> { ":shit: #{fetch :application} 部署失敗。 :no_good:" }
 
-set :sidekiq_queue, %i(default mailers)
+set :sidekiq_queue, ["#{ENV['app_name']}_#{Rails.env}_default", "#{ENV['app_name']}_#{Rails.env}_mailers"]
 
 Rake::Task['deploy:compile_assets'].clear
 
@@ -89,6 +91,7 @@ namespace :deploy do
 
       # move current assets back from tmp
       run_locally { execute "mv #{temp_packs_dir} #{local_packs_dir}" }
+      run_locally { execute "bundle exec yarn install" }
     end
   end
 end
