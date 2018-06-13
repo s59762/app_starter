@@ -52,7 +52,7 @@ set :slack_fields_updated, [
 
 set :slack_msg_failed, -> { ":shit: #{fetch :application} 部署失敗。 :no_good:" }
 
-set :sidekiq_queue, ["#{ENV['app_name']}_#{Rails.env}_default", "#{ENV['app_name']}_#{Rails.env}_mailers"]
+set :sidekiq_queue, ["#{ENV['app_name']}_#{fetch(:stage)}_default", "#{ENV['app_name']}_#{fetch(:stage)}_mailers"]
 
 Rake::Task['deploy:compile_assets'].clear
 
