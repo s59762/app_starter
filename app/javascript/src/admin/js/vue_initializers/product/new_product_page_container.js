@@ -1,10 +1,10 @@
-import NewProductForm from '../../components/product/new-form'
+import ProductForm from '../../components/product/form'
 
 export default {
   name: 'new-product-page-container',
 
   components: {
-    NewProductForm
+    ProductForm
   }
 
   // mixins: [],

@@ -1,6 +1,6 @@
 <template lang="pug">
 
-.vc-product-new-form.box.content-box.is-primary
+.vc-product-form.box.content-box.is-primary
   .box-header.with-border
     h3.subtitle {{pageTitleLocaleText('admin', 'products', 'form')}}
   .box-body
@@ -121,7 +121,6 @@
       .column
         //- TODO: create a component for roughly preview input content
         //- product-previewer(:product="this.form")
-
 </template>
 
 <script>
@@ -168,11 +167,21 @@ export default {
 
   // mixins: [],
 
-  // props: {},
+  props: {
+    product: {
+      type: Object,
+      required: false,
+      default: () => {
+        return new Product({
+          is_preorder: false
+        })
+      }
+    }
+  },
 
   data() {
     return {
-      form: new Form(new Product()),
+      form: new Form(this.product),
       editorOptions: {
         placeholder: 'e.g. A powerfull tool for your professional works.',
         modules: {
