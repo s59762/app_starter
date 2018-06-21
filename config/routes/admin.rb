@@ -20,7 +20,7 @@ namespace :admin do
   resources :product_categories, only: %i[index]
 
   # product management
-  resources :products, only: %i[index new]
+  resources :products, only: %i[index new edit]
 
   # system config
   resource :system_config, only: %i[show], controller: 'system_config'

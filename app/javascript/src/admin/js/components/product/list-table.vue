@@ -45,17 +45,22 @@
                      sortable
                      numbric)
         | {{props.row.displayPrice('discounted')}}
-        span(v-if="hasDiscount(props.row)") （{{props.row.displayDiscountRate()}}）
+        span(v-if="props.row.hasDiscount()") （{{props.row.displayDiscountRate()}}）
 
       b-table-column.preorder-column(field="is_preorder"
                                      :label="attributeLocaleText('product', 'is_preorder')"
                                      sortable
                                      numbric)
-        i.fa(:class="preorderIcon(props.row)")
+        span.tag.is-default
+          i.fa(:class="preorderIcon(props.row)")
 
       b-table-column(:label="actionLocaleText('admin', 'options')"
                     numeric)
-          button.button.is-small.is-default 目前沒有功能
+          //- Edit button
+          button.button.is-small.is-info(@click="linkToEditPage(props.row)")
+            .icon
+              i.fa.fa-pencil
+            span 編輯
 
     template(slot='empty')
       section.section
@@ -106,8 +111,8 @@ export default {
       }
     },
 
-    hasDiscount(product) {
-      return product.discount_rate < 1
+    linkToEditPage(product) {
+      Turbolinks.visit(`/admin/products/${product.id}/edit`)
     }
   }
 }
