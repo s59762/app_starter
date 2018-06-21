@@ -2,11 +2,10 @@
   // See https://go.microsoft.com/fwlink/?LinkId=733558
   // for the documentation about the tasks.json format
   "version": "2.0.0",
-  "tasks": [
-    {
+  "tasks": [{
       "label": "booting up services",
       "type": "shell",
-      "command": "bin/server",
+      "command": "bundle exec bin/server",
       "problemMatcher": [],
       "presentation": {
         "reveal": "never",
@@ -59,7 +58,7 @@
     {
       "label": "kill all overmind progress",
       "type": "shell",
-      "command": "ps -ef | grep overmind | grep -v grep | awk '{print $2}' | xargs kill -9",
+      "command": "rm .overmind.sock && ps -ef | grep overmind | grep -v grep | awk '{print $2}' | xargs kill -9",
       "problemMatcher": [],
       "presentation": {
         "reveal": "never",
