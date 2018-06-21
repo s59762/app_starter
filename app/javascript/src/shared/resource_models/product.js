@@ -32,6 +32,12 @@ export default class Product extends ResourceModelBase {
     return axios.post(`${new this().apiBasePath()}/images`, formData)
   }
 
+  // helpers
+
+  hasDiscount() {
+    return this.discount_rate < 1
+  }
+
   requestBody() {
     const priceColumns = ['original', 'sell', 'discounted']
 
@@ -57,24 +63,7 @@ export default class Product extends ResourceModelBase {
     return `${rateNumber} ${I18n.t('activerecord.attributes.product.discount_unit')}`
   }
 
-  displayPrice(price) {
-    let rawValue = 0
-
-    switch (price) {
-      case 'original':
-        rawValue = this.original_price
-        break
-      case 'sell':
-        rawValue = this.sell_price
-        break
-      case 'discounted':
-        rawValue = this.discounted_price
-        break
-      default:
-        rawValue = this.sell_price
-        break
-    }
-
-    return `${rawValue / 100} ${I18n.t('activerecord.attributes.product.price_unit')}`
+  displayPrice(price = 'sell') {
+    return `${this[`${price}_price`] / 100} ${I18n.t('activerecord.attributes.product.price_unit')}`
   }
 }

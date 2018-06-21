@@ -4,6 +4,10 @@ class Admin::ProductsController < Admin::ApplicationController
   def index
   end
 
-  def show
+  def new
+  end
+
+  def edit
+    @product = Product.find(params[:id])
   end
 end

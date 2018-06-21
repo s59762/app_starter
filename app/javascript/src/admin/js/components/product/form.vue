@@ -218,15 +218,31 @@ export default {
 
     isLoading() {
       return this.$store.getters['products/isLoading']
+    },
+
+    returnUrlParams() {
+      if (this.product.isNewRecord()) {
+        return 'product_added=1'
+      } else {
+        return 'product_updated=1'
+      }
     }
   },
 
   created() {
-    this.form.properties = [propertyTemplate()]
-    this.form.price = {
-      original: 0,
-      sell: 0,
-      discounted: 0
+    if (this.product.isNewRecord()) {
+      this.form.properties = [propertyTemplate()]
+      this.form.price = {
+        original: 0,
+        sell: 0,
+        discounted: 0
+      }
+    } else {
+      this.form.price = {
+        original: this.product.original_price / 100,
+        sell: this.product.sell_price / 100,
+        discounted: this.product.discounted_price / 100
+      }
     }
   },
 
@@ -243,7 +259,7 @@ export default {
 
     submitForm() {
       this.$store.dispatch('products/save', this.form.sync()).then(() => {
-        Turbolinks.visit('/admin/products?product_added=1')
+        Turbolinks.visit(`/admin/products?${this.returnUrlParams}`)
       })
     }
   }

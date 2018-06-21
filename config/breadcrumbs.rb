@@ -34,7 +34,12 @@ crumb :admin_products do
 end
 
 crumb :admin_products_new do
-  link I18n.t('page_titles.admin.products.new'), admin_products_path, icon: 'fa-pencil'
+  link I18n.t('page_titles.admin.products.new'), new_admin_product_path, icon: 'fa-pencil'
+  parent :admin_products
+end
+
+crumb :admin_products_edit do |product|
+  link I18n.t('page_titles.admin.products.edit'), edit_admin_product_path(product), icon: 'fa-pencil'
   parent :admin_products
 end
 

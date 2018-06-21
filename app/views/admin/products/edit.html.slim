@@ -1,0 +1,8 @@
+- breadcrumb :admin_products_edit, @product
+
+= cell('admin/common').call(:content_header)
+
+.new-product-page-container(data-vue="edit_product_page_container"
+                            data-product=(@product.id))
+  product-form(v-if="isReady"
+               :product="product")
