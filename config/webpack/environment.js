@@ -1,4 +1,6 @@
-const { environment } = require('@rails/webpacker')
+const {
+  environment
+} = require('@rails/webpacker')
 const webpack = require('webpack')
 const vue = require('./loaders/vue')
 
@@ -10,7 +12,9 @@ environment.plugins.append(
     Turbolinks: 'turbolinks',
     jQuery: 'jquery',
     $: 'jquery',
-    I18n: 'i18n-js'
+    I18n: 'i18n-js',
+    // 'window.Quill': 'quill/dist/quill.js',
+    // Quill: 'quill/dist/quill.js'
   })
 )
 

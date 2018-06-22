@@ -1,11 +1,14 @@
-import { _generateFormData } from './utils'
+import {
+  _generateFormData
+} from './utils'
 
 const DEFAULT_OPTIONS = {
   quill: null,
   dispatcher: null,
   action: null,
   imagesAttrName: 'image[]',
-  additionalFormData: null
+  additionalFormData: null,
+  imageUploadedCallback: null
 }
 
 export default function imageButtonHandler(options = {}) {
@@ -16,6 +19,7 @@ export default function imageButtonHandler(options = {}) {
   let action = options.action
   let imagesAttrName = options.imagesAttrName
   let additionalFormData = options.additionalFormData
+  let imageUploadedCallback = options.imageUploadedCallback
   let fileInput = document.querySelector('.quill-image-input')
 
   if (fileInput === null) {
@@ -26,13 +30,14 @@ export default function imageButtonHandler(options = {}) {
     fileInput.id = 'quill-image-input'
     fileInput.style.display = 'none'
 
-    fileInput.addEventListener('change', function() {
+    fileInput.addEventListener('change', function () {
       let files = fileInput.files
       let formData = _generateFormData(files, imagesAttrName, additionalFormData)
 
       dispatch(action, formData).then(response => {
         response.data.data.forEach(image => {
           _insertImage(quill, image.attributes.url)
+          if (imageUploadedCallback) imageUploadedCallback(image)
         })
       })
 

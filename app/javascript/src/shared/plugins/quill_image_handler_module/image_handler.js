@@ -1,10 +1,16 @@
-import { _checkForOwnImageUrl, _generateFormData, _base64encode, _setInsertPositionViaCaret } from './utils'
+import {
+  _checkForOwnImageUrl,
+  _generateFormData,
+  _base64encode,
+  _setInsertPositionViaCaret
+} from './utils'
 
 const DEFAULT_OPTIONS = {
   dispatcher: null,
   action: null,
   imagesAttrName: 'image[]',
-  additionalFormData: null
+  additionalFormData: null,
+  imageUploadedCallback: null
 }
 
 /**
@@ -22,6 +28,7 @@ export default class ImageHandler {
     this.action = options.action
     this.imagesAttrName = options.imagesAttrName
     this.additionalFormData = options.additionalFormData
+    this.imageUploadedCallback = options.imageUploadedCallback
 
     // 監聽在 Editor 中發生的 `click`, `paste`, 和 `drop` 事件。
     // this.editor.addEventListener('click', this.clickHandler.bind(this), false)
@@ -93,6 +100,7 @@ export default class ImageHandler {
           this.dispatch(this.action, formData).then(response => {
             response.data.data.forEach(image => {
               this.insert(image.attributes.url)
+              if (this.imageUploadedCallback) this.imageUploadedCallback(image)
             })
           })
         })
