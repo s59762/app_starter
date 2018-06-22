@@ -127,7 +127,7 @@
 import { quillEditor, Quill } from 'vue-quill-editor'
 import ImageHandler from '../../../../shared/plugins/quill_image_handler_module/image_handler'
 import imageButtonHandler from '../../../../shared/plugins/quill_image_handler_module/image_button_handler'
-// import { ImageResize } from 'quill-image-resize-module'
+// import ImageResize from 'quill-image-resize-module'
 import Product from '../../../../shared/resource_models/product'
 import Form from 'odd-form_object'
 
@@ -157,7 +157,7 @@ const propertyTemplate = function() {
 }
 
 Quill.register('modules/ImageHandler', ImageHandler)
-// Quill.register('module/ImageResize', ImageResize)
+// Quill.register('modules/ImageResize', ImageResize)
 
 export default {
   components: {
