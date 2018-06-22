@@ -20,7 +20,7 @@ const OPTIONS = {
     'created_at',
     'discount_rate'
   ],
-  editableAttributes: ['cover', 'description', 'price', 'is_preorder', 'name', 'properties']
+  editableAttributes: ['cover', 'description', 'price', 'is_preorder', 'name', 'properties', 'uploaded_image_ids']
 }
 
 export default class Product extends ResourceModelBase {

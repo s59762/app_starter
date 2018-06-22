@@ -188,7 +188,8 @@ export default {
             dispatcher: this.$store.dispatch,
             action: action,
             imagesAttrName: imagesAttrName,
-            additionalFormData: additionalFormData
+            additionalFormData: additionalFormData,
+            imageUploadedCallback: this.imageUploadedCallback
           },
           // ImageResize: {},
           toolbar: {
@@ -198,6 +199,7 @@ export default {
                 imageButtonHandler({
                   imagesAttrName,
                   additionalFormData,
+                  imageUploadedCallback: this.imageUploadedCallback,
                   dispatcher: this.$store.dispatch,
                   action: action,
                   quill: this.$refs.quill.quill
@@ -230,6 +232,7 @@ export default {
 
   created() {
     if (this.product.isNewRecord()) {
+      this.form.uploaded_image_ids = []
       this.form.properties = [propertyTemplate()]
       this.form.price = {
         original: 0,
@@ -237,6 +240,7 @@ export default {
         discounted: 0
       }
     } else {
+      this.form.uploaded_image_ids = []
       this.form.price = {
         original: this.product.original_price / 100,
         sell: this.product.sell_price / 100,
@@ -254,6 +258,14 @@ export default {
 
     deleteProperty(index) {
       this.form.properties.splice(index, 1)
+    },
+
+    /*
+    * Quill 的 module ImageHandler 和 imageButtonHandler 在上傳照片之後，可接受一個 Callback
+    * 這邊把上傳後的圖片 ID 記錄下來，一併在儲存 product 時送給後端做後續處理。
+    */
+    imageUploadedCallback(image) {
+      this.form.uploaded_image_ids.push(parseInt(image.id))
     },
 
     submitForm() {

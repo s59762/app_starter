@@ -9,6 +9,7 @@ class Admin::ProductForm < ApplicationForm
              :is_preorder,
              :properties
   property :price, virtual: true
+  property :uploaded_image_ids, virtual: true
 
   validates :name,
             :description, presence: true
@@ -49,15 +50,18 @@ class Admin::ProductForm < ApplicationForm
     end
   end
 
-  def link_product_images(ids)
-    Product::Image.where(id: ids).each do |image|
+  # 將有出現在 description 中的圖片與此 product 建立關聯
+  def link_product_images(description_image_ids)
+    Product::Image.where(id: description_image_ids).each do |image|
       image.update product_id: model.id
     end
   end
 
-  def delete_unused_images(new_ids)
-    current_ids = model.description_images.select(:id).map(&:id)
-    Product::Image.where(id: current_ids - new_ids).destroy_all
-    Product::Image.where(product_id: nil).destroy_all
+  # 刪除 description 編輯後不再需要的圖片
+  def delete_unused_images(description_image_ids)
+    current_description_image_ids = model.description_images.select(:id).map(&:id) # 目前與 product 有關聯的 description 圖片
+    unused_image_ids = uploaded_image_ids + current_description_image_ids - description_image_ids
+
+    Product::Image.where(id: unused_image_ids).destroy_all
   end
 end
