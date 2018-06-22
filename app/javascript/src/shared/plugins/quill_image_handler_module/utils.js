@@ -1,5 +1,13 @@
 // private methods
 
+/**
+ * 檢查 paste or drop 的檔案是否本身為 data-uri 或 image link，若是的話透過 Promise#resolve
+ * 回傳檔案內容或連結的的 string；反之透過 Promise#reject 告知檔案需自行上傳或轉為 base64
+ *
+ * @export
+ * @param {Array} files 從 paste or drop 事件得到的檔案
+ * @returns Promise object
+ */
 export function _checkForOwnImageUrl(files) {
   return new Promise((resolve, reject) => {
     if (files[0].kind === 'string') {
@@ -27,8 +35,8 @@ export function _checkForOwnImageUrl(files) {
  * @returns {Object} 回傳建立好的 FormData 物件
  */
 export function _generateFormData(files, imagesAttrName, additionalFormData) {
-  let formData = new FormData()
-  ;[].forEach.call(files, file => {
+  let formData = new FormData();
+  [].forEach.call(files, file => {
     const blob = file.getAsFile ? file.getAsFile() : file
 
     if (blob instanceof Blob) {
@@ -62,7 +70,8 @@ export function _base64encode(files, callback) {
   }
 
   // 找出事件中的 file 物件，若是圖片則進行處理
-  ;[].forEach.call(files, file => {
+  ;
+  [].forEach.call(files, file => {
     if (!file.type.match(/^image\/(gif|jpe?g|a?png)/i)) {
       return
     }
@@ -95,7 +104,7 @@ export function _base64encode(files, callback) {
  * `document.caretRangeFromPoint()` 可支援 WebKit 核心的瀏覽器
  * `document.caretPositionFromPoint()` 可支援 Firefox
  *
- * @param {Event} event 瀏覽器的 Event 事件物件
+ * @param {Event} event 瀏覽器的 Event 物件
  */
 export function _setInsertPositionViaCaret(event) {
   if (document.caretRangeFromPoint) {

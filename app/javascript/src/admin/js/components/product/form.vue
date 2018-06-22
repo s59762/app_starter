@@ -148,7 +148,6 @@ const action = 'products/uploadImages'
 const additionalFormData = formData => {
   formData.append('product[use_case]', 'description')
 }
-
 const propertyTemplate = function() {
   return {
     name: '',

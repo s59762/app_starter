@@ -1,4 +1,9 @@
-import { _checkForOwnImageUrl, _generateFormData, _base64encode, _setInsertPositionViaCaret } from './utils'
+import {
+  _checkForOwnImageUrl,
+  _generateFormData,
+  _base64encode,
+  _setInsertPositionViaCaret
+} from './utils'
 
 const DEFAULT_OPTIONS = {
   dispatcher: null,

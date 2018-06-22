@@ -1,4 +1,6 @@
-import { _generateFormData } from './utils'
+import {
+  _generateFormData
+} from './utils'
 
 const DEFAULT_OPTIONS = {
   quill: null,
@@ -26,7 +28,7 @@ export default function imageButtonHandler(options = {}) {
     fileInput.id = 'quill-image-input'
     fileInput.style.display = 'none'
 
-    fileInput.addEventListener('change', function() {
+    fileInput.addEventListener('change', function () {
       let files = fileInput.files
       let formData = _generateFormData(files, imagesAttrName, additionalFormData)
 
