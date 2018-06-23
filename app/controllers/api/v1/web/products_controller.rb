@@ -2,15 +2,16 @@ class Api::V1::Web::ProductsController < Api::V1::Web::BaseController
   before_action :for_admin_only!, except: %i(show)
 
   def index
-    @products = FetchingDataService.call(Product, params)
+    products = FetchingDataService.call(Product, params)
+    result = Api::DataCacheService.call(products, request)
 
-    render json: @products
+    render json: result
   end
 
   def show
-    @product = Product.find(params[:id])
+    product = Product.find(params[:id])
 
-    render json: @product,
+    render json: product,
            include: [:normal_images]
   end
 
