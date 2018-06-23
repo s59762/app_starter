@@ -4,7 +4,7 @@ zh-TW:
       sidebar:
         general_info: 一般資訊
         product_info: 商品資訊
-        order_info: 訂單資訊
+        sales_info: 銷售相關資訊
         system_config: 系統管理
       login:
         title: 請先登入
