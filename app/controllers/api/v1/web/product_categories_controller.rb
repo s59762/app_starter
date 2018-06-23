@@ -1,9 +1,10 @@
 class Api::V1::Web::ProductCategoriesController < Api::V1::Web::BaseController
   def index
-    @categories = FetchingDataService.call(ProductCategory, params).includes(:parent, :sub_categories)
+    @categories = FetchingDataService.call(ProductCategory.top_level_only, params).includes(:parent, :sub_categories)
 
     render json: @categories,
-           show_sub_categories: true
+           show_sub_categories: true,
+           include: [:sub_categories]
   end
 
   def create
