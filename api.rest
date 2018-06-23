@@ -245,7 +245,7 @@ content-type: application/vnd.api+json
 
 ###
 
-# create a new product
+# update a product
 PUT {{host_v1}}/products/{{productList.response.body.data[0].id}} HTTP/1.1
 Authorization: Bearer {{adminJWT}}
 content-type: application/vnd.api+json
