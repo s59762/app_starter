@@ -10,7 +10,8 @@ class Api::V1::Web::ProductsController < Api::V1::Web::BaseController
   def show
     @product = Product.find(params[:id])
 
-    render json: @product
+    render json: @product,
+           include: [:normal_images]
   end
 
   def create

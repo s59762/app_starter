@@ -21,6 +21,22 @@
                     data-behavior="product-name"
                     @input="errors.clear('name')")
 
+          b-field(:label="attributeLocaleText('product', 'category_id')"
+                  :type="errors.errorClassAt('category_id')"
+                  :message="errors.get('category_id')")
+            b-select(v-model="form.category_id"
+                     :loading="isCategoriesLoading"
+                     :placeholder="messageLocaleText('help.please_select_a_category')"
+                     @input="errors.clear('category_id')"
+                     expanded)
+              optgroup(v-for="topLevelCategory in topLevelCategories"
+                       :label="topLevelCategory.name"
+                       :key="topLevelCategory.id")
+                option(v-for="subCategory in topLevelCategory.sub_categories"
+                      :value="subCategory.id"
+                      :key="subCategory.id")
+                  | {{ findCategoryBy(subCategory.id).name }}
+
           b-field(:label="attributeLocaleText('product', 'description')"
                   :type="errors.errorClassAt('description')"
                   :message="errors.get('description')")
@@ -221,6 +237,18 @@ export default {
       return this.$store.getters['products/isLoading']
     },
 
+    isCategoriesLoading() {
+      return this.$store.getters['productCategories/isLoading']
+    },
+
+    categories() {
+      return this.$store.getters['productCategories/all']
+    },
+
+    topLevelCategories() {
+      return this.categories.filter(category => category.parent_id === null)
+    },
+
     returnUrlParams() {
       if (this.product.isNewRecord()) {
         return 'product_added=1'
@@ -231,6 +259,7 @@ export default {
   },
 
   created() {
+    this.$store.dispatch('productCategories/all')
     if (this.product.isNewRecord()) {
       this.form.uploaded_image_ids = []
       this.form.properties = [propertyTemplate()]
@@ -252,6 +281,10 @@ export default {
   // mounted() {},
 
   methods: {
+    findCategoryBy(id) {
+      return this.categories.find(category => category.id === id)
+    },
+
     addProperty() {
       this.form.properties.push(propertyTemplate())
     },

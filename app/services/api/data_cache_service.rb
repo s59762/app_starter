@@ -88,8 +88,13 @@ class Api::DataCacheService
   private
 
   def cache_key_with_user_scope
-    return collection.cache_key unless user_scope
-    "#{user_scope}-#{collection.cache_key}"
+    default_cache_key = collection.cache_key
+
+    default_cache_key += Digest::MD5.hexdigest(collection.pluck('id').to_s) if collection.is_a? ActiveRecord::Relation
+
+    return default_cache_key unless user_scope
+
+    "#{user_scope}-#{default_cache_key}"
   end
 
   def structured_options

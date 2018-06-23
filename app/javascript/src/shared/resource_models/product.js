@@ -8,19 +8,29 @@ const OPTIONS = {
   scope: 'web',
   resourceType: 'products',
   attributes: [
-    'id',
+    'category_id',
     'cover',
+    'created_at',
     'description',
+    'discount_rate',
     'discounted_price',
+    'id',
     'is_preorder',
     'name',
     'original_price',
     'properties',
     'sell_price',
-    'created_at',
-    'discount_rate'
   ],
-  editableAttributes: ['cover', 'description', 'price', 'is_preorder', 'name', 'properties', 'uploaded_image_ids']
+  editableAttributes: [
+    'category_id',
+    'cover',
+    'description',
+    'is_preorder',
+    'name',
+    'price',
+    'properties',
+    'uploaded_image_ids'
+  ]
 }
 
 export default class Product extends ResourceModelBase {
