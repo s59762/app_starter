@@ -29,6 +29,7 @@ zh-TW:
         main_title: 品牌管理
         index: 列表
         show: 詳細資料
+        new: 新增品牌
         edit: 編輯品牌
       product_categories:
         main_title: 商品分類管理
