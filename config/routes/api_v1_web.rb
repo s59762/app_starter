@@ -16,7 +16,9 @@ namespace :api do
       resources :users, only: %i(index show)
 
       # Brand resource
-      resources :brands, only: %i(index show create update)
+      resources :brands, only: %i(index show create update) do
+        resource :logo, only: :update, controller: 'brands/logo'
+      end
 
       # ProductCategory resource
       resources :product_categories, only: %i(index create update)

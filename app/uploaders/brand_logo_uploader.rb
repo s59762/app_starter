@@ -1,6 +1,6 @@
 class BrandLogoUploader < CarrierWave::Uploader::Base
   # delete empty folder after remove uploaded files
-  before :cache, :save_original_filename
+  # before :cache, :save_original_filename
   after :remove, :delete_empty_upstream_dirs
 
   include CarrierWave::MiniMagick
@@ -15,11 +15,11 @@ class BrandLogoUploader < CarrierWave::Uploader::Base
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
-  process resize_to_fill: [1024, 1024], if: :image?
+  process resize_to_fill: [512, 512], if: :image?
 
   # Create different versions of your uploaded files:
   version :medium, if: :image? do
-    process resize_to_fill: [512, 512]
+    process resize_to_fill: [256, 256]
   end
   version :thumb, if: :image? do
     process resize_to_fill: [128, 128]
@@ -60,7 +60,7 @@ class BrandLogoUploader < CarrierWave::Uploader::Base
     model.instance_variable_get(var) || model.instance_variable_set(var, SecureRandom.hex(length / 2))
   end
 
-  def save_original_filename(file)
-    model.original_filename ||= file.original_filename if file.respond_to?(:original_filename)
-  end
+  # def save_original_filename(file)
+  #   model.original_filename ||= file.original_filename if file.respond_to?(:original_filename)
+  # end
 end
