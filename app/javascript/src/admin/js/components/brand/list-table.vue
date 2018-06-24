@@ -30,6 +30,7 @@
 
       b-table-column.options(:label="actionLocaleText('admin', 'options')"
                              numeric)
+        edit-brand-button(:brand="props.row")
 
     template(slot='empty')
       section.section
@@ -42,10 +43,14 @@
 </template>
 
 <script>
+import EditBrandButton from './edit-button.vue'
 import backendPaginateFilterSortAndSearchableMixin from '../mixins/backend_paginate_filter_sort_and_searchable_mixin'
 
 export default {
-  // components: {},
+  components: {
+    EditBrandButton
+  },
+
   mixins: [backendPaginateFilterSortAndSearchableMixin],
   // props: {},
   data() {

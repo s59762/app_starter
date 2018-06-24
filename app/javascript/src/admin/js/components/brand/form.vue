@@ -23,6 +23,7 @@
           :type="errors.errorClassAt('description')"
           :message="errors.get('description')")
     b-input(type="textarea"
+            v-model="form.description"
             @input="errors.clear('description')")
 
 
