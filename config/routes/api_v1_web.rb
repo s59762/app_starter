@@ -13,7 +13,11 @@ namespace :api do
       end
 
       # User resource
-      resources :users, only: %i(index show)
+      resources :users, only: %i(index show) do
+        collection do
+          resources :collections, only: %i(index destroy), controller: 'users/collections', as: :user_collections
+        end
+      end
 
       # Brand resource
       resources :brands, only: %i(index show create update) do
@@ -29,6 +33,8 @@ namespace :api do
           # Product image resource
           resources :images, only: %i(create), controller: 'products/images'
         end
+
+        resource :collect, only: %i(create destroy), controller: 'products/collect'
       end
 
       # Site config

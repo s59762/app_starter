@@ -1,0 +1,28 @@
+zh-TW:
+  # model and attributes name
+  activerecord: &default
+    models:
+      user/collection:
+        one: 收藏商品
+        other: 收藏商品
+
+    attributes:
+      user/collection:
+        product_id: 商品
+        product: 商品
+        product_name: 商品名稱
+        product_pic: 商品圖片
+
+    errors:
+      models:
+        user/collection:
+          attributes:
+  activemodel: *default
+
+  # Enums
+  enums:
+    user/collection:
+
+  # AASM state machine
+  aasm_state:
+    user/collection:
