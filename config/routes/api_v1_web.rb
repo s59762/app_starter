@@ -29,6 +29,8 @@ namespace :api do
           # Product image resource
           resources :images, only: %i(create), controller: 'products/images'
         end
+
+        resource :collect, only: %i(create destroy), controller: 'products/collect'
       end
 
       # Site config

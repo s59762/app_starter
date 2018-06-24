@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   end
 
   devise_for :users, path: :user,
-                     skip: %w[password],
+                     skip: %w(password),
                      path_names: {
                        sign_in: 'login',
                        sign_out: 'logout'
@@ -18,7 +18,7 @@ Rails.application.routes.draw do
                        sessions: 'devise/users/sessions'
                      }
   devise_for :admins, path: 'admin',
-                      skip: %w[password],
+                      skip: %w(password),
                       path_names: {
                         sign_in: 'login',
                         sign_out: 'logout'
