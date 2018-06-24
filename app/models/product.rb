@@ -21,13 +21,13 @@
 #
 
 class Product < ApplicationRecord
-  allow_sort_fields :id,
-                    :name,
+  allow_sort_fields :'products.id',
+                    :'products.name',
                     :category_id,
                     :original_price,
                     :sell_price,
                     :discounted_price,
-                    :created_at
+                    :'products.created_at'
 
   monetize :original_price_cents,
            :sell_price_cents,

@@ -17,13 +17,13 @@
 
     template(slot-scope="props")
 
-      b-table-column(field="id"
+      b-table-column(field="products.id"
                      label="ID"
                      sortable
                      numbric)
         | {{props.row.id}}
 
-      b-table-column(field="name"
+      b-table-column(field="products.name"
                      :label="attributeLocaleText('product', 'name')"
                      sortable)
         | {{props.row.name}}
@@ -86,7 +86,8 @@ export default {
     return {
       resourceType: 'products',
       currentUrlPath: '/admin/products',
-      availableFilters: ['']
+      availableFilters: [''],
+      sortField: 'products.created_at'
     }
   },
 
