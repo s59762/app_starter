@@ -20,6 +20,7 @@ const OPTIONS = {
     'original_price',
     'properties',
     'sell_price',
+    'updated_at'
   ],
   editableAttributes: [
     'category_id',

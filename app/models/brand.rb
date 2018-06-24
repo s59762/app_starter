@@ -13,4 +13,6 @@
 
 class Brand < ApplicationRecord
   has_many :products, dependent: :nullify
+
+  mount_uploader :logo, BrandLogoUploader
 end
