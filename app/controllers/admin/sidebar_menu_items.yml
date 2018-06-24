@@ -15,8 +15,8 @@
 
 - title: <%= I18n.t('page_titles.admin.sidebar.product_info') %>
   menus:
-    - path: '#'
-      active_by: '#'
+    - path: <%= Rails.application.routes.url_helpers.admin_brands_path %>
+      active_by: <%= Rails.application.routes.url_helpers.admin_brands_path %>
       icon: fa-address-card-o
       title: 品牌管理
       policy: brand
