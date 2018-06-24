@@ -10,6 +10,7 @@ const OPTIONS = {
     'name',
     'introduce',
     'description',
+    'products_count',
     'created_at',
     'updated_at'
   ],

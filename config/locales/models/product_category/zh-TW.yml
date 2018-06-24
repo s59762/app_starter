@@ -14,6 +14,7 @@ zh-TW:
         has_sub_categories: 擁有子分類
         sub_categories: 子分類
         sub_category_name: 子分類名稱
+        products_count: 產品數量
 
     errors:
       models:

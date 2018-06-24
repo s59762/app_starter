@@ -10,7 +10,11 @@ b-table.vc-product-category-sub-categories-table(:data="subCategories"
 
     b-table-column(field="name"
                    :label="attributeLocaleText('product_category', 'sub_category_name')")
-      | {{props.row.name}}
+      | {{ props.row.name }}
+
+    b-table-column(field="products_count"
+                   :label="attributeLocaleText('product_category', 'products_count')")
+      | {{ props.row.products_count }}
 
     b-table-column(:label="actionLocaleText('admin', 'options')"
                    width="50")
@@ -18,7 +22,7 @@ b-table.vc-product-category-sub-categories-table(:data="subCategories"
 
   template(slot='empty')
     .content.has-text-grey.has-text-centered
-      p {{messageLocaleText('there_is_no_sub_categories_for_now')}}
+      p {{ messageLocaleText('there_is_no_sub_categories_for_now') }}
 
 </template>
 

@@ -19,9 +19,14 @@
 
       b-table-column(field="brands.name"
                      :label="attributeLocaleText('brand', 'name')"
+                     sortable)
+        | {{ props.row.name }}
+
+      b-table-column(field="brands.products_count"
+                     :label="attributeLocaleText('brand', 'products_count')"
                      sortable
                      numbric)
-        | {{props.row.name}}
+        | {{ props.row.products_count }}
 
       b-table-column.options(:label="actionLocaleText('admin', 'options')"
                              numeric)
@@ -32,7 +37,7 @@
           p
             b-icon(icon='times'
                    size='is-large')
-          p {{messageLocaleText('there_is_no_data_for_now')}}
+          p {{ messageLocaleText('there_is_no_data_for_now') }}
 
 </template>
 

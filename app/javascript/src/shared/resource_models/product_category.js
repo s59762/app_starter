@@ -13,6 +13,7 @@ const OPTIONS = {
     'parent_id',
     'sub_categories',
     'products',
+    'products_count',
     'created_at',
     'updated_at'
   ],
