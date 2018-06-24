@@ -46,4 +46,7 @@ RSpec.describe User, type: :model do
       expect(subject[:ref]).to eq expected_jwt_payload[:ref]
     end
   end
+
+  # associations
+  it { should have_many :collections }
 end

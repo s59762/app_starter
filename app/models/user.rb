@@ -27,6 +27,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  has_many :collections, class_name: 'User::Collection', dependent: :destroy
+
   # 產生 JWT 供 API 認證身份
   def issue_jwt
     JsonWebToken.encode(sub: id,
