@@ -1,5 +1,6 @@
 class Api::V1::Web::Users::CollectionsController < Api::V1::Web::BaseController
   def index
+    # TODO: this API is for User only
     collections = FetchingDataService.call(current_api_user.collections, params)
     result = Api::DataCacheService.call(collections, request)
 
@@ -7,6 +8,7 @@ class Api::V1::Web::Users::CollectionsController < Api::V1::Web::BaseController
   end
 
   def destroy
+    # TODO: this API is for User only
     collection = current_api_user.collections.find(params[:id])
 
     collection.destroy

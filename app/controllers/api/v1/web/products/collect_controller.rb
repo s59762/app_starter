@@ -1,5 +1,6 @@
 class Api::V1::Web::Products::CollectController < Api::V1::Web::BaseController
   def create
+    # TODO: this API is for User only
     if current_api_user.collections.find_by(product_id: params[:product_id])
       render json: { messages: ['product in collections already.'] },
              status: :bad_request
@@ -12,6 +13,7 @@ class Api::V1::Web::Products::CollectController < Api::V1::Web::BaseController
   end
 
   def destroy
+    # TODO: this API is for User only
     collection = current_api_user.collections.find_by(product_id: params[:product_id])
 
     if collection
