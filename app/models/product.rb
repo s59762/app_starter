@@ -2,10 +2,10 @@
 #
 # Table name: products
 #
-#  id                        :integer          not null, primary key
+#  id                        :bigint(8)        not null, primary key
 #  name                      :string
 #  description               :text
-#  category_id               :integer
+#  category_id               :bigint(8)
 #  cover                     :integer
 #  original_price_cents      :integer          default(0), not null
 #  original_price_currency   :string           default("TWD"), not null
@@ -17,6 +17,7 @@
 #  properties                :jsonb
 #  created_at                :datetime         not null
 #  updated_at                :datetime         not null
+#  brand_id                  :bigint(8)
 #
 
 class Product < ApplicationRecord
@@ -32,7 +33,8 @@ class Product < ApplicationRecord
            :sell_price_cents,
            :discounted_price_cents
 
-  belongs_to :category, class_name: 'ProductCategory', optional: true
+  belongs_to :brand, optional: true, touch: true
+  belongs_to :category, class_name: 'ProductCategory', optional: true, touch: true
   has_many :images, class_name: 'Product::Image', dependent: :destroy
   has_many :normal_images, -> { where(use_case: :normal) }, class_name: 'Product::Image'
   has_many :description_images, -> { where(use_case: :description) }, class_name: 'Product::Image'

@@ -1,18 +1,21 @@
 # == Schema Information
 #
-# Table name: product_categories
+# Table name: brands
 #
 #  id          :bigint(8)        not null, primary key
 #  name        :string
+#  introduce   :string
 #  description :string
-#  parent_id   :bigint(8)
+#  logo        :string
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #
 
 FactoryBot.define do
-  factory :product_category do
-    name 'MyString'
-    description 'MyString'
+  factory :brand do
+    name "MyString"
+    introduce "MyString"
+    description "MyString"
+    logo "MyString"
   end
 end
