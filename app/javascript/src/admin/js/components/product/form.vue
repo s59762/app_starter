@@ -37,6 +37,19 @@
                       :key="subCategory.id")
                   | {{ findCategoryBy(subCategory.id).name }}
 
+          b-field(:label="attributeLocaleText('product', 'brand_id')"
+                  :type="errors.errorClassAt('brand_id')"
+                  :message="errors.get('brand_id')")
+            b-select(v-model="form.brand_id"
+                     :loading="isCategoriesLoading"
+                     :placeholder="messageLocaleText('help.please_select_a_brand')"
+                     @input="errors.clear('brand_id')"
+                     expanded)
+              option(v-for="brand in brands"
+                    :value="brand.id"
+                    :key="brand.id")
+                | {{ brand.name }}
+
           b-field(:label="attributeLocaleText('product', 'description')"
                   :type="errors.errorClassAt('description')"
                   :message="errors.get('description')")
@@ -241,8 +254,16 @@ export default {
       return this.$store.getters['productCategories/isLoading']
     },
 
+    isBrandsLoading() {
+      return this.$store.getters['brands/isLoading']
+    },
+
     categories() {
       return this.$store.getters['productCategories/all']
+    },
+
+    brands() {
+      return this.$store.getters['brands/all']
     },
 
     topLevelCategories() {
@@ -260,6 +281,7 @@ export default {
 
   created() {
     this.$store.dispatch('productCategories/all')
+    this.$store.dispatch('brands/all')
     if (this.product.isNewRecord()) {
       this.form.uploaded_image_ids = []
       this.form.properties = [propertyTemplate()]

@@ -26,6 +26,7 @@ class ProductSerializer < ApplicationSerializer
              :description,
              :discounted_price,
              :is_preorder,
+             :brand_id,
              :category_id,
              :name,
              :original_price,
