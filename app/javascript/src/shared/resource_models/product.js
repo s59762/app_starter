@@ -8,6 +8,7 @@ const OPTIONS = {
   scope: 'web',
   resourceType: 'products',
   attributes: [
+    'brand_id',
     'category_id',
     'cover',
     'created_at',
@@ -20,8 +21,10 @@ const OPTIONS = {
     'original_price',
     'properties',
     'sell_price',
+    'updated_at'
   ],
   editableAttributes: [
+    'brand_id',
     'category_id',
     'cover',
     'description',

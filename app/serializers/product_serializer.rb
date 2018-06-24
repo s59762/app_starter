@@ -2,10 +2,10 @@
 #
 # Table name: products
 #
-#  id                        :integer          not null, primary key
+#  id                        :bigint(8)        not null, primary key
 #  name                      :string
 #  description               :text
-#  category_id               :integer
+#  category_id               :bigint(8)
 #  cover                     :integer
 #  original_price_cents      :integer          default(0), not null
 #  original_price_currency   :string           default("TWD"), not null
@@ -17,6 +17,7 @@
 #  properties                :jsonb
 #  created_at                :datetime         not null
 #  updated_at                :datetime         not null
+#  brand_id                  :bigint(8)
 #
 
 class ProductSerializer < ApplicationSerializer
@@ -25,20 +26,23 @@ class ProductSerializer < ApplicationSerializer
              :description,
              :discounted_price,
              :is_preorder,
+             :brand_id,
              :category_id,
              :name,
              :original_price,
              :properties,
              :sell_price,
              :created_at,
+             :updated_at,
              :discount_rate
 
+  belongs_to :brand, optional: true
   belongs_to :category, class_name: 'ProductCategory', optional: true
   has_many :images, class_name: 'Product::Image', dependent: :destroy, if: -> { instance_options[:show_images] }
   has_many :normal_images, class_name: 'Product::Image', if: -> { instance_options[:show_normal_images] }
   has_many :description_images, class_name: 'Product::Image', if: -> { instance_options[:show_description_images] }
 
-  to_unix_time :created_at
+  to_unix_time :created_at, :updated_at
   money_to_integer :original_price,
                    :sell_price,
                    :discounted_price

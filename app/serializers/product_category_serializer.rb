@@ -2,18 +2,21 @@
 #
 # Table name: product_categories
 #
-#  id          :integer          not null, primary key
-#  name        :string
-#  description :string
-#  parent_id   :integer
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
+#  id             :bigint(8)        not null, primary key
+#  name           :string
+#  description    :string
+#  parent_id      :bigint(8)
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  products_count :integer          default(0)
 #
+
 class ProductCategorySerializer < ApplicationSerializer
   attributes :id,
              :name,
              :description,
              :parent_id,
+             :products_count,
              :created_at,
              :updated_at
 

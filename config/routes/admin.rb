@@ -3,25 +3,28 @@ namespace :admin do
   root to: redirect('admin/dashboard')
 
   # admin profile page
-  resource :profile, only: %i[show update], controller: 'profile' do
-    resource :password, only: %i[update], controller: 'profile/password'
+  resource :profile, only: %i(show update), controller: 'profile' do
+    resource :password, only: %i(update), controller: 'profile/password'
   end
 
   # dashboard
-  resource :dashboard, only: %i[show], controller: 'dashboard'
+  resource :dashboard, only: %i(show), controller: 'dashboard'
 
   # admin management
-  resources :admins, only: %i[index show]
+  resources :admins, only: %i(index show)
 
   # user management
-  resources :users, only: %i[index show]
+  resources :users, only: %i(index show)
+
+  # Brand resource
+  resources :brands, only: %i(index)
 
   # product category management
-  resources :product_categories, only: %i[index]
+  resources :product_categories, only: %i(index)
 
   # product management
-  resources :products, only: %i[index new edit]
+  resources :products, only: %i(index new edit)
 
   # system config
-  resource :system_config, only: %i[show], controller: 'system_config'
+  resource :system_config, only: %i(show), controller: 'system_config'
 end

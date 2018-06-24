@@ -5,6 +5,7 @@ import * as actions from './actions'
 import mutations from './mutations'
 import admins from '../../../shared/store_modules/admins'
 import users from '../../../shared/store_modules/users'
+import brands from '../../../shared/store_modules/brands'
 import productCategories from '../../../shared/store_modules/product_categories'
 import products from '../../../shared/store_modules/products'
 import siteConfigs from '../../../shared/store_modules/site_configs'
@@ -33,6 +34,7 @@ export default new Vuex.Store({
   modules: {
     admins,
     users,
+    brands,
     productCategories,
     products,
     siteConfigs

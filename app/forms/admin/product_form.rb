@@ -5,6 +5,7 @@ class Admin::ProductForm < ApplicationForm
   properties :name,
              :description,
              :category_id,
+             :brand_id,
              :cover,
              :is_preorder,
              :properties
@@ -12,6 +13,7 @@ class Admin::ProductForm < ApplicationForm
   property :uploaded_image_ids, virtual: true
 
   validates :name,
+            :category_id,
             :description, presence: true
   validate :valid_price_params?
 

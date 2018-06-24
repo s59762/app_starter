@@ -2,10 +2,10 @@
 #
 # Table name: products
 #
-#  id                        :integer          not null, primary key
+#  id                        :bigint(8)        not null, primary key
 #  name                      :string
 #  description               :text
-#  category_id               :integer
+#  category_id               :bigint(8)
 #  cover                     :integer
 #  original_price_cents      :integer          default(0), not null
 #  original_price_currency   :string           default("TWD"), not null
@@ -17,11 +17,13 @@
 #  properties                :jsonb
 #  created_at                :datetime         not null
 #  updated_at                :datetime         not null
+#  brand_id                  :bigint(8)
 #
 
 require 'rails_helper'
 
 RSpec.describe Product, type: :model do
+  it { should belong_to :brand }
   it { should belong_to :category }
   it { should have_many :images }
   it { should have_many :images }

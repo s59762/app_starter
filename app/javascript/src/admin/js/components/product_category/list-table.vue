@@ -18,12 +18,17 @@
       b-table-column(field="name"
                     :label="attributeLocaleText('product_category', 'name')"
                     sortable)
-        | {{props.row.name}}
+        | {{ props.row.name }}
 
-      b-table-column(field="name"
+      b-table-column(field="parent_id"
                      :label="attributeLocaleText('product_category', 'has_sub_categories')"
                      centered)
         i.sub-categories-indicator.fa(:class="hasSubCategories(props.row)")
+
+      b-table-column(field="products_count"
+                     :label="attributeLocaleText('product_category', 'products_count')"
+                     centered)
+        | {{ calculateTopLevelCategoryProductsCount(props.row) }}
 
       b-table-column(:label="actionLocaleText('admin', 'options')"
                      numeric)
@@ -104,6 +109,15 @@ export default {
 
     categoryAddedHandler() {
       this.$emit('product-category-added')
+    },
+
+    calculateTopLevelCategoryProductsCount(topLevelCategory) {
+      const subCategoryIds = topLevelCategory.sub_categories.map(sub_category => sub_category.id)
+      return this.categories
+        .filter(category => subCategoryIds.includes(category.id))
+        .reduce((accumulator, currentCategory) => {
+          return accumulator + currentCategory.products_count
+        }, topLevelCategory.products_count)
     }
   }
 }

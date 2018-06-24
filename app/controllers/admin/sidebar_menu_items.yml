@@ -15,11 +15,23 @@
 
 - title: <%= I18n.t('page_titles.admin.sidebar.product_info') %>
   menus:
+    - path: <%= Rails.application.routes.url_helpers.admin_brands_path %>
+      active_by: <%= Rails.application.routes.url_helpers.admin_brands_path %>
+      icon: fa-address-card-o
+      title: 品牌管理
+      policy: brand
+      action: index
     - path: <%= Rails.application.routes.url_helpers.admin_product_categories_path %>
       active_by: <%= Rails.application.routes.url_helpers.admin_product_categories_path %>
       icon: fa-folder-open
       title: <%= I18n.t('page_titles.admin.product_categories.main_title') %>
       policy: productCategory
+      action: index
+    - path: '#'
+      active_by: '#'
+      icon: fa-truck
+      title: 運送規則管理
+      policy: shippingRule
       action: index
     - path: '#'
       active_by: <%= Rails.application.routes.url_helpers.admin_products_path %>
@@ -33,6 +45,12 @@
           icon: fa-list
           path: <%= Rails.application.routes.url_helpers.admin_products_path %>
           title: <%= I18n.t('page_titles.admin.products.index') %>
+    - path: '#'
+      active_by: '#'
+      icon: fa-birthday-cake
+      title: 活動管理
+      policy: event
+      action: index
 
 - title: <%= I18n.t('page_titles.admin.sidebar.sales_info') %>
   menus:
