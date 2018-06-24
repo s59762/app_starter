@@ -6,7 +6,7 @@
 <title>
   Class: User
   
-    &mdash; Documentation by YARD 0.9.12
+    &mdash; Documentation by YARD 0.9.14
   
 </title>
 
@@ -109,7 +109,7 @@
 
 <p>Table name: users</p>
 
-<p>id                     :integer          not null, primary key
+<p>id                     :bigint(8)        not null, primary key
  email                  :string           default(&quot;&quot;), not null
  encrypted_password     :string           default(&quot;&quot;), not null
  reset_password_token   :string
@@ -129,25 +129,16 @@
 <div class="tags">
   
 
-</div>
-  <h2>Constant Summary</h2>
-  <dl class="constants">
+</div><h2>Defined Under Namespace</h2>
+<p class="children">
+  
     
-      <dt id="FILTERABLE_FIELDS-constant" class="">FILTERABLE_FIELDS =
-        
-      </dt>
-      <dd><pre class="code"><span class='qwords_beg'>%w[</span><span class='words_sep'>]</span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+  
     
-      <dt id="SORTABLE_FIELDS-constant" class="">SORTABLE_FIELDS =
-        
-      </dt>
-      <dd><pre class="code"><span class='qwords_beg'>%w[
-</span><span class='tstring_content'>  id</span><span class='words_sep'>
-</span><span class='tstring_content'>  email</span><span class='words_sep'>
-</span><span class='tstring_content'>  created_at</span><span class='words_sep'>
-</span><span class='tstring_end'>]</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      <strong class="classes">Classes:</strong> <span class='object_link'><a href="User/Collection.html" title="User::Collection (class)">Collection</a></span>, <span class='object_link'><a href="User/CollectionSerializer.html" title="User::CollectionSerializer (class)">CollectionSerializer</a></span>
     
-  </dl>
+  
+</p>
 
 
 
@@ -231,6 +222,13 @@
   
   
   
+  
+  
+  
+  
+  
+  
+  
   <h3 class="inherited">Methods included from <span class='object_link'><a href="BasicScopes.html" title="BasicScopes (module)">BasicScopes</a></span></h3>
   <p class="inherited"><span class='object_link'><a href="BasicScopes.html#included-class_method" title="BasicScopes.included (method)">included</a></span></p>
 
@@ -278,12 +276,12 @@
       <pre class="lines">
 
 
+40
 41
-42
-43</pre>
+42</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 41</span>
+      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 40</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_guest?'>guest?</span>
   <span class='kw'>false</span>
@@ -318,15 +316,15 @@
       <pre class="lines">
 
 
+33
 34
 35
 36
 37
-38
-39</pre>
+38</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 34</span>
+      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 33</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_issue_jwt'>issue_jwt</span>
   <span class='const'><span class='object_link'><a href="JsonWebToken.html" title="JsonWebToken (class)">JsonWebToken</a></span></span><span class='period'>.</span><span class='id identifier rubyid_encode'><span class='object_link'><a href="JsonWebToken.html#encode-class_method" title="JsonWebToken.encode (method)">encode</a></span></span><span class='lparen'>(</span><span class='label'>sub:</span> <span class='id identifier rubyid_id'>id</span><span class='comma'>,</span>

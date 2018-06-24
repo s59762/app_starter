@@ -6,7 +6,7 @@
 <title>
   Class: ProductCategory
   
-    &mdash; Documentation by YARD 0.9.12
+    &mdash; Documentation by YARD 0.9.14
   
 </title>
 
@@ -109,12 +109,13 @@
 
 <p>Table name: product_categories</p>
 
-<p>id          :integer          not null, primary key
- name        :string
- description :string
- parent_id   :integer
- created_at  :datetime         not null
- updated_at  :datetime         not null</p>
+<p>id             :bigint(8)        not null, primary key
+ name           :string
+ description    :string
+ parent_id      :bigint(8)
+ created_at     :datetime         not null
+ updated_at     :datetime         not null
+ products_count :integer          default(0)</p>
 
 
   </div>
@@ -123,25 +124,6 @@
   
 
 </div>
-  <h2>Constant Summary</h2>
-  <dl class="constants">
-    
-      <dt id="FILTERABLE_FIELDS-constant" class="">FILTERABLE_FIELDS =
-        
-      </dt>
-      <dd><pre class="code"><span class='qwords_beg'>%w[</span><span class='words_sep'>]</span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
-    
-      <dt id="SORTABLE_FIELDS-constant" class="">SORTABLE_FIELDS =
-        
-      </dt>
-      <dd><pre class="code"><span class='qwords_beg'>%w[
-</span><span class='tstring_content'>  id</span><span class='words_sep'>
-</span><span class='tstring_content'>  name</span><span class='words_sep'>
-</span><span class='tstring_content'>  created_at</span><span class='words_sep'>
-</span><span class='tstring_end'>]</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
-    
-  </dl>
-
 
 
 
@@ -160,6 +142,13 @@
   <h3 class="inherited">Methods inherited from <span class='object_link'><a href="ApplicationRecord.html" title="ApplicationRecord (class)">ApplicationRecord</a></span></h3>
   <p class="inherited"><span class='object_link'><a href="ApplicationRecord.html#latest_updated_at-class_method" title="ApplicationRecord.latest_updated_at (method)">latest_updated_at</a></span></p>
 
+  
+  
+  
+  
+  
+  
+  
   
   
   

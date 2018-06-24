@@ -6,7 +6,7 @@
 <title>
   Class: ProductSerializer
   
-    &mdash; Documentation by YARD 0.9.12
+    &mdash; Documentation by YARD 0.9.14
   
 </title>
 
@@ -109,10 +109,10 @@
 
 <p>Table name: products</p>
 
-<p>id                        :integer          not null, primary key
+<p>id                        :bigint(8)        not null, primary key
  name                      :string
  description               :text
- category_id               :integer
+ category_id               :bigint(8)
  cover                     :integer
  original_price_cents      :integer          default(0), not null
  original_price_currency   :string           default(&quot;TWD&quot;), not null
@@ -123,7 +123,8 @@
  is_preorder               :boolean          default(FALSE)
  properties                :jsonb
  created_at                :datetime         not null
- updated_at                :datetime         not null</p>
+ updated_at                :datetime         not null
+ brand_id                  :bigint(8)</p>
 
 
   </div>
@@ -215,15 +216,15 @@
       <pre class="lines">
 
 
-46
-47
-48
-49
-50
-51</pre>
+51
+52
+53
+54
+55
+56</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/serializers/product_serializer.rb', line 46</span>
+      <pre class="code"><span class="info file"># File 'app/serializers/product_serializer.rb', line 51</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_discount_rate'>discount_rate</span>
   <span class='kw'>return</span> <span class='float'>1.0</span> <span class='kw'>if</span> <span class='id identifier rubyid_object'>object</span><span class='period'>.</span><span class='id identifier rubyid_discounted_price'>discounted_price</span><span class='period'>.</span><span class='id identifier rubyid_zero?'>zero?</span>

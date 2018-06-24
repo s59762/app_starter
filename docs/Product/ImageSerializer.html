@@ -6,7 +6,7 @@
 <title>
   Class: Product::ImageSerializer
   
-    &mdash; Documentation by YARD 0.9.12
+    &mdash; Documentation by YARD 0.9.14
   
 </title>
 
@@ -103,7 +103,27 @@
   
 </div>
 
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>== Schema Information</p>
 
+<p>Table name: product_images</p>
+
+<p>id                :bigint(8)        not null, primary key
+ image             :string
+ use_case          :integer          default(&quot;normal&quot;)
+ original_filename :string
+ product_id        :bigint(8)
+ created_at        :datetime         not null
+ updated_at        :datetime         not null</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
 
 
 
@@ -198,12 +218,12 @@
       <pre class="lines">
 
 
-14
-15
-16</pre>
+27
+28
+29</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/serializers/product/image_serializer.rb', line 14</span>
+      <pre class="code"><span class="info file"># File 'app/serializers/product/image_serializer.rb', line 27</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_thumb_url'>thumb_url</span>
   <span class='id identifier rubyid_object'>object</span><span class='period'>.</span><span class='id identifier rubyid_image'>image</span><span class='period'>.</span><span class='id identifier rubyid_thumb'>thumb</span><span class='period'>.</span><span class='id identifier rubyid_url'>url</span>
@@ -228,12 +248,12 @@
       <pre class="lines">
 
 
-10
-11
-12</pre>
+23
+24
+25</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/serializers/product/image_serializer.rb', line 10</span>
+      <pre class="code"><span class="info file"># File 'app/serializers/product/image_serializer.rb', line 23</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_url'>url</span>
   <span class='id identifier rubyid_object'>object</span><span class='period'>.</span><span class='id identifier rubyid_image'>image</span><span class='period'>.</span><span class='id identifier rubyid_url'>url</span>
