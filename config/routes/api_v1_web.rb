@@ -14,7 +14,9 @@ namespace :api do
 
       # User resource
       resources :users, only: %i(index show) do
-        resources :collections, only: %i(index destroy), controller: 'users/collections'
+        collection do
+          resources :collections, only: %i(index destroy), controller: 'users/collections', as: :user_collections
+        end
       end
 
       # Brand resource
