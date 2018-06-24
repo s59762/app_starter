@@ -1,0 +1,28 @@
+zh-TW:
+  # model and attributes name
+  activerecord: &default
+    models:
+      brand:
+        one: 品牌
+        other: 品牌
+
+    attributes:
+      brand:
+        name: 名稱
+        introduce: 簡介
+        description: 品牌介紹
+        logo: Logo
+
+    errors:
+      models:
+        brand:
+          attributes:
+  activemodel: *default
+
+  # Enums
+  enums:
+    brand:
+
+  # AASM state machine
+  aasm_state:
+    brand:

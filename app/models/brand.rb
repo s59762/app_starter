@@ -12,6 +12,11 @@
 #
 
 class Brand < ApplicationRecord
+  allow_sort_fields :'brands.id',
+                    :'brands.name',
+                    :'brands.created_at',
+                    :'brands.updated_at'
+
   has_many :products, dependent: :nullify
 
   mount_uploader :logo, BrandLogoUploader
