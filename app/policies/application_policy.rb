@@ -50,4 +50,12 @@ class ApplicationPolicy
       scope
     end
   end
+
+  def admin?
+    user.class.name == 'Admin'
+  end
+
+  def user?
+    user.class.name == 'User'
+  end
 end

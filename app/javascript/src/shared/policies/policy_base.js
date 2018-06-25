@@ -29,4 +29,26 @@ export default class PolicyBase {
   destroy() {
     return false
   }
+
+  // helpers
+
+  isAdmin() {
+    return this.user.type === 'Admin'
+  }
+
+  isUser() {
+    return this.user.type === 'User'
+  }
+
+  isGuest() {
+    return this.user.type === 'Guest'
+  }
+
+  forAdminOwnerAndSuperOnly() {
+    if (this.isAdmin()) {
+      return this.user.isOwner() || this.user.isSuper()
+    } else {
+      return false
+    }
+  }
 }
