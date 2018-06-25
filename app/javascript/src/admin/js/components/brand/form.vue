@@ -143,13 +143,18 @@ export default {
         .then(response => {
           if (model.isNewRecord()) model.id = response.data.data.id
 
+          // 若沒有提供 logo 回傳 false 給下一個步驟
+          if (this.logoImage === null || !this.logoImage.hasImage()) return false
+
           return this.generateFormData()
         })
         .then(formData => {
-          return this.$store.dispatch('brands/updateLogo', {
-            model,
-            formData
-          })
+          if (formData) {
+            return this.$store.dispatch('brands/updateLogo', {
+              model,
+              formData
+            })
+          }
         })
         .then(() => {
           return this.$store.dispatch('addFlashMessage', this.flashMessage)
