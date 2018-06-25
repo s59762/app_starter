@@ -11,6 +11,7 @@ const OPTIONS = {
     'introduce',
     'description',
     'products_count',
+    'logo',
     'created_at',
     'updated_at'
   ],
@@ -31,4 +32,8 @@ export default class Brand extends ResourceModelBase {
   }
 
   // extra methods or helpers here...
+
+  hasLogo() {
+    return this.logo && this.logo.url !== null
+  }
 }

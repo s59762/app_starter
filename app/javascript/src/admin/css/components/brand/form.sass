@@ -1,1 +1,45 @@
 .vc-brand-form
+  $logo-image-size: 200px
+
+  .logo-wrapper
+    position: relative
+    width: $logo-image-size
+    margin: 0 auto
+    > .current-logo
+      box-shadow: 0 0 5px rgba($black, .5)
+    > .update-logo-trigger
+      padding: 0.5rem 0
+      background-color: $info
+      text-align: center
+      color: $white
+      cursor: pointer
+      +from($ipad-pro)
+        display: flex
+        align-items: center
+        justify-content: center
+        position: absolute
+        top: 0
+        left: 0
+        width: $logo-image-size
+        height: $logo-image-size
+        background-color: rgba($black, .8)
+        opacity: 0
+        transition: .3s opacity
+        &:hover
+          opacity: 1
+
+  .croppa-container
+    > canvas
+      border: 5px dashed $grey
+    > .icon-remove
+      position: absolute
+      background-color: $white
+      border-radius: 100px
+      box-shadow: 0 0 5px rgba($black, .5)
+      transition: .3s box-shadow
+      &:hover
+        box-shadow: 0 3px 8px rgba($black, .5)
+    &.croppa--has-target
+      canvas
+        border: none
+        box-shadow: 0 0 5px rgba($black, .5)

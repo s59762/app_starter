@@ -11,6 +11,24 @@
             v-model="form.name"
             @input="errors.clear('name')")
 
+  b-field(:label="attributeLocaleText('brand', 'logo')"
+          :type="errors.errorClassAt('logo')"
+          :message="errors.get('logo')")
+    .logo-wrapper.has-logo(v-if="brand.hasLogo()")
+      img.current-logo(:src="brand.logo.url")
+      .update-logo-trigger(@click="showLogoImageCropper") {{ messageLocaleText('help.click_for_update_logo') }}
+    .logo-wrapper(v-else)
+      croppa(v-model="logoImage"
+           :placeholder="messageLocaleText('help.please_select_a_picture')"
+           :placeholder-font-size="24"
+           remove-button-color="red"
+           :remove-button-size="25"
+           canvas-color="#eee"
+           :width="200"
+           :height="200"
+           :prevent-white-space="true"
+           :show-loading="true")
+
   b-field(:label="attributeLocaleText('brand', 'introduce')"
           :type="errors.errorClassAt('introduce')"
           :message="errors.get('introduce') || messageLocaleText('help.please_make_words_count_about', { count: 200 })")
@@ -54,7 +72,8 @@ export default {
 
   data() {
     return {
-      form: new Form(this.brand)
+      form: new Form(this.brand),
+      logoImage: null
     }
   },
 
@@ -92,6 +111,10 @@ export default {
   // created() {},
   // mounted() {},
   methods: {
+    showLogoImageCropper() {
+      this.brand.logo = null
+    },
+
     submitForm() {
       this.$store
         .dispatch('brands/save', this.form.sync())
