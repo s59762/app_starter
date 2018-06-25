@@ -14,7 +14,7 @@
   b-field(:label="attributeLocaleText('brand', 'logo')"
           :type="errors.errorClassAt('logo')"
           :message="errors.get('logo')")
-    .logo-wrapper.has-logo(v-if="brand.hasLogo()")
+    .logo-wrapper.has-logo(v-if="brand.hasLogo() && !isLogoImageCropperActive")
       img.current-logo(:src="brand.logo.url")
       .update-logo-trigger(@click="showLogoImageCropper") {{ messageLocaleText('help.click_for_update_logo') }}
     .logo-wrapper(v-else)
@@ -26,6 +26,7 @@
            canvas-color="#eee"
            :width="200"
            :height="200"
+           :quality="2.56"
            :prevent-white-space="true"
            :show-loading="true")
 
@@ -73,7 +74,8 @@ export default {
   data() {
     return {
       form: new Form(this.brand),
-      logoImage: null
+      logoImage: null,
+      isLogoImageCropperActive: false
     }
   },
 
@@ -112,14 +114,45 @@ export default {
   // mounted() {},
   methods: {
     showLogoImageCropper() {
-      this.brand.logo = null
+      this.isLogoImageCropperActive = true
+    },
+
+    generateFormData() {
+      let formData = new FormData()
+
+      return new Promise((resolve, reject) => {
+        this.logoImage
+          .promisedBlob('image/jpeg', '0.8')
+          .then(blob => {
+            const file = new File([blob], `logo.jpg`)
+
+            formData.append('brand[logo]', file)
+            resolve(formData)
+          })
+          .catch(errors => {
+            reject(errors)
+          })
+      })
     },
 
     submitForm() {
+      let model = this.brand
+
       this.$store
         .dispatch('brands/save', this.form.sync())
+        .then(response => {
+          if (model.isNewRecord()) model.id = response.data.data.id
+
+          return this.generateFormData()
+        })
+        .then(formData => {
+          return this.$store.dispatch('brands/updateLogo', {
+            model,
+            formData
+          })
+        })
         .then(() => {
-          this.$store.dispatch('addFlashMessage', this.flashMessage)
+          return this.$store.dispatch('addFlashMessage', this.flashMessage)
         })
         .then(() => {
           this.$parent.close()
