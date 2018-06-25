@@ -1,5 +1,7 @@
 class Api::V1::Web::ProductCategoriesController < Api::V1::Web::BaseController
   def index
+    check_policy ProductCategoryPolicy.new(current_api_user, :category).index?
+
     categories = FetchingDataService.call(ProductCategory.top_level_only, params).includes(sub_categories: [:parent, :sub_categories])
     result = Api::DataCacheService.call(categories,
                                         request,
@@ -12,7 +14,10 @@ class Api::V1::Web::ProductCategoriesController < Api::V1::Web::BaseController
   end
 
   def create
-    form = Admin::ProductCategoryForm.new(ProductCategory.new)
+    category = ProductCategory.new
+    form = Admin::ProductCategoryForm.new(category)
+
+    check_policy ProductCategoryPolicy.new(current_api_user, category).create?
 
     return raise ValidationFailureException, form unless form.validate(product_category_params)
 
@@ -23,7 +28,10 @@ class Api::V1::Web::ProductCategoriesController < Api::V1::Web::BaseController
   end
 
   def update
-    form = Admin::ProductCategoryForm.new(ProductCategory.find(params[:id]))
+    category = ProductCategory.find(params[:id])
+    form = Admin::ProductCategoryForm.new(category)
+
+    check_policy ProductCategoryPolicy.new(current_api_user, category).update?
 
     return raise ValidationFailureException, form unless form.validate(product_category_params)
 

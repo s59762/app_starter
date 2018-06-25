@@ -6,40 +6,34 @@ export default class AdminPolicy extends PolicyBase {
   }
 
   index() {
-    if (this.user.type === 'Admin') {
-      return this.user.isSuper() || this.user.isOwner()
-    } else {
-      return false
-    }
+    return this.forAdminOwnerAndSuperOnly()
+  }
+
+  show() {
+    return this.forAdminOwnerAndSuperOrSelfOnly()
   }
 
   roles() {
-    if (this.user.type === 'Admin') {
-      return this.user.isSuper() || this.user.isOwner()
-    } else {
-      return false
-    }
+    return this.forAdminOwnerAndSuperOnly()
   }
 
   create() {
-    if (this.user.type === 'Admin') {
-      return this.user.isSuper() || this.user.isOwner()
-    } else {
-      return false
-    }
+    return this.forAdminOwnerAndSuperOnly()
   }
 
   update() {
-    if (this.user.type === 'Admin') {
-      return this.user.isSuper() || this.user.isOwner()
-    } else {
-      return false
-    }
+    return this.forAdminOwnerAndSuperOnly()
   }
 
   suspend() {
-    if (this.user.type === 'Admin') {
-      return this.user.isSuper() || this.user.isOwner()
+    return this.forAdminOwnerAndSuperOnly()
+  }
+
+  // helpers
+
+  forAdminOwnerAndSuperOrSelfOnly() {
+    if (this.isAdmin()) {
+      return this.user.isOwner() || this.user.isSuper() || this.record.id === this.user.id
     } else {
       return false
     }

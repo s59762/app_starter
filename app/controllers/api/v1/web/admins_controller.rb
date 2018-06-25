@@ -2,20 +2,27 @@ class Api::V1::Web::AdminsController < Api::V1::Web::BaseController
   before_action :for_admin_only!, except: %i(show)
 
   def index
+    check_policy AdminPolicy.new(current_api_user, :admin).index?
+
     admins = FetchingDataService.call(Admin, params)
     result = Api::DataCacheService.call(admins, request)
 
     render json: result
   end
 
-  # def show
-  #   @admin = Admin.find(params[:id])
+  def show
+    admin = Admin.find(params[:id])
 
-  #   render json: @admin
-  # end
+    check_policy AdminPolicy.new(current_api_user, :admin).show?
+
+    render json: admin
+  end
 
   def create
-    form = Admin::NewAdminForm.new(Admin.new)
+    admin = Admin.new
+    form = Admin::NewAdminForm.new(admin)
+
+    check_policy AdminPolicy.new(current_api_user, admin).create?
 
     return raise ValidationFailureException, form unless form.validate(admin_params)
 
@@ -25,7 +32,10 @@ class Api::V1::Web::AdminsController < Api::V1::Web::BaseController
   end
 
   def update
-    form = Admin::EditAdminForm.new(Admin.find(params[:id]))
+    admin = Admin.find(params[:id])
+    form = Admin::EditAdminForm.new(admin)
+
+    check_policy AdminPolicy.new(current_api_user, admin).update?
 
     return raise ValidationFailureException, form unless form.validate(admin_params)
 

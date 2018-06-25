@@ -1,7 +1,9 @@
 class Api::V1::Web::Admins::RolesController < Api::V1::Web::BaseController
   def show
-    @roles = Admin.roles.keys
+    check_policy AdminPolicy.new(current_api_user, :admin).roles?
 
-    render json: { data: @roles }
+    roles = Admin.roles.keys
+
+    render json: { data: roles }
   end
 end

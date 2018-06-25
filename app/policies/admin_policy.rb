@@ -1,22 +1,30 @@
 class AdminPolicy < ApplicationPolicy
   def index?
-    user.super? || user.owner?
+    return user.super? || user.owner? if admin?
+
+    false
+  end
+
+  def show?
+    return user.super? || user.owner? || record == user if admin?
+
+    false
   end
 
   def roles?
-    user.super? || user.owner?
+    index?
   end
 
   def create?
-    user.super? || user.owner?
+    index?
   end
 
   def update?
-    user.super? || user.owner?
+    index?
   end
 
   def suspend?
-    user.super? || user.owner?
+    index?
   end
 
   class Scope < Scope

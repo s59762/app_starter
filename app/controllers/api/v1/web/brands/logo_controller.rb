@@ -3,6 +3,8 @@ class Api::V1::Web::Brands::LogoController < Api::V1::Web::BaseController
     brand = Brand.find(params[:brand_id])
     form = Admin::BrandLogoForm.new(brand)
 
+    check_policy BrandPolicy.new(current_api_user, brand).update?
+
     return raise ValidationFailureException, form unless form.validate(brand_logo_params)
 
     form.save
