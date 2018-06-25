@@ -68,10 +68,12 @@ export default class Product extends ResourceModelBase {
   }
 
   displayDiscountRate() {
-    const rateNumber = this.discount_rate
+    let rateNumber = this.discount_rate
       .toFixed(2)
       .toString()
       .split('.')[1]
+
+    if (rateNumber.slice(-1) === '0') rateNumber = rateNumber.substr(0, 1)
 
     return `${rateNumber} ${I18n.t('activerecord.attributes.product.discount_unit')}`
   }
