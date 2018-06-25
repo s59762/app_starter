@@ -1,4 +1,5 @@
 import ResourceModelBase from 'odd-resource_model'
+import axios from 'axios'
 
 const OPTIONS = {
   apiPath: '/api',
@@ -28,7 +29,7 @@ export default class Brand extends ResourceModelBase {
   }
 
   updateLogo(formData) {
-    return axios.put(`${new this().apiBasePath()}/${this.id}/images`, formData)
+    return axios.put(`${this.apiBasePath()}/${this.id}/logo`, formData)
   }
 
   // extra methods or helpers here...
