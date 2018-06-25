@@ -2,6 +2,8 @@ class Api::V1::Web::ProductsController < Api::V1::Web::BaseController
   before_action :for_admin_only!, except: %i(index show)
 
   def index
+    check_policy ProductPolicy.new(current_api_user, :product).index?
+
     products = FetchingDataService.call(Product, params).includes(:brand, :category)
     result = Api::DataCacheService.call(products, request)
 
@@ -11,12 +13,17 @@ class Api::V1::Web::ProductsController < Api::V1::Web::BaseController
   def show
     product = Product.find(params[:id])
 
+    check_policy ProductPolicy.new(current_api_user, product).show?
+
     render json: product,
            include: [:normal_images]
   end
 
   def create
-    form = Admin::ProductForm.new(Product.new)
+    product = Product.new
+    form = Admin::ProductForm.new(product)
+
+    check_policy ProductPolicy.new(current_api_user, :product).create?
 
     return raise ValidationFailureException, form unless form.validate(product_params)
 
@@ -26,7 +33,10 @@ class Api::V1::Web::ProductsController < Api::V1::Web::BaseController
   end
 
   def update
-    form = Admin::ProductForm.new(Product.find(params[:id]))
+    product = Product.find(params[:id])
+    form = Admin::ProductForm.new(product)
+
+    check_policy ProductPolicy.new(current_api_user, product).update?
 
     return raise ValidationFailureException, form unless form.validate(product_params)
 
