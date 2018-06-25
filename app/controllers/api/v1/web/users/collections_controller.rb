@@ -1,6 +1,7 @@
 class Api::V1::Web::Users::CollectionsController < Api::V1::Web::BaseController
   def index
-    # TODO: this API is for User only
+    check_policy UserPolicy.new(current_api_user, :client).collections?, message: 'This is User-Only API'
+
     collections = FetchingDataService.call(current_api_user.collections, params)
     result = Api::DataCacheService.call(collections, request)
 

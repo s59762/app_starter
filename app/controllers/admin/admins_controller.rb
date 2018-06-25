@@ -5,5 +5,9 @@ class Admin::AdminsController < Admin::ApplicationController
     authorize :admin, :index?
   end
 
-  def show; end
+  def show
+    @admin = Admin.find(params[:id])
+
+    authorize @admin, :show?
+  end
 end

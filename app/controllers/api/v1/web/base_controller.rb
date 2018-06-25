@@ -15,7 +15,7 @@ class Api::V1::Web::BaseController < Api::ApiController
     }
   end
 
-  def check_policy(is_valid)
-    raise PolicyFailureException, 'user role can not use this API' unless is_valid
+  def check_policy(is_valid, message: 'user role can not use this API')
+    raise PolicyFailureException, message unless is_valid
   end
 end

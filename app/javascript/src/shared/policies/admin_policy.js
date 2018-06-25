@@ -33,7 +33,7 @@ export default class AdminPolicy extends PolicyBase {
 
   forAdminOwnerAndSuperOrSelfOnly() {
     if (this.isAdmin()) {
-      return this.user.isOwner() || this.user.isManager() || this.record.id === this.user.id
+      return this.user.isOwner() || this.user.isSuper() || this.record.id === this.user.id
     } else {
       return false
     }
