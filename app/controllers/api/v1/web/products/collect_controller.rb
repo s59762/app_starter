@@ -1,6 +1,7 @@
 class Api::V1::Web::Products::CollectController < Api::V1::Web::BaseController
   def create
-    # TODO: this API is for User only
+    check_policy User::CollectionPolicy.new(current_api_user, :collection).create?, message: 'This is User-Only API'
+
     if current_api_user.collections.find_by(product_id: params[:product_id])
       render json: { messages: ['product in collections already.'] },
              status: :bad_request
@@ -13,10 +14,13 @@ class Api::V1::Web::Products::CollectController < Api::V1::Web::BaseController
   end
 
   def destroy
-    # TODO: this API is for User only
+    check_policy User::CollectionPolicy.new(current_api_user, :collection).index?, message: 'This is User-Only API'
+
     collection = current_api_user.collections.find_by(product_id: params[:product_id])
 
     if collection
+      check_policy User::CollectionPolicy.new(current_api_user, collection).destroy?
+
       collection.destroy
 
       render json: { messages: ['collection destroyed succefully.'] }

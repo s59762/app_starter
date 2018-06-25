@@ -11,12 +11,6 @@ class UserPolicy < ApplicationPolicy
     record == user
   end
 
-  def collections?
-    return false if admin?
-
-    true
-  end
-
   class Scope < Scope
     def resolve
       scope

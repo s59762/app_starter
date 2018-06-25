@@ -12,27 +12,19 @@ class AdminPolicy < ApplicationPolicy
   end
 
   def roles?
-    return user.super? || user.owner? if admin?
-
-    false
+    index?
   end
 
   def create?
-    return user.super? || user.owner? if admin?
-
-    false
+    index?
   end
 
   def update?
-    return user.super? || user.owner? if admin?
-
-    false
+    index?
   end
 
   def suspend?
-    return user.super? || user.owner? if admin?
-
-    false
+    index?
   end
 
   class Scope < Scope

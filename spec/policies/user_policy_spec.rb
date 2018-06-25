@@ -34,15 +34,4 @@ RSpec.describe UserPolicy do
       expect(subject).not_to permit(another_client, client)
     end
   end
-
-  permissions :collections? do
-    it '只有 User 可以看到自己的收藏商品列表' do
-      expect(subject).not_to permit(owner, :user)
-      expect(subject).not_to permit(super_admin, :user)
-      expect(subject).not_to permit(stock_manager, :user)
-      expect(subject).not_to permit(accounter, :user)
-      expect(subject).not_to permit(content_manager, :user)
-      expect(subject).to permit(client, :user)
-    end
-  end
 end
