@@ -11,6 +11,25 @@
             v-model="form.name"
             @input="errors.clear('name')")
 
+  b-field(:label="attributeLocaleText('brand', 'logo')"
+          :type="errors.errorClassAt('logo')"
+          :message="errors.get('logo')")
+    .logo-wrapper.has-logo(v-if="brand.hasLogo() && !isLogoImageCropperActive")
+      img.current-logo(:src="brand.logo.url")
+      .update-logo-trigger(@click="showLogoImageCropper") {{ messageLocaleText('help.click_for_update_logo') }}
+    .logo-wrapper(v-else)
+      croppa(v-model="logoImage"
+           :placeholder="messageLocaleText('help.please_select_a_picture')"
+           :placeholder-font-size="24"
+           remove-button-color="red"
+           :remove-button-size="25"
+           canvas-color="#eee"
+           :width="200"
+           :height="200"
+           :quality="2.56"
+           :prevent-white-space="true"
+           :show-loading="true")
+
   b-field(:label="attributeLocaleText('brand', 'introduce')"
           :type="errors.errorClassAt('introduce')"
           :message="errors.get('introduce') || messageLocaleText('help.please_make_words_count_about', { count: 200 })")
@@ -54,7 +73,9 @@ export default {
 
   data() {
     return {
-      form: new Form(this.brand)
+      form: new Form(this.brand),
+      logoImage: null,
+      isLogoImageCropperActive: false
     }
   },
 
@@ -92,11 +113,46 @@ export default {
   // created() {},
   // mounted() {},
   methods: {
+    showLogoImageCropper() {
+      this.isLogoImageCropperActive = true
+    },
+
+    generateFormData() {
+      let formData = new FormData()
+
+      return new Promise((resolve, reject) => {
+        this.logoImage
+          .promisedBlob('image/jpeg', '0.8')
+          .then(blob => {
+            const file = new File([blob], `logo.jpg`)
+
+            formData.append('brand[logo]', file)
+            resolve(formData)
+          })
+          .catch(errors => {
+            reject(errors)
+          })
+      })
+    },
+
     submitForm() {
+      let model = this.brand
+
       this.$store
         .dispatch('brands/save', this.form.sync())
+        .then(response => {
+          if (model.isNewRecord()) model.id = response.data.data.id
+
+          return this.generateFormData()
+        })
+        .then(formData => {
+          return this.$store.dispatch('brands/updateLogo', {
+            model,
+            formData
+          })
+        })
         .then(() => {
-          this.$store.dispatch('addFlashMessage', this.flashMessage)
+          return this.$store.dispatch('addFlashMessage', this.flashMessage)
         })
         .then(() => {
           this.$parent.close()

@@ -11,3 +11,38 @@
   background-repeat: no-repeat
   @if $image_url != ''
     background-image: url(#{$image_url})
+
+// 垂直置中
+%is-flex-vc
+  display: flex
+  align-items: center
+
+// 垂直水平置中
+%is-flex-vc-hc
+  display: flex
+  align-items: center
+  justify-content: center
+
+// 撐滿 parent element
+%full-filled-inner-block
+  position: absolute
+  top: 0
+  right: 0
+  bottom: 0
+  left: 0
+
+// admin UI list table
+%has-list-table
+  .options > span
+    display: flex
+    justify-content: flex-end
+    flex-wrap: wrap
+    .option-button
+      margin-bottom: .2rem
+    .option-button:not(:first-child)
+      margin-left: .2rem
+
+// markdown container fix
+%markdown-body-fix
+  ul
+    list-style-type: disc

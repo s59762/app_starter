@@ -1,5 +1,6 @@
 import Vue from 'vue/dist/vue.esm'
 import Buefy from 'buefy'
+import Croppa from 'vue-croppa'
 import VueLocaleTranslator from '../../shared/plugins/vue_locale_translator'
 import JwtManageService from '../../shared/services/jwt_manage_service'
 import store from './store'
@@ -36,10 +37,15 @@ class ApplicationInitializer {
     Turbolinks.start()
 
     // using Buefy
-    Vue.use(Buefy, { defaultIconPack: 'fa' })
+    Vue.use(Buefy, {
+      defaultIconPack: 'fa'
+    })
 
     // using VueLocaleTranslator
     Vue.use(VueLocaleTranslator)
+
+    // using Croppa
+    Vue.use(Croppa)
 
     // using zh-TW as defult locale file
     I18n.locale = 'zh-TW'
@@ -78,7 +84,10 @@ class ApplicationInitializer {
       let templates = document.querySelectorAll('[data-vue]')
       for (let element of templates) {
         let vm = new Vue(
-          Object.assign(this.vueInitializers[element.dataset.vue], { el: element, store })
+          Object.assign(this.vueInitializers[element.dataset.vue], {
+            el: element,
+            store
+          })
         )
 
         this.vms.push(vm)
