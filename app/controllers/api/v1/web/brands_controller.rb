@@ -1,5 +1,7 @@
 class Api::V1::Web::BrandsController < Api::V1::Web::BaseController
   def index
+    check_policy BrandPolicy.new(current_api_user, :brand).index?
+
     brands = FetchingDataService.call(Brand, params)
     result = Api::DataCacheService.call(brands, request)
 
@@ -9,12 +11,16 @@ class Api::V1::Web::BrandsController < Api::V1::Web::BaseController
   def show
     brand = Brand.find(params[:id])
 
+    check_policy BrandPolicy.new(current_api_user, brand).show?
+
     render json: brand
   end
 
   def create
     brand = Brand.new
     form = Admin::BrandForm.new(brand)
+
+    check_policy BrandPolicy.new(current_api_user, :brand).create?
 
     return raise ValidationFailureException, form unless form.validate(brand_params)
 
@@ -26,6 +32,8 @@ class Api::V1::Web::BrandsController < Api::V1::Web::BaseController
   def update
     brand = Brand.find(params[:id])
     form = Admin::BrandForm.new(brand)
+
+    check_policy BrandPolicy.new(current_api_user, brand).update?
 
     return raise ValidationFailureException, form unless form.validate(brand_params)
 
