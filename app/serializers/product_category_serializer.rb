@@ -21,7 +21,7 @@ class ProductCategorySerializer < ApplicationSerializer
              :updated_at
 
   belongs_to :parent, class_name: 'ProductCategory', optional: true
-  has_many :sub_categories, class_name: 'ProductCategory', foreign_key: 'parent_id', if: -> { instance_options[:show_sub_categories] }
+  has_many :sub_categories, class_name: 'ProductCategory', foreign_key: 'parent_id'
   has_many :products, foreign_key: 'category_id', if: -> { instance_options[:show_products] }
 
   to_unix_time :created_at, :updated_at

@@ -124,7 +124,9 @@ export default {
         this.logoImage
           .promisedBlob('image/jpeg', '0.8')
           .then(blob => {
-            const file = new File([blob], `logo.jpg`)
+            const file = new File([blob], 'logo.jpg', {
+              type: 'image/jpeg'
+            })
 
             formData.append('brand[logo]', file)
             resolve(formData)

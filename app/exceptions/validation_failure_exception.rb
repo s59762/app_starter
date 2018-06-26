@@ -6,7 +6,7 @@ class ValidationFailureException < ApplicationException
     @code = :validation_failure
     @message = 'Validation of params failed'
     @description = 'Please check the validation_errors key (hash) for more details.'
-    @errors = form.errors.to_h
+    @errors = form.errors.messages.to_h
   end
 
   # 把 validation 的錯誤訊息加入 response
