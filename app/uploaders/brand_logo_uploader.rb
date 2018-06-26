@@ -15,13 +15,13 @@ class BrandLogoUploader < CarrierWave::Uploader::Base
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
-  process resize_to_fill: [512, 512], if: :image?
+  process resize_to_fill: [512, 512]
 
   # Create different versions of your uploaded files:
-  version :medium, if: :image? do
+  version :medium do
     process resize_to_fill: [256, 256]
   end
-  version :thumb, if: :image? do
+  version :thumb do
     process resize_to_fill: [128, 128]
   end
 

@@ -18,7 +18,7 @@ class ProductImageUploader < CarrierWave::Uploader::Base
   process resize_to_limit: [1280, 1280], if: :image?
 
   # Create different versions of your uploaded files:
-  version :thumb, if: :image? do
+  version :thumb do
     process resize_to_fill: [128, 128]
   end
 
