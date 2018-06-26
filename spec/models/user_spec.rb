@@ -49,4 +49,5 @@ RSpec.describe User, type: :model do
 
   # associations
   it { should have_many :collections }
+  it { should have_many :shipping_infos }
 end

@@ -28,6 +28,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :collections, class_name: 'User::Collection', dependent: :destroy
+  has_many :shipping_infos, class_name: 'User::ShippingInfo', dependent: :destroy
 
   # 產生 JWT 供 API 認證身份
   def issue_jwt

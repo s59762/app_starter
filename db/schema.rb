@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_24_125625) do
+ActiveRecord::Schema.define(version: 2018_06_25_142010) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -105,6 +105,16 @@ ActiveRecord::Schema.define(version: 2018_06_24_125625) do
     t.index ["user_id"], name: "index_user_collections_on_user_id"
   end
 
+  create_table "user_shipping_infos", force: :cascade do |t|
+    t.string "recipient"
+    t.string "phone"
+    t.jsonb "address"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_user_shipping_infos_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -128,4 +138,5 @@ ActiveRecord::Schema.define(version: 2018_06_24_125625) do
   add_foreign_key "products", "product_categories", column: "category_id"
   add_foreign_key "user_collections", "products"
   add_foreign_key "user_collections", "users"
+  add_foreign_key "user_shipping_infos", "users"
 end
