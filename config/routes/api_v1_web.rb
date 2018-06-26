@@ -17,6 +17,8 @@ namespace :api do
         collection do
           resources :collections, only: %i(index destroy), controller: 'users/collections', as: :user_collections
         end
+
+        resources :shipping_infos, only: %i(index create update destroy), controller: 'users/shipping_infos'
       end
 
       # Brand resource
