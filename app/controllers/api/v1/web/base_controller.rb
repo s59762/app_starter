@@ -18,4 +18,12 @@ class Api::V1::Web::BaseController < Api::ApiController
   def check_policy(is_valid, message: 'user role can not use this API')
     raise PolicyFailureException, message unless is_valid
   end
+
+  def current_cart
+    @current_cart ||= Cart.find_by(id: session[:cart_id])
+
+    raise CartFetchFailureException, 'No cart info in session of current user. This API is for browser use only.' unless @current_cart
+
+    @current_cart
+  end
 end
