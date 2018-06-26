@@ -12,6 +12,7 @@
 #
 
 class User::ShippingInfoSerializer < ApplicationSerializer
+  type 'user_shipping_infos'
   attributes :id,
              :recipient,
              :phone,
