@@ -20,6 +20,8 @@ zh-TW:
       models:
         user/shipping_info:
           attributes:
+            address:
+              detail_blank: '%{attribute} 尚未填寫'
   activemodel: *default
 
   # Enums
