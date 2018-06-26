@@ -23,8 +23,7 @@ class Api::V1::Web::ProductCategoriesController < Api::V1::Web::BaseController
 
     form.save
 
-    render json: form.model,
-           show_sub_categories: true
+    render json: form.model
   end
 
   def update
@@ -37,8 +36,7 @@ class Api::V1::Web::ProductCategoriesController < Api::V1::Web::BaseController
 
     form.save
 
-    render json: form.model,
-           show_sub_categories: true
+    render json: form.model
   end
 
   private

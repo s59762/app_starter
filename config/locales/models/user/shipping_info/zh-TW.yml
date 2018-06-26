@@ -1,0 +1,31 @@
+zh-TW:
+  # model and attributes name
+  activerecord: &default
+    models:
+      user/shipping_info:
+        one: 常用收貨地址
+        other: 常用收貨地址
+
+    attributes:
+      user/shipping_info:
+        recipient: 收貨人
+        phone: 聯絡電話
+        address: 收貨地址
+        country: 國家
+        city: 縣市 / 城市
+        street_address: 地址
+        zip: 郵遞區號
+
+    errors:
+      models:
+        user/shipping_info:
+          attributes:
+  activemodel: *default
+
+  # Enums
+  enums:
+    user/shipping_info:
+
+  # AASM state machine
+  aasm_state:
+    user/shipping_info:

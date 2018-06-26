@@ -25,5 +25,8 @@ class UserSerializer < ApplicationSerializer
              :sign_in_count,
              :updated_at
 
+  has_many :collections, if: -> { instance_options[:show_collections] }
+  has_many :shipping_infos, if: -> { instance_options[:show_shipping_infos] }
+
   to_unix_time :last_sign_in_at, :created_at, :updated_at
 end
