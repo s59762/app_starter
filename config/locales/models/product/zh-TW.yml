@@ -10,6 +10,7 @@ zh-TW:
       product:
         category: 分類
         category_id: 分類
+        sub_category: 子分類
         brand_id: 品牌
         cover: 封面圖片
         description: 商品描述

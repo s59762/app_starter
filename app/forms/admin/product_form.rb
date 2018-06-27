@@ -4,7 +4,6 @@ class Admin::ProductForm < ApplicationForm
 
   properties :name,
              :description,
-             :category_id,
              :brand_id,
              :cover,
              :is_preorder,
@@ -14,10 +13,12 @@ class Admin::ProductForm < ApplicationForm
              :height,
              :weight
   property :price, virtual: true
+  property :top_level_category_id, virtual: true
+  property :sub_category_id, virtual: true
   property :uploaded_image_ids, virtual: true
 
   validates :name,
-            :category_id,
+            :top_level_category_id,
             :description, presence: true
   validate :valid_price_params?
 
@@ -29,6 +30,7 @@ class Admin::ProductForm < ApplicationForm
 
     sync
     assign_price_info_to_model
+    assign_category_to_model
 
     ::ActiveRecord::Base.transaction do
       model.save
@@ -54,6 +56,12 @@ class Admin::ProductForm < ApplicationForm
     price.each do |key, value|
       model.assign_attributes "#{key}_price".to_sym => value
     end
+  end
+
+  def assign_category_to_model
+      id = sub_category_id.present? ? sub_category_id : top_level_category_id
+
+      model.assign_attributes category_id: id
   end
 
   # 將有出現在 description 中的圖片與此 product 建立關聯

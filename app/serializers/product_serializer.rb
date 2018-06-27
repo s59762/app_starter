@@ -31,14 +31,14 @@ class ProductSerializer < ApplicationSerializer
              :discounted_price,
              :is_preorder,
              :brand_id,
-             :category_id,
+             :top_level_category_id,
+             :sub_category_id,
              :name,
              :original_price,
              :properties,
              :width,
              :depth,
              :height,
-             :size,
              :weight,
              :sell_price,
              :created_at,
@@ -56,23 +56,23 @@ class ProductSerializer < ApplicationSerializer
                    :sell_price,
                    :discounted_price
 
+  def top_level_category_id
+    return object.category.parent.id if object.category.parent.present?
+
+    object.category_id
+  end
+
+  def sub_category_id
+    return nil unless object.category.parent.present?
+
+    object.category_id
+  end
+
   # 折扣率
   def discount_rate
     return 1.0 if object.discounted_price.zero?
     return 1.0 if object.sell_price.zero?
 
     object.discounted_price / object.sell_price
-  end
-
-  # 體積尺寸
-  def size
-    template = [:width, :depth, :height]
-    result = []
-
-    template.each do |t|
-      result << %(#{Product.human_attribute_name(t)} #{object.send(t)}) if object.send(t).present?
-    end
-
-    result.join(' × ')
   end
 end
