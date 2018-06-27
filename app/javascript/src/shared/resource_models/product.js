@@ -21,7 +21,11 @@ const OPTIONS = {
     'original_price',
     'properties',
     'sell_price',
-    'updated_at'
+    'updated_at',
+    'width',
+    'depth',
+    'height',
+    'weight'
   ],
   editableAttributes: [
     'brand_id',
@@ -32,7 +36,11 @@ const OPTIONS = {
     'name',
     'price',
     'properties',
-    'uploaded_image_ids'
+    'uploaded_image_ids',
+    'width',
+    'depth',
+    'height',
+    'weight'
   ]
 }
 

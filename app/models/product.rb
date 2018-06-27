@@ -18,6 +18,10 @@
 #  created_at                :datetime         not null
 #  updated_at                :datetime         not null
 #  brand_id                  :bigint(8)
+#  width                     :decimal(, )
+#  depth                     :decimal(, )
+#  height                    :decimal(, )
+#  weight                    :decimal(, )
 #
 
 class Product < ApplicationRecord

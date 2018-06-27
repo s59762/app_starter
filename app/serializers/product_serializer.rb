@@ -18,6 +18,10 @@
 #  created_at                :datetime         not null
 #  updated_at                :datetime         not null
 #  brand_id                  :bigint(8)
+#  width                     :decimal(, )
+#  depth                     :decimal(, )
+#  height                    :decimal(, )
+#  weight                    :decimal(, )
 #
 
 class ProductSerializer < ApplicationSerializer
@@ -31,6 +35,11 @@ class ProductSerializer < ApplicationSerializer
              :name,
              :original_price,
              :properties,
+             :width,
+             :depth,
+             :height,
+             :size,
+             :weight,
              :sell_price,
              :created_at,
              :updated_at,
@@ -53,5 +62,17 @@ class ProductSerializer < ApplicationSerializer
     return 1.0 if object.sell_price.zero?
 
     object.discounted_price / object.sell_price
+  end
+
+  # 體積尺寸
+  def size
+    template = [:width, :depth, :height]
+    result = []
+
+    template.each do |t|
+      result << %(#{Product.human_attribute_name(t)} #{object.send(t)}) if object.send(t).present?
+    end
+
+    result.join(' × ')
   end
 end

@@ -8,7 +8,11 @@ class Admin::ProductForm < ApplicationForm
              :brand_id,
              :cover,
              :is_preorder,
-             :properties
+             :properties,
+             :width,
+             :depth,
+             :height,
+             :weight
   property :price, virtual: true
   property :uploaded_image_ids, virtual: true
 

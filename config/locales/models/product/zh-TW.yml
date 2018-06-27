@@ -27,6 +27,11 @@ zh-TW:
         sell_price: 售價
         discount_unit: 折
         price_unit: 元
+        size: 尺寸
+        width: 長
+        depth: 寬
+        height: 高
+        weight: 重量
 
     errors:
       models:

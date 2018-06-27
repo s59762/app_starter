@@ -43,6 +43,8 @@ zh-TW:
         new: 新增商品
         form: 商品表單
         property_fields: 商品規格
+        basic_properties: 基本規格
+        extra_properties: 額外自訂規格
         show: 詳細資料
         edit: 編輯商品
       profile:

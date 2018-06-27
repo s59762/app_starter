@@ -102,6 +102,109 @@
         section.section
           h4.section-title {{pageTitleLocaleText('admin', 'products', 'property_fields')}}
           .properties-wrapper
+            h5.sub-title {{pageTitleLocaleText('admin', 'products', 'basic_properties')}}
+            .property-fields
+              .columns
+                .column
+                  b-field(:label="attributeLocaleText('product', 'property_name')"
+                          :type="errors.errorClassAt('properties')"
+                          :message="errors.get('properties')")
+                    b-input(type="text"
+                            :value="attributeLocaleText('product', 'width')"
+                            disabled)
+                .column.is-6
+                  b-field(:label="attributeLocaleText('product', 'property_value')"
+                          :type="errors.errorClassAt('properties')"
+                          :message="errors.get('properties')")
+                    b-input(type="number"
+                            placeholder="e.g. 120"
+                            v-model="form.width"
+                            data-behavior="product-width-value"
+                            @input="errors.clear('properties')")
+                .column
+                  b-field(:label="attributeLocaleText('product', 'property_unit')"
+                          :type="errors.errorClassAt('properties')"
+                          :message="errors.get('properties')")
+                    b-input(type="text"
+                            value="CM"
+                            disabled)
+            .property-fields
+              .columns
+                .column
+                  b-field(:label="attributeLocaleText('product', 'property_name')"
+                          :type="errors.errorClassAt('properties')"
+                          :message="errors.get('properties')")
+                    b-input(type="text"
+                            :value="attributeLocaleText('product', 'depth')"
+                            disabled)
+                .column.is-6
+                  b-field(:label="attributeLocaleText('product', 'property_value')"
+                          :type="errors.errorClassAt('properties')"
+                          :message="errors.get('properties')")
+                    b-input(type="number"
+                            placeholder="e.g. 60"
+                            v-model="form.depth"
+                            data-behavior="product-depth-value"
+                            @input="errors.clear('properties')")
+                .column
+                  b-field(:label="attributeLocaleText('product', 'property_unit')"
+                          :type="errors.errorClassAt('properties')"
+                          :message="errors.get('properties')")
+                    b-input(type="text"
+                            value="CM"
+                            disabled)
+            .property-fields
+              .columns
+                .column
+                  b-field(:label="attributeLocaleText('product', 'property_name')"
+                          :type="errors.errorClassAt('properties')"
+                          :message="errors.get('properties')")
+                    b-input(type="text"
+                            :value="attributeLocaleText('product', 'height')"
+                            disabled)
+                .column.is-6
+                  b-field(:label="attributeLocaleText('product', 'property_value')"
+                          :type="errors.errorClassAt('properties')"
+                          :message="errors.get('properties')")
+                    b-input(type="number"
+                            placeholder="e.g. 30"
+                            v-model="form.height"
+                            data-behavior="product-height-value"
+                            @input="errors.clear('properties')")
+                .column
+                  b-field(:label="attributeLocaleText('product', 'property_unit')"
+                          :type="errors.errorClassAt('properties')"
+                          :message="errors.get('properties')")
+                    b-input(type="text"
+                            value="CM"
+                            disabled)
+            .property-fields
+              .columns
+                .column
+                  b-field(:label="attributeLocaleText('product', 'property_name')"
+                          :type="errors.errorClassAt('properties')"
+                          :message="errors.get('properties')")
+                    b-input(type="text"
+                            :value="attributeLocaleText('product', 'weight')"
+                            disabled)
+                .column.is-6
+                  b-field(:label="attributeLocaleText('product', 'property_value')"
+                          :type="errors.errorClassAt('properties')"
+                          :message="errors.get('properties')")
+                    b-input(type="number"
+                            placeholder="e.g. 12"
+                            v-model="form.weight"
+                            data-behavior="product-weight-value"
+                            @input="errors.clear('properties')")
+                .column
+                  b-field(:label="attributeLocaleText('product', 'property_unit')"
+                          :type="errors.errorClassAt('properties')"
+                          :message="errors.get('properties')")
+                    b-input(type="text"
+                            value="KG"
+                            disabled)
+
+            h5.sub-title(v-if="form.properties.length > 0") {{pageTitleLocaleText('admin', 'products', 'extra_properties')}}
             .property-fields(v-for="(property, index) in form.properties")
               .property-count {{index + 1}}
               .delete-button(@click="deleteProperty(index)")
@@ -112,7 +215,7 @@
                           :type="errors.errorClassAt('properties')"
                           :message="errors.get('properties')")
                     b-input(type="text"
-                            placeholder="e.g. Weight"
+                            placeholder="e.g. Battery"
                             v-model="property.name"
                             data-behavior="product-property-name"
                             @input="errors.clear('properties')")
@@ -121,7 +224,7 @@
                           :type="errors.errorClassAt('properties')"
                           :message="errors.get('properties')")
                     b-input(type="text"
-                            placeholder="e.g. 12"
+                            placeholder="e.g. 12000"
                             v-model="property.value"
                             data-behavior="product-property-value"
                             @input="errors.clear('properties')")
@@ -130,7 +233,7 @@
                           :type="errors.errorClassAt('properties')"
                           :message="errors.get('properties')")
                     b-input(type="text"
-                            placeholder="e.g. kg"
+                            placeholder="e.g. mAh"
                             v-model="property.unit"
                             data-behavior="product-property-unit"
                             @input="errors.clear('properties')")
@@ -284,7 +387,7 @@ export default {
     this.$store.dispatch('brands/all')
     if (this.product.isNewRecord()) {
       this.form.uploaded_image_ids = []
-      this.form.properties = [propertyTemplate()]
+      this.form.properties = []
       this.form.price = {
         original: 0,
         sell: 0,
