@@ -16,6 +16,7 @@ zh-TW:
       token_authenticate_failure: 身份認證失敗，請嘗試重新登入
       token_expired: 憑證已過期
       validation_failure: 請您檢查表單後再試一次
+      cart_fetch_failure: 無法取得購物車
     help:
       if_do_not_want_to_change_password_leave_empty: 若不變更密碼請留空
       please_re_enter_password_for_confirmation: 請再輸入一次密碼做為確認

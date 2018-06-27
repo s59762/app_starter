@@ -3,8 +3,9 @@
 # 用來替代 nil 的 User null object
 class Null::User
   attr_reader :user_model
+
   def initialize(user_type = :admin)
-    @user_model = user_type.classify.constantize
+    @user_model = user_type.to_s.classify.constantize
 
     generate_role_methods if user_model.respond_to? :roles
   end
@@ -33,7 +34,6 @@ class Null::User
     true
   end
 
-  # 提供 Guest 用的 JWT
   def issue_jwt
     JsonWebToken.encode(sub: nil,
                         iat: Time.current.to_i,
