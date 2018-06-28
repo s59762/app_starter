@@ -26,7 +26,8 @@
   .section:not(:last-of-type)
     border-bottom: 1px solid $divider-color
 
-  .property-fields
+  .property-fields,
+  .option-type-fields
     $gap: .5rem
 
     position: relative
@@ -49,6 +50,9 @@
       cursor: pointer
       &:hover
         box-shadow: 0 0 5px $black
+
+  .option-unit:not(:first-child)
+    margin-top: .5rem
 
   .ql-snow .ql-picker.ql-size
     .ql-picker-item[data-value="small"]::before,

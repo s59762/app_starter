@@ -3,6 +3,7 @@ zh-TW:
     admin:
       add_new: '新增%{model}'
       add_product_property: 增加商品規格欄位
+      add_product_option_type: 增加商品選項
       cancel: 取消
       change_password: 變更密碼
       close: 關閉

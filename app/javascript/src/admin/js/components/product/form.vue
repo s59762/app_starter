@@ -79,6 +79,49 @@
                          data-behavior="product-description"
                          :options="editorOptions")
 
+        //- option types
+        section.section(v-if="product.isNewRecord()")
+          .option-types-wrapper(v-if="form.option_types.length > 0")
+            h4.section-title {{ pageTitleLocaleText('admin', 'products', 'option_type_fields') }}
+            .option-type-fields(v-for="(optionType, typeIndex) in form.option_types"
+                                :key="typeIndex")
+              .property-count {{typeIndex + 1}}
+              .delete-button(@click="deleteOptionType(typeIndex)")
+                i.fa.fa-close
+              .columns
+                .column
+                  b-field(:label="attributeLocaleText('product', 'option_name')"
+                          :type="errors.errorClassAt('option_type')")
+                    b-input(type="text"
+                            v-model="optionType.name"
+                            placeholder="e.g. Color")
+                .column
+                  .option-unit(v-for="(option, optionIndex) in optionType.options"
+                               :key="optionIndex")
+                    b-field(:label="`${attributeLocaleText('product', 'option_value')} ${optionIndex + 1}`"
+                            :type="errors.errorClassAt('option_type')")
+                      b-field
+                        b-input(type="text"
+                                v-model="option.value"
+                                placeholder="e.g. Black")
+                        p.control(v-if="optionType.options.length > 1")
+                          button.button.is-danger(@click="deleteOptionFor(typeIndex, optionIndex)")
+                            i.fa.fa-close
+              .add-option-button.button.is-default.is-block(@click="addOptionFor(typeIndex)"
+                                                            data-behavior="product-add-option-button")
+                .icon
+                  i.fa.fa-plus
+                span {{actionLocaleText('admin', 'add_product_option_type')}}
+
+
+          .add-option-type-button.button.is-default.is-block(@click="addOptionType"
+                                                             data-behavior="product-add-option-type-button")
+            .icon
+              i.fa.fa-plus
+            span {{actionLocaleText('admin', 'add_product_option_type')}}
+
+          p.help 若商品擁有多種選項，請透過這個功能來新增並加以管理。商品沒有提供選項的話請留空。
+
         //- price info
         section.section.price-info-wrapper
           .columns
@@ -230,11 +273,17 @@ const action = 'products/uploadImages'
 const additionalFormData = formData => {
   formData.append('product[use_case]', 'description')
 }
-const propertyTemplate = function() {
+const propertyTemplate = () => {
   return {
     name: '',
     value: '',
     unit: ''
+  }
+}
+const optionTypeTemplate = () => {
+  return {
+    name: '',
+    options: [{ value: '' }]
   }
 }
 
@@ -359,6 +408,7 @@ export default {
     if (this.product.isNewRecord()) {
       this.form.uploaded_image_ids = []
       this.form.properties = []
+      this.form.option_types = []
       this.form.price = {
         original: 0,
         sell: 0,
@@ -387,6 +437,26 @@ export default {
 
     deleteProperty(index) {
       this.form.properties.splice(index, 1)
+    },
+
+    addOptionType() {
+      this.form.option_types.push(optionTypeTemplate())
+    },
+
+    deleteOptionType(index) {
+      console.log(index)
+      this.form.option_types.splice(index, 1)
+    },
+
+    addOptionFor(index) {
+      this.form.option_types[index].options.push({ value: '' })
+    },
+
+    deleteOptionFor(typeIndex, optionIndex) {
+      console.log(typeIndex, optionIndex)
+      if (this.form.option_types[typeIndex].options.length < 2) return
+
+      this.form.option_types[typeIndex].options.splice(optionIndex, 1)
     },
 
     /*

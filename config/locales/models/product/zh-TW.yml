@@ -25,6 +25,9 @@ zh-TW:
         property_name: 規格名稱
         property_value: 內容
         property_unit: 單位
+        option_types: 商品選項
+        option_name: 選項標題
+        option_value: 選項
         sell_price: 售價
         discount_unit: 折
         price_unit: 元

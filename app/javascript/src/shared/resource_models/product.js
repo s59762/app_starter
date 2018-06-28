@@ -39,6 +39,7 @@ const OPTIONS = {
     'name',
     'price',
     'properties',
+    'option_types',
     'uploaded_image_ids',
     'width',
     'depth',
