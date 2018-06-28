@@ -30,6 +30,7 @@ RSpec.describe Product, type: :model do
   it { should belong_to :brand }
   it { should belong_to :category }
   it { should have_many :images }
-  it { should have_many :images }
+  it { should have_many :normal_images }
   it { should have_many :description_images }
+  it { should have_many :option_types }
 end

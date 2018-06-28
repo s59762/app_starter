@@ -42,6 +42,7 @@ class Product < ApplicationRecord
   has_many :images, class_name: 'Product::Image', dependent: :destroy
   has_many :normal_images, -> { where(use_case: :normal) }, class_name: 'Product::Image'
   has_many :description_images, -> { where(use_case: :description) }, class_name: 'Product::Image'
+  has_many :option_types, class_name: 'Product::OptionType', dependent: :destroy
 
   # @param [Array] properties 搜尋 jsonb 欄位
   # @example 搜尋品牌為 ALESSI 的商品

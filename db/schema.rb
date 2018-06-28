@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_27_104442) do
+ActiveRecord::Schema.define(version: 2018_06_28_062143) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,6 +69,22 @@ ActiveRecord::Schema.define(version: 2018_06_27_104442) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["product_id"], name: "index_product_images_on_product_id"
+  end
+
+  create_table "product_option_types", force: :cascade do |t|
+    t.string "name"
+    t.bigint "product_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_product_option_types_on_product_id"
+  end
+
+  create_table "product_option_values", force: :cascade do |t|
+    t.string "value"
+    t.bigint "option_type_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["option_type_id"], name: "index_product_option_values_on_option_type_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -143,6 +159,8 @@ ActiveRecord::Schema.define(version: 2018_06_27_104442) do
 
   add_foreign_key "product_categories", "product_categories", column: "parent_id"
   add_foreign_key "product_images", "products"
+  add_foreign_key "product_option_types", "products"
+  add_foreign_key "product_option_values", "product_option_types", column: "option_type_id"
   add_foreign_key "products", "brands"
   add_foreign_key "products", "product_categories", column: "category_id"
   add_foreign_key "user_collections", "products"
