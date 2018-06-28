@@ -43,13 +43,15 @@ class ProductSerializer < ApplicationSerializer
              :sell_price,
              :created_at,
              :updated_at,
-             :discount_rate
+             :discount_rate,
+             :options
 
   belongs_to :brand, optional: true
   belongs_to :category, class_name: 'ProductCategory', optional: true
   has_many :images, class_name: 'Product::Image', dependent: :destroy, if: -> { instance_options[:show_images] }
   has_many :normal_images, class_name: 'Product::Image', if: -> { instance_options[:show_normal_images] }
   has_many :description_images, class_name: 'Product::Image', if: -> { instance_options[:show_description_images] }
+  has_many :option_types, class_name: 'Product::OptionType', if: -> { instance_options[:show_options] }
 
   to_unix_time :created_at, :updated_at
   money_to_integer :original_price,
@@ -74,5 +76,24 @@ class ProductSerializer < ApplicationSerializer
     return 1.0 if object.sell_price.zero?
 
     object.discounted_price / object.sell_price
+  end
+
+  def options
+    result = []
+
+    object.option_types.map do |type|
+      result << {
+        id: type.id.to_s,
+        name: type.name,
+        values: [
+          type.option_values.map do |option_value|
+            {
+              id: option_value.id.to_s,
+              value: option_value.value
+            }
+          end
+        ]
+      }
+    end
   end
 end

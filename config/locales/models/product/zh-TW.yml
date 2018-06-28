@@ -26,7 +26,7 @@ zh-TW:
         property_value: 內容
         property_unit: 單位
         option_types: 商品選項
-        option_name: 選項標題
+        option_name: 選項類型
         option_value: 選項
         sell_price: 售價
         discount_unit: 折
@@ -45,6 +45,9 @@ zh-TW:
               wrong_type: '%{key} 必須為 Integer, 並大於或等於 0'
               invalid_key: '%{key} 為不合法的 key，僅能接受 original, sell, discounted'
               invalid_discounted_price: '折扣價不能大於售價'
+            option_types:
+              type_name_blank: 選項類型內容未填寫
+              option_value_blank: 選項內容未填寫
   activemodel: *default
 
   # Enums

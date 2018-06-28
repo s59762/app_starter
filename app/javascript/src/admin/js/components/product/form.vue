@@ -91,18 +91,19 @@
               .columns
                 .column
                   b-field(:label="attributeLocaleText('product', 'option_name')"
-                          :type="errors.errorClassAt('option_type')")
+                          :type="errors.errorClassAt('option_types')")
                     b-input(type="text"
                             v-model="optionType.name"
+                            @input="errors.clear('option_types')"
                             placeholder="e.g. Color")
                 .column
                   .option-unit(v-for="(option, optionIndex) in optionType.options"
                                :key="optionIndex")
-                    b-field(:label="`${attributeLocaleText('product', 'option_value')} ${optionIndex + 1}`"
-                            :type="errors.errorClassAt('option_type')")
-                      b-field
+                    b-field(:label="`${attributeLocaleText('product', 'option_value')} ${optionIndex + 1}`")
+                      b-field(:type="errors.errorClassAt('option_types')")
                         b-input(type="text"
                                 v-model="option.value"
+                                @input="errors.clear('option_types')"
                                 placeholder="e.g. Black")
                         p.control(v-if="optionType.options.length > 1")
                           button.button.is-danger(@click="deleteOptionFor(typeIndex, optionIndex)")
@@ -113,6 +114,8 @@
                   i.fa.fa-plus
                 span {{actionLocaleText('admin', 'add_product_option_type')}}
 
+          .has-text-danger(v-if="errors.has('option_types')")
+                p.help {{ errors.get('option_types').join(', ') }}
 
           .add-option-type-button.button.is-default.is-block(@click="addOptionType"
                                                              data-behavior="product-add-option-type-button")

@@ -16,11 +16,13 @@ class Admin::ProductForm < ApplicationForm
   property :top_level_category_id, virtual: true
   property :sub_category_id, virtual: true
   property :uploaded_image_ids, virtual: true
+  property :option_types, virtual: true
 
   validates :name,
             :top_level_category_id,
             :description, presence: true
   validate :valid_price_params?
+  validate :valid_option_types?
 
   # 將資料寫入 Product
   #
@@ -36,6 +38,8 @@ class Admin::ProductForm < ApplicationForm
       model.save
       link_product_images(description_image_ids)
       delete_unused_images(description_image_ids)
+      process_option_types
+      # TODO: process_variants
     end
   end
 
@@ -47,6 +51,18 @@ class Admin::ProductForm < ApplicationForm
     end
 
     errors.add('price', :invalid_discounted_price) if price['discounted'] > price['sell']
+  end
+
+  # 驗證 option_types 的內容是否合法
+  def valid_option_types?
+    return if option_types.blank?
+    option_types.each do |type|
+      errors.add(:option_types, :type_name_blank) if type['name'].blank?
+
+      type['options'].each do |option|
+        errors.add(:option_types, :option_value_blank) if option['value'].blank?
+      end
+    end
   end
 
   private
@@ -77,5 +93,17 @@ class Admin::ProductForm < ApplicationForm
     unused_image_ids = uploaded_image_ids + current_description_image_ids - description_image_ids
 
     Product::Image.where(id: unused_image_ids).destroy_all
+  end
+
+  def process_option_types
+    # TODO: not implement for update action yet.
+
+    option_types.each do |type|
+      option_type = model.option_types.create name: type['name']
+
+      type['options'].each do |option|
+        option_type.option_values.create value: option['value']
+      end
+    end
   end
 end
