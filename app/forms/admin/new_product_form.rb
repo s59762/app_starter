@@ -1,21 +1,12 @@
-class Admin::ProductForm < ApplicationForm
+class Admin::NewProductForm < ApplicationForm
   VALID_PRICE_ATTRIBUTES = %w(original sell discounted).freeze
   model Product
 
   properties :name,
-             :description,
-             :brand_id,
-             :cover,
-             :is_preorder,
-             :properties,
-             :width,
-             :depth,
-             :height,
-             :weight
+             :brand_id
   property :price, virtual: true
   property :top_level_category_id, virtual: true
   property :sub_category_id, virtual: true
-  property :uploaded_image_ids, virtual: true
   property :option_types, virtual: true
 
   validates :name,
@@ -27,7 +18,6 @@ class Admin::ProductForm < ApplicationForm
   #
   # @return [Bollean] 回傳是否成功寫入 DB
   def save
-    description_image_ids = description.scan(/\/uploads\/product\/image\/image\/([0-9]+)/).flatten.map(&:to_i)
     @is_new_record = model.new_record?
 
     sync
@@ -36,8 +26,6 @@ class Admin::ProductForm < ApplicationForm
 
     ::ActiveRecord::Base.transaction do
       model.save
-      link_product_images(description_image_ids)
-      delete_unused_images(description_image_ids)
       process_option_types
       process_variants
     end
@@ -80,21 +68,6 @@ class Admin::ProductForm < ApplicationForm
       model.assign_attributes category_id: id
   end
 
-  # 將有出現在 description 中的圖片與此 product 建立關聯
-  def link_product_images(description_image_ids)
-    Product::Image.where(id: description_image_ids).each do |image|
-      image.update product_id: model.id
-    end
-  end
-
-  # 刪除 description 編輯後不再需要的圖片
-  def delete_unused_images(description_image_ids)
-    current_description_image_ids = model.description_images.select(:id).map(&:id) # 目前與 product 有關聯的 description 圖片
-    unused_image_ids = uploaded_image_ids + current_description_image_ids - description_image_ids
-
-    Product::Image.where(id: unused_image_ids).destroy_all
-  end
-
   def process_option_types
     return unless @is_new_record
 
@@ -112,14 +85,14 @@ class Admin::ProductForm < ApplicationForm
     return build_default_master_variant if model.option_types.blank?
 
     options = model.option_types.map do |type|
-      type.option_values.map { |v| { id: v.id, name: %(#{type.name} - #{v.value}) } }
+      type.option_values.map { |v| { id: v.id, name: v.value } }
     end
     all_option_combinations = options[0].product(*options[1..-1])
 
     all_option_combinations.each_with_index do |option_combination, index|
       is_master = (index == 0)
 
-      model.variants.create name: option_combination.map { |option| option[:name] }.join(', '),
+      model.variants.create name: option_combination.map { |option| option[:name] }.join('-'),
                             original_price: model.original_price,
                             sell_price: model.sell_price,
                             discounted_price: model.discounted_price,

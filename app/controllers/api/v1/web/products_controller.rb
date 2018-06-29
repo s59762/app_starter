@@ -22,7 +22,7 @@ class Api::V1::Web::ProductsController < Api::V1::Web::BaseController
 
   def create
     product = Product.new
-    form = Admin::ProductForm.new(product)
+    form = Admin::NewProductForm.new(product)
 
     check_policy ProductPolicy.new(current_api_user, :product).create?
 
@@ -37,7 +37,7 @@ class Api::V1::Web::ProductsController < Api::V1::Web::BaseController
 
   def update
     product = Product.find(params[:id])
-    form = Admin::ProductForm.new(product)
+    form = Admin::EditProductForm.new(product)
 
     check_policy ProductPolicy.new(current_api_user, product).update?
 
