@@ -4,13 +4,11 @@ section.vc-product-price-info-columns.section.price-info-wrapper
   .columns
     .column
       //- 成本
-      b-field(:label="attributeLocaleText('product', 'original_price')"
-              :type="errors.errorClassAt('price')")
+      b-field(:label="attributeLocaleText('product', 'original_price')")
         b-input(type="number"
                 placeholder="e.g. 80000"
                 v-model="price.original"
-                data-behavior="product-original-price"
-                @input="errors.clear('price')")
+                data-behavior="product-original-price")
     .column
       //- 售價
       b-field(:label="attributeLocaleText('product', 'sell_price')"
@@ -30,7 +28,7 @@ section.vc-product-price-info-columns.section.price-info-wrapper
                 v-model="price.discounted"
                 data-behavior="product-discounted-price"
                 @input="errors.clear('price')")
-  p.has-text-danger.help(v-if="errors.has('price')") {{errors.get('price')}}
+  p.has-text-danger.help(v-if="errors.has('price')") {{ errors.get('price').join(', ') }}
 
 </template>
 

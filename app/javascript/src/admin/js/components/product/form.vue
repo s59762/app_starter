@@ -88,50 +88,9 @@
                            :price.sync="form.price")
 
         //- option types
-        section.section(v-if="product.isNewRecord()")
-          .option-types-wrapper(v-if="form.option_types.length > 0")
-            h4.section-title {{ pageTitleLocaleText('admin', 'products', 'option_type_fields') }}
-            .option-type-fields(v-for="(optionType, typeIndex) in form.option_types"
-                                :key="typeIndex")
-              .property-count {{typeIndex + 1}}
-              .delete-button(@click="deleteOptionType(typeIndex)")
-                i.fa.fa-close
-              .columns
-                .column
-                  b-field(:label="attributeLocaleText('product', 'option_name')"
-                          :type="errors.errorClassAt('option_types')")
-                    b-input(type="text"
-                            v-model="optionType.name"
-                            @input="errors.clear('option_types')"
-                            placeholder="e.g. Color")
-                .column
-                  .option-unit(v-for="(option, optionIndex) in optionType.options"
-                               :key="optionIndex")
-                    b-field(:label="`${attributeLocaleText('product', 'option_value')} ${optionIndex + 1}`")
-                      b-field(:type="errors.errorClassAt('option_types')")
-                        b-input(type="text"
-                                v-model="option.value"
-                                @input="errors.clear('option_types')"
-                                placeholder="e.g. Black")
-                        p.control(v-if="optionType.options.length > 1")
-                          button.button.is-danger(@click="deleteOptionFor(typeIndex, optionIndex)")
-                            i.fa.fa-close
-                  .add-option-button.button.is-default.is-block(@click="addOptionFor(typeIndex)"
-                                                        data-behavior="product-add-option-button")
-                    .icon
-                      i.fa.fa-plus
-                    span {{actionLocaleText('admin', 'add_product_option_value')}}
-
-          .has-text-danger(v-if="errors.has('option_types')")
-                p.help {{ errors.get('option_types').join(', ') }}
-
-          .add-option-type-button.button.is-default.is-block(@click="addOptionType"
-                                                             data-behavior="product-add-option-type-button")
-            .icon
-              i.fa.fa-plus
-            span {{actionLocaleText('admin', 'add_product_option_type')}}
-
-          p.help {{ messageLocaleText('product_management.if_product_have_multiple_options_please_provide_info_here_or_leave_blank') }}
+        option-types-columns(v-if="product.isNewRecord()"
+                             :errors="errors"
+                             :option-types="form.option_types")
 
         //- options
         //- section.section.product-options-wrapper
@@ -145,76 +104,76 @@
         //-               @input="errors.clear('is_preorder')")
         //-       | {{enumLocaleText('product', 'is_preorder', form.is_preorder)}}
 
-        //- properties
-        //- section.section
-        //-   h4.section-title {{pageTitleLocaleText('admin', 'products', 'property_fields')}}
+        properties
+        section.section
+          h4.section-title {{pageTitleLocaleText('admin', 'products', 'property_fields')}}
 
-        //-   .properties-wrapper
-        //-     //- 基本商品屬性（體積、重量）
-        //-     h5.sub-title {{pageTitleLocaleText('admin', 'products', 'basic_properties')}}
-        //-     .property-fields(v-for="basicProperty in basicProperties")
-        //-       .columns
-        //-         .column
-        //-           b-field(:label="attributeLocaleText('product', 'property_name')"
-        //-                   :type="errors.errorClassAt('properties')")
-        //-             b-input(type="text"
-        //-                     :value="attributeLocaleText('product', basicProperty.name)"
-        //-                     disabled)
-        //-         .column.is-6
-        //-           b-field(:label="attributeLocaleText('product', 'property_value')"
-        //-                   :type="errors.errorClassAt('properties')"
-        //-                   :message="errors.get(basicProperty.name)")
-        //-             b-input(type="number"
-        //-                     placeholder="e.g. 80"
-        //-                     v-model="form[basicProperty.name]"
-        //-                     data-behavior="product-width-value"
-        //-                     @input="errors.clear(basicProperty.name)")
-        //-         .column
-        //-           b-field(:label="attributeLocaleText('product', 'property_unit')"
-        //-                   :type="errors.errorClassAt('properties')")
-        //-             b-input(type="text"
-        //-                     :value="basicProperty.unit"
-        //-                     disabled)
-        //-     //- 自訂商品屬性
-        //-     h5.sub-title(v-if="form.properties.length > 0") {{pageTitleLocaleText('admin', 'products', 'extra_properties')}}
-        //-     .property-fields(v-for="(property, index) in form.properties")
-        //-       .property-count {{index + 1}}
-        //-       .delete-button(@click="deleteProperty(index)")
-        //-         i.fa.fa-close
-        //-       .columns
-        //-         .column
-        //-           b-field(:label="attributeLocaleText('product', 'property_name')"
-        //-                   :type="errors.errorClassAt('properties')"
-        //-                   :message="errors.get('properties')")
-        //-             b-input(type="text"
-        //-                     placeholder="e.g. Battery"
-        //-                     v-model="property.name"
-        //-                     data-behavior="product-property-name"
-        //-                     @input="errors.clear('properties')")
-        //-         .column.is-6
-        //-           b-field(:label="attributeLocaleText('product', 'property_value')"
-        //-                   :type="errors.errorClassAt('properties')"
-        //-                   :message="errors.get('properties')")
-        //-             b-input(type="text"
-        //-                     placeholder="e.g. 12000"
-        //-                     v-model="property.value"
-        //-                     data-behavior="product-property-value"
-        //-                     @input="errors.clear('properties')")
-        //-         .column
-        //-           b-field(:label="attributeLocaleText('product', 'property_unit')"
-        //-                   :type="errors.errorClassAt('properties')"
-        //-                   :message="errors.get('properties')")
-        //-             b-input(type="text"
-        //-                     placeholder="e.g. mAh"
-        //-                     v-model="property.unit"
-        //-                     data-behavior="product-property-unit"
-        //-                     @input="errors.clear('properties')")
+          .properties-wrapper
+            //- 基本商品屬性（體積、重量）
+            h5.sub-title {{pageTitleLocaleText('admin', 'products', 'basic_properties')}}
+            .property-fields(v-for="basicProperty in basicProperties")
+              .columns
+                .column
+                  b-field(:label="attributeLocaleText('product', 'property_name')"
+                          :type="errors.errorClassAt('properties')")
+                    b-input(type="text"
+                            :value="attributeLocaleText('product', basicProperty.name)"
+                            disabled)
+                .column.is-6
+                  b-field(:label="attributeLocaleText('product', 'property_value')"
+                          :type="errors.errorClassAt('properties')"
+                          :message="errors.get(basicProperty.name)")
+                    b-input(type="number"
+                            placeholder="e.g. 80"
+                            v-model="form[basicProperty.name]"
+                            data-behavior="product-width-value"
+                            @input="errors.clear(basicProperty.name)")
+                .column
+                  b-field(:label="attributeLocaleText('product', 'property_unit')"
+                          :type="errors.errorClassAt('properties')")
+                    b-input(type="text"
+                            :value="basicProperty.unit"
+                            disabled)
+            //- 自訂商品屬性
+            h5.sub-title(v-if="form.properties.length > 0") {{pageTitleLocaleText('admin', 'products', 'extra_properties')}}
+            .property-fields(v-for="(property, index) in form.properties")
+              .property-count {{index + 1}}
+              .delete-button(@click="deleteProperty(index)")
+                i.fa.fa-close
+              .columns
+                .column
+                  b-field(:label="attributeLocaleText('product', 'property_name')"
+                          :type="errors.errorClassAt('properties')"
+                          :message="errors.get('properties')")
+                    b-input(type="text"
+                            placeholder="e.g. Battery"
+                            v-model="property.name"
+                            data-behavior="product-property-name"
+                            @input="errors.clear('properties')")
+                .column.is-6
+                  b-field(:label="attributeLocaleText('product', 'property_value')"
+                          :type="errors.errorClassAt('properties')"
+                          :message="errors.get('properties')")
+                    b-input(type="text"
+                            placeholder="e.g. 12000"
+                            v-model="property.value"
+                            data-behavior="product-property-value"
+                            @input="errors.clear('properties')")
+                .column
+                  b-field(:label="attributeLocaleText('product', 'property_unit')"
+                          :type="errors.errorClassAt('properties')"
+                          :message="errors.get('properties')")
+                    b-input(type="text"
+                            placeholder="e.g. mAh"
+                            v-model="property.unit"
+                            data-behavior="product-property-unit"
+                            @input="errors.clear('properties')")
 
-        //-   .add-property-button.button.is-default.is-block(@click="addProperty"
-        //-                                                   data-behavior="product-add-property-button")
-        //-     .icon
-        //-       i.fa.fa-plus
-        //-     span {{actionLocaleText('admin', 'add_product_property')}}
+          .add-property-button.button.is-default.is-block(@click="addProperty"
+                                                          data-behavior="product-add-property-button")
+            .icon
+              i.fa.fa-plus
+            span {{actionLocaleText('admin', 'add_product_property')}}
 
         br
 
@@ -235,6 +194,7 @@ import imageButtonHandler from '../../../../shared/plugins/quill_image_handler_m
 import Product from '../../../../shared/resource_models/product'
 import Form from 'odd-form_object'
 import PriceInfoColumns from './price-info-columns.vue'
+import OptionTypesColumns from './option-types-columns.vue'
 
 const toolbarOptions = [
   [{ size: [false, 'small', 'large', 'huge'] }], // custom dropdown
@@ -260,12 +220,6 @@ const propertyTemplate = () => {
     unit: ''
   }
 }
-const optionTypeTemplate = () => {
-  return {
-    name: '',
-    options: [{ value: '' }]
-  }
-}
 
 Quill.register('modules/ImageHandler', ImageHandler)
 // Quill.register('modules/ImageResize', ImageResize)
@@ -273,7 +227,8 @@ Quill.register('modules/ImageHandler', ImageHandler)
 export default {
   components: {
     quillEditor,
-    PriceInfoColumns
+    PriceInfoColumns,
+    OptionTypesColumns
   },
 
   // mixins: [],
@@ -418,26 +373,6 @@ export default {
 
     deleteProperty(index) {
       this.form.properties.splice(index, 1)
-    },
-
-    addOptionType() {
-      this.form.option_types.push(optionTypeTemplate())
-    },
-
-    deleteOptionType(index) {
-      console.log(index)
-      this.form.option_types.splice(index, 1)
-    },
-
-    addOptionFor(index) {
-      this.form.option_types[index].options.push({ value: '' })
-    },
-
-    deleteOptionFor(typeIndex, optionIndex) {
-      console.log(typeIndex, optionIndex)
-      if (this.form.option_types[typeIndex].options.length < 2) return
-
-      this.form.option_types[typeIndex].options.splice(optionIndex, 1)
     },
 
     /*
