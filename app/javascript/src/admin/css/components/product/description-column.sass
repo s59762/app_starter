@@ -1,48 +1,6 @@
-.vc-product-form
-  $divider-color: darken($light, 10)
-  %control-button-style
-    position: absolute
-    top: -.5rem
-    width: 1.5rem
-    height: 1.5rem
-    color: $white
-    text-align: center
-    border-radius: 100%
-
-  .section-title
-    font-size: $size-6
-    font-weight: bolder
-    margin-bottom: $size-6
-
+.vc-product-description-column
   .ql-editor
     min-height: 500px
-
-  .section:not(:last-of-type)
-    border-bottom: 1px solid $divider-color
-
-  .property-fields
-    $gap: .5rem
-
-    position: relative
-    background-color: $light
-    padding: $size-6
-    margin-bottom: $size-6
-    border-radius: 8px
-    &:last-of-type
-      margin-bottom: $gap
-    > .property-count
-      @extend %control-button-style
-      left: -$gap
-      background-color: $grey
-    > .delete-button
-      @extend %control-button-style
-      right: -$gap
-      background-color: $danger
-      box-shadow: 0 0 2px $dark
-      transition: box-shadow .3s
-      cursor: pointer
-      &:hover
-        box-shadow: 0 0 5px $black
 
   .ql-snow .ql-picker.ql-size
     .ql-picker-item[data-value="small"]::before,

@@ -9,7 +9,9 @@ const OPTIONS = {
   resourceType: 'products',
   attributes: [
     'brand_id',
-    'category_id',
+    'category',
+    'top_level_category_id',
+    'sub_category_id',
     'cover',
     'created_at',
     'description',
@@ -21,18 +23,33 @@ const OPTIONS = {
     'original_price',
     'properties',
     'sell_price',
-    'updated_at'
+    'updated_at',
+    'width',
+    'depth',
+    'height',
+    'weight',
+    'sku',
+    'master',
+    'variants',
+    'options'
   ],
   editableAttributes: [
     'brand_id',
-    'category_id',
+    'top_level_category_id',
+    'sub_category_id',
     'cover',
     'description',
     'is_preorder',
     'name',
     'price',
     'properties',
-    'uploaded_image_ids'
+    'option_types',
+    'uploaded_image_ids',
+    'width',
+    'depth',
+    'height',
+    'weight',
+    'sku'
   ]
 }
 
@@ -80,5 +97,16 @@ export default class Product extends ResourceModelBase {
 
   displayPrice(price = 'sell') {
     return `${this[`${price}_price`] / 100} ${I18n.t('activerecord.attributes.product.price_unit')}`
+  }
+
+  displaySize() {
+    const properties = ['width', 'depth', 'height']
+    let result = []
+
+    properties.forEach(property => {
+      if (this[property]) result.push(`${I18n.t(`activerecord.attributes.product.${property}`)} ${this[property]}`)
+    })
+
+    return result.join(' × ')
   }
 }

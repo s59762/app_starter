@@ -2,22 +2,16 @@
 #
 # Table name: products
 #
-#  id                        :bigint(8)        not null, primary key
-#  name                      :string
-#  description               :text
-#  category_id               :bigint(8)
-#  cover                     :integer
-#  original_price_cents      :integer          default(0), not null
-#  original_price_currency   :string           default("TWD"), not null
-#  sell_price_cents          :integer          default(0), not null
-#  sell_price_currency       :string           default("TWD"), not null
-#  discounted_price_cents    :integer          default(0), not null
-#  discounted_price_currency :string           default("TWD"), not null
-#  is_preorder               :boolean          default(FALSE)
-#  properties                :jsonb
-#  created_at                :datetime         not null
-#  updated_at                :datetime         not null
-#  brand_id                  :bigint(8)
+#  id          :bigint(8)        not null, primary key
+#  name        :string
+#  description :text
+#  category_id :bigint(8)
+#  cover       :integer
+#  is_preorder :boolean          default(FALSE)
+#  properties  :jsonb
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  brand_id    :bigint(8)
 #
 
 class ProductSerializer < ApplicationSerializer
@@ -27,25 +21,47 @@ class ProductSerializer < ApplicationSerializer
              :discounted_price,
              :is_preorder,
              :brand_id,
-             :category_id,
+             :top_level_category_id,
+             :sub_category_id,
              :name,
              :original_price,
              :properties,
+             :width,
+             :depth,
+             :height,
+             :weight,
              :sell_price,
              :created_at,
              :updated_at,
-             :discount_rate
+             :discount_rate,
+             :options,
+             :sku
 
   belongs_to :brand, optional: true
   belongs_to :category, class_name: 'ProductCategory', optional: true
   has_many :images, class_name: 'Product::Image', dependent: :destroy, if: -> { instance_options[:show_images] }
   has_many :normal_images, class_name: 'Product::Image', if: -> { instance_options[:show_normal_images] }
   has_many :description_images, class_name: 'Product::Image', if: -> { instance_options[:show_description_images] }
+  has_many :option_types, class_name: 'Product::OptionType', if: -> { instance_options[:show_options] }
+  has_many :variants, if: -> { instance_options[:show_variants] }
+  has_one :master
 
   to_unix_time :created_at, :updated_at
   money_to_integer :original_price,
                    :sell_price,
                    :discounted_price
+
+  def top_level_category_id
+    return object.category.parent.id if object.category.parent.present?
+
+    object.category_id
+  end
+
+  def sub_category_id
+    return nil unless object.category.parent.present?
+
+    object.category_id
+  end
 
   # 折扣率
   def discount_rate
@@ -53,5 +69,20 @@ class ProductSerializer < ApplicationSerializer
     return 1.0 if object.sell_price.zero?
 
     object.discounted_price / object.sell_price
+  end
+
+  def options
+    object.option_types.map do |type|
+      {
+        id: type.id.to_s,
+        name: type.name,
+        values: type.option_values.map do |option_value|
+                  {
+                    id: option_value.id.to_s,
+                    value: option_value.value
+                  }
+                end
+      }
+    end
   end
 end

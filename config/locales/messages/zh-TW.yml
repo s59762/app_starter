@@ -28,6 +28,7 @@ zh-TW:
       please_select_a_picture: 請選擇一個圖檔
       please_make_words_count_about: 請盡量維持在 %{count} 字左右
       click_for_update_logo: 點擊選擇新 LOGO
+      no_sub_category: 不設定子分類
     admin_is_suspended: 管理員 %{name} 已停權
     admin_is_unsuspended: 管理員 %{name} 已復權
     resource_added_successfully: '%{resource}已成功新增'
@@ -36,3 +37,6 @@ zh-TW:
     there_is_no_data_for_now: 目前沒有資料
     there_is_no_sub_categories_for_now: 目前沒有子分類
     this_column_is_optional: 此欄位為選填
+    product_management:
+      please_provide_basic_info_for_new_product_and_make_advence_config_in_next_step: 請先透過這個表單提供商品的基本資料，在建立好商品資料模型後您可以在下一個步驟進行更多設定。
+      if_product_have_multiple_options_please_provide_info_here_or_leave_blank: 若商品擁有多種選項，請利用此功能來協助您建立選項。若商品沒有提供選項請留空。
