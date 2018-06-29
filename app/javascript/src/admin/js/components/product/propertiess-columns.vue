@@ -32,7 +32,7 @@
     //- 自訂商品屬性
     h5.sub-title(v-if="form.properties.length > 0") {{pageTitleLocaleText('admin', 'products', 'extra_properties')}}
     .property-fields(v-for="(property, index) in form.properties")
-      .property-count {{index + 1}}
+      .counter {{index + 1}}
       .delete-button(@click="deleteProperty(index)")
         i.fa.fa-close
       .columns

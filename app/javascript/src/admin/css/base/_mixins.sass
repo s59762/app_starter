@@ -52,3 +52,38 @@
   .required
     > .label:after
       content: '*'
+
+// rounded control button
+%control-button-style
+  position: absolute
+  top: -.5rem
+  width: 1.5rem
+  height: 1.5rem
+  color: $white
+  text-align: center
+  border-radius: 100%
+
+// product customized property field styles
+%is-product-customization-property-field
+  $gap: .5rem
+
+  position: relative
+  background-color: $light
+  padding: $size-6
+  margin-bottom: $size-6
+  border-radius: 8px
+  &:last-of-type
+    margin-bottom: $gap
+  > .counter
+    @extend %control-button-style
+    left: -$gap
+    background-color: $grey
+  > .delete-button
+    @extend %control-button-style
+    right: -$gap
+    background-color: $danger
+    box-shadow: 0 0 2px $dark
+    transition: box-shadow .3s
+    cursor: pointer
+    &:hover
+      box-shadow: 0 0 5px $black

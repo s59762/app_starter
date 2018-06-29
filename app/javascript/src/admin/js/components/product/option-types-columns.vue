@@ -5,7 +5,7 @@
     h4.section-title {{ pageTitleLocaleText('admin', 'products', 'option_type_fields') }}
     .option-type-fields(v-for="(optionType, typeIndex) in optionTypes"
                         :key="typeIndex")
-      .property-count {{typeIndex + 1}}
+      .counter {{typeIndex + 1}}
       .delete-button(@click="deleteOptionType(typeIndex)")
         i.fa.fa-close
       .columns
