@@ -46,13 +46,15 @@
                              :form.sync="form")
 
         //- price info
-        price-info-columns(:errors="errors"
-                           :price.sync="form.price")
+        section.section
+          price-info-columns(:errors="errors"
+                            :price.sync="form.price")
 
         //- option types
-        option-types-columns(v-if="product.isNewRecord()"
-                             :errors="errors"
-                             :option-types.sync="form.option_types")
+        section.section
+          option-types-columns(v-if="product.isNewRecord()"
+                              :errors="errors"
+                              :option-types.sync="form.option_types")
 
         //- options
         section.section.product-options-wrapper
@@ -66,8 +68,9 @@
                       @input="errors.clear('is_preorder')")
               | {{enumLocaleText('product', 'is_preorder', form.is_preorder)}}
 
-        properties-columns(:errors="errors"
-                           :form.sync="form")
+        section.section
+          properties-columns(:errors="errors"
+                             :form.sync="form")
 
         br
 

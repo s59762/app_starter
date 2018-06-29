@@ -1,6 +1,6 @@
 <template lang="pug">
 
-section.vc-product-propertiess-columns.section
+.vc-product-propertiess-columns
   h4.section-title {{pageTitleLocaleText('admin', 'products', 'property_fields')}}
 
   .properties-wrapper

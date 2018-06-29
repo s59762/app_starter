@@ -1,6 +1,6 @@
 <template lang="pug">
 
-section.vc-product-option-types-columns.section
+.vc-product-option-types-columns
   .option-types-wrapper(v-if="optionTypes.length > 0")
     h4.section-title {{ pageTitleLocaleText('admin', 'products', 'option_type_fields') }}
     .option-type-fields(v-for="(optionType, typeIndex) in optionTypes"

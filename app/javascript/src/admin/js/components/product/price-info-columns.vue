@@ -1,6 +1,6 @@
 <template lang="pug">
 
-section.vc-product-price-info-columns.section.price-info-wrapper
+.vc-product-price-info-columns.price-info-wrapper
   .columns
     .column
       //- 成本
