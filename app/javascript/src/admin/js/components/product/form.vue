@@ -24,47 +24,15 @@
                     data-behavior="product-name"
                     @input="errors.clear('name')")
 
-          .columns
-            .column
-              //- 主分類
-              b-field(:label="attributeLocaleText('product', 'category_id')"
-                      :type="errors.errorClassAt('top_level_category_id')"
-                      :message="errors.get('top_level_category_id')"
-                      class="required")
-                b-select(v-model="form.top_level_category_id"
-                        :loading="isCategoriesLoading"
-                        :placeholder="messageLocaleText('help.please_select_a_category')"
-                        @input="errors.clear('top_level_category_id')"
-                        expanded)
-                  option(v-for="topLevelCategory in topLevelCategories"
-                        :label="topLevelCategory.name"
-                        :value="topLevelCategory.id"
-                        :key="topLevelCategory.id")
-                    | {{ topLevelCategory.name }}
-            .column(v-if="findCategoryBy(form.top_level_category_id)")
-              //- 子分類
-              b-field(:label="attributeLocaleText('product', 'sub_category')"
-                      :type="errors.errorClassAt('sub_category_id')"
-                      :message="errors.get('sub_category_id')")
-                b-select(v-model="form.sub_category_id"
-                        :loading="isCategoriesLoading"
-                        :placeholder="messageLocaleText('help.no_sub_category')"
-                        @input="errors.clear('sub_category_id')"
-                        expanded)
-                  option(:label="messageLocaleText('help.no_sub_category')"
-                        :value="undefined")
-                  option(v-for="subCategory in findCategoryBy(form.top_level_category_id).sub_categories"
-                        :label="findCategoryBy(subCategory.id).name"
-                        :value="subCategory.id"
-                        :key="subCategory.id")
-                    | {{ findCategoryBy(subCategory.id).name }}
+          category-selector(:errors="errors"
+                            :form="form")
 
           //- 品牌
           b-field(:label="attributeLocaleText('product', 'brand_id')"
                   :type="errors.errorClassAt('brand_id')"
                   :message="errors.get('brand_id')")
             b-select(v-model="form.brand_id"
-                     :loading="isCategoriesLoading"
+                     :loading="isBrandsLoading"
                      :placeholder="messageLocaleText('help.please_select_a_brand')"
                      @input="errors.clear('brand_id')"
                      expanded)
@@ -125,6 +93,7 @@ import imageButtonHandler from '../../../../shared/plugins/quill_image_handler_m
 // import ImageResize from 'quill-image-resize-module'
 import Product from '../../../../shared/resource_models/product'
 import Form from 'odd-form_object'
+import CategorySelector from './category-selector.vue'
 import PriceInfoColumns from './price-info-columns.vue'
 import OptionTypesColumns from './option-types-columns.vue'
 import PropertiesColumns from './propertiess-columns.vue'
@@ -153,6 +122,7 @@ Quill.register('modules/ImageHandler', ImageHandler)
 export default {
   components: {
     quillEditor,
+    CategorySelector,
     PriceInfoColumns,
     OptionTypesColumns,
     PropertiesColumns
@@ -215,24 +185,12 @@ export default {
       return this.$store.getters['products/isLoading']
     },
 
-    isCategoriesLoading() {
-      return this.$store.getters['productCategories/isLoading']
-    },
-
     isBrandsLoading() {
       return this.$store.getters['brands/isLoading']
     },
 
-    categories() {
-      return this.$store.getters['productCategories/all']
-    },
-
     brands() {
       return this.$store.getters['brands/all']
-    },
-
-    topLevelCategories() {
-      return this.categories.filter(category => category.parent_id === null)
     },
 
     returnUrlParams() {
@@ -245,7 +203,6 @@ export default {
   },
 
   created() {
-    this.$store.dispatch('productCategories/all')
     this.$store.dispatch('brands/all')
     if (this.product.isNewRecord()) {
       this.form.uploaded_image_ids = []
@@ -269,10 +226,6 @@ export default {
   // mounted() {},
 
   methods: {
-    findCategoryBy(id) {
-      return this.categories.find(category => category.id == id)
-    },
-
     /*
     * Quill 的 module ImageHandler 和 imageButtonHandler 在上傳照片之後，可接受一個 Callback
     * 這邊把上傳後的圖片 ID 記錄下來，一併在儲存 product 時送給後端做後續處理。
