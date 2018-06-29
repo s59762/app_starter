@@ -1,4 +1,4 @@
-import ProductForm from '../../components/product/form'
+import ProductForm from '../../components/product/create-form.vue'
 
 export default {
   name: 'new-product-page-container',

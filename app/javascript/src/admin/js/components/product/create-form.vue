@@ -1,6 +1,6 @@
 <template lang="pug">
 
-.vc-product-form.box.content-box.is-primary
+.vc-product-create-form.box.content-box.is-primary
   .box-header.with-border
     h3.subtitle {{ pageTitleLocaleText('admin', 'products', 'form') }}
     b-message(type="is-info") {{ messageLocaleText('product_management.please_provide_basic_info_for_new_product_and_make_advence_config_in_next_step') }}
@@ -42,8 +42,8 @@
                 | {{ brand.name }}
 
           //- 商品描述
-          description-column(:errors="errors"
-                             :form.sync="form")
+          //- description-column(:errors="errors"
+          //-                    :form.sync="form")
 
         //- price info
         section.section
@@ -57,20 +57,20 @@
                               :option-types.sync="form.option_types")
 
         //- options
-        section.section.product-options-wrapper
-          //- 預購？
-          b-field(:label="attributeLocaleText('product', 'is_preorder')"
-                  :type="errors.errorClassAt('is_preorder')"
-                  :message="errors.get('is_preorder')")
-            b-switch(v-model="form.is_preorder"
-                      type="is-success"
-                      data-behavior="product-is-oreorder"
-                      @input="errors.clear('is_preorder')")
-              | {{enumLocaleText('product', 'is_preorder', form.is_preorder)}}
+        //- section.section.product-options-wrapper
+        //-   //- 預購？
+        //-   b-field(:label="attributeLocaleText('product', 'is_preorder')"
+        //-           :type="errors.errorClassAt('is_preorder')"
+        //-           :message="errors.get('is_preorder')")
+        //-     b-switch(v-model="form.is_preorder"
+        //-               type="is-success"
+        //-               data-behavior="product-is-oreorder"
+        //-               @input="errors.clear('is_preorder')")
+        //-       | {{enumLocaleText('product', 'is_preorder', form.is_preorder)}}
 
-        section.section
-          properties-columns(:errors="errors"
-                             :form.sync="form")
+        //- section.section
+        //-   properties-columns(:errors="errors"
+        //-                      :form.sync="form")
 
         br
 
