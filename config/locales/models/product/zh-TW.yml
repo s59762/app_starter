@@ -36,6 +36,7 @@ zh-TW:
         depth: 寬
         height: 高
         weight: 重量
+        sku: SKU
 
     errors:
       models:

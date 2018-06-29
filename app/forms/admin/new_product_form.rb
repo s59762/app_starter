@@ -4,6 +4,7 @@ class Admin::NewProductForm < ApplicationForm
 
   properties :name,
              :brand_id
+  property :sku, virtual: true
   property :price, virtual: true
   property :top_level_category_id, virtual: true
   property :sub_category_id, virtual: true
@@ -93,6 +94,7 @@ class Admin::NewProductForm < ApplicationForm
       is_master = (index == 0)
 
       model.variants.create name: option_combination.map { |option| option[:name] }.join('-'),
+                            sku: "#{sku}-#{index}",
                             original_price: model.original_price,
                             sell_price: model.sell_price,
                             discounted_price: model.discounted_price,
@@ -105,7 +107,8 @@ class Admin::NewProductForm < ApplicationForm
   end
 
   def build_default_master_variant
-    model.master.update original_price: model.original_price,
+    model.master.update sku: sku,
+                        original_price: model.original_price,
                         sell_price: model.sell_price,
                         discounted_price: model.discounted_price,
                         weight: model.weight,

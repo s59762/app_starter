@@ -24,6 +24,14 @@
                     data-behavior="product-name"
                     @input="errors.clear('name')")
 
+          b-field(:label="attributeLocaleText('product', 'sku')"
+                  :type="errors.errorClassAt('sku')"
+                  :message="errors.get('sku')")
+            b-input(type="text"
+                    placeholder="e.g. A001398"
+                    v-model="form.sku"
+                    @input="errors.clear('sku')")
+
           category-selector(:errors="errors"
                             :form.sync="form")
 

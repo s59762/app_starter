@@ -44,7 +44,8 @@ class ProductSerializer < ApplicationSerializer
              :created_at,
              :updated_at,
              :discount_rate,
-             :options
+             :options,
+             :sku
 
   belongs_to :brand, optional: true
   belongs_to :category, class_name: 'ProductCategory', optional: true
@@ -85,14 +86,12 @@ class ProductSerializer < ApplicationSerializer
       {
         id: type.id.to_s,
         name: type.name,
-        values: [
-          type.option_values.map do |option_value|
-            {
-              id: option_value.id.to_s,
-              value: option_value.value
-            }
-          end
-        ]
+        values: type.option_values.map do |option_value|
+                  {
+                    id: option_value.id.to_s,
+                    value: option_value.value
+                  }
+                end
       }
     end
   end

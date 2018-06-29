@@ -60,6 +60,8 @@ class Product < ApplicationRecord
   # this crazy query can list all brands...
   # Product.where("properties @> ?", [{name: '品牌'}].to_json).select("json_array_elements(properties::json) ->> 'name' as name", "json_array_elements(properties::json) ->> 'value' as brand", "id").to_ary.select{|h| h[:name] == '品牌'}.map(&:brand)
 
+  delegate :sku, to: :master
+
   def master
     super || build_master
   end

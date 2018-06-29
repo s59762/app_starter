@@ -27,7 +27,11 @@ const OPTIONS = {
     'width',
     'depth',
     'height',
-    'weight'
+    'weight',
+    'sku',
+    'master',
+    'variants',
+    'options'
   ],
   editableAttributes: [
     'brand_id',
@@ -44,7 +48,8 @@ const OPTIONS = {
     'width',
     'depth',
     'height',
-    'weight'
+    'weight',
+    'sku'
   ]
 }
 
