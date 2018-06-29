@@ -26,7 +26,8 @@
 
           b-field(:label="attributeLocaleText('product', 'sku')"
                   :type="errors.errorClassAt('sku')"
-                  :message="errors.get('sku')")
+                  :message="errors.get('sku')"
+                  class="required")
             b-input(type="text"
                     placeholder="e.g. A001398"
                     v-model="form.sku"
@@ -144,14 +145,6 @@ export default {
 
     brands() {
       return this.$store.getters['brands/all']
-    },
-
-    returnUrlParams() {
-      if (this.product.isNewRecord()) {
-        return 'product_added=1'
-      } else {
-        return 'product_updated=1'
-      }
     }
   },
 
@@ -181,8 +174,8 @@ export default {
   methods: {
     submitForm() {
       // TODO: 建立 0 元商品前先請使用者確認。
-      this.$store.dispatch('products/save', this.form.sync()).then(() => {
-        Turbolinks.visit(`/admin/products?${this.returnUrlParams}`)
+      this.$store.dispatch('products/save', this.form.sync()).then(response => {
+        Turbolinks.visit(`/admin/products/${response.data.data.id}/edit?product_added=1`)
       })
     }
   }

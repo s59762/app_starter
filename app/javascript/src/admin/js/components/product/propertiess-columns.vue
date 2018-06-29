@@ -39,7 +39,8 @@
         .column
           b-field(:label="attributeLocaleText('product', 'property_name')"
                   :type="errors.errorClassAt('properties')"
-                  :message="errors.get('properties')")
+                  :message="errors.get('properties')"
+                  class="required")
             b-input(type="text"
                     placeholder="e.g. Battery"
                     v-model="property.name"
@@ -48,7 +49,8 @@
         .column.is-6
           b-field(:label="attributeLocaleText('product', 'property_value')"
                   :type="errors.errorClassAt('properties')"
-                  :message="errors.get('properties')")
+                  :message="errors.get('properties')"
+                  class="required")
             b-input(type="text"
                     placeholder="e.g. 12000"
                     v-model="property.value"
@@ -56,13 +58,11 @@
                     @input="errors.clear('properties')")
         .column
           b-field(:label="attributeLocaleText('product', 'property_unit')"
-                  :type="errors.errorClassAt('properties')"
-                  :message="errors.get('properties')")
+                  :type="errors.errorClassAt('properties')")
             b-input(type="text"
                     placeholder="e.g. mAh"
                     v-model="property.unit"
-                    data-behavior="product-property-unit"
-                    @input="errors.clear('properties')")
+                    data-behavior="product-property-unit")
 
   .add-property-button.button.is-default.is-block(@click="addProperty"
                                                   data-behavior="product-add-property-button")

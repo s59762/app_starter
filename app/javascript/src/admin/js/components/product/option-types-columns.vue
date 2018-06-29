@@ -11,7 +11,8 @@
       .columns
         .column
           b-field(:label="attributeLocaleText('product', 'option_name')"
-                  :type="errors.errorClassAt('option_types')")
+                  :type="errors.errorClassAt('option_types')"
+                  class="required")
             b-input(type="text"
                     v-model="optionType.name"
                     @input="errors.clear('option_types')"
@@ -19,7 +20,8 @@
         .column
           .option-unit(v-for="(option, optionIndex) in optionType.options"
                         :key="optionIndex")
-            b-field(:label="`${attributeLocaleText('product', 'option_value')} ${optionIndex + 1}`")
+            b-field(:label="`${attributeLocaleText('product', 'option_value')} ${optionIndex + 1}`"
+                    class="required")
               b-field(:type="errors.errorClassAt('option_types')")
                 b-input(type="text"
                         v-model="option.value"
