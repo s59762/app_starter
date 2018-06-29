@@ -10,5 +10,5 @@
 #
 
 class Product::OptionValue < ApplicationRecord
-  belongs_to :option_type, class_name: 'Product::OptionType'
+  belongs_to :option_type, class_name: 'Product::OptionType', touch: true
 end

@@ -33,4 +33,7 @@ RSpec.describe Product, type: :model do
   it { should have_many :normal_images }
   it { should have_many :description_images }
   it { should have_many :option_types }
+  it { should have_many :variants }
+  it { should have_one :master }
+  it { should have_many :variants_with_master }
 end

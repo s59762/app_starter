@@ -4,7 +4,7 @@ class Api::V1::Web::ProductsController < Api::V1::Web::BaseController
   def index
     check_policy ProductPolicy.new(current_api_user, :product).index?
 
-    products = FetchingDataService.call(Product, params).includes(:brand, :category)
+    products = FetchingDataService.call(Product, params).includes(:brand, :master, option_types: [:option_values], category: [:parent])
     result = Api::DataCacheService.call(products, request)
 
     render json: result

@@ -10,7 +10,7 @@
 #
 
 class Product::OptionType < ApplicationRecord
-  belongs_to :product
+  belongs_to :product, touch: true
 
   has_many :option_values, class_name: 'Product::OptionValue', dependent: :destroy
 end

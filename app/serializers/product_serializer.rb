@@ -52,6 +52,8 @@ class ProductSerializer < ApplicationSerializer
   has_many :normal_images, class_name: 'Product::Image', if: -> { instance_options[:show_normal_images] }
   has_many :description_images, class_name: 'Product::Image', if: -> { instance_options[:show_description_images] }
   has_many :option_types, class_name: 'Product::OptionType', if: -> { instance_options[:show_options] }
+  has_many :variants, if: -> { instance_options[:show_variants] }
+  has_one :master
 
   to_unix_time :created_at, :updated_at
   money_to_integer :original_price,

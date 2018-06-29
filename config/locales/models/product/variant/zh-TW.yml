@@ -1,0 +1,38 @@
+zh-TW:
+  # model and attributes name
+  activerecord: &default
+    models:
+      product/variant:
+        one: 規格選項
+        other: 規格選項
+
+    attributes:
+      product/variant:
+        name: 名稱
+        sku: SKU
+        original_price: 進貨成本
+        sell_price: 售價
+        discounted_price: 折扣價
+        price_unit: 元
+        discount_unit: 折
+        weight: 重量
+        width: 長
+        depth: 寬
+        height: 高
+        is_master: 主規格
+        description: 描述
+        product_id: 商品
+
+    errors:
+      models:
+        product/variant:
+          attributes:
+  activemodel: *default
+
+  # Enums
+  enums:
+    product/variant:
+
+  # AASM state machine
+  aasm_state:
+    product/variant:
