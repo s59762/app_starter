@@ -84,37 +84,8 @@
           //-                :options="editorOptions")
 
         //- price info
-        section.section.price-info-wrapper
-          .columns
-            .column
-              //- 成本
-              b-field(:label="attributeLocaleText('product', 'original_price')"
-                      :type="errors.errorClassAt('price')")
-                b-input(type="number"
-                        placeholder="e.g. 80000"
-                        v-model="form.price.original"
-                        data-behavior="product-original-price"
-                        @input="errors.clear('price')")
-            .column
-              //- 售價
-              b-field(:label="attributeLocaleText('product', 'sell_price')"
-                      :type="errors.errorClassAt('price')"
-                      class="required")
-                b-input(type="number"
-                        placeholder="e.g. 100000"
-                        v-model="form.price.sell"
-                        data-behavior="product-sell-price"
-                        @input="errors.clear('price')")
-            .column
-              //- 折扣價
-              b-field(:label="attributeLocaleText('product', 'discounted_price')"
-                      :type="errors.errorClassAt('price')")
-                b-input(type="number"
-                        placeholder="e.g. 98000"
-                        v-model="form.price.discounted"
-                        data-behavior="product-discounted-price"
-                        @input="errors.clear('price')")
-          p.has-text-danger.help(v-if="errors.has('price')") {{errors.get('price')}}
+        price-info-columns(:errors="errors"
+                           :price.sync="form.price")
 
         //- option types
         section.section(v-if="product.isNewRecord()")
@@ -263,6 +234,7 @@ import imageButtonHandler from '../../../../shared/plugins/quill_image_handler_m
 // import ImageResize from 'quill-image-resize-module'
 import Product from '../../../../shared/resource_models/product'
 import Form from 'odd-form_object'
+import PriceInfoColumns from './price-info-columns.vue'
 
 const toolbarOptions = [
   [{ size: [false, 'small', 'large', 'huge'] }], // custom dropdown
@@ -300,7 +272,8 @@ Quill.register('modules/ImageHandler', ImageHandler)
 
 export default {
   components: {
-    quillEditor
+    quillEditor,
+    PriceInfoColumns
   },
 
   // mixins: [],
