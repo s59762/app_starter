@@ -29,6 +29,7 @@ class Admin::ProductForm < ApplicationForm
   # @return [Bollean] 回傳是否成功寫入 DB
   def save
     description_image_ids = description.scan(/\/uploads\/product\/image\/image\/([0-9]+)/).flatten.map(&:to_i)
+    @is_new_record = model.new_record?
 
     sync
     assign_price_info_to_model
@@ -39,7 +40,7 @@ class Admin::ProductForm < ApplicationForm
       link_product_images(description_image_ids)
       delete_unused_images(description_image_ids)
       process_option_types
-      # TODO: process_variants
+      process_variants
     end
   end
 
@@ -96,7 +97,7 @@ class Admin::ProductForm < ApplicationForm
   end
 
   def process_option_types
-    # TODO: not implement for update action yet.
+    return unless @is_new_record
 
     option_types.each do |type|
       option_type = model.option_types.create name: type['name']
@@ -105,5 +106,39 @@ class Admin::ProductForm < ApplicationForm
         option_type.option_values.create value: option['value']
       end
     end
+  end
+
+  def process_variants
+    return unless @is_new_record
+    return build_default_master_variant if model.option_types.blank?
+
+    options = model.option_types.map do |type|
+      type.option_values.map { |v| { id: v.id, name: %(#{type.name} - #{v.value}) } }
+    end
+    all_option_combinations = options[0].product(*options[1..-1])
+
+    all_option_combinations.each_with_index do |option_combination, index|
+      is_master = (index == 0)
+
+      model.variants.create name: option_combination.map { |option| option[:name] }.join(', '),
+                            original_price: model.original_price,
+                            sell_price: model.sell_price,
+                            discounted_price: model.discounted_price,
+                            weight: model.weight,
+                            width: model.width,
+                            depth: model.depth,
+                            height: model.height,
+                            is_master: is_master
+    end
+  end
+
+  def build_default_master_variant
+    model.master.update original_price: model.original_price,
+                        sell_price: model.sell_price,
+                        discounted_price: model.discounted_price,
+                        weight: model.weight,
+                        width: model.width,
+                        depth: model.depth,
+                        height: model.height
   end
 end

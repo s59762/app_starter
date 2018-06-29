@@ -471,6 +471,7 @@ export default {
     },
 
     submitForm() {
+      // TODO: 建立 0 元商品前先請使用者確認。
       this.$store.dispatch('products/save', this.form.sync()).then(() => {
         Turbolinks.visit(`/admin/products?${this.returnUrlParams}`)
       })

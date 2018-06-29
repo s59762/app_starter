@@ -1,4 +1,6 @@
 class Product::VariantSerializer < ApplicationSerializer
+  type 'product_variants'
+
   attributes :id,
              :name,
              :sku,

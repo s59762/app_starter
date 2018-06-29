@@ -5,18 +5,19 @@ class Api::V1::Web::ProductsController < Api::V1::Web::BaseController
     check_policy ProductPolicy.new(current_api_user, :product).index?
 
     products = FetchingDataService.call(Product, params).includes(:brand, :master, option_types: [:option_values], category: [:parent])
-    result = Api::DataCacheService.call(products, request)
+    result = Api::DataCacheService.call(products, request, extra: { include: [:master] })
 
     render json: result
   end
 
   def show
-    product = Product.find(params[:id])
+    product = Product.includes(:brand, :master, option_types: [:option_values], category: [:parent]).find(params[:id])
 
     check_policy ProductPolicy.new(current_api_user, product).show?
 
     render json: product,
-           include: [:normal_images]
+           include: [:normal_images, :master, :variants],
+           show_variants: true
   end
 
   def create
@@ -29,7 +30,9 @@ class Api::V1::Web::ProductsController < Api::V1::Web::BaseController
 
     form.save
 
-    render json: form.model
+    render json: form.model,
+           include: [:normal_images, :master, :variants],
+           show_variants: true
   end
 
   def update
@@ -42,7 +45,9 @@ class Api::V1::Web::ProductsController < Api::V1::Web::BaseController
 
     form.save
 
-    render json: form.model
+    render json: form.model,
+           include: [:normal_images, :master, :variants],
+           show_variants: true
   end
 
   private

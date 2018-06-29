@@ -45,6 +45,7 @@ class Product < ApplicationRecord
   has_many :option_types, class_name: 'Product::OptionType', dependent: :destroy, index_errors: true
   has_many :variants, -> { where(is_master: false) }, class_name: 'Product::Variant'
   has_many :variants_with_master, class_name: 'Product::Variant', dependent: :destroy
+  has_many :collections, class_name: 'User::Collection', dependent: :destroy
   has_one :master, -> { where(is_master: true) }, class_name: 'Product::Variant'
 
   # @param [Array] properties 搜尋 jsonb 欄位

@@ -81,10 +81,8 @@ class ProductSerializer < ApplicationSerializer
   end
 
   def options
-    result = []
-
     object.option_types.map do |type|
-      result << {
+      {
         id: type.id.to_s,
         name: type.name,
         values: [
