@@ -25,7 +25,7 @@
                     @input="errors.clear('name')")
 
           category-selector(:errors="errors"
-                            :form="form")
+                            :form.sync="form")
 
           //- 品牌
           b-field(:label="attributeLocaleText('product', 'brand_id')"
@@ -42,14 +42,8 @@
                 | {{ brand.name }}
 
           //- 商品描述
-          //- b-field(:label="attributeLocaleText('product', 'description')"
-          //-         :type="errors.errorClassAt('description')"
-          //-         :message="errors.get('description')"
-          //-         class="required")
-          //-   quill-editor(v-model="form.description"
-          //-                ref="quill"
-          //-                data-behavior="product-description"
-          //-                :options="editorOptions")
+          description-column(:errors="errors"
+                             :form.sync="form")
 
         //- price info
         price-info-columns(:errors="errors"
@@ -61,16 +55,16 @@
                              :option-types.sync="form.option_types")
 
         //- options
-        //- section.section.product-options-wrapper
-        //-   //- 預購？
-        //-   b-field(:label="attributeLocaleText('product', 'is_preorder')"
-        //-           :type="errors.errorClassAt('is_preorder')"
-        //-           :message="errors.get('is_preorder')")
-        //-     b-switch(v-model="form.is_preorder"
-        //-               type="is-success"
-        //-               data-behavior="product-is-oreorder"
-        //-               @input="errors.clear('is_preorder')")
-        //-       | {{enumLocaleText('product', 'is_preorder', form.is_preorder)}}
+        section.section.product-options-wrapper
+          //- 預購？
+          b-field(:label="attributeLocaleText('product', 'is_preorder')"
+                  :type="errors.errorClassAt('is_preorder')"
+                  :message="errors.get('is_preorder')")
+            b-switch(v-model="form.is_preorder"
+                      type="is-success"
+                      data-behavior="product-is-oreorder"
+                      @input="errors.clear('is_preorder')")
+              | {{enumLocaleText('product', 'is_preorder', form.is_preorder)}}
 
         properties-columns(:errors="errors"
                            :form.sync="form")
@@ -87,45 +81,21 @@
 </template>
 
 <script>
-import { quillEditor, Quill } from 'vue-quill-editor'
-import ImageHandler from '../../../../shared/plugins/quill_image_handler_module/image_handler'
-import imageButtonHandler from '../../../../shared/plugins/quill_image_handler_module/image_button_handler'
-// import ImageResize from 'quill-image-resize-module'
 import Product from '../../../../shared/resource_models/product'
 import Form from 'odd-form_object'
 import CategorySelector from './category-selector.vue'
 import PriceInfoColumns from './price-info-columns.vue'
 import OptionTypesColumns from './option-types-columns.vue'
 import PropertiesColumns from './propertiess-columns.vue'
-
-const toolbarOptions = [
-  [{ size: [false, 'small', 'large', 'huge'] }], // custom dropdown
-  [{ header: [false, 1, 2, 3] }],
-  ['bold', 'italic', 'underline', 'strike'], // toggled buttons
-  [{ align: [] }],
-  ['blockquote', 'code-block'],
-  [{ list: 'ordered' }, { list: 'bullet' }],
-  [{ indent: '-1' }, { indent: '+1' }], // outdent/indent
-  [{ color: [] }, { background: [] }], // dropdown with defaults from theme
-  ['image', 'video', 'clean']
-]
-
-const imagesAttrName = 'product[images][]'
-const action = 'products/uploadImages'
-const additionalFormData = formData => {
-  formData.append('product[use_case]', 'description')
-}
-
-Quill.register('modules/ImageHandler', ImageHandler)
-// Quill.register('modules/ImageResize', ImageResize)
+import DescriptionColumn from './description-column.vue'
 
 export default {
   components: {
-    quillEditor,
     CategorySelector,
     PriceInfoColumns,
     OptionTypesColumns,
-    PropertiesColumns
+    PropertiesColumns,
+    DescriptionColumn
   },
 
   // mixins: [],
@@ -144,35 +114,7 @@ export default {
 
   data() {
     return {
-      form: new Form(this.product),
-      editorOptions: {
-        placeholder: 'e.g. A powerfull tool for your professional works.',
-        modules: {
-          ImageHandler: {
-            dispatcher: this.$store.dispatch,
-            action: action,
-            imagesAttrName: imagesAttrName,
-            additionalFormData: additionalFormData,
-            imageUploadedCallback: this.imageUploadedCallback
-          },
-          // ImageResize: {},
-          toolbar: {
-            container: toolbarOptions,
-            handlers: {
-              image: () => {
-                imageButtonHandler({
-                  imagesAttrName,
-                  additionalFormData,
-                  imageUploadedCallback: this.imageUploadedCallback,
-                  dispatcher: this.$store.dispatch,
-                  action: action,
-                  quill: this.$refs.quill.quill
-                })
-              }
-            }
-          }
-        }
-      }
+      form: new Form(this.product)
     }
   },
 
@@ -226,14 +168,6 @@ export default {
   // mounted() {},
 
   methods: {
-    /*
-    * Quill 的 module ImageHandler 和 imageButtonHandler 在上傳照片之後，可接受一個 Callback
-    * 這邊把上傳後的圖片 ID 記錄下來，一併在儲存 product 時送給後端做後續處理。
-    */
-    imageUploadedCallback(image) {
-      this.form.uploaded_image_ids.push(parseInt(image.id))
-    },
-
     submitForm() {
       // TODO: 建立 0 元商品前先請使用者確認。
       this.$store.dispatch('products/save', this.form.sync()).then(() => {
