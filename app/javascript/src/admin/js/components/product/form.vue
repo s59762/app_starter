@@ -2,7 +2,8 @@
 
 .vc-product-form.box.content-box.is-primary
   .box-header.with-border
-    h3.subtitle {{pageTitleLocaleText('admin', 'products', 'form')}}
+    h3.subtitle {{ pageTitleLocaleText('admin', 'products', 'form') }}
+    b-message(type="is-info") {{ messageLocaleText('product_management.please_provide_basic_info_for_new_product_and_make_advence_config_in_next_step') }}
   .box-body
     .columns
       //- input fields
@@ -15,7 +16,8 @@
           //- 商品名稱
           b-field(:label="attributeLocaleText('product', 'name')"
                   :type="errors.errorClassAt('name')"
-                  :message="errors.get('name')")
+                  :message="errors.get('name')"
+                  class="required")
             b-input(type="text"
                     placeholder="e.g. iMac Pro 3.8GHz"
                     v-model="form.name"
@@ -27,7 +29,8 @@
               //- 主分類
               b-field(:label="attributeLocaleText('product', 'category_id')"
                       :type="errors.errorClassAt('top_level_category_id')"
-                      :message="errors.get('top_level_category_id')")
+                      :message="errors.get('top_level_category_id')"
+                      class="required")
                 b-select(v-model="form.top_level_category_id"
                         :loading="isCategoriesLoading"
                         :placeholder="messageLocaleText('help.please_select_a_category')"
@@ -71,13 +74,47 @@
                 | {{ brand.name }}
 
           //- 商品描述
-          b-field(:label="attributeLocaleText('product', 'description')"
-                  :type="errors.errorClassAt('description')"
-                  :message="errors.get('description')")
-            quill-editor(v-model="form.description"
-                         ref="quill"
-                         data-behavior="product-description"
-                         :options="editorOptions")
+          //- b-field(:label="attributeLocaleText('product', 'description')"
+          //-         :type="errors.errorClassAt('description')"
+          //-         :message="errors.get('description')"
+          //-         class="required")
+          //-   quill-editor(v-model="form.description"
+          //-                ref="quill"
+          //-                data-behavior="product-description"
+          //-                :options="editorOptions")
+
+        //- price info
+        section.section.price-info-wrapper
+          .columns
+            .column
+              //- 成本
+              b-field(:label="attributeLocaleText('product', 'original_price')"
+                      :type="errors.errorClassAt('price')")
+                b-input(type="number"
+                        placeholder="e.g. 80000"
+                        v-model="form.price.original"
+                        data-behavior="product-original-price"
+                        @input="errors.clear('price')")
+            .column
+              //- 售價
+              b-field(:label="attributeLocaleText('product', 'sell_price')"
+                      :type="errors.errorClassAt('price')"
+                      class="required")
+                b-input(type="number"
+                        placeholder="e.g. 100000"
+                        v-model="form.price.sell"
+                        data-behavior="product-sell-price"
+                        @input="errors.clear('price')")
+            .column
+              //- 折扣價
+              b-field(:label="attributeLocaleText('product', 'discounted_price')"
+                      :type="errors.errorClassAt('price')")
+                b-input(type="number"
+                        placeholder="e.g. 98000"
+                        v-model="form.price.discounted"
+                        data-behavior="product-discounted-price"
+                        @input="errors.clear('price')")
+          p.has-text-danger.help(v-if="errors.has('price')") {{errors.get('price')}}
 
         //- option types
         section.section(v-if="product.isNewRecord()")
@@ -108,11 +145,11 @@
                         p.control(v-if="optionType.options.length > 1")
                           button.button.is-danger(@click="deleteOptionFor(typeIndex, optionIndex)")
                             i.fa.fa-close
-              .add-option-button.button.is-default.is-block(@click="addOptionFor(typeIndex)"
-                                                            data-behavior="product-add-option-button")
-                .icon
-                  i.fa.fa-plus
-                span {{actionLocaleText('admin', 'add_product_option_type')}}
+                  .add-option-button.button.is-default.is-block(@click="addOptionFor(typeIndex)"
+                                                        data-behavior="product-add-option-button")
+                    .icon
+                      i.fa.fa-plus
+                    span {{actionLocaleText('admin', 'add_product_option_value')}}
 
           .has-text-danger(v-if="errors.has('option_types')")
                 p.help {{ errors.get('option_types').join(', ') }}
@@ -123,122 +160,90 @@
               i.fa.fa-plus
             span {{actionLocaleText('admin', 'add_product_option_type')}}
 
-          p.help 若商品擁有多種選項，請透過這個功能來新增並加以管理。商品沒有提供選項的話請留空。
-
-        //- price info
-        section.section.price-info-wrapper
-          .columns
-            .column
-              //- 成本
-              b-field(:label="attributeLocaleText('product', 'original_price')"
-                      :type="errors.errorClassAt('price')")
-                b-input(type="number"
-                        placeholder="e.g. 80000"
-                        v-model="form.price.original"
-                        data-behavior="product-original-price"
-                        @input="errors.clear('price')")
-            .column
-              //- 售價
-              b-field(:label="attributeLocaleText('product', 'sell_price')"
-                      :type="errors.errorClassAt('price')")
-                b-input(type="number"
-                        placeholder="e.g. 100000"
-                        v-model="form.price.sell"
-                        data-behavior="product-sell-price"
-                        @input="errors.clear('price')")
-            .column
-              //- 折扣價
-              b-field(:label="attributeLocaleText('product', 'discounted_price')"
-                      :type="errors.errorClassAt('price')")
-                b-input(type="number"
-                        placeholder="e.g. 98000"
-                        v-model="form.price.discounted"
-                        data-behavior="product-discounted-price"
-                        @input="errors.clear('price')")
-          p.has-text-danger.help(v-if="errors.has('price')") {{errors.get('price')}}
+          p.help {{ messageLocaleText('product_management.if_product_have_multiple_options_please_provide_info_here_or_leave_blank') }}
 
         //- options
-        section.section.product-options-wrapper
-          //- 預購？
-          b-field(:label="attributeLocaleText('product', 'is_preorder')"
-                  :type="errors.errorClassAt('is_preorder')"
-                  :message="errors.get('is_preorder')")
-            b-switch(v-model="form.is_preorder"
-                      type="is-success"
-                      data-behavior="product-is-oreorder"
-                      @input="errors.clear('is_preorder')")
-              | {{enumLocaleText('product', 'is_preorder', form.is_preorder)}}
+        //- section.section.product-options-wrapper
+        //-   //- 預購？
+        //-   b-field(:label="attributeLocaleText('product', 'is_preorder')"
+        //-           :type="errors.errorClassAt('is_preorder')"
+        //-           :message="errors.get('is_preorder')")
+        //-     b-switch(v-model="form.is_preorder"
+        //-               type="is-success"
+        //-               data-behavior="product-is-oreorder"
+        //-               @input="errors.clear('is_preorder')")
+        //-       | {{enumLocaleText('product', 'is_preorder', form.is_preorder)}}
 
         //- properties
-        section.section
-          h4.section-title {{pageTitleLocaleText('admin', 'products', 'property_fields')}}
+        //- section.section
+        //-   h4.section-title {{pageTitleLocaleText('admin', 'products', 'property_fields')}}
 
-          .properties-wrapper
-            //- 基本商品屬性（體積、重量）
-            h5.sub-title {{pageTitleLocaleText('admin', 'products', 'basic_properties')}}
-            .property-fields(v-for="basicProperty in basicProperties")
-              .columns
-                .column
-                  b-field(:label="attributeLocaleText('product', 'property_name')"
-                          :type="errors.errorClassAt('properties')")
-                    b-input(type="text"
-                            :value="attributeLocaleText('product', basicProperty.name)"
-                            disabled)
-                .column.is-6
-                  b-field(:label="attributeLocaleText('product', 'property_value')"
-                          :type="errors.errorClassAt('properties')"
-                          :message="errors.get(basicProperty.name)")
-                    b-input(type="number"
-                            placeholder="e.g. 80"
-                            v-model="form[basicProperty.name]"
-                            data-behavior="product-width-value"
-                            @input="errors.clear(basicProperty.name)")
-                .column
-                  b-field(:label="attributeLocaleText('product', 'property_unit')"
-                          :type="errors.errorClassAt('properties')")
-                    b-input(type="text"
-                            :value="basicProperty.unit"
-                            disabled)
-            //- 自訂商品屬性
-            h5.sub-title(v-if="form.properties.length > 0") {{pageTitleLocaleText('admin', 'products', 'extra_properties')}}
-            .property-fields(v-for="(property, index) in form.properties")
-              .property-count {{index + 1}}
-              .delete-button(@click="deleteProperty(index)")
-                i.fa.fa-close
-              .columns
-                .column
-                  b-field(:label="attributeLocaleText('product', 'property_name')"
-                          :type="errors.errorClassAt('properties')"
-                          :message="errors.get('properties')")
-                    b-input(type="text"
-                            placeholder="e.g. Battery"
-                            v-model="property.name"
-                            data-behavior="product-property-name"
-                            @input="errors.clear('properties')")
-                .column.is-6
-                  b-field(:label="attributeLocaleText('product', 'property_value')"
-                          :type="errors.errorClassAt('properties')"
-                          :message="errors.get('properties')")
-                    b-input(type="text"
-                            placeholder="e.g. 12000"
-                            v-model="property.value"
-                            data-behavior="product-property-value"
-                            @input="errors.clear('properties')")
-                .column
-                  b-field(:label="attributeLocaleText('product', 'property_unit')"
-                          :type="errors.errorClassAt('properties')"
-                          :message="errors.get('properties')")
-                    b-input(type="text"
-                            placeholder="e.g. mAh"
-                            v-model="property.unit"
-                            data-behavior="product-property-unit"
-                            @input="errors.clear('properties')")
+        //-   .properties-wrapper
+        //-     //- 基本商品屬性（體積、重量）
+        //-     h5.sub-title {{pageTitleLocaleText('admin', 'products', 'basic_properties')}}
+        //-     .property-fields(v-for="basicProperty in basicProperties")
+        //-       .columns
+        //-         .column
+        //-           b-field(:label="attributeLocaleText('product', 'property_name')"
+        //-                   :type="errors.errorClassAt('properties')")
+        //-             b-input(type="text"
+        //-                     :value="attributeLocaleText('product', basicProperty.name)"
+        //-                     disabled)
+        //-         .column.is-6
+        //-           b-field(:label="attributeLocaleText('product', 'property_value')"
+        //-                   :type="errors.errorClassAt('properties')"
+        //-                   :message="errors.get(basicProperty.name)")
+        //-             b-input(type="number"
+        //-                     placeholder="e.g. 80"
+        //-                     v-model="form[basicProperty.name]"
+        //-                     data-behavior="product-width-value"
+        //-                     @input="errors.clear(basicProperty.name)")
+        //-         .column
+        //-           b-field(:label="attributeLocaleText('product', 'property_unit')"
+        //-                   :type="errors.errorClassAt('properties')")
+        //-             b-input(type="text"
+        //-                     :value="basicProperty.unit"
+        //-                     disabled)
+        //-     //- 自訂商品屬性
+        //-     h5.sub-title(v-if="form.properties.length > 0") {{pageTitleLocaleText('admin', 'products', 'extra_properties')}}
+        //-     .property-fields(v-for="(property, index) in form.properties")
+        //-       .property-count {{index + 1}}
+        //-       .delete-button(@click="deleteProperty(index)")
+        //-         i.fa.fa-close
+        //-       .columns
+        //-         .column
+        //-           b-field(:label="attributeLocaleText('product', 'property_name')"
+        //-                   :type="errors.errorClassAt('properties')"
+        //-                   :message="errors.get('properties')")
+        //-             b-input(type="text"
+        //-                     placeholder="e.g. Battery"
+        //-                     v-model="property.name"
+        //-                     data-behavior="product-property-name"
+        //-                     @input="errors.clear('properties')")
+        //-         .column.is-6
+        //-           b-field(:label="attributeLocaleText('product', 'property_value')"
+        //-                   :type="errors.errorClassAt('properties')"
+        //-                   :message="errors.get('properties')")
+        //-             b-input(type="text"
+        //-                     placeholder="e.g. 12000"
+        //-                     v-model="property.value"
+        //-                     data-behavior="product-property-value"
+        //-                     @input="errors.clear('properties')")
+        //-         .column
+        //-           b-field(:label="attributeLocaleText('product', 'property_unit')"
+        //-                   :type="errors.errorClassAt('properties')"
+        //-                   :message="errors.get('properties')")
+        //-             b-input(type="text"
+        //-                     placeholder="e.g. mAh"
+        //-                     v-model="property.unit"
+        //-                     data-behavior="product-property-unit"
+        //-                     @input="errors.clear('properties')")
 
-          .add-property-button.button.is-default.is-block(@click="addProperty"
-                                                          data-behavior="product-add-property-button")
-            .icon
-              i.fa.fa-plus
-            span {{actionLocaleText('admin', 'add_product_property')}}
+        //-   .add-property-button.button.is-default.is-block(@click="addProperty"
+        //-                                                   data-behavior="product-add-property-button")
+        //-     .icon
+        //-       i.fa.fa-plus
+        //-     span {{actionLocaleText('admin', 'add_product_property')}}
 
         br
 

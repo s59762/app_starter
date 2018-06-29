@@ -19,8 +19,7 @@ class Admin::ProductForm < ApplicationForm
   property :option_types, virtual: true
 
   validates :name,
-            :top_level_category_id,
-            :description, presence: true
+            :top_level_category_id, presence: true
   validate :valid_price_params?
   validate :valid_option_types?
 

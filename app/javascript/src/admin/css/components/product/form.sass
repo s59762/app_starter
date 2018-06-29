@@ -1,5 +1,7 @@
 .vc-product-form
+  @extend %is-form
   $divider-color: darken($light, 10)
+
   %control-button-style
     position: absolute
     top: -.5rem
@@ -51,6 +53,8 @@
       &:hover
         box-shadow: 0 0 5px $black
 
+  .add-option-button
+    margin-top: 0.5rem
   .option-unit:not(:first-child)
     margin-top: .5rem
 
