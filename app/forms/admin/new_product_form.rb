@@ -3,9 +3,14 @@ class Admin::NewProductForm < ApplicationForm
   model Product
 
   properties :name,
+             :properties,
              :brand_id
   property :sku, virtual: true
   property :price, virtual: true
+  property :width, virtual: true
+  property :depth, virtual: true
+  property :height, virtual: true
+  property :weight, virtual: true
   property :top_level_category_id, virtual: true
   property :sub_category_id, virtual: true
   property :option_types, virtual: true
@@ -22,7 +27,7 @@ class Admin::NewProductForm < ApplicationForm
     @is_new_record = model.new_record?
 
     sync
-    assign_price_info_to_model
+    # assign_price_info_to_model
     assign_category_to_model
 
     ::ActiveRecord::Base.transaction do
@@ -64,9 +69,9 @@ class Admin::NewProductForm < ApplicationForm
   end
 
   def assign_category_to_model
-      id = sub_category_id.present? ? sub_category_id : top_level_category_id
+    id = sub_category_id.present? ? sub_category_id : top_level_category_id
 
-      model.assign_attributes category_id: id
+    model.assign_attributes category_id: id
   end
 
   def process_option_types
@@ -95,25 +100,25 @@ class Admin::NewProductForm < ApplicationForm
 
       model.variants.create name: option_combination.map { |option| option[:name] }.join('-'),
                             sku: "#{sku}-#{index}",
-                            original_price: model.original_price,
-                            sell_price: model.sell_price,
-                            discounted_price: model.discounted_price,
-                            weight: model.weight,
-                            width: model.width,
-                            depth: model.depth,
-                            height: model.height,
+                            original_price: price['original'],
+                            sell_price: price['sell'],
+                            discounted_price: price['discounted'],
+                            width: width,
+                            depth: depth,
+                            height: height,
+                            weight: weight,
                             is_master: is_master
     end
   end
 
   def build_default_master_variant
     model.master.update sku: sku,
-                        original_price: model.original_price,
-                        sell_price: model.sell_price,
-                        discounted_price: model.discounted_price,
-                        weight: model.weight,
-                        width: model.width,
-                        depth: model.depth,
-                        height: model.height
+                        original_price: price['original'],
+                        sell_price: price['sell'],
+                        discounted_price: price['discounted'],
+                        width: width,
+                        depth: depth,
+                        height: height,
+                        weight: weight
   end
 end

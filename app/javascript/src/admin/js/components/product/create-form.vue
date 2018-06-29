@@ -76,9 +76,9 @@
         //-               @input="errors.clear('is_preorder')")
         //-       | {{enumLocaleText('product', 'is_preorder', form.is_preorder)}}
 
-        //- section.section
-        //-   properties-columns(:errors="errors"
-        //-                      :form.sync="form")
+        section.section
+          properties-columns(:errors="errors"
+                             :form.sync="form")
 
         br
 
