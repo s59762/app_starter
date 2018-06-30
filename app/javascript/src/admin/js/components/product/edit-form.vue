@@ -1,6 +1,6 @@
 <template lang="pug">
 
-.vc-product-edit-form.box.content-box.is-primary
+.vc-product-edit-form.box.content-box(:class="dirtyCheckClass")
   .box-body
     .columns
       //- input fields
@@ -134,7 +134,8 @@ export default {
   data() {
     return {
       form: new Form(this.product),
-      activeTab: 0
+      activeTab: 0,
+      isDataSaved: true
     }
   },
 
@@ -153,6 +154,13 @@ export default {
 
     brands() {
       return this.$store.getters['brands/all']
+    },
+
+    dirtyCheckClass() {
+      return {
+        'is-primary': this.isDataSaved,
+        'is-danger': !this.isDataSaved
+      }
     }
   },
 
