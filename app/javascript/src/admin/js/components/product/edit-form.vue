@@ -13,52 +13,73 @@
                size="is-small")
           b-tab-item(label="基本資料"
                      icon="file-text-o")
-            //- 商品名稱
-            b-field(:label="attributeLocaleText('product', 'name')"
-                    :type="errors.errorClassAt('name')"
-                    :message="errors.get('name')"
-                    class="required")
-              b-input(type="text"
-                      placeholder="e.g. iMac Pro 3.8GHz"
-                      v-model="form.name"
-                      data-behavior="product-name"
-                      @input="errors.clear('name')")
+            section.section
+              b-field(:label="attributeLocaleText('product', 'name')"
+                      :type="errors.errorClassAt('name')"
+                      :message="errors.get('name')"
+                      class="required")
+                b-input(type="text"
+                        placeholder="e.g. iMac Pro 3.8GHz"
+                        v-model="form.name"
+                        data-behavior="product-name"
+                        @input="errors.clear('name')")
 
-            b-field(:label="attributeLocaleText('product', 'sku')"
-                    :type="errors.errorClassAt('sku')"
-                    :message="errors.get('sku')"
-                    class="required")
-              b-input(type="text"
-                      placeholder="e.g. A001398"
-                      v-model="form.sku"
-                      @input="errors.clear('sku')")
+              b-field(:label="attributeLocaleText('product', 'sku')"
+                      :type="errors.errorClassAt('sku')"
+                      :message="errors.get('sku')"
+                      class="required")
+                b-input(type="text"
+                        placeholder="e.g. A001398"
+                        v-model="form.sku"
+                        @input="errors.clear('sku')")
 
-            category-selector(:errors="errors"
-                              :form.sync="form")
+              category-selector(:errors="errors"
+                                :form.sync="form")
 
-            //- 品牌
-            b-field(:label="attributeLocaleText('product', 'brand_id')"
-                    :type="errors.errorClassAt('brand_id')"
-                    :message="errors.get('brand_id')")
-              b-select(v-model="form.brand_id"
-                      :loading="isBrandsLoading"
-                      :placeholder="messageLocaleText('help.please_select_a_brand')"
-                      @input="errors.clear('brand_id')"
-                      expanded)
-                option(v-for="brand in brands"
-                      :value="brand.id"
-                      :key="brand.id")
-                  | {{ brand.name }}
+              b-field(:label="attributeLocaleText('product', 'brand_id')"
+                      :type="errors.errorClassAt('brand_id')"
+                      :message="errors.get('brand_id')")
+                b-select(v-model="form.brand_id"
+                        :loading="isBrandsLoading"
+                        :placeholder="messageLocaleText('help.please_select_a_brand')"
+                        @input="errors.clear('brand_id')"
+                        expanded)
+                  option(v-for="brand in brands"
+                        :value="brand.id"
+                        :key="brand.id")
+                    | {{ brand.name }}
 
           b-tab-item(label="商品描述"
                      icon="wpforms")
-            description-column(:errors="errors"
-                              :form.sync="form")
+            section.section
+              description-column(:errors="errors"
+                                 :form.sync="form")
+            section.section
+              h4.section-title SEO 相關設定
+              b-field(:label="attributeLocaleText('product', 'meta_title')"
+                      :type="errors.errorClassAt('meta_title')"
+                      :message="errors.get('meta_title')")
+                b-input(type="text"
+                        v-model="form.meta_title"
+                        @input="errors.clear('meta_title')")
+              b-field(:label="attributeLocaleText('product', 'meta_description')"
+                      :type="errors.errorClassAt('meta_description')"
+                      :message="errors.get('meta_description')")
+                b-input(type="textarea"
+                        v-model="form.meta_description"
+                        @input="errors.clear('meta_description')")
+              b-field(:label="attributeLocaleText('product', 'meta_keywords')"
+                      :type="errors.errorClassAt('meta_keywords')"
+                      :message="errors.get('meta_keywords')")
+                b-input(type="text"
+                        v-model="form.meta_keywords"
+                        @input="errors.clear('meta_keywords')")
 
           b-tab-item(label="選項管理"
                      icon="list-ol")
-            properties-columns(:errors="errors"
-                              :form.sync="form")
+            section.section
+              properties-columns(:errors="errors"
+                                 :form.sync="form")
           b-tab-item(label="規格設定"
                      icon="barcode")
           b-tab-item(label="庫存管理"
