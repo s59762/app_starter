@@ -36,7 +36,7 @@ class Api::V1::Web::ProductsController < Api::V1::Web::BaseController
   end
 
   def update
-    product = Product.find(params[:id])
+    product = Product.includes(option_types: [:option_values]).find(params[:id])
     form = Admin::EditProductForm.new(product)
 
     check_policy ProductPolicy.new(current_api_user, product).update?
