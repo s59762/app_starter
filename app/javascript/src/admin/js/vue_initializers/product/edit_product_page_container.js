@@ -1,10 +1,10 @@
-import ProductForm from '../../components/product/create-form.vue'
+import EditProductForm from '../../components/product/new-form.vue'
 
 export default {
   name: 'edit-product-page-container',
 
   components: {
-    ProductForm
+    EditProductForm
   },
 
   // mixins: [],

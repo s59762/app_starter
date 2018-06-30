@@ -1,6 +1,6 @@
 <template lang="pug">
 
-.vc-product-create-form.box.content-box.is-primary
+.vc-product-new-form.box.content-box.is-primary
   .box-header.with-border
     h3.subtitle {{ pageTitleLocaleText('admin', 'products', 'form') }}
     b-message(type="is-info") {{ messageLocaleText('product_management.please_provide_basic_info_for_new_product_and_make_advence_config_in_next_step') }}
