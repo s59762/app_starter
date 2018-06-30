@@ -5,13 +5,11 @@ class Admin::EditProductForm < ApplicationForm
   properties :name,
              :description,
              :brand_id,
-             :cover,
              :is_preorder,
              :properties,
-             :width,
-             :depth,
-             :height,
-             :weight
+             :meta_title,
+             :meta_description,
+             :meta_keywords
   property :price, virtual: true
   property :top_level_category_id, virtual: true
   property :sub_category_id, virtual: true
@@ -32,7 +30,7 @@ class Admin::EditProductForm < ApplicationForm
     @is_new_record = model.new_record?
 
     sync
-    assign_price_info_to_model
+    # assign_price_info_to_model
     assign_category_to_model
 
     ::ActiveRecord::Base.transaction do

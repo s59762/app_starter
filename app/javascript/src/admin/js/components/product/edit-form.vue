@@ -24,15 +24,6 @@
                         data-behavior="product-name"
                         @input="errors.clear('name')")
 
-              b-field(:label="attributeLocaleText('product', 'sku')"
-                      :type="errors.errorClassAt('sku')"
-                      :message="errors.get('sku')"
-                      class="required")
-                b-input(type="text"
-                        placeholder="e.g. A001398"
-                        v-model="form.sku"
-                        @input="errors.clear('sku')")
-
               category-selector(:errors="errors"
                                 :form.sync="form")
 
@@ -49,47 +40,59 @@
                         :key="brand.id")
                     | {{ brand.name }}
 
-          b-tab-item(label="商品描述"
-                     icon="wpforms")
             section.section
               description-column(:errors="errors"
                                  :form.sync="form")
-            section.section
-              h4.section-title SEO 相關設定
-              b-field(:label="attributeLocaleText('product', 'meta_title')"
-                      :type="errors.errorClassAt('meta_title')"
-                      :message="errors.get('meta_title')")
-                b-input(type="text"
-                        v-model="form.meta_title"
-                        @input="errors.clear('meta_title')")
-              b-field(:label="attributeLocaleText('product', 'meta_description')"
-                      :type="errors.errorClassAt('meta_description')"
-                      :message="errors.get('meta_description')")
-                b-input(type="textarea"
-                        v-model="form.meta_description"
-                        @input="errors.clear('meta_description')")
-              b-field(:label="attributeLocaleText('product', 'meta_keywords')"
-                      :type="errors.errorClassAt('meta_keywords')"
-                      :message="errors.get('meta_keywords')")
-                b-input(type="text"
-                        v-model="form.meta_keywords"
-                        @input="errors.clear('meta_keywords')")
+
+            .button.is-primary.is-block(@click="submitForm"
+                                        data-behavior="submit-button")
+              .icon
+                i.fa.fa-floppy-o
+              span {{ actionLocaleText('admin', 'save') }}
 
           b-tab-item(label="選項管理"
                      icon="list-ol")
             section.section
               properties-columns(:errors="errors"
                                  :form.sync="form")
+
+            .button.is-primary.is-block(@click="submitForm"
+                                        data-behavior="submit-button")
+              .icon
+                i.fa.fa-floppy-o
+              span {{ actionLocaleText('admin', 'save') }}
           b-tab-item(label="規格設定"
                      icon="barcode")
           b-tab-item(label="庫存管理"
                      icon="calculator")
+          b-tab-item(label="SEO 設定"
+                     icon="wpforms")
+            section.section
+              b-field(:label="attributeLocaleText('product', 'meta_title')"
+                      :type="errors.errorClassAt('meta_title')"
+                      :message="errors.get('meta_title') || messageLocaleText('product_management.help_message.meta_title')")
+                b-input(type="text"
+                        v-model="form.meta_title"
+                        @input="errors.clear('meta_title')")
+              b-field(:label="attributeLocaleText('product', 'meta_description')"
+                      :type="errors.errorClassAt('meta_description')"
+                      :message="errors.get('meta_description') || messageLocaleText('product_management.help_message.meta_description')")
+                b-input(type="textarea"
+                        v-model="form.meta_description"
+                        @input="errors.clear('meta_description')")
+              b-field(:label="attributeLocaleText('product', 'meta_keywords')"
+                      :type="errors.errorClassAt('meta_keywords')"
+                      :message="errors.get('meta_keywords') || messageLocaleText('product_management.help_message.meta_keywords')")
+                b-input(type="text"
+                        v-model="form.meta_keywords"
+                        @input="errors.clear('meta_keywords')")
 
-        br
+            .button.is-primary.is-block(@click="submitForm"
+                                        data-behavior="submit-button")
+              .icon
+                i.fa.fa-floppy-o
+              span {{ actionLocaleText('admin', 'save') }}
 
-        .is-pulled-right
-        .button.is-primary(@click="submitForm"
-                           data-behavior="submit-button") {{actionLocaleText('admin', 'submit')}}
       //- previews
       .column
         //- TODO: create a component for roughly preview input content
@@ -179,8 +182,11 @@ export default {
   methods: {
     submitForm() {
       // TODO: 建立 0 元商品前先請使用者確認。
-      this.$store.dispatch('products/save', this.form.sync()).then(response => {
-        Turbolinks.visit(`/admin/products/${response.data.data.id}/edit?product_added=1`)
+      this.$store.dispatch('products/save', this.form.sync()).then(() => {
+        this.$store.dispatch('addFlashMessage', [
+          'success',
+          this.messageLocaleText('resource_updated_successfully', { resource: this.modelNameLocaleText('product') })
+        ])
       })
     }
   }
