@@ -2,16 +2,19 @@
 #
 # Table name: products
 #
-#  id          :bigint(8)        not null, primary key
-#  name        :string
-#  description :text
-#  category_id :bigint(8)
-#  cover       :integer
-#  is_preorder :boolean          default(FALSE)
-#  properties  :jsonb
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#  brand_id    :bigint(8)
+#  id               :bigint(8)        not null, primary key
+#  name             :string
+#  description      :text
+#  category_id      :bigint(8)
+#  cover            :integer
+#  is_preorder      :boolean          default(FALSE)
+#  properties       :jsonb
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#  brand_id         :bigint(8)
+#  meta_title       :string
+#  meta_description :string
+#  meta_keywords    :string
 #
 
 class ProductSerializer < ApplicationSerializer
@@ -35,7 +38,10 @@ class ProductSerializer < ApplicationSerializer
              :updated_at,
              :discount_rate,
              :options,
-             :sku
+             :sku,
+             :meta_title,
+             :meta_description,
+             :meta_keywords
 
   belongs_to :brand, optional: true
   belongs_to :category, class_name: 'ProductCategory', optional: true

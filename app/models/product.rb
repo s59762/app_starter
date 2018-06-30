@@ -2,16 +2,19 @@
 #
 # Table name: products
 #
-#  id          :bigint(8)        not null, primary key
-#  name        :string
-#  description :text
-#  category_id :bigint(8)
-#  cover       :integer
-#  is_preorder :boolean          default(FALSE)
-#  properties  :jsonb
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#  brand_id    :bigint(8)
+#  id               :bigint(8)        not null, primary key
+#  name             :string
+#  description      :text
+#  category_id      :bigint(8)
+#  cover            :integer
+#  is_preorder      :boolean          default(FALSE)
+#  properties       :jsonb
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#  brand_id         :bigint(8)
+#  meta_title       :string
+#  meta_description :string
+#  meta_keywords    :string
 #
 
 class Product < ApplicationRecord
@@ -28,9 +31,9 @@ class Product < ApplicationRecord
   has_many :images, class_name: 'Product::Image', dependent: :destroy
   has_many :normal_images, -> { where(use_case: :normal) }, class_name: 'Product::Image'
   has_many :description_images, -> { where(use_case: :description) }, class_name: 'Product::Image'
-  has_many :option_types, class_name: 'Product::OptionType', dependent: :destroy, index_errors: true
-  has_many :variants, -> { where(is_master: false) }, class_name: 'Product::Variant'
-  has_many :variants_with_master, class_name: 'Product::Variant', dependent: :destroy
+  has_many :option_types, -> { order(created_at: :asc) }, class_name: 'Product::OptionType', dependent: :destroy, index_errors: true
+  has_many :variants, -> { where(is_master: false).order(created_at: :asc) }, class_name: 'Product::Variant'
+  has_many :variants_with_master, -> { order(created_at: :asc) }, class_name: 'Product::Variant', dependent: :destroy
   has_many :collections, class_name: 'User::Collection', dependent: :destroy
   has_one :master, -> { where(is_master: true) }, class_name: 'Product::Variant'
 

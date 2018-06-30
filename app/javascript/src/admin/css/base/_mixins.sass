@@ -49,9 +49,22 @@
 
 // for form extra styles
 %is-form
+  $divider-color: darken($light, 10)
+
   .required
     > .label:after
       content: '*'
+  .section-title
+    font-size: $size-6
+    font-weight: bolder
+    margin-bottom: $size-6
+  .sub-title
+    font-size: $size-7
+    font-weight: bolder
+    margin-bottom: $size-7
+    text-align: center
+  .section:not(:last-of-type)
+    border-bottom: 1px solid $divider-color
 
 // rounded control button
 %control-button-style

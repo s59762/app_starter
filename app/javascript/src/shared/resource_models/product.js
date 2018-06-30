@@ -31,7 +31,10 @@ const OPTIONS = {
     'sku',
     'master',
     'variants',
-    'options'
+    'options',
+    'meta_title',
+    'meta_description',
+    'meta_keywords'
   ],
   editableAttributes: [
     'brand_id',
@@ -49,7 +52,10 @@ const OPTIONS = {
     'depth',
     'height',
     'weight',
-    'sku'
+    'sku',
+    'meta_title',
+    'meta_description',
+    'meta_keywords'
   ]
 }
 

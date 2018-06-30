@@ -12,5 +12,5 @@
 class Product::OptionType < ApplicationRecord
   belongs_to :product, touch: true
 
-  has_many :option_values, class_name: 'Product::OptionValue', dependent: :destroy
+  has_many :option_values, -> { order(created_at: :asc) }, class_name: 'Product::OptionValue', dependent: :destroy
 end

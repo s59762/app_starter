@@ -29,6 +29,7 @@
                 data-behavior="product-discounted-price"
                 @input="errors.clear('price')")
   p.has-text-danger.help(v-if="errors.has('price')") {{ errors.get('price').join(', ') }}
+  p.help(v-else) {{ messageLocaleText('product_management.help_message.price') }}
 
 </template>
 

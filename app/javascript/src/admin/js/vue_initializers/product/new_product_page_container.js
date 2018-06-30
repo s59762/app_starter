@@ -1,10 +1,10 @@
-import ProductForm from '../../components/product/create-form.vue'
+import NewProductForm from '../../components/product/new-form.vue'
 
 export default {
   name: 'new-product-page-container',
 
   components: {
-    ProductForm
+    NewProductForm
   }
 
   // mixins: [],

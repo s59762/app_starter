@@ -28,6 +28,7 @@ zh-TW:
       reply: 回覆
       reset_search: 清除條件
       save: 儲存
+      save_and_go_to_next_step: 儲存並前往下一步
       update_config: 更新設定
       search: 搜尋
       search_by: '以%{attribute_name}搜尋'

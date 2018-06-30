@@ -37,6 +37,9 @@ zh-TW:
         height: 高
         weight: 重量
         sku: SKU
+        meta_title: META 標題
+        meta_description: META 描述
+        meta_keywords: META 關鍵字
 
     errors:
       models:

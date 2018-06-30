@@ -4,5 +4,5 @@
 
 .new-product-page-container(data-vue="edit_product_page_container"
                             data-product=(@product.id))
-  product-form(v-if="isReady"
-               :product="product")
+  edit-product-form(v-if="isReady"
+                    :product="product")
