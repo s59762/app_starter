@@ -16,7 +16,7 @@
           //- 商品名稱
           b-field(:label="attributeLocaleText('product', 'name')"
                   :type="errors.errorClassAt('name')"
-                  :message="errors.get('name')"
+                  :message="errors.get('name') || messageLocaleText('product_management.help_message.name')"
                   class="required")
             b-input(type="text"
                     placeholder="e.g. iMac Pro 3.8GHz"
@@ -26,7 +26,7 @@
 
           b-field(:label="attributeLocaleText('product', 'sku')"
                   :type="errors.errorClassAt('sku')"
-                  :message="errors.get('sku')"
+                  :message="errors.get('sku') || messageLocaleText('product_management.help_message.sku')"
                   class="required")
             b-input(type="text"
                     placeholder="e.g. A001398"
@@ -49,10 +49,6 @@
                     :value="brand.id"
                     :key="brand.id")
                 | {{ brand.name }}
-
-          //- 商品描述
-          //- description-column(:errors="errors"
-          //-                    :form.sync="form")
 
         //- price info
         section.section
@@ -83,13 +79,18 @@
 
         br
 
-        .is-pulled-right
-        .button.is-primary(@click="submitForm"
-                           data-behavior="submit-button") {{actionLocaleText('admin', 'submit')}}
+        .submit-button
+          .button.is-primary(@click="submitForm"
+                                          data-behavior="submit-button")
+            span {{ actionLocaleText('admin', 'save_and_go_to_next_step') }}
+            .icon
+              i.fa.fa-arrow-circle-o-right
+
       //- previews
-      .column
+      .column.preview-container
         //- TODO: create a component for roughly preview input content
         //- product-previewer(:product="this.form")
+
 </template>
 
 <script>

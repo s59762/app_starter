@@ -45,7 +45,7 @@
       i.fa.fa-plus
     span {{actionLocaleText('admin', 'add_product_option_type')}}
 
-  p.help {{ messageLocaleText('product_management.if_product_have_multiple_options_please_provide_info_here_or_leave_blank') }}
+  p.help {{ messageLocaleText('product_management.help_message.option_types') }}
 
 </template>
 

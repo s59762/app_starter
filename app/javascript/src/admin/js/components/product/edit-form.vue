@@ -1,0 +1,167 @@
+<template lang="pug">
+
+.vc-product-edit-form.box.content-box.is-primary
+  .box-body
+    .columns
+      //- input fields
+      .column.is-7
+        b-loading(:active.sync="isLoading"
+                  :is-full-page="false")
+
+        b-tabs(v-model="activeTab"
+               type="is-boxed"
+               size="is-small")
+          b-tab-item(label="基本資料"
+                     icon="file-text-o")
+            //- 商品名稱
+            b-field(:label="attributeLocaleText('product', 'name')"
+                    :type="errors.errorClassAt('name')"
+                    :message="errors.get('name')"
+                    class="required")
+              b-input(type="text"
+                      placeholder="e.g. iMac Pro 3.8GHz"
+                      v-model="form.name"
+                      data-behavior="product-name"
+                      @input="errors.clear('name')")
+
+            b-field(:label="attributeLocaleText('product', 'sku')"
+                    :type="errors.errorClassAt('sku')"
+                    :message="errors.get('sku')"
+                    class="required")
+              b-input(type="text"
+                      placeholder="e.g. A001398"
+                      v-model="form.sku"
+                      @input="errors.clear('sku')")
+
+            category-selector(:errors="errors"
+                              :form.sync="form")
+
+            //- 品牌
+            b-field(:label="attributeLocaleText('product', 'brand_id')"
+                    :type="errors.errorClassAt('brand_id')"
+                    :message="errors.get('brand_id')")
+              b-select(v-model="form.brand_id"
+                      :loading="isBrandsLoading"
+                      :placeholder="messageLocaleText('help.please_select_a_brand')"
+                      @input="errors.clear('brand_id')"
+                      expanded)
+                option(v-for="brand in brands"
+                      :value="brand.id"
+                      :key="brand.id")
+                  | {{ brand.name }}
+
+          b-tab-item(label="商品描述"
+                     icon="wpforms")
+            description-column(:errors="errors"
+                              :form.sync="form")
+
+          b-tab-item(label="選項管理"
+                     icon="list-ol")
+            properties-columns(:errors="errors"
+                              :form.sync="form")
+          b-tab-item(label="規格設定"
+                     icon="barcode")
+          b-tab-item(label="庫存管理"
+                     icon="calculator")
+
+        br
+
+        .is-pulled-right
+        .button.is-primary(@click="submitForm"
+                           data-behavior="submit-button") {{actionLocaleText('admin', 'submit')}}
+      //- previews
+      .column
+        //- TODO: create a component for roughly preview input content
+        //- product-previewer(:product="this.form")
+</template>
+
+<script>
+import Product from '../../../../shared/resource_models/product'
+import Form from 'odd-form_object'
+import CategorySelector from './category-selector.vue'
+import PriceInfoColumns from './price-info-columns.vue'
+import OptionTypesColumns from './option-types-columns.vue'
+import PropertiesColumns from './propertiess-columns.vue'
+import DescriptionColumn from './description-column.vue'
+
+export default {
+  components: {
+    CategorySelector,
+    PriceInfoColumns,
+    OptionTypesColumns,
+    PropertiesColumns,
+    DescriptionColumn
+  },
+
+  // mixins: [],
+
+  props: {
+    product: {
+      type: Object,
+      required: true,
+      default: () => {
+        return new Product({
+          is_preorder: false
+        })
+      }
+    }
+  },
+
+  data() {
+    return {
+      form: new Form(this.product),
+      activeTab: 0
+    }
+  },
+
+  computed: {
+    errors() {
+      return this.form.model.errors
+    },
+
+    isLoading() {
+      return this.$store.getters['products/isLoading']
+    },
+
+    isBrandsLoading() {
+      return this.$store.getters['brands/isLoading']
+    },
+
+    brands() {
+      return this.$store.getters['brands/all']
+    }
+  },
+
+  created() {
+    this.$store.dispatch('brands/all')
+    if (this.product.isNewRecord()) {
+      this.form.uploaded_image_ids = []
+      this.form.properties = []
+      this.form.option_types = []
+      this.form.price = {
+        original: 0,
+        sell: 0,
+        discounted: 0
+      }
+    } else {
+      this.form.uploaded_image_ids = []
+      this.form.price = {
+        original: this.product.original_price / 100,
+        sell: this.product.sell_price / 100,
+        discounted: this.product.discounted_price / 100
+      }
+    }
+  },
+
+  // mounted() {},
+
+  methods: {
+    submitForm() {
+      // TODO: 建立 0 元商品前先請使用者確認。
+      this.$store.dispatch('products/save', this.form.sync()).then(response => {
+        Turbolinks.visit(`/admin/products/${response.data.data.id}/edit?product_added=1`)
+      })
+    }
+  }
+}
+</script>

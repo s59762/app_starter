@@ -1,4 +1,4 @@
-import EditProductForm from '../../components/product/new-form.vue'
+import EditProductForm from '../../components/product/edit-form.vue'
 
 export default {
   name: 'edit-product-page-container',
