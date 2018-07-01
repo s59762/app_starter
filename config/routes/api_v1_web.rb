@@ -41,6 +41,8 @@ namespace :api do
 
       resources :product_option_types, only: %i(update destroy), controller: 'products/option_types'
 
+      resources :product_option_values, only: %i(update destroy), controller: 'products/option_values'
+
       resource :cart, only: %i(show), controller: 'cart'
 
       # Site config
