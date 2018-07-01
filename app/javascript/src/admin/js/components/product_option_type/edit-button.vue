@@ -24,8 +24,6 @@
         .button.is-primary(@click="submitForm"
                            :class="{'is-loading': isLoading}") {{ actionLocaleText('admin', 'submit') }}
 
-
-
 </template>
 
 <script>
@@ -65,8 +63,19 @@ export default {
     },
 
     submitForm() {
-      console.log(this.form.sync())
-      this.$refs.modal.close()
+      this.$store
+        .dispatch('productOptionTypes/save', this.form.sync())
+        .then(() => {
+          return this.$store.dispatch('addFlashMessage', [
+            'success',
+            this.messageLocaleText('resource_updated_successfully', {
+              resource: this.attributeLocaleText('product', 'option_name')
+            })
+          ])
+        })
+        .then(() => {
+          this.$refs.modal.close()
+        })
     }
   }
 }
