@@ -14,8 +14,6 @@
           b-tab-item(label="基本資料"
                      icon="file-text-o")
             section.section
-              option-type-editor(:option-types="optionTypes")
-            section.section
               b-field(:label="attributeLocaleText('product', 'name')"
                       :type="errors.errorClassAt('name')"
                       :message="errors.get('name')"
