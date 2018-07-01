@@ -35,6 +35,9 @@ export const find = ({
     Product.find(id)
       .then(response => {
         commit(types.GET_PRODUCT_SUCCESS, response)
+        dispatch('productVariants/receiveResourcesFromRelationships', response, {
+          root: true
+        })
 
         resolve(response)
       })
@@ -88,6 +91,9 @@ export const save = ({
         } else {
           commit(types.UPDATE_PRODUCT_SUCCESS, response)
         }
+        dispatch('productVariants/receiveResourcesFromRelationships', response, {
+          root: true
+        })
 
         resolve(response)
       })
