@@ -45,6 +45,7 @@
                                  :form.sync="form")
 
             .button.is-primary.is-block(@click="submitForm"
+                                        :class="{'is-loading': isLoading}"
                                         data-behavior="submit-button")
               .icon
                 i.fa.fa-floppy-o
@@ -60,6 +61,7 @@
                                  :form.sync="form")
 
             .button.is-primary.is-block(@click="submitForm"
+                                        :class="{'is-loading': isLoading}"
                                         data-behavior="submit-button")
               .icon
                 i.fa.fa-floppy-o
@@ -91,6 +93,7 @@
                         @input="errors.clear('meta_keywords')")
 
             .button.is-primary.is-block(@click="submitForm"
+                                        :class="{'is-loading': isLoading}"
                                         data-behavior="submit-button")
               .icon
                 i.fa.fa-floppy-o
