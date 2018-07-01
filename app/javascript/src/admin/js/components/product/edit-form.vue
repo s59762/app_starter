@@ -14,8 +14,6 @@
           b-tab-item(label="基本資料"
                      icon="file-text-o")
             section.section
-              option-type-editor(:option-types="optionTypes")
-            section.section
               b-field(:label="attributeLocaleText('product', 'name')"
                       :type="errors.errorClassAt('name')"
                       :message="errors.get('name')"
@@ -47,6 +45,7 @@
                                  :form.sync="form")
 
             .button.is-primary.is-block(@click="submitForm"
+                                        :class="{'is-loading': isLoading}"
                                         data-behavior="submit-button")
               .icon
                 i.fa.fa-floppy-o
@@ -62,6 +61,7 @@
                                  :form.sync="form")
 
             .button.is-primary.is-block(@click="submitForm"
+                                        :class="{'is-loading': isLoading}"
                                         data-behavior="submit-button")
               .icon
                 i.fa.fa-floppy-o
@@ -93,6 +93,7 @@
                         @input="errors.clear('meta_keywords')")
 
             .button.is-primary.is-block(@click="submitForm"
+                                        :class="{'is-loading': isLoading}"
                                         data-behavior="submit-button")
               .icon
                 i.fa.fa-floppy-o

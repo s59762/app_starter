@@ -3,8 +3,7 @@
 .vc-product-description-column
   b-field(:label="attributeLocaleText('product', 'description')"
           :type="errors.errorClassAt('description')"
-          :message="errors.get('description')"
-          class="required")
+          :message="errors.get('description')")
     quill-editor(v-model="form.description"
                   ref="quill"
                   data-behavior="product-description"
