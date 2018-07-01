@@ -1,0 +1,41 @@
+.vc-product-option-type-editor
+
+  .option-type-unit
+    padding: 0.5rem
+    background-color: $light
+    &:not(:last-child)
+      margin-bottom: 0.5rem
+    > .option-type-name
+      @extend %is-flex-vc
+      padding-bottom: 0.5rem
+      margin-bottom: 0.5em
+      border-bottom: 1px solid $white
+      > .name
+        margin-right: 0.5em
+        font-weight: $weight-bold
+
+  .option-values
+    @extend %is-flex-vc
+    flex-wrap: wrap
+
+  .option-value-unit
+    width: 100%
+    padding: 0.3rem
+    +from($iphone-plus)
+      width: 50%
+    > .inner
+      @extend %is-flex-vc
+      border-radius: 8px
+      background-color: $white
+      border: 1px solid darken($light, 10)
+      overflow: hidden
+      text-align: center
+    .value
+      flex-grow: 1
+    .edit-button
+      $size: 38px
+
+      width: $size
+      height: $size
+      +border-left-radius(0)
+

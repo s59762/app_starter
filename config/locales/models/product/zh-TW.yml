@@ -21,8 +21,8 @@ zh-TW:
         is_preorder: 預購商品
         name: 品名
         original_price: 進貨成本
-        properties: 商品規格
-        property_name: 規格名稱
+        properties: 商品屬性
+        property_name: 屬性名稱
         property_value: 內容
         property_unit: 單位
         option_types: 商品選項

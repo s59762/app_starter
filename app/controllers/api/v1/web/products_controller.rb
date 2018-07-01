@@ -16,8 +16,9 @@ class Api::V1::Web::ProductsController < Api::V1::Web::BaseController
     check_policy ProductPolicy.new(current_api_user, product).show?
 
     render json: product,
-           include: [:normal_images, :master, :variants],
-           show_variants: true
+           include: [:normal_images, :master, :variants, 'option_types.option_values'],
+           show_variants: true,
+           show_options: true
   end
 
   def create
@@ -31,8 +32,9 @@ class Api::V1::Web::ProductsController < Api::V1::Web::BaseController
     form.save
 
     render json: form.model,
-           include: [:normal_images, :master, :variants],
-           show_variants: true
+           include: [:normal_images, :master, :variants, 'option_types.option_values'],
+           show_variants: true,
+           show_options: true
   end
 
   def update
@@ -46,8 +48,9 @@ class Api::V1::Web::ProductsController < Api::V1::Web::BaseController
     form.save
 
     render json: form.model,
-           include: [:normal_images, :master, :variants],
-           show_variants: true
+           include: [:normal_images, :master, :variants, 'option_types.option_values'],
+           show_variants: true,
+           show_options: true
   end
 
   private
