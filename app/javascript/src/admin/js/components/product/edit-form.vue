@@ -14,6 +14,8 @@
           b-tab-item(label="基本資料"
                      icon="file-text-o")
             section.section
+              option-type-editor(:option-types="optionTypes")
+            section.section
               b-field(:label="attributeLocaleText('product', 'name')"
                       :type="errors.errorClassAt('name')"
                       :message="errors.get('name')"
@@ -50,18 +52,10 @@
                 i.fa.fa-floppy-o
               span {{ actionLocaleText('admin', 'save') }}
 
-          b-tab-item(label="選項管理"
+          b-tab-item(label="選項與屬性"
                      icon="list-ol")
             section.section
-              .option-types-wrapper
-                .option-type-unit(v-for="optionType in optionTypes"
-                                  :key="optionType.id")
-                  span.tag.is-default {{ optionType.name }}：
-                  .option-values-wrapper
-                    .option-value-unit(v-for="optionValue in optionType.option_values"
-                                       :key="optionValue.id")
-                      span.tag.is-dark {{ $store.getters['productOptionValues/find'](optionValue.id).value }}
-
+              option-type-editor(:option-types="optionTypes")
 
             section.section
               properties-columns(:errors="errors"
@@ -114,16 +108,14 @@
 import Product from '../../../../shared/resource_models/product'
 import Form from 'odd-form_object'
 import CategorySelector from './category-selector.vue'
-import PriceInfoColumns from './price-info-columns.vue'
-import OptionTypesColumns from './option-types-columns.vue'
+import OptionTypeEditor from './option-type-editor.vue'
 import PropertiesColumns from './propertiess-columns.vue'
 import DescriptionColumn from './description-column.vue'
 
 export default {
   components: {
     CategorySelector,
-    PriceInfoColumns,
-    OptionTypesColumns,
+    OptionTypeEditor,
     PropertiesColumns,
     DescriptionColumn
   },
