@@ -53,6 +53,17 @@
           b-tab-item(label="選項管理"
                      icon="list-ol")
             section.section
+              .option-types-wrapper
+                .option-type-unit(v-for="optionType in product.options"
+                                  :key="optionType.id")
+                  span.tag.is-default {{ optionType.name }}：
+                  .option-values-wrapper
+                    .option-value-unit(v-for="optionValue in optionType.values"
+                                       :key="optionValue.id")
+                      span.tag.is-dark {{ optionValue.value }}
+
+
+            section.section
               properties-columns(:errors="errors"
                                  :form.sync="form")
 
