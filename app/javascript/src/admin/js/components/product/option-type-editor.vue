@@ -12,20 +12,19 @@
       .option-value-unit(v-for="optionValue in optionType.option_values"
                          :key="optionValue.id")
         .inner
-          .value {{ fetchOptionValueContent(optionValue.id) }}
-
-          span.button.is-info.edit-button
-            .icon
-              i.fa.fa-pencil
+          .value {{ fetchOptionValue(optionValue.id).value }}
+          option-value-edit-button(:option-value="fetchOptionValue(optionValue.id)")
 
 </template>
 
 <script>
 import OptionTypeEditButton from '../product_option_type/edit-button.vue'
+import OptionValueEditButton from '../product_option_value/edit-button.vue'
 
 export default {
   components: {
-    OptionTypeEditButton
+    OptionTypeEditButton,
+    OptionValueEditButton
   },
   // mixins: [],
   props: {
@@ -41,8 +40,8 @@ export default {
   // created() {},
   // mounted() {},
   methods: {
-    fetchOptionValueContent(id) {
-      return this.$store.getters['productOptionValues/find'](id).value
+    fetchOptionValue(id) {
+      return this.$store.getters['productOptionValues/find'](id)
     }
   }
 }
