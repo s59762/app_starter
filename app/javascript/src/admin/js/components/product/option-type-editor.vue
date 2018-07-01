@@ -6,9 +6,7 @@
   .option-type-unit(v-for="optionType in optionTypes")
     .option-type-name
       span.name {{ optionType.name }}
-      span.button.is-small.is-info.edit-button
-        .icon
-          i.fa.fa-pencil
+      option-type-edit-button(:option-type="optionType")
 
     .option-values
       .option-value-unit(v-for="optionValue in optionType.option_values"
@@ -23,8 +21,12 @@
 </template>
 
 <script>
+import OptionTypeEditButton from '../product_option_type/edit-button.vue'
+
 export default {
-  // components: {},
+  components: {
+    OptionTypeEditButton
+  },
   // mixins: [],
   props: {
     optionTypes: {

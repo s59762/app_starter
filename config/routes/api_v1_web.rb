@@ -39,6 +39,8 @@ namespace :api do
         resource :collect, only: %i(create destroy), controller: 'products/collect'
       end
 
+      resources :product_option_types, only: %i(update destroy), controller: 'products/option_types'
+
       resource :cart, only: %i(show), controller: 'cart'
 
       # Site config
