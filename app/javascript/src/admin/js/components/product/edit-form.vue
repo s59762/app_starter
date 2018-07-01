@@ -164,6 +164,14 @@ export default {
       return this.$store.getters['productOptionTypes/all']
     },
 
+    variants() {
+      return this.$store.getters['productVariants/all']
+    },
+
+    master() {
+      return this.$store.getters['productVariants/find'](this.product.master.id)
+    },
+
     dirtyCheckClass() {
       return {
         'is-primary': this.isDataSaved,
