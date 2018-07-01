@@ -54,13 +54,13 @@
                      icon="list-ol")
             section.section
               .option-types-wrapper
-                .option-type-unit(v-for="optionType in product.options"
+                .option-type-unit(v-for="optionType in optionTypes"
                                   :key="optionType.id")
                   span.tag.is-default {{ optionType.name }}：
                   .option-values-wrapper
-                    .option-value-unit(v-for="optionValue in optionType.values"
+                    .option-value-unit(v-for="optionValue in optionType.option_values"
                                        :key="optionValue.id")
-                      span.tag.is-dark {{ optionValue.value }}
+                      span.tag.is-dark {{ $store.getters['productOptionValues/find'](optionValue.id).value }}
 
 
             section.section
@@ -165,6 +165,10 @@ export default {
 
     brands() {
       return this.$store.getters['brands/all']
+    },
+
+    optionTypes() {
+      return this.$store.getters['productOptionTypes/all']
     },
 
     dirtyCheckClass() {
