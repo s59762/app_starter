@@ -11,7 +11,7 @@
         b-tabs(v-model="activeTab"
                type="is-boxed"
                size="is-small")
-          b-tab-item(label="基本資料"
+          b-tab-item(:label="pageTitleLocaleText('admin', 'products', 'basic_product_info')"
                      icon="file-text-o")
             section.section
               b-field(:label="attributeLocaleText('product', 'name')"
@@ -51,7 +51,7 @@
                 i.fa.fa-floppy-o
               span {{ actionLocaleText('admin', 'save') }}
 
-          b-tab-item(label="選項與屬性"
+          b-tab-item(:label="pageTitleLocaleText('admin', 'products', 'options_and_properties')"
                      icon="list-ol")
             section.section
               option-type-editor(:option-types="optionTypes")
@@ -66,11 +66,11 @@
               .icon
                 i.fa.fa-floppy-o
               span {{ actionLocaleText('admin', 'save') }}
-          b-tab-item(label="規格設定"
+          b-tab-item(:label="pageTitleLocaleText('admin', 'products', 'variants_management')"
                      icon="barcode")
-          b-tab-item(label="庫存管理"
+          b-tab-item(:label="pageTitleLocaleText('admin', 'products', 'stocks_management')"
                      icon="calculator")
-          b-tab-item(label="SEO 設定"
+          b-tab-item(:label="pageTitleLocaleText('admin', 'products', 'seo_config')"
                      icon="wpforms")
             section.section
               b-field(:label="attributeLocaleText('product', 'meta_title')"
