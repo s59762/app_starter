@@ -14,9 +14,6 @@
           b-tab-item(:label="pageTitleLocaleText('admin', 'products', 'basic_product_info')"
                      icon="file-text-o")
             section.section
-              variant-editable-unit(v-for="variant in variants"
-                                    :variant="variant")
-            section.section
               b-field(:label="attributeLocaleText('product', 'name')"
                       :type="errors.errorClassAt('name')"
                       :message="errors.get('name')"

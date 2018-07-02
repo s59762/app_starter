@@ -8,8 +8,6 @@
   .columns
     .column.info-wrapper
       .info-unit
-        .label {{  }}
-      .info-unit
         .label {{ attributeLocaleText('product', 'original_price') }}
         span.price {{ variant.displayPrice('original') }}
       .info-unit
@@ -19,6 +17,10 @@
         .label {{ attributeLocaleText('product', 'discounted_price') }}
         span.price {{ variant.displayPrice('discounted') }}
     .column.info-wrapper
+      .info-unit
+        .label {{ attributeLocaleText('product/variant', 'option_values') }}
+        span.option-values(v-for="id in variant.option_value_ids")
+          span.tag.is-default {{ fetchOptionTypeNameBy(fetchOptionValueBy(id).option_type_id) }}: {{ fetchOptionValueBy(id).value }}
       .info-unit
         .label {{ attributeLocaleText('product', 'size') }}
         span.size {{ variant.displaySize() }}
@@ -54,7 +56,7 @@ export default {
       type: Object,
       required: true
     }
-  }
+  },
 
   // data() {
   //   return {}
@@ -62,6 +64,14 @@ export default {
   // computed: {},
   // created() {},
   // mounted() {},
-  // methods: {}
+  methods: {
+    fetchOptionTypeNameBy(id) {
+      return this.$store.getters['productOptionTypes/find'](id).name
+    },
+
+    fetchOptionValueBy(id) {
+      return this.$store.getters['productOptionValues/find'](id)
+    }
+  }
 }
 </script>

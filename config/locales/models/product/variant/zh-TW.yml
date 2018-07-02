@@ -22,6 +22,7 @@ zh-TW:
         is_master: 主規格
         description: 規格描述
         product_id: 商品
+        option_values: 關聯選項
 
     errors:
       models:
