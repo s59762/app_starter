@@ -16,7 +16,7 @@ class Api::V1::Web::ProductsController < Api::V1::Web::BaseController
     check_policy ProductPolicy.new(current_api_user, product).show?
 
     render json: product,
-           include: [:normal_images, :master, :variants, 'option_types.option_values'],
+           include: [:normal_images, :variants_with_master, 'option_types.option_values'],
            show_variants: true,
            show_options: true
   end

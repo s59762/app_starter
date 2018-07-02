@@ -1,3 +1,4 @@
+import axios from 'axios'
 import ResourceModelBase from 'odd-resource_model'
 
 const OPTIONS = {
@@ -18,7 +19,8 @@ const OPTIONS = {
     'height',
     'is_master',
     'description',
-    'product_id'
+    'product_id',
+    'option_value_ids'
   ],
   editableAttributes: [
     'name',
@@ -35,6 +37,10 @@ const OPTIONS = {
 export default class ProductVariant extends ResourceModelBase {
   constructor(attributes = {}) {
     super(OPTIONS, attributes)
+  }
+
+  setAsMaster() {
+    return axios.put(`${this.apiBasePath()}/${this.id}/set_as_master`)
   }
 
   // extra methods or helpers here...
@@ -59,6 +65,8 @@ export default class ProductVariant extends ResourceModelBase {
   }
 
   displayPrice(price = 'sell') {
+    if (this[`${price}_price`] === 0) return I18n.t('messages.data_not_provided')
+
     return `${this[`${price}_price`] / 100} ${I18n.t('activerecord.attributes.product.price_unit')}`
   }
 
@@ -81,6 +89,10 @@ export default class ProductVariant extends ResourceModelBase {
       if (this[property]) result.push(`${I18n.t(`activerecord.attributes.product.${property}`)} ${this[property]}`)
     })
 
-    return result.join(' × ')
+    if (result.length > 0) {
+      return result.join(' × ')
+    } else {
+      return I18n.t('messages.data_not_provided')
+    }
   }
 }

@@ -1,5 +1,4 @@
 import axios from 'axios'
-import FetchingDataOptionsService from 'odd-fetching_data_options_service'
 import ResourceModelBase from 'odd-resource_model'
 
 const OPTIONS = {
@@ -102,6 +101,8 @@ export default class Product extends ResourceModelBase {
   }
 
   displayPrice(price = 'sell') {
+    if (this[`${price}_price`] === 0) return I18n.t('messages.data_not_provided')
+
     return `${this[`${price}_price`] / 100} ${I18n.t('activerecord.attributes.product.price_unit')}`
   }
 

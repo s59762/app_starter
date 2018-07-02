@@ -61,13 +61,6 @@ class Admin::NewProductForm < ApplicationForm
 
   private
 
-  # 把 price 的內容指定到 model 中
-  def assign_price_info_to_model
-    price.each do |key, value|
-      model.assign_attributes "#{key}_price".to_sym => value
-    end
-  end
-
   def assign_category_to_model
     id = sub_category_id.present? ? sub_category_id : top_level_category_id
 
@@ -90,15 +83,10 @@ class Admin::NewProductForm < ApplicationForm
     return unless @is_new_record
     return build_default_master_variant if model.option_types.blank?
 
-    options = model.option_types.map do |type|
-      type.option_values.map { |v| { id: v.id, name: v.value } }
-    end
-    all_option_combinations = options[0].product(*options[1..-1])
-
     all_option_combinations.each_with_index do |option_combination, index|
       is_master = (index == 0)
 
-      model.variants.create name: option_combination.map { |option| option[:name] }.join('-'),
+      model.variants.create name: option_combination[:name],
                             sku: "#{sku}-#{index}",
                             original_price: price['original'],
                             sell_price: price['sell'],
@@ -107,7 +95,8 @@ class Admin::NewProductForm < ApplicationForm
                             depth: depth,
                             height: height,
                             weight: weight,
-                            is_master: is_master
+                            is_master: is_master,
+                            option_value_ids: option_combination[:ids]
     end
   end
 
@@ -120,5 +109,18 @@ class Admin::NewProductForm < ApplicationForm
                         depth: depth,
                         height: height,
                         weight: weight
+  end
+
+  def all_option_combinations
+    options = model.option_types.map do |type|
+      type.option_values.map { |v| { id: v.id, name: v.value } }
+    end
+
+    options[0].product(*options[1..-1]).map do |combination|
+      {
+        name: combination.map { |c| c[:name] }.join('-'),
+        ids: combination.map { |c| c[:id] }
+      }
+    end
   end
 end

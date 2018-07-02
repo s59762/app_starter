@@ -11,7 +11,7 @@
         b-tabs(v-model="activeTab"
                type="is-boxed"
                size="is-small")
-          b-tab-item(label="基本資料"
+          b-tab-item(:label="pageTitleLocaleText('admin', 'products', 'basic_product_info')"
                      icon="file-text-o")
             section.section
               b-field(:label="attributeLocaleText('product', 'name')"
@@ -51,7 +51,7 @@
                 i.fa.fa-floppy-o
               span {{ actionLocaleText('admin', 'save') }}
 
-          b-tab-item(label="選項與屬性"
+          b-tab-item(:label="pageTitleLocaleText('admin', 'products', 'options_and_properties')"
                      icon="list-ol")
             section.section
               option-type-editor(:option-types="optionTypes")
@@ -66,11 +66,17 @@
               .icon
                 i.fa.fa-floppy-o
               span {{ actionLocaleText('admin', 'save') }}
-          b-tab-item(label="規格設定"
+          b-tab-item(:label="pageTitleLocaleText('admin', 'products', 'variants_management')"
                      icon="barcode")
-          b-tab-item(label="庫存管理"
+            variant-editable-unit(v-for="variant in variants"
+                                  :variant="variant")
+
+
+
+
+          b-tab-item(:label="pageTitleLocaleText('admin', 'products', 'stocks_management')"
                      icon="calculator")
-          b-tab-item(label="SEO 設定"
+          b-tab-item(:label="pageTitleLocaleText('admin', 'products', 'seo_config')"
                      icon="wpforms")
             section.section
               b-field(:label="attributeLocaleText('product', 'meta_title')"
@@ -110,15 +116,17 @@ import Product from '../../../../shared/resource_models/product'
 import Form from 'odd-form_object'
 import CategorySelector from './category-selector.vue'
 import OptionTypeEditor from './option-type-editor.vue'
-import PropertiesColumns from './propertiess-columns.vue'
+import PropertiesColumns from './properties-columns.vue'
 import DescriptionColumn from './description-column.vue'
+import VariantEditableUnit from '../product_variant/editable-unit.vue'
 
 export default {
   components: {
     CategorySelector,
     OptionTypeEditor,
     PropertiesColumns,
-    DescriptionColumn
+    DescriptionColumn,
+    VariantEditableUnit
   },
 
   // mixins: [],
@@ -164,6 +172,10 @@ export default {
       return this.$store.getters['productOptionTypes/all']
     },
 
+    variants() {
+      return this.$store.getters['productVariants/all']
+    },
+
     dirtyCheckClass() {
       return {
         'is-primary': this.isDataSaved,
@@ -174,22 +186,11 @@ export default {
 
   created() {
     this.$store.dispatch('brands/all')
-    if (this.product.isNewRecord()) {
-      this.form.uploaded_image_ids = []
-      this.form.properties = []
-      this.form.option_types = []
-      this.form.price = {
-        original: 0,
-        sell: 0,
-        discounted: 0
-      }
-    } else {
-      this.form.uploaded_image_ids = []
-      this.form.price = {
-        original: this.product.original_price / 100,
-        sell: this.product.sell_price / 100,
-        discounted: this.product.discounted_price / 100
-      }
+    this.form.uploaded_image_ids = []
+    this.form.price = {
+      original: this.product.original_price / 100,
+      sell: this.product.sell_price / 100,
+      discounted: this.product.discounted_price / 100
     }
   },
 

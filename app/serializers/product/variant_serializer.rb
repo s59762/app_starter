@@ -20,6 +20,7 @@
 #  product_id                :bigint(8)
 #  created_at                :datetime         not null
 #  updated_at                :datetime         not null
+#  option_value_ids          :jsonb
 #
 
 class Product::VariantSerializer < ApplicationSerializer
@@ -37,7 +38,8 @@ class Product::VariantSerializer < ApplicationSerializer
              :height,
              :is_master,
              :description,
-             :product_id
+             :product_id,
+             :option_value_ids
 
   money_to_integer :original_price,
                    :sell_price,

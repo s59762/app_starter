@@ -20,13 +20,18 @@ zh-TW:
         depth: 寬
         height: 高
         is_master: 主規格
-        description: 描述
+        description: 規格描述
         product_id: 商品
+        option_values: 關聯選項
 
     errors:
       models:
         product/variant:
           attributes:
+            price:
+              wrong_type: '%{key} 必須為 Integer, 並大於或等於 0'
+              invalid_key: '%{key} 為不合法的 key，僅能接受 original, sell, discounted'
+              invalid_discounted_price: '折扣價不能大於售價'
   activemodel: *default
 
   # Enums

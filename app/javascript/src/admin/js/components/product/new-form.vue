@@ -99,7 +99,7 @@ import Form from 'odd-form_object'
 import CategorySelector from './category-selector.vue'
 import PriceInfoColumns from './price-info-columns.vue'
 import OptionTypesColumns from './option-types-columns.vue'
-import PropertiesColumns from './propertiess-columns.vue'
+import PropertiesColumns from './properties-columns.vue'
 import DescriptionColumn from './description-column.vue'
 
 export default {

@@ -37,6 +37,7 @@ zh-TW:
     there_is_no_data_for_now: 目前沒有資料
     there_is_no_sub_categories_for_now: 目前沒有子分類
     this_column_is_optional: 此欄位為選填
+    data_not_provided: 無資料
     product_management:
       please_provide_basic_info_for_new_product_and_make_advence_config_in_next_step: 請先透過這個表單提供商品的基本資料，在建立好商品資料模型後您可以在下一個步驟進行更多設定。
       help_message:

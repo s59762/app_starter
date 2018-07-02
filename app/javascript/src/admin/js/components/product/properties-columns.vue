@@ -1,11 +1,11 @@
 <template lang="pug">
 
-.vc-product-propertiess-columns
+.vc-product-properties-columns
   h4.section-title {{pageTitleLocaleText('admin', 'products', 'property_fields')}}
 
   //- 基本商品屬性（體積、重量）
   .properties-wrapper
-    .basic-properties(v-if="form.model.isNewRecord()")
+    .basic-properties(v-if="form.model.isNewRecord() || form.model.constructor.name === 'ProductVariant'")
       h5.sub-title {{pageTitleLocaleText('admin', 'products', 'basic_properties')}}
       .property-fields(v-for="basicProperty in basicProperties")
         .columns
@@ -23,6 +23,8 @@
                       placeholder="e.g. 80"
                       v-model="form[basicProperty.name]"
                       data-behavior="product-width-value"
+                      min="0"
+                      step="0.01"
                       @input="errors.clear(basicProperty.name)")
           .column
             b-field(:label="attributeLocaleText('product', 'property_unit')"
@@ -31,7 +33,7 @@
                       :value="basicProperty.unit"
                       disabled)
     //- 自訂商品屬性
-    .extra-properties
+    .extra-properties(v-if="form.model.constructor.name === 'Product'")
       h5.sub-title(v-if="form.properties.length > 0") {{pageTitleLocaleText('admin', 'products', 'extra_properties')}}
       .property-fields(v-for="(property, index) in form.properties")
         .counter {{index + 1}}
@@ -66,11 +68,11 @@
                       v-model="property.unit"
                       data-behavior="product-property-unit")
 
-    .add-property-button.button.is-default.is-block(@click="addProperty"
-                                                    data-behavior="product-add-property-button")
-      .icon
-        i.fa.fa-plus
-      span {{actionLocaleText('admin', 'add_product_property')}}
+      .add-property-button.button.is-default.is-block(@click="addProperty"
+                                                      data-behavior="product-add-property-button")
+        .icon
+          i.fa.fa-plus
+        span {{actionLocaleText('admin', 'add_product_property')}}
 
 </template>
 
