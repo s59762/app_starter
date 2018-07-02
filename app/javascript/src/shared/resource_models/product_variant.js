@@ -19,7 +19,8 @@ const OPTIONS = {
     'height',
     'is_master',
     'description',
-    'product_id'
+    'product_id',
+    'option_value_ids'
   ],
   editableAttributes: [
     'name',

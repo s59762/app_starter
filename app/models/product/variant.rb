@@ -20,6 +20,7 @@
 #  product_id                :bigint(8)
 #  created_at                :datetime         not null
 #  updated_at                :datetime         not null
+#  option_value_ids          :jsonb
 #
 
 class Product::Variant < ApplicationRecord
