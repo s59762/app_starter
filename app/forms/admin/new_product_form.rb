@@ -61,13 +61,6 @@ class Admin::NewProductForm < ApplicationForm
 
   private
 
-  # 把 price 的內容指定到 model 中
-  def assign_price_info_to_model
-    price.each do |key, value|
-      model.assign_attributes "#{key}_price".to_sym => value
-    end
-  end
-
   def assign_category_to_model
     id = sub_category_id.present? ? sub_category_id : top_level_category_id
 
