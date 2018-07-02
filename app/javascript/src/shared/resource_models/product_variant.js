@@ -1,3 +1,4 @@
+import axios from 'axios'
 import ResourceModelBase from 'odd-resource_model'
 
 const OPTIONS = {
@@ -35,6 +36,10 @@ const OPTIONS = {
 export default class ProductVariant extends ResourceModelBase {
   constructor(attributes = {}) {
     super(OPTIONS, attributes)
+  }
+
+  setAsMaster() {
+    return axios.put(`${this.apiBasePath()}/${this.id}/set_as_master`)
   }
 
   // extra methods or helpers here...
