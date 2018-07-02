@@ -102,7 +102,19 @@ export default {
   // mounted() {},
   methods: {
     submitForm() {
-      console.log(this.form.sync())
+      this.$store
+        .dispatch('productVariants/save', this.form.sync())
+        .then(() => {
+          return this.$store.dispatch('addFlashMessage', [
+            'success',
+            this.messageLocaleText('resource_updated_successfully', {
+              resource: this.modelNameLocaleText('product/variant')
+            })
+          ])
+        })
+        .then(() => {
+          this.$parent.close()
+        })
     }
   }
 }

@@ -23,6 +23,8 @@
                       placeholder="e.g. 80"
                       v-model="form[basicProperty.name]"
                       data-behavior="product-width-value"
+                      min="0"
+                      step="0.01"
                       @input="errors.clear(basicProperty.name)")
           .column
             b-field(:label="attributeLocaleText('product', 'property_unit')"
