@@ -4,6 +4,7 @@
   .basic-info
     span.name(:data-master="attributeLocaleText('product/variant', 'is_master')") {{ variant.name }}
     span.sku {{ variant.sku }}
+
   .columns
     .column.info-wrapper
       .info-unit
@@ -25,7 +26,16 @@
       .info-unit
         .label {{ attributeLocaleText('product/variant', 'description') }}
         span.price {{ variant.description || 'none' }}
-  edit-button(:variant="variant")
+  .columns
+    .column
+      edit-button(:variant="variant"
+                  size="is-small")
+    .column
+      .button.is-warning.is-block.is-small(v-if="!variant.is_master"
+                                           @click="setAsMaster")
+        .icon
+          i.fa.fa-check-circle-o
+        span 設定為主規格
 
 </template>
 
@@ -42,7 +52,7 @@ export default {
       type: Object,
       required: true
     }
-  }
+  },
 
   // data() {
   //   return {}
@@ -50,6 +60,17 @@ export default {
   // computed: {},
   // created() {},
   // mounted() {},
-  // methods: {}
+  methods: {
+    setAsMaster() {
+      this.$store.dispatch('productVariants/setAsMaster', this.variant).then(() => {
+        this.$store.dispatch('addFlashMessage', [
+          'success',
+          this.messageLocaleText('resource_updated_successfully', {
+            resource: this.modelNameLocaleText('product/variant')
+          })
+        ])
+      })
+    }
+  }
 }
 </script>

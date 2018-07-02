@@ -1,7 +1,8 @@
 <template lang="pug">
 
 .vc-product-variant-edit-button
-  .button.is-info.is-block(@click="showForm")
+  .button.is-info.is-block(@click="showForm"
+                           :class="size")
     .icon
       i.fa.fa-pencil
     span {{ actionLocaleText('admin', 'edit') }}
@@ -22,6 +23,11 @@ export default {
     variant: {
       type: Object,
       required: true
+    },
+
+    size: {
+      type: String,
+      required: false
     }
   },
 

@@ -68,7 +68,6 @@
               span {{ actionLocaleText('admin', 'save') }}
           b-tab-item(:label="pageTitleLocaleText('admin', 'products', 'variants_management')"
                      icon="barcode")
-            variant-editable-unit(:variant="master")
             variant-editable-unit(v-for="variant in variants"
                                   :variant="variant")
 
@@ -174,11 +173,7 @@ export default {
     },
 
     variants() {
-      return this.$store.getters['productVariants/all'].filter(variant => !variant.is_master)
-    },
-
-    master() {
-      return this.$store.getters['productVariants/find'](this.product.master.id)
+      return this.$store.getters['productVariants/all']
     },
 
     dirtyCheckClass() {

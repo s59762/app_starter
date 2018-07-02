@@ -112,7 +112,7 @@ export const setAsMaster = ({
   return new Promise((resolve, reject) => {
     model.setAsMaster()
       .then(response => {
-        commit(types.GET_RELATED_PRODUCT_VARIANTS_SUCCESS, response)
+        commit(types.FETCH_PRODUCT_VARIANTS_SUCCESS, response)
 
         resolve(response)
       })

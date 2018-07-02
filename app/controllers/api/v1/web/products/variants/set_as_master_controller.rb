@@ -10,7 +10,7 @@ class Api::V1::Web::Products::Variants::SetAsMasterController < Api::V1::Web::Ba
       @variant.update is_master: true
     end
 
-    render json: @product.variants
+    render json: @product.variants_with_master
   end
 
   private
