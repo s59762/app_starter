@@ -12,8 +12,7 @@ class Admin::ProductVariantForm < ApplicationForm
              :description
   property :price, virtual: true
 
-  validates :name,
-            :sku, presence: true
+  validates :sku, presence: true
   validate :valid_price_params?
 
   # 將資料寫入 Product

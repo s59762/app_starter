@@ -18,7 +18,7 @@
 #
 
 class Product < ApplicationRecord
-  allow_sort_fields :'products.id',
+  allow_sort_fields :'product_variants.sku',
                     :'products.name',
                     :category_id,
                     :original_price,

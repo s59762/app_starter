@@ -17,22 +17,15 @@
 
     template(slot-scope="props")
 
-      b-table-column(field="products.id"
-                     label="ID"
-                     sortable
-                     numbric)
-        | {{props.row.id}}
+      b-table-column(field="product_variants.sku"
+                     label="SKU"
+                     sortable)
+        | {{props.row.sku}}
 
       b-table-column(field="products.name"
                      :label="attributeLocaleText('product', 'name')"
                      sortable)
         | {{props.row.name}}
-
-      b-table-column(field="original_price"
-                     :label="attributeLocaleText('product', 'original_price')"
-                     sortable
-                     numbric)
-        | {{props.row.displayPrice('original')}}
 
       b-table-column(field="sell_price"
                      :label="attributeLocaleText('product', 'sell_price')"
@@ -46,13 +39,6 @@
                      numbric)
         | {{props.row.displayPrice('discounted')}}
         span(v-if="props.row.hasDiscount()") （{{props.row.displayDiscountRate()}}）
-
-      b-table-column.preorder-column(field="is_preorder"
-                                     :label="attributeLocaleText('product', 'is_preorder')"
-                                     sortable
-                                     numbric)
-        span.tag.is-default
-          i.fa(:class="preorderIcon(props.row)")
 
       b-table-column(:label="actionLocaleText('admin', 'options')"
                     numeric)
