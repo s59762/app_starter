@@ -8,6 +8,8 @@
   .columns
     .column.info-wrapper
       .info-unit
+        .label {{  }}
+      .info-unit
         .label {{ attributeLocaleText('product', 'original_price') }}
         span.price {{ variant.displayPrice('original') }}
       .info-unit
@@ -19,14 +21,15 @@
     .column.info-wrapper
       .info-unit
         .label {{ attributeLocaleText('product', 'size') }}
-        span.price {{ variant.displaySize() }}
+        span.size {{ variant.displaySize() }}
       .info-unit
         .label {{ attributeLocaleText('product', 'weight') }}
-        span.price {{ variant.weight }}（{{ attributeLocaleText('product', 'weight_unit') }}）
+        span.weight(v-if="variant.weight") {{ variant.weight }}（{{ attributeLocaleText('product', 'weight_unit') }}）
+        span.weight(v-else) {{ messageLocaleText('data_not_provided') }}
       .info-unit
         .label {{ attributeLocaleText('product/variant', 'description') }}
-        span.price {{ variant.description || 'none' }}
-  .columns
+        span.description {{ variant.description || 'none' }}
+  .columns.info-wrapper
     .column
       set-as-master-button(:variant="variant"
                            size="is-small")

@@ -2,5 +2,6 @@ class Product::OptionValueSerializer < ApplicationSerializer
   type 'product_option_values'
 
   attributes :id,
-             :value
+             :value,
+             :option_type_id
 end

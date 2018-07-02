@@ -5,7 +5,7 @@ const OPTIONS = {
   apiVersion: 'v1',
   scope: 'web',
   resourceType: 'product_option_values',
-  attributes: ['id', 'value'],
+  attributes: ['id', 'value', 'option_type_id'],
   editableAttributes: ['value']
 }
 

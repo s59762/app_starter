@@ -64,6 +64,8 @@ export default class ProductVariant extends ResourceModelBase {
   }
 
   displayPrice(price = 'sell') {
+    if (this[`${price}_price`] === 0) return I18n.t('messages.data_not_provided')
+
     return `${this[`${price}_price`] / 100} ${I18n.t('activerecord.attributes.product.price_unit')}`
   }
 
@@ -86,6 +88,10 @@ export default class ProductVariant extends ResourceModelBase {
       if (this[property]) result.push(`${I18n.t(`activerecord.attributes.product.${property}`)} ${this[property]}`)
     })
 
-    return result.join(' × ')
+    if (result.length > 0) {
+      return result.join(' × ')
+    } else {
+      return I18n.t('messages.data_not_provided')
+    }
   }
 }
