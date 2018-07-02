@@ -20,7 +20,7 @@ zh-TW:
         depth: 寬
         height: 高
         is_master: 主規格
-        description: 描述
+        description: 規格描述
         product_id: 商品
 
     errors:

@@ -13,6 +13,12 @@
                size="is-small")
           b-tab-item(:label="pageTitleLocaleText('admin', 'products', 'basic_product_info')"
                      icon="file-text-o")
+            //- TODO: DEV block
+            section.section
+              variant-editable-unit(:variant="master")
+              variant-editable-unit(v-for="variant in variants"
+                                    :variant="variant")
+
             section.section
               b-field(:label="attributeLocaleText('product', 'name')"
                       :type="errors.errorClassAt('name')"
@@ -68,6 +74,13 @@
               span {{ actionLocaleText('admin', 'save') }}
           b-tab-item(:label="pageTitleLocaleText('admin', 'products', 'variants_management')"
                      icon="barcode")
+            variant-editable-unit(:variant="master")
+            variant-editable-unit(v-for="variant in variants"
+                                  :variant="variant")
+
+
+
+
           b-tab-item(:label="pageTitleLocaleText('admin', 'products', 'stocks_management')"
                      icon="calculator")
           b-tab-item(:label="pageTitleLocaleText('admin', 'products', 'seo_config')"
@@ -112,13 +125,15 @@ import CategorySelector from './category-selector.vue'
 import OptionTypeEditor from './option-type-editor.vue'
 import PropertiesColumns from './propertiess-columns.vue'
 import DescriptionColumn from './description-column.vue'
+import VariantEditableUnit from '../product_variant/editable-unit.vue'
 
 export default {
   components: {
     CategorySelector,
     OptionTypeEditor,
     PropertiesColumns,
-    DescriptionColumn
+    DescriptionColumn,
+    VariantEditableUnit
   },
 
   // mixins: [],
@@ -165,7 +180,7 @@ export default {
     },
 
     variants() {
-      return this.$store.getters['productVariants/all']
+      return this.$store.getters['productVariants/all'].filter(variant => !variant.is_master)
     },
 
     master() {

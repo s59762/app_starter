@@ -36,6 +36,7 @@ zh-TW:
         depth: 寬
         height: 高
         weight: 重量
+        weight_unit: KG
         sku: SKU
         meta_title: META 標題
         meta_description: META 描述
