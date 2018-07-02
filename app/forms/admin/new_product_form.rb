@@ -83,15 +83,10 @@ class Admin::NewProductForm < ApplicationForm
     return unless @is_new_record
     return build_default_master_variant if model.option_types.blank?
 
-    options = model.option_types.map do |type|
-      type.option_values.map { |v| { id: v.id, name: v.value } }
-    end
-    all_option_combinations = options[0].product(*options[1..-1])
-
     all_option_combinations.each_with_index do |option_combination, index|
       is_master = (index == 0)
 
-      model.variants.create name: option_combination.map { |option| option[:name] }.join('-'),
+      model.variants.create name: option_combination[:name],
                             sku: "#{sku}-#{index}",
                             original_price: price['original'],
                             sell_price: price['sell'],
@@ -100,7 +95,8 @@ class Admin::NewProductForm < ApplicationForm
                             depth: depth,
                             height: height,
                             weight: weight,
-                            is_master: is_master
+                            is_master: is_master,
+                            option_value_ids: option_combination[:ids]
     end
   end
 
@@ -113,5 +109,18 @@ class Admin::NewProductForm < ApplicationForm
                         depth: depth,
                         height: height,
                         weight: weight
+  end
+
+  def all_option_combinations
+    options = model.option_types.map do |type|
+      type.option_values.map { |v| { id: v.id, name: v.value } }
+    end
+
+    options[0].product(*options[1..-1]).map do |combination|
+      {
+        name: combination.map { |c| c[:name] }.join('-'),
+        ids: combination.map { |c| c[:id] }
+      }
+    end
   end
 end
