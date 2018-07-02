@@ -6,6 +6,9 @@
   background-color: $light
   &:not(:last-child)
     margin-bottom: $gap
+  &.is-master
+    .basic-info > .name:before
+      content: "["attr(data-master)"] "
 
   .basic-info
     padding-bottom: .5rem

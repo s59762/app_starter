@@ -1,8 +1,8 @@
 <template lang="pug">
 
-.vc-product-variant-editable-unit
+.vc-product-variant-editable-unit(:class="{ 'is-master': variant.is_master }")
   .basic-info
-    span.name {{ variant.name }}
+    span.name(:data-master="attributeLocaleText('product/variant', 'is_master')") {{ variant.name }}
     span.sku {{ variant.sku }}
   .columns
     .column.info-wrapper
@@ -25,16 +25,17 @@
       .info-unit
         .label {{ attributeLocaleText('product/variant', 'description') }}
         span.price {{ variant.description || 'none' }}
-  .button.is-info.is-block
-    .icon
-      i.fa.fa-pencil
-    span {{ actionLocaleText('admin', 'edit') }}
+  edit-button(:variant="variant")
 
 </template>
 
 <script>
+import EditButton from './edit-button.vue'
+
 export default {
-  // components: {},
+  components: {
+    EditButton
+  },
   // mixins: [],
   props: {
     variant: {
