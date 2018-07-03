@@ -97,6 +97,7 @@ gem 'money-rails', '~>1' # for currency management
 gem 'pg' # postgresSQL adapter
 gem 'rails-settings-cached' # App settings function
 gem 'ransack' # for meta search
+gem 'public_activity' # tracking activities of models
 
 # Authentication
 gem 'devise' # users authenticate
