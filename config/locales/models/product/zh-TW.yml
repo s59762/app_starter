@@ -42,6 +42,7 @@ zh-TW:
         meta_description: META 描述
         meta_keywords: META 關鍵字
         total_stock: 總庫存
+        activities: 活動紀錄
 
     errors:
       models:
@@ -67,3 +68,9 @@ zh-TW:
   # AASM state machine
   aasm_state:
     product:
+
+  # activities
+  activity:
+    'product':
+      increase_stock: 進貨
+      decrease_stock: 銷貨

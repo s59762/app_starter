@@ -16,7 +16,12 @@ class Admin::ProductVariantStockForm < ApplicationForm
   def save
     ::ActiveRecord::Base.transaction do
       model.update stock: model.stock + normalized_quantity
-      # TODO: create record with reason and current_admin
+      model.product.create_activity key: "#{action}_stock",
+                                    owner: Admin.find(current_admin_id),
+                                    params: {
+                                      quantity: quantity,
+                                      variant_id: model.id
+                                    }
     end
   end
 
