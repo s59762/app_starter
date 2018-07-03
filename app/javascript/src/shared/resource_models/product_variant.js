@@ -31,7 +31,8 @@ const OPTIONS = {
     'width',
     'depth',
     'height',
-    'description'
+    'description',
+    'stock_params'
   ]
 }
 
@@ -42,6 +43,21 @@ export default class ProductVariant extends ResourceModelBase {
 
   setAsMaster() {
     return axios.put(`${this.apiBasePath()}/${this.id}/set_as_master`)
+  }
+
+  updateStock() {
+    const requestBody = {
+      data: {
+        type: 'update-product-variant-stock',
+        attributes: {
+          quantity: this.stock_params.quantity,
+          action: this.stock_params.action,
+          reason: this.stock_params.reason
+        }
+      }
+    }
+
+    return axios.put(`${this.apiBasePath()}/${this.id}/stock`, requestBody)
   }
 
   // extra methods or helpers here...

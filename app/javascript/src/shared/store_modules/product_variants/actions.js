@@ -128,6 +128,31 @@ export const setAsMaster = ({
   })
 }
 
+export const updateStock = ({
+  dispatch,
+  commit
+}, model) => {
+  commit(types.API_REQUEST_START, 'updateStock')
+
+  return new Promise((resolve, reject) => {
+    model.updateStock()
+      .then(response => {
+        commit(types.GET_PRODUCT_VARIANT_SUCCESS, response)
+
+        resolve(response)
+      })
+      .catch(errors => {
+        model.errors.record(errors)
+        commit(types.API_REQUEST_FAIL, errors)
+        dispatch('errorMessageHandler', errors, {
+          root: true
+        })
+
+        reject(errors)
+      })
+  })
+}
+
 export const receiveResourcesFromRelationships = ({
   commit
 }, response) => {
