@@ -100,3 +100,25 @@
     cursor: pointer
     &:hover
       box-shadow: 0 0 5px $black
+
+%product-variant-unit-basic-style
+  @extend %is-product-customization-property-field
+
+  .basic-info
+    padding-bottom: .5rem
+    margin-bottom: 0.5rem
+    border-bottom: 1px solid darken($light, 10)
+    font-weight: $weight-bold
+    text-align: center
+    > .name
+      margin-right: 0.5rem
+
+  .info-unit
+    > .label
+      font-size: $size-7
+
+  .option-values
+    > .tag
+      border: 1px solid darken($light, 10)
+    &:not(:last-child)
+      margin-right: 0.5em
