@@ -15,6 +15,7 @@
 #  meta_title       :string
 #  meta_description :string
 #  meta_keywords    :string
+#  total_stock      :integer          default(0)
 #
 
 require 'rails_helper'

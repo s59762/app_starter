@@ -23,6 +23,7 @@ zh-TW:
         description: 規格描述
         product_id: 商品
         option_values: 關聯選項
+        stock: 庫存
 
     errors:
       models:

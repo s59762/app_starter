@@ -21,6 +21,7 @@
 #  created_at                :datetime         not null
 #  updated_at                :datetime         not null
 #  option_value_ids          :jsonb
+#  stock                     :integer          default(0)
 #
 
 class Product::VariantSerializer < ApplicationSerializer
@@ -39,7 +40,8 @@ class Product::VariantSerializer < ApplicationSerializer
              :is_master,
              :description,
              :product_id,
-             :option_value_ids
+             :option_value_ids,
+             :stock
 
   money_to_integer :original_price,
                    :sell_price,

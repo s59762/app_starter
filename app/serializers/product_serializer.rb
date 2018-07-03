@@ -15,6 +15,7 @@
 #  meta_title       :string
 #  meta_description :string
 #  meta_keywords    :string
+#  total_stock      :integer          default(0)
 #
 
 class ProductSerializer < ApplicationSerializer
@@ -41,7 +42,8 @@ class ProductSerializer < ApplicationSerializer
              :sku,
              :meta_title,
              :meta_description,
-             :meta_keywords
+             :meta_keywords,
+             :total_stock
 
   belongs_to :brand, optional: true
   belongs_to :category, class_name: 'ProductCategory', optional: true

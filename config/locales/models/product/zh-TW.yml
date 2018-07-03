@@ -41,6 +41,7 @@ zh-TW:
         meta_title: META 標題
         meta_description: META 描述
         meta_keywords: META 關鍵字
+        total_stock: 總庫存
 
     errors:
       models:

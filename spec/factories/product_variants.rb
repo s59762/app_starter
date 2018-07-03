@@ -21,6 +21,7 @@
 #  created_at                :datetime         not null
 #  updated_at                :datetime         not null
 #  option_value_ids          :jsonb
+#  stock                     :integer          default(0)
 #
 
 FactoryBot.define do

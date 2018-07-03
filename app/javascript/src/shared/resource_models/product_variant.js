@@ -20,7 +20,8 @@ const OPTIONS = {
     'is_master',
     'description',
     'product_id',
-    'option_value_ids'
+    'option_value_ids',
+    'stock'
   ],
   editableAttributes: [
     'name',

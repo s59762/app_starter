@@ -33,7 +33,8 @@ const OPTIONS = {
     'options',
     'meta_title',
     'meta_description',
-    'meta_keywords'
+    'meta_keywords',
+    'total_stock'
   ],
   editableAttributes: [
     'brand_id',
