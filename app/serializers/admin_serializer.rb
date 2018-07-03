@@ -33,5 +33,7 @@ class AdminSerializer < ApplicationSerializer
              :is_suspended,
              :updated_at
 
+  has_many :activity_records, if: -> { instance_options[:show_activity_records] }
+
   to_unix_time :last_sign_in_at, :created_at, :updated_at
 end

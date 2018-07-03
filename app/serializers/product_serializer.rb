@@ -53,6 +53,7 @@ class ProductSerializer < ApplicationSerializer
   has_many :option_types, class_name: 'Product::OptionType', if: -> { instance_options[:show_options] }
   has_many :variants, if: -> { instance_options[:show_variants] }
   has_many :variants_with_master, if: -> { instance_options[:show_variants] }
+  has_many :activities, if: -> { instance_options[:show_activities] }
   has_one :master
 
   to_unix_time :created_at, :updated_at

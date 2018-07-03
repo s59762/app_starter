@@ -19,6 +19,8 @@
 #
 
 class Product < ApplicationRecord
+  include PublicActivity::Common
+
   allow_sort_fields :'product_variants.sku',
                     :'products.name',
                     :category_id,
@@ -36,6 +38,7 @@ class Product < ApplicationRecord
   has_many :variants, -> { where(is_master: false).order(created_at: :asc) }, class_name: 'Product::Variant'
   has_many :variants_with_master, -> { order(created_at: :asc) }, class_name: 'Product::Variant', dependent: :destroy
   has_many :collections, class_name: 'User::Collection', dependent: :destroy
+  has_many :activities, -> { order(created_at: :asc) }, class_name: '::PublicActivity::Activity', as: :trackable, dependent: :destroy
   has_one :master, -> { where(is_master: true) }, class_name: 'Product::Variant'
 
   # @param [Array] properties 搜尋 jsonb 欄位
