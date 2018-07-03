@@ -280,15 +280,15 @@
       <pre class="lines">
 
 
-76
 77
 78
 79
 80
-81</pre>
+81
+82</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/serializers/product_serializer.rb', line 76</span>
+      <pre class="code"><span class="info file"># File 'app/serializers/product_serializer.rb', line 77</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_discount_rate'>discount_rate</span>
   <span class='kw'>return</span> <span class='float'>1.0</span> <span class='kw'>if</span> <span class='id identifier rubyid_object'>object</span><span class='period'>.</span><span class='id identifier rubyid_discounted_price'>discounted_price</span><span class='period'>.</span><span class='id identifier rubyid_zero?'>zero?</span>
@@ -316,7 +316,6 @@
       <pre class="lines">
 
 
-83
 84
 85
 86
@@ -329,10 +328,11 @@
 93
 94
 95
-96</pre>
+96
+97</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/serializers/product_serializer.rb', line 83</span>
+      <pre class="code"><span class="info file"># File 'app/serializers/product_serializer.rb', line 84</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_options'>options</span>
   <span class='id identifier rubyid_object'>object</span><span class='period'>.</span><span class='id identifier rubyid_option_types'>option_types</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_type'>type</span><span class='op'>|</span>
@@ -368,14 +368,14 @@
       <pre class="lines">
 
 
-69
 70
 71
 72
-73</pre>
+73
+74</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/serializers/product_serializer.rb', line 69</span>
+      <pre class="code"><span class="info file"># File 'app/serializers/product_serializer.rb', line 70</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_sub_category_id'>sub_category_id</span>
   <span class='kw'>return</span> <span class='kw'>nil</span> <span class='kw'>unless</span> <span class='id identifier rubyid_object'>object</span><span class='period'>.</span><span class='id identifier rubyid_category'>category</span><span class='period'>.</span><span class='id identifier rubyid_parent'>parent</span><span class='period'>.</span><span class='id identifier rubyid_present?'>present?</span>
@@ -402,14 +402,14 @@
       <pre class="lines">
 
 
-63
 64
 65
 66
-67</pre>
+67
+68</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/serializers/product_serializer.rb', line 63</span>
+      <pre class="code"><span class="info file"># File 'app/serializers/product_serializer.rb', line 64</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_top_level_category_id'>top_level_category_id</span>
   <span class='kw'>return</span> <span class='id identifier rubyid_object'>object</span><span class='period'>.</span><span class='id identifier rubyid_category'>category</span><span class='period'>.</span><span class='id identifier rubyid_parent'>parent</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span> <span class='kw'>if</span> <span class='id identifier rubyid_object'>object</span><span class='period'>.</span><span class='id identifier rubyid_category'>category</span><span class='period'>.</span><span class='id identifier rubyid_parent'>parent</span><span class='period'>.</span><span class='id identifier rubyid_present?'>present?</span>

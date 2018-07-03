@@ -143,6 +143,39 @@
 
 
 
+  
+    <h2>
+      Instance Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#stock_status-instance_method" title="#stock_status (instance method)">#<strong>stock_status</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
 
   
   
@@ -150,12 +183,54 @@
   
   
   
-  <h2>Method Summary</h2>
+  
   
   <h3 class="inherited">Methods inherited from <span class='object_link'><a href="../ApplicationSerializer.html" title="ApplicationSerializer (class)">ApplicationSerializer</a></span></h3>
   <p class="inherited"><span class='object_link'><a href="../ApplicationSerializer.html#money_to_integer-class_method" title="ApplicationSerializer.money_to_integer (method)">money_to_integer</a></span>, <span class='object_link'><a href="../ApplicationSerializer.html#to_unix_time-class_method" title="ApplicationSerializer.to_unix_time (method)">to_unix_time</a></span></p>
 
   
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="stock_status-instance_method">
+  
+    #<strong>stock_status</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+51
+52
+53
+54
+55
+56</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/serializers/product/variant_serializer.rb', line 51</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_stock_status'>stock_status</span>
+  <span class='kw'>return</span> <span class='symbol'>:no_stock</span> <span class='kw'>if</span> <span class='id identifier rubyid_object'>object</span><span class='period'>.</span><span class='id identifier rubyid_stock'>stock</span> <span class='op'>&lt;=</span> <span class='int'>0</span>
+  <span class='kw'>return</span> <span class='symbol'>:low_stock</span> <span class='kw'>if</span> <span class='id identifier rubyid_object'>object</span><span class='period'>.</span><span class='id identifier rubyid_stock'>stock</span> <span class='op'>&lt;</span> <span class='const'><span class='object_link'><a href="../SiteConfig.html" title="SiteConfig (class)">SiteConfig</a></span></span><span class='period'>.</span><span class='id identifier rubyid_product_config'>product_config</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>safe_stock_level</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+
+  <span class='symbol'>:normal</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
 
 </div>
 
