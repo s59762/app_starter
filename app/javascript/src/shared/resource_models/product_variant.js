@@ -50,7 +50,7 @@ export default class ProductVariant extends ResourceModelBase {
       data: {
         type: 'update-product-variant-stock',
         attributes: {
-          quantity: this.stock_params.quantity,
+          quantity: parseInt(this.stock_params.quantity),
           action: this.stock_params.action,
           reason: this.stock_params.reason
         }

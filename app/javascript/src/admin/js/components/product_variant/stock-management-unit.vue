@@ -15,27 +15,27 @@
       .column.info-wrapper
         .info-unit
           .label {{ attributeLocaleText('product/variant', 'stock') }}
-          span.tag(:class="stockStatusClasses") {{ variant.stock }}
+          span.tag.is-large(:class="stockStatusClasses") {{ variant.stock }}
 
     .columns
       .column
-        .button.is-danger.is-small.is-block
-          .icon
-            i.fa.fa-minus
-          span 銷貨
+        update-stock-button(:variant="variant"
+                            action="decrease")
       .column
-        .button.is-success.is-small.is-block
-          .icon
-            i.fa.fa-plus
-          span 進貨
+        update-stock-button(:variant="variant"
+                            action="increase")
 
 </template>
 
 <script>
 import productVariantBasicMixin from '../mixins/product_variant/basic_mixin.js'
+import UpdateStockButton from './update-stock-button.vue'
 
 export default {
-  // components: {},
+  components: {
+    UpdateStockButton
+  },
+
   mixins: [productVariantBasicMixin],
   // props: {},
   // data() {

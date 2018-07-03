@@ -57,6 +57,8 @@ zh-TW:
         images_management: 圖片管理
         stocks_management: 庫存管理
         seo_config: SEO 設定
+        increase_stock_form: 進貨表單
+        decrease_stock_form: 銷貨表單
       profile:
         main_title: 管理員個人檔案
         show: 編輯

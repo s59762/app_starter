@@ -14,10 +14,6 @@
           //- 基本資料
           b-tab-item(:label="pageTitleLocaleText('admin', 'products', 'basic_product_info')"
                      icon="file-text-o")
-            //- TODO: dev-only
-            section.section
-              stock-management-unit(v-for="variant in variants"
-                                    :variant="variant")
 
             section.section
               b-field(:label="attributeLocaleText('product', 'name')"
@@ -87,6 +83,8 @@
           //- 庫存管理
           b-tab-item(:label="pageTitleLocaleText('admin', 'products', 'stocks_management')"
                      icon="calculator")
+            stock-management-unit(v-for="variant in variants"
+                                  :variant="variant")
 
           //- SEO 設定
           b-tab-item(:label="pageTitleLocaleText('admin', 'products', 'seo_config')"

@@ -3,6 +3,7 @@ class Api::V1::Web::Products::Variants::StockController < Api::V1::Web::BaseCont
     variant = Product::Variant.find(params[:product_variant_id])
     form = Admin::ProductVariantStockForm.new(variant)
 
+    form.current_admin = current_api_user
     return raise ValidationFailureException, form unless form.validate(stock_params)
 
     form.save

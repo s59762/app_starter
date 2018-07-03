@@ -24,6 +24,8 @@ zh-TW:
         product_id: 商品
         option_values: 關聯選項
         stock: 庫存
+        quantity: 數量
+        reason: 原因
 
     errors:
       models:

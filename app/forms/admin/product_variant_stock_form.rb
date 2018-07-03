@@ -6,10 +6,9 @@ class Admin::ProductVariantStockForm < ApplicationForm
   property :quantity, virtual: true
   property :action, virtual: true
   property :reason, virtual: true
-  property :current_admin_id, virtual: true
+  property :current_admin, virtual: true
 
-  validates :quantity,
-            :current_admin_id, presence: true
+  validates :quantity, presence: true
   validates :quantity, numericality: { greater_than: 0 }
   validate :valid_action?
 
@@ -17,10 +16,11 @@ class Admin::ProductVariantStockForm < ApplicationForm
     ::ActiveRecord::Base.transaction do
       model.update stock: model.stock + normalized_quantity
       model.product.create_activity key: "#{action}_stock",
-                                    owner: Admin.find(current_admin_id),
+                                    owner: current_admin,
                                     params: {
                                       quantity: quantity,
-                                      variant_id: model.id
+                                      variant_id: model.id,
+                                      reason: reason
                                     }
     end
   end
