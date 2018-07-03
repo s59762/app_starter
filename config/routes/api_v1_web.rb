@@ -45,6 +45,7 @@ namespace :api do
 
       resources :product_variants, only: %i(update), controller: 'products/variants' do
         resource :set_as_master, only: :update, controller: 'products/variants/set_as_master'
+        resource :stock, only: :update, controller: 'products/variants/stock'
       end
 
       resource :cart, only: %i(show), controller: 'cart'
