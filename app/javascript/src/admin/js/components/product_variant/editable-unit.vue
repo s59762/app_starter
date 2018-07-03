@@ -31,7 +31,7 @@
       .info-unit
         .label {{ attributeLocaleText('product/variant', 'description') }}
         span.description {{ variant.description || 'none' }}
-  .columns.info-wrapper
+  .columns
     .column
       set-as-master-button(:variant="variant"
                            size="is-small")

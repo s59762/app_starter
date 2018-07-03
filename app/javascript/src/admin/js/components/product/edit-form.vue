@@ -14,6 +14,11 @@
           //- 基本資料
           b-tab-item(:label="pageTitleLocaleText('admin', 'products', 'basic_product_info')"
                      icon="file-text-o")
+            //- TODO: dev-only
+            section.section
+              stock-management-unit(v-for="variant in variants"
+                                    :variant="variant")
+
             section.section
               b-field(:label="attributeLocaleText('product', 'name')"
                       :type="errors.errorClassAt('name')"
@@ -127,6 +132,7 @@ import OptionTypeEditor from './option-type-editor.vue'
 import PropertiesColumns from './properties-columns.vue'
 import DescriptionColumn from './description-column.vue'
 import VariantEditableUnit from '../product_variant/editable-unit.vue'
+import StockManagementUnit from '../product_variant/stock-management-unit.vue'
 
 export default {
   components: {
@@ -134,7 +140,8 @@ export default {
     OptionTypeEditor,
     PropertiesColumns,
     DescriptionColumn,
-    VariantEditableUnit
+    VariantEditableUnit,
+    StockManagementUnit
   },
 
   // mixins: [],
