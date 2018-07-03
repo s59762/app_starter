@@ -11,15 +11,13 @@
 </template>
 
 <script>
+import productVariantBasicMixin from '../mixins/product_variant/basic_mixin.js'
+
 export default {
   // components: {},
-  // mixins: [],
-  props: {
-    variant: {
-      type: Object,
-      required: true
-    },
+  mixins: [productVariantBasicMixin],
 
+  props: {
     size: {
       type: String,
       required: false
