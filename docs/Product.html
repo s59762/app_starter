@@ -109,22 +109,20 @@
 
 <p>Table name: products</p>
 
-<p>id                        :bigint(8)        not null, primary key
- name                      :string
- description               :text
- category_id               :bigint(8)
- cover                     :integer
- original_price_cents      :integer          default(0), not null
- original_price_currency   :string           default(&quot;TWD&quot;), not null
- sell_price_cents          :integer          default(0), not null
- sell_price_currency       :string           default(&quot;TWD&quot;), not null
- discounted_price_cents    :integer          default(0), not null
- discounted_price_currency :string           default(&quot;TWD&quot;), not null
- is_preorder               :boolean          default(FALSE)
- properties                :jsonb
- created_at                :datetime         not null
- updated_at                :datetime         not null
- brand_id                  :bigint(8)</p>
+<p>id               :bigint(8)        not null, primary key
+ name             :string
+ description      :text
+ category_id      :bigint(8)
+ cover            :integer
+ is_preorder      :boolean          default(FALSE)
+ properties       :jsonb
+ created_at       :datetime         not null
+ updated_at       :datetime         not null
+ brand_id         :bigint(8)
+ meta_title       :string
+ meta_description :string
+ meta_keywords    :string
+ total_stock      :integer          default(0)</p>
 
 
   </div>
@@ -138,7 +136,7 @@
     
   
     
-      <strong class="classes">Classes:</strong> <span class='object_link'><a href="Product/Image.html" title="Product::Image (class)">Image</a></span>, <span class='object_link'><a href="Product/ImageSerializer.html" title="Product::ImageSerializer (class)">ImageSerializer</a></span>
+      <strong class="classes">Classes:</strong> <span class='object_link'><a href="Product/Image.html" title="Product::Image (class)">Image</a></span>, <span class='object_link'><a href="Product/ImageSerializer.html" title="Product::ImageSerializer (class)">ImageSerializer</a></span>, <span class='object_link'><a href="Product/OptionType.html" title="Product::OptionType (class)">OptionType</a></span>, <span class='object_link'><a href="Product/OptionTypeSerializer.html" title="Product::OptionTypeSerializer (class)">OptionTypeSerializer</a></span>, <span class='object_link'><a href="Product/OptionValue.html" title="Product::OptionValue (class)">OptionValue</a></span>, <span class='object_link'><a href="Product/OptionValueSerializer.html" title="Product::OptionValueSerializer (class)">OptionValueSerializer</a></span>, <span class='object_link'><a href="Product/Variant.html" title="Product::Variant (class)">Variant</a></span>, <span class='object_link'><a href="Product/VariantSerializer.html" title="Product::VariantSerializer (class)">VariantSerializer</a></span>
     
   
 </p>
@@ -149,6 +147,39 @@
 
 
 
+  
+    <h2>
+      Instance Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#master-instance_method" title="#master (instance method)">#<strong>master</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
 
   
   
@@ -156,7 +187,7 @@
   
   
   
-  <h2>Method Summary</h2>
+  
   
   <h3 class="inherited">Methods inherited from <span class='object_link'><a href="ApplicationRecord.html" title="ApplicationRecord (class)">ApplicationRecord</a></span></h3>
   <p class="inherited"><span class='object_link'><a href="ApplicationRecord.html#latest_updated_at-class_method" title="ApplicationRecord.latest_updated_at (method)">latest_updated_at</a></span></p>
@@ -181,6 +212,42 @@
 
   
   
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="master-instance_method">
+  
+    #<strong>master</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+62
+63
+64</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/product.rb', line 62</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_master'>master</span>
+  <span class='kw'>super</span> <span class='op'>||</span> <span class='id identifier rubyid_build_master'>build_master</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
 
 </div>
 

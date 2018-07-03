@@ -91,7 +91,7 @@
   
   <dl>
       <dt>Includes:</dt>
-      <dd><span class='object_link'><a href="MetaTagsManageable.html" title="MetaTagsManageable (module)">MetaTagsManageable</a></span></dd>
+      <dd><span class='object_link'><a href="MetaTagsManageable.html" title="MetaTagsManageable (module)">MetaTagsManageable</a></span>, <span class='object_link'><a href="ShoppingCartUseable.html" title="ShoppingCartUseable (module)">ShoppingCartUseable</a></span></dd>
   </dl>
   
   
@@ -123,6 +123,39 @@
 
 
 
+  
+    <h2>
+      Instance Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#issue_jwt_for_guest-instance_method" title="#issue_jwt_for_guest (instance method)">#<strong>issue_jwt_for_guest</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
 
   
   
@@ -130,13 +163,65 @@
   
   
   
-  <h2>Method Summary</h2>
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="ShoppingCartUseable.html" title="ShoppingCartUseable (module)">ShoppingCartUseable</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="ShoppingCartUseable.html#current_cart-instance_method" title="ShoppingCartUseable#current_cart (method)">#current_cart</a></span>, <span class='object_link'><a href="ShoppingCartUseable.html#set_cart-instance_method" title="ShoppingCartUseable#set_cart (method)">#set_cart</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
   
   <h3 class="inherited">Methods included from <span class='object_link'><a href="MetaTagsManageable.html" title="MetaTagsManageable (module)">MetaTagsManageable</a></span></h3>
   <p class="inherited"><span class='object_link'><a href="MetaTagsManageable.html#autoload_page_title_for_meta_tags-instance_method" title="MetaTagsManageable#autoload_page_title_for_meta_tags (method)">#autoload_page_title_for_meta_tags</a></span>, <span class='object_link'><a href="MetaTagsManageable.html#set_basic_meta_tags-instance_method" title="MetaTagsManageable#set_basic_meta_tags (method)">#set_basic_meta_tags</a></span></p>
 
   
   
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="issue_jwt_for_guest-instance_method">
+  
+    #<strong>issue_jwt_for_guest</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+9
+10
+11
+12
+13</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/application_controller.rb', line 9</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_issue_jwt_for_guest'>issue_jwt_for_guest</span>
+  <span class='kw'>return</span> <span class='kw'>if</span> <span class='id identifier rubyid_cookies'>cookies</span><span class='lbracket'>[</span><span class='symbol'>:user_jwt</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_present?'>present?</span>
+
+  <span class='id identifier rubyid_cookies'>cookies</span><span class='lbracket'>[</span><span class='symbol'>:user_jwt</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='const'>Null</span><span class='op'>::</span><span class='const'>User</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='symbol'>:user</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_issue_jwt'>issue_jwt</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
 
 </div>
 

@@ -168,12 +168,16 @@
 6
 7
 8
-9</pre>
+9
+10
+11</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'app/controllers/api/v1/web/users_controller.rb', line 4</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_index'>index</span>
+  <span class='id identifier rubyid_check_policy'>check_policy</span> <span class='const'><span class='object_link'><a href="../../../UserPolicy.html" title="UserPolicy (class)">UserPolicy</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="../../../ApplicationPolicy.html#initialize-instance_method" title="ApplicationPolicy#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_current_api_user'>current_api_user</span><span class='comma'>,</span> <span class='symbol'>:user</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_index?'><span class='object_link'><a href="../../../ApplicationPolicy.html#index%3F-instance_method" title="ApplicationPolicy#index? (method)">index?</a></span></span>
+
   <span class='id identifier rubyid_users'>users</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../FetchingDataService.html" title="FetchingDataService (class)">FetchingDataService</a></span></span><span class='period'>.</span><span class='id identifier rubyid_call'><span class='object_link'><a href="../../../FetchingDataService.html#call-class_method" title="FetchingDataService.call (method)">call</a></span></span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="../../../User.html" title="User (class)">User</a></span></span><span class='comma'>,</span> <span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../Api.html" title="Api (module)">Api</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../DataCacheService.html" title="Api::DataCacheService (class)">DataCacheService</a></span></span><span class='period'>.</span><span class='id identifier rubyid_call'><span class='object_link'><a href="../../DataCacheService.html#call-class_method" title="Api::DataCacheService.call (method)">call</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_users'>users</span><span class='comma'>,</span> <span class='id identifier rubyid_request'>request</span><span class='rparen'>)</span>
 

@@ -200,6 +200,28 @@
         <li class="public ">
   <span class="summary_signature">
     
+      <a href="#show%3F-instance_method" title="#show? (instance method)">#<strong>show?</strong>  &#x21d2; Boolean </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
       <a href="#suspend%3F-instance_method" title="#suspend? (instance method)">#<strong>suspend?</strong>  &#x21d2; Boolean </a>
     
 
@@ -254,7 +276,7 @@
   
   
   <h3 class="inherited">Methods inherited from <span class='object_link'><a href="ApplicationPolicy.html" title="ApplicationPolicy (class)">ApplicationPolicy</a></span></h3>
-  <p class="inherited"><span class='object_link'><a href="ApplicationPolicy.html#destroy%3F-instance_method" title="ApplicationPolicy#destroy? (method)">#destroy?</a></span>, <span class='object_link'><a href="ApplicationPolicy.html#edit%3F-instance_method" title="ApplicationPolicy#edit? (method)">#edit?</a></span>, <span class='object_link'><a href="ApplicationPolicy.html#initialize-instance_method" title="ApplicationPolicy#initialize (method)">#initialize</a></span>, <span class='object_link'><a href="ApplicationPolicy.html#new%3F-instance_method" title="ApplicationPolicy#new? (method)">#new?</a></span>, <span class='object_link'><a href="ApplicationPolicy.html#scope-instance_method" title="ApplicationPolicy#scope (method)">#scope</a></span>, <span class='object_link'><a href="ApplicationPolicy.html#show%3F-instance_method" title="ApplicationPolicy#show? (method)">#show?</a></span></p>
+  <p class="inherited"><span class='object_link'><a href="ApplicationPolicy.html#admin%3F-instance_method" title="ApplicationPolicy#admin? (method)">#admin?</a></span>, <span class='object_link'><a href="ApplicationPolicy.html#destroy%3F-instance_method" title="ApplicationPolicy#destroy? (method)">#destroy?</a></span>, <span class='object_link'><a href="ApplicationPolicy.html#edit%3F-instance_method" title="ApplicationPolicy#edit? (method)">#edit?</a></span>, <span class='object_link'><a href="ApplicationPolicy.html#initialize-instance_method" title="ApplicationPolicy#initialize (method)">#initialize</a></span>, <span class='object_link'><a href="ApplicationPolicy.html#new%3F-instance_method" title="ApplicationPolicy#new? (method)">#new?</a></span>, <span class='object_link'><a href="ApplicationPolicy.html#scope-instance_method" title="ApplicationPolicy#scope (method)">#scope</a></span>, <span class='object_link'><a href="ApplicationPolicy.html#user%3F-instance_method" title="ApplicationPolicy#user? (method)">#user?</a></span></p>
 <div id="constructor_details" class="method_details_list">
   <h2>Constructor Details</h2>
   
@@ -304,15 +326,15 @@
       <pre class="lines">
 
 
-10
-11
-12</pre>
+18
+19
+20</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/policies/admin_policy.rb', line 10</span>
+      <pre class="code"><span class="info file"># File 'app/policies/admin_policy.rb', line 18</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_create?'>create?</span>
-  <span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_super?'>super?</span> <span class='op'>||</span> <span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_owner?'>owner?</span>
+  <span class='id identifier rubyid_index?'>index?</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -358,13 +380,17 @@
 
 2
 3
-4</pre>
+4
+5
+6</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'app/policies/admin_policy.rb', line 2</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_index?'>index?</span>
-  <span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_super?'>super?</span> <span class='op'>||</span> <span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_owner?'>owner?</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_super?'>super?</span> <span class='op'>||</span> <span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_owner?'>owner?</span> <span class='kw'>if</span> <span class='id identifier rubyid_admin?'>admin?</span>
+
+  <span class='kw'>false</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -408,15 +434,71 @@
       <pre class="lines">
 
 
-6
-7
-8</pre>
+14
+15
+16</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/policies/admin_policy.rb', line 6</span>
+      <pre class="code"><span class="info file"># File 'app/policies/admin_policy.rb', line 14</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_roles?'>roles?</span>
-  <span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_super?'>super?</span> <span class='op'>||</span> <span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_owner?'>owner?</span>
+  <span class='id identifier rubyid_index?'>index?</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="show?-instance_method">
+  
+    #<strong>show?</strong>  &#x21d2; <tt>Boolean</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+8
+9
+10
+11
+12</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/policies/admin_policy.rb', line 8</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_show?'>show?</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_super?'>super?</span> <span class='op'>||</span> <span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_owner?'>owner?</span> <span class='op'>||</span> <span class='id identifier rubyid_record'>record</span> <span class='op'>==</span> <span class='id identifier rubyid_user'>user</span> <span class='kw'>if</span> <span class='id identifier rubyid_admin?'>admin?</span>
+
+  <span class='kw'>false</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -460,15 +542,15 @@
       <pre class="lines">
 
 
-18
-19
-20</pre>
+26
+27
+28</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/policies/admin_policy.rb', line 18</span>
+      <pre class="code"><span class="info file"># File 'app/policies/admin_policy.rb', line 26</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_suspend?'>suspend?</span>
-  <span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_super?'>super?</span> <span class='op'>||</span> <span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_owner?'>owner?</span>
+  <span class='id identifier rubyid_index?'>index?</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -512,15 +594,15 @@
       <pre class="lines">
 
 
-14
-15
-16</pre>
+22
+23
+24</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/policies/admin_policy.rb', line 14</span>
+      <pre class="code"><span class="info file"># File 'app/policies/admin_policy.rb', line 22</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_update?'>update?</span>
-  <span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_super?'>super?</span> <span class='op'>||</span> <span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_owner?'>owner?</span>
+  <span class='id identifier rubyid_index?'>index?</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>

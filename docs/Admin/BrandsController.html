@@ -159,8 +159,9 @@
   
   
   <h3 class="inherited">Methods inherited from <span class='object_link'><a href="ApplicationController.html" title="Admin::ApplicationController (class)">ApplicationController</a></span></h3>
-  <p class="inherited"><span class='object_link'><a href="ApplicationController.html#check_jwt!-instance_method" title="Admin::ApplicationController#check_jwt! (method)">#check_jwt!</a></span>, <span class='object_link'><a href="ApplicationController.html#sidebar_menu_items-instance_method" title="Admin::ApplicationController#sidebar_menu_items (method)">#sidebar_menu_items</a></span></p>
+  <p class="inherited"><span class='object_link'><a href="ApplicationController.html#check_jwt!-instance_method" title="Admin::ApplicationController#check_jwt! (method)">#check_jwt!</a></span>, <span class='object_link'><a href="ApplicationController.html#not_authorized-instance_method" title="Admin::ApplicationController#not_authorized (method)">#not_authorized</a></span>, <span class='object_link'><a href="ApplicationController.html#pundit_user-instance_method" title="Admin::ApplicationController#pundit_user (method)">#pundit_user</a></span>, <span class='object_link'><a href="ApplicationController.html#sidebar_menu_items-instance_method" title="Admin::ApplicationController#sidebar_menu_items (method)">#sidebar_menu_items</a></span></p>
 
+  
   
   
   
@@ -214,7 +215,7 @@
       <pre class="code"><span class="info file"># File 'app/controllers/admin/brands_controller.rb', line 4</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_index'>index</span>
-
+  <span class='id identifier rubyid_authorize'>authorize</span> <span class='symbol'>:brand</span><span class='comma'>,</span> <span class='symbol'>:index?</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
