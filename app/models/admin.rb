@@ -45,6 +45,8 @@ class Admin < ApplicationRecord
 
   enum role: %i(content_manager accounter stock_manager super owner)
 
+  has_many :activity_records, as: :owner, class_name: 'PublicActivity::Activity'
+
   scope :actived, -> { where(is_suspended: false) }
   scope :suspended, -> { where(is_suspended: true) }
 

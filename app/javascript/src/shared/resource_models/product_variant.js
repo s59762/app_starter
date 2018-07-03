@@ -20,7 +20,9 @@ const OPTIONS = {
     'is_master',
     'description',
     'product_id',
-    'option_value_ids'
+    'option_value_ids',
+    'stock',
+    'stock_status'
   ],
   editableAttributes: [
     'name',
@@ -30,7 +32,8 @@ const OPTIONS = {
     'width',
     'depth',
     'height',
-    'description'
+    'description',
+    'stock_params'
   ]
 }
 
@@ -41,6 +44,21 @@ export default class ProductVariant extends ResourceModelBase {
 
   setAsMaster() {
     return axios.put(`${this.apiBasePath()}/${this.id}/set_as_master`)
+  }
+
+  updateStock() {
+    const requestBody = {
+      data: {
+        type: 'update-product-variant-stock',
+        attributes: {
+          quantity: parseInt(this.stock_params.quantity),
+          action: this.stock_params.action,
+          reason: this.stock_params.reason
+        }
+      }
+    }
+
+    return axios.put(`${this.apiBasePath()}/${this.id}/stock`, requestBody)
   }
 
   // extra methods or helpers here...

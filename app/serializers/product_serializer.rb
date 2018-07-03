@@ -15,6 +15,7 @@
 #  meta_title       :string
 #  meta_description :string
 #  meta_keywords    :string
+#  total_stock      :integer          default(0)
 #
 
 class ProductSerializer < ApplicationSerializer
@@ -41,7 +42,8 @@ class ProductSerializer < ApplicationSerializer
              :sku,
              :meta_title,
              :meta_description,
-             :meta_keywords
+             :meta_keywords,
+             :total_stock
 
   belongs_to :brand, optional: true
   belongs_to :category, class_name: 'ProductCategory', optional: true
@@ -51,6 +53,7 @@ class ProductSerializer < ApplicationSerializer
   has_many :option_types, class_name: 'Product::OptionType', if: -> { instance_options[:show_options] }
   has_many :variants, if: -> { instance_options[:show_variants] }
   has_many :variants_with_master, if: -> { instance_options[:show_variants] }
+  has_many :activities, if: -> { instance_options[:show_activities] }
   has_one :master
 
   to_unix_time :created_at, :updated_at

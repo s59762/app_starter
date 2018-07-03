@@ -11,8 +11,10 @@
         b-tabs(v-model="activeTab"
                type="is-boxed"
                size="is-small")
+          //- 基本資料
           b-tab-item(:label="pageTitleLocaleText('admin', 'products', 'basic_product_info')"
                      icon="file-text-o")
+
             section.section
               b-field(:label="attributeLocaleText('product', 'name')"
                       :type="errors.errorClassAt('name')"
@@ -51,6 +53,7 @@
                 i.fa.fa-floppy-o
               span {{ actionLocaleText('admin', 'save') }}
 
+          //- 選項與屬性
           b-tab-item(:label="pageTitleLocaleText('admin', 'products', 'options_and_properties')"
                      icon="list-ol")
             section.section
@@ -66,16 +69,24 @@
               .icon
                 i.fa.fa-floppy-o
               span {{ actionLocaleText('admin', 'save') }}
+
+          //- 規格設定
           b-tab-item(:label="pageTitleLocaleText('admin', 'products', 'variants_management')"
                      icon="barcode")
             variant-editable-unit(v-for="variant in variants"
                                   :variant="variant")
 
+          //- 圖片管理
+          b-tab-item(:label="pageTitleLocaleText('admin', 'products', 'images_management')"
+                     icon="picture-o")
 
-
-
+          //- 庫存管理
           b-tab-item(:label="pageTitleLocaleText('admin', 'products', 'stocks_management')"
                      icon="calculator")
+            stock-management-unit(v-for="variant in variants"
+                                  :variant="variant")
+
+          //- SEO 設定
           b-tab-item(:label="pageTitleLocaleText('admin', 'products', 'seo_config')"
                      icon="wpforms")
             section.section
@@ -119,6 +130,7 @@ import OptionTypeEditor from './option-type-editor.vue'
 import PropertiesColumns from './properties-columns.vue'
 import DescriptionColumn from './description-column.vue'
 import VariantEditableUnit from '../product_variant/editable-unit.vue'
+import StockManagementUnit from '../product_variant/stock-management-unit.vue'
 
 export default {
   components: {
@@ -126,7 +138,8 @@ export default {
     OptionTypeEditor,
     PropertiesColumns,
     DescriptionColumn,
-    VariantEditableUnit
+    VariantEditableUnit,
+    StockManagementUnit
   },
 
   // mixins: [],

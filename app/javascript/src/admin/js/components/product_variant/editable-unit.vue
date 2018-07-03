@@ -31,7 +31,7 @@
       .info-unit
         .label {{ attributeLocaleText('product/variant', 'description') }}
         span.description {{ variant.description || 'none' }}
-  .columns.info-wrapper
+  .columns
     .column
       set-as-master-button(:variant="variant"
                            size="is-small")
@@ -42,6 +42,7 @@
 </template>
 
 <script>
+import productVariantBasicMixin from '../mixins/product_variant/basic_mixin.js'
 import EditButton from './edit-button.vue'
 import SetAsMasterButton from './set-as-master-button.vue'
 
@@ -50,13 +51,10 @@ export default {
     EditButton,
     SetAsMasterButton
   },
-  // mixins: [],
-  props: {
-    variant: {
-      type: Object,
-      required: true
-    }
-  },
+
+  mixins: [productVariantBasicMixin]
+
+  // props: {},
 
   // data() {
   //   return {}
@@ -64,14 +62,6 @@ export default {
   // computed: {},
   // created() {},
   // mounted() {},
-  methods: {
-    fetchOptionTypeNameBy(id) {
-      return this.$store.getters['productOptionTypes/find'](id).name
-    },
-
-    fetchOptionValueBy(id) {
-      return this.$store.getters['productOptionValues/find'](id)
-    }
-  }
+  // methods: {}
 }
 </script>

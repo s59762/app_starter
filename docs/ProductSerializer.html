@@ -109,22 +109,20 @@
 
 <p>Table name: products</p>
 
-<p>id                        :bigint(8)        not null, primary key
- name                      :string
- description               :text
- category_id               :bigint(8)
- cover                     :integer
- original_price_cents      :integer          default(0), not null
- original_price_currency   :string           default(&quot;TWD&quot;), not null
- sell_price_cents          :integer          default(0), not null
- sell_price_currency       :string           default(&quot;TWD&quot;), not null
- discounted_price_cents    :integer          default(0), not null
- discounted_price_currency :string           default(&quot;TWD&quot;), not null
- is_preorder               :boolean          default(FALSE)
- properties                :jsonb
- created_at                :datetime         not null
- updated_at                :datetime         not null
- brand_id                  :bigint(8)</p>
+<p>id               :bigint(8)        not null, primary key
+ name             :string
+ description      :text
+ category_id      :bigint(8)
+ cover            :integer
+ is_preorder      :boolean          default(FALSE)
+ properties       :jsonb
+ created_at       :datetime         not null
+ updated_at       :datetime         not null
+ brand_id         :bigint(8)
+ meta_title       :string
+ meta_description :string
+ meta_keywords    :string
+ total_stock      :integer          default(0)</p>
 
 
   </div>
@@ -166,6 +164,72 @@
   
     <span class="summary_desc"><div class='inline'><p>折扣率.</p>
 </div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#options-instance_method" title="#options (instance method)">#<strong>options</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#sub_category_id-instance_method" title="#sub_category_id (instance method)">#<strong>sub_category_id</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#top_level_category_id-instance_method" title="#top_level_category_id (instance method)">#<strong>top_level_category_id</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -216,21 +280,141 @@
       <pre class="lines">
 
 
-51
-52
-53
-54
-55
-56</pre>
+76
+77
+78
+79
+80
+81</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/serializers/product_serializer.rb', line 51</span>
+      <pre class="code"><span class="info file"># File 'app/serializers/product_serializer.rb', line 76</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_discount_rate'>discount_rate</span>
   <span class='kw'>return</span> <span class='float'>1.0</span> <span class='kw'>if</span> <span class='id identifier rubyid_object'>object</span><span class='period'>.</span><span class='id identifier rubyid_discounted_price'>discounted_price</span><span class='period'>.</span><span class='id identifier rubyid_zero?'>zero?</span>
   <span class='kw'>return</span> <span class='float'>1.0</span> <span class='kw'>if</span> <span class='id identifier rubyid_object'>object</span><span class='period'>.</span><span class='id identifier rubyid_sell_price'>sell_price</span><span class='period'>.</span><span class='id identifier rubyid_zero?'>zero?</span>
 
   <span class='id identifier rubyid_object'>object</span><span class='period'>.</span><span class='id identifier rubyid_discounted_price'>discounted_price</span> <span class='op'>/</span> <span class='id identifier rubyid_object'>object</span><span class='period'>.</span><span class='id identifier rubyid_sell_price'>sell_price</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="options-instance_method">
+  
+    #<strong>options</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/serializers/product_serializer.rb', line 83</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_options'>options</span>
+  <span class='id identifier rubyid_object'>object</span><span class='period'>.</span><span class='id identifier rubyid_option_types'>option_types</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_type'>type</span><span class='op'>|</span>
+    <span class='lbrace'>{</span>
+      <span class='label'>id:</span> <span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='comma'>,</span>
+      <span class='label'>name:</span> <span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span>
+      <span class='label'>values:</span> <span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_option_values'>option_values</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_option_value'>option_value</span><span class='op'>|</span>
+                <span class='lbrace'>{</span>
+                  <span class='label'>id:</span> <span class='id identifier rubyid_option_value'>option_value</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='comma'>,</span>
+                  <span class='label'>value:</span> <span class='id identifier rubyid_option_value'>option_value</span><span class='period'>.</span><span class='id identifier rubyid_value'>value</span>
+                <span class='rbrace'>}</span>
+              <span class='kw'>end</span>
+    <span class='rbrace'>}</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="sub_category_id-instance_method">
+  
+    #<strong>sub_category_id</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+69
+70
+71
+72
+73</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/serializers/product_serializer.rb', line 69</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_sub_category_id'>sub_category_id</span>
+  <span class='kw'>return</span> <span class='kw'>nil</span> <span class='kw'>unless</span> <span class='id identifier rubyid_object'>object</span><span class='period'>.</span><span class='id identifier rubyid_category'>category</span><span class='period'>.</span><span class='id identifier rubyid_parent'>parent</span><span class='period'>.</span><span class='id identifier rubyid_present?'>present?</span>
+
+  <span class='id identifier rubyid_object'>object</span><span class='period'>.</span><span class='id identifier rubyid_category_id'>category_id</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="top_level_category_id-instance_method">
+  
+    #<strong>top_level_category_id</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+63
+64
+65
+66
+67</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/serializers/product_serializer.rb', line 63</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_top_level_category_id'>top_level_category_id</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_object'>object</span><span class='period'>.</span><span class='id identifier rubyid_category'>category</span><span class='period'>.</span><span class='id identifier rubyid_parent'>parent</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span> <span class='kw'>if</span> <span class='id identifier rubyid_object'>object</span><span class='period'>.</span><span class='id identifier rubyid_category'>category</span><span class='period'>.</span><span class='id identifier rubyid_parent'>parent</span><span class='period'>.</span><span class='id identifier rubyid_present?'>present?</span>
+
+  <span class='id identifier rubyid_object'>object</span><span class='period'>.</span><span class='id identifier rubyid_category_id'>category_id</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>

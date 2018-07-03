@@ -196,14 +196,16 @@
 10
 11
 12
-13</pre>
+13
+14</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'app/controllers/api/v1/web/products/collect_controller.rb', line 2</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_create'>create</span>
-  <span class='comment'># TODO: this API is for User only
-</span>  <span class='kw'>if</span> <span class='id identifier rubyid_current_api_user'>current_api_user</span><span class='period'>.</span><span class='id identifier rubyid_collections'>collections</span><span class='period'>.</span><span class='id identifier rubyid_find_by'>find_by</span><span class='lparen'>(</span><span class='label'>product_id:</span> <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:product_id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_check_policy'>check_policy</span> <span class='const'><span class='object_link'><a href="../../../../User.html" title="User (class)">User</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../../../User/CollectionPolicy.html" title="User::CollectionPolicy (class)">CollectionPolicy</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="../../../../ApplicationPolicy.html#initialize-instance_method" title="ApplicationPolicy#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_current_api_user'>current_api_user</span><span class='comma'>,</span> <span class='symbol'>:collection</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_create?'><span class='object_link'><a href="../../../../ApplicationPolicy.html#create%3F-instance_method" title="ApplicationPolicy#create? (method)">create?</a></span></span><span class='comma'>,</span> <span class='label'>message:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>This is User-Only API</span><span class='tstring_end'>&#39;</span></span>
+
+  <span class='kw'>if</span> <span class='id identifier rubyid_current_api_user'>current_api_user</span><span class='period'>.</span><span class='id identifier rubyid_collections'>collections</span><span class='period'>.</span><span class='id identifier rubyid_find_by'>find_by</span><span class='lparen'>(</span><span class='label'>product_id:</span> <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:product_id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_render'>render</span> <span class='label'>json:</span> <span class='lbrace'>{</span> <span class='label'>messages:</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>product in collections already.</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='rbrace'>}</span><span class='comma'>,</span>
            <span class='label'>status:</span> <span class='symbol'>:bad_request</span>
   <span class='kw'>else</span>
@@ -233,7 +235,6 @@
       <pre class="lines">
 
 
-15
 16
 17
 18
@@ -245,16 +246,23 @@
 24
 25
 26
-27</pre>
+27
+28
+29
+30
+31</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/api/v1/web/products/collect_controller.rb', line 15</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/api/v1/web/products/collect_controller.rb', line 16</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_destroy'>destroy</span>
-  <span class='comment'># TODO: this API is for User only
-</span>  <span class='id identifier rubyid_collection'>collection</span> <span class='op'>=</span> <span class='id identifier rubyid_current_api_user'>current_api_user</span><span class='period'>.</span><span class='id identifier rubyid_collections'>collections</span><span class='period'>.</span><span class='id identifier rubyid_find_by'>find_by</span><span class='lparen'>(</span><span class='label'>product_id:</span> <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:product_id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_check_policy'>check_policy</span> <span class='const'><span class='object_link'><a href="../../../../User.html" title="User (class)">User</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../../../User/CollectionPolicy.html" title="User::CollectionPolicy (class)">CollectionPolicy</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="../../../../ApplicationPolicy.html#initialize-instance_method" title="ApplicationPolicy#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_current_api_user'>current_api_user</span><span class='comma'>,</span> <span class='symbol'>:collection</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_index?'><span class='object_link'><a href="../../../../ApplicationPolicy.html#index%3F-instance_method" title="ApplicationPolicy#index? (method)">index?</a></span></span><span class='comma'>,</span> <span class='label'>message:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>This is User-Only API</span><span class='tstring_end'>&#39;</span></span>
+
+  <span class='id identifier rubyid_collection'>collection</span> <span class='op'>=</span> <span class='id identifier rubyid_current_api_user'>current_api_user</span><span class='period'>.</span><span class='id identifier rubyid_collections'>collections</span><span class='period'>.</span><span class='id identifier rubyid_find_by'>find_by</span><span class='lparen'>(</span><span class='label'>product_id:</span> <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:product_id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
 
   <span class='kw'>if</span> <span class='id identifier rubyid_collection'>collection</span>
+    <span class='id identifier rubyid_check_policy'>check_policy</span> <span class='const'><span class='object_link'><a href="../../../../User.html" title="User (class)">User</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../../../User/CollectionPolicy.html" title="User::CollectionPolicy (class)">CollectionPolicy</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="../../../../ApplicationPolicy.html#initialize-instance_method" title="ApplicationPolicy#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_current_api_user'>current_api_user</span><span class='comma'>,</span> <span class='id identifier rubyid_collection'>collection</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_destroy?'><span class='object_link'><a href="../../../../ApplicationPolicy.html#destroy%3F-instance_method" title="ApplicationPolicy#destroy? (method)">destroy?</a></span></span>
+
     <span class='id identifier rubyid_collection'>collection</span><span class='period'>.</span><span class='id identifier rubyid_destroy'>destroy</span>
 
     <span class='id identifier rubyid_render'>render</span> <span class='label'>json:</span> <span class='lbrace'>{</span> <span class='label'>messages:</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>collection destroyed succefully.</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='rbrace'>}</span>

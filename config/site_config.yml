@@ -1,5 +1,7 @@
 # config/app.yml for rails-settings-cached
 defaults: &defaults
+  product_config:
+    safe_stock_level: 10
   meta_tags:
     site_name: 'AppStarter'
     reverse: false

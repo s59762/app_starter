@@ -38,3 +38,5 @@ zh-TW:
       suspend_admin: 停權
       unsuspend_admin: 復權
       update_profile: 編輯檔案
+      increase_stock: 進貨
+      decrease_stock: 銷貨

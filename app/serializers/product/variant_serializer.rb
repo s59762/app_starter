@@ -21,6 +21,7 @@
 #  created_at                :datetime         not null
 #  updated_at                :datetime         not null
 #  option_value_ids          :jsonb
+#  stock                     :integer          default(0)
 #
 
 class Product::VariantSerializer < ApplicationSerializer
@@ -39,9 +40,18 @@ class Product::VariantSerializer < ApplicationSerializer
              :is_master,
              :description,
              :product_id,
-             :option_value_ids
+             :option_value_ids,
+             :stock,
+             :stock_status
 
   money_to_integer :original_price,
                    :sell_price,
                    :discounted_price
+
+  def stock_status
+    return :no_stock if object.stock <= 0
+    return :low_stock if object.stock < SiteConfig.product_config['safe_stock_level']
+
+    :normal
+  end
 end

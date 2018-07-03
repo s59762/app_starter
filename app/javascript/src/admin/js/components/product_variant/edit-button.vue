@@ -13,18 +13,17 @@
 </template>
 
 <script>
+import productVariantBasicMixin from '../mixins/product_variant/basic_mixin.js'
 import VariantForm from './form.vue'
+
 export default {
   components: {
     VariantForm
   },
-  // mixins: [],
-  props: {
-    variant: {
-      type: Object,
-      required: true
-    },
 
+  mixins: [productVariantBasicMixin],
+
+  props: {
     size: {
       type: String,
       required: false

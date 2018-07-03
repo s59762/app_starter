@@ -25,4 +25,18 @@ class BrandSerializer < ApplicationSerializer
   has_many :products, if: -> { instance_options[:show_products] }
 
   to_unix_time :created_at, :updated_at
+
+  def logo
+    return nil unless object.logo.present?
+
+    {
+      url: object.logo.url,
+      medium: {
+        url: object.logo.medium.url
+      },
+      thumb: {
+        url: object.logo.thumb.url
+      }
+    }
+  end
 end

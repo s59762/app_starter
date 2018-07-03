@@ -155,8 +155,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>render json: @admin end.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -165,6 +164,28 @@
   <span class="summary_signature">
     
       <a href="#index-instance_method" title="#index (instance method)">#<strong>index</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#show-instance_method" title="#show (instance method)">#<strong>show</strong>  &#x21d2; Object </a>
     
 
     
@@ -230,12 +251,12 @@
       <pre class="lines">
 
 
-39
-40
-41</pre>
+49
+50
+51</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/api/v1/web/admins_controller.rb', line 39</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/api/v1/web/admins_controller.rb', line 49</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_admin_params'>admin_params</span>
   <span class='const'>ActiveModelSerializers</span><span class='op'>::</span><span class='const'>Deserialization</span><span class='period'>.</span><span class='id identifier rubyid_jsonapi_parse'>jsonapi_parse</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span>
@@ -254,38 +275,33 @@
   
 
   
-</h3><div class="docstring">
-  <div class="discussion">
-    <p>render json: @admin
-end</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div><table class="source_code">
+</h3><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-17
-18
-19
-20
 21
 22
 23
 24
-25</pre>
+25
+26
+27
+28
+29
+30
+31
+32</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/api/v1/web/admins_controller.rb', line 17</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/api/v1/web/admins_controller.rb', line 21</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_create'>create</span>
-  <span class='id identifier rubyid_form'>form</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../Admin.html" title="Admin (class)">Admin</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../../Admin/NewAdminForm.html" title="Admin::NewAdminForm (class)">NewAdminForm</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="../../../Admin.html" title="Admin (class)">Admin</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_admin'>admin</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../Admin.html" title="Admin (class)">Admin</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+  <span class='id identifier rubyid_form'>form</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../Admin.html" title="Admin (class)">Admin</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../../Admin/NewAdminForm.html" title="Admin::NewAdminForm (class)">NewAdminForm</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_admin'>admin</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_check_policy'>check_policy</span> <span class='const'><span class='object_link'><a href="../../../AdminPolicy.html" title="AdminPolicy (class)">AdminPolicy</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="../../../ApplicationPolicy.html#initialize-instance_method" title="ApplicationPolicy#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_current_api_user'>current_api_user</span><span class='comma'>,</span> <span class='id identifier rubyid_admin'>admin</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_create?'><span class='object_link'><a href="../../../ApplicationPolicy.html#create%3F-instance_method" title="ApplicationPolicy#create? (method)">create?</a></span></span>
 
   <span class='kw'>return</span> <span class='id identifier rubyid_raise'>raise</span> <span class='const'><span class='object_link'><a href="../../../ValidationFailureException.html" title="ValidationFailureException (class)">ValidationFailureException</a></span></span><span class='comma'>,</span> <span class='id identifier rubyid_form'>form</span> <span class='kw'>unless</span> <span class='id identifier rubyid_form'>form</span><span class='period'>.</span><span class='id identifier rubyid_validate'>validate</span><span class='lparen'>(</span><span class='id identifier rubyid_admin_params'>admin_params</span><span class='rparen'>)</span>
 
@@ -318,16 +334,58 @@ end</p>
 6
 7
 8
-9</pre>
+9
+10
+11</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'app/controllers/api/v1/web/admins_controller.rb', line 4</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_index'>index</span>
+  <span class='id identifier rubyid_check_policy'>check_policy</span> <span class='const'><span class='object_link'><a href="../../../AdminPolicy.html" title="AdminPolicy (class)">AdminPolicy</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="../../../ApplicationPolicy.html#initialize-instance_method" title="ApplicationPolicy#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_current_api_user'>current_api_user</span><span class='comma'>,</span> <span class='symbol'>:admin</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_index?'><span class='object_link'><a href="../../../ApplicationPolicy.html#index%3F-instance_method" title="ApplicationPolicy#index? (method)">index?</a></span></span>
+
   <span class='id identifier rubyid_admins'>admins</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../FetchingDataService.html" title="FetchingDataService (class)">FetchingDataService</a></span></span><span class='period'>.</span><span class='id identifier rubyid_call'><span class='object_link'><a href="../../../FetchingDataService.html#call-class_method" title="FetchingDataService.call (method)">call</a></span></span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="../../../Admin.html" title="Admin (class)">Admin</a></span></span><span class='comma'>,</span> <span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../Api.html" title="Api (module)">Api</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../DataCacheService.html" title="Api::DataCacheService (class)">DataCacheService</a></span></span><span class='period'>.</span><span class='id identifier rubyid_call'><span class='object_link'><a href="../../DataCacheService.html#call-class_method" title="Api::DataCacheService.call (method)">call</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_admins'>admins</span><span class='comma'>,</span> <span class='id identifier rubyid_request'>request</span><span class='rparen'>)</span>
 
   <span class='id identifier rubyid_render'>render</span> <span class='label'>json:</span> <span class='id identifier rubyid_result'>result</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="show-instance_method">
+  
+    #<strong>show</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+13
+14
+15
+16
+17
+18
+19</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/api/v1/web/admins_controller.rb', line 13</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_show'>show</span>
+  <span class='id identifier rubyid_admin'>admin</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../Admin.html" title="Admin (class)">Admin</a></span></span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_check_policy'>check_policy</span> <span class='const'><span class='object_link'><a href="../../../AdminPolicy.html" title="AdminPolicy (class)">AdminPolicy</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="../../../ApplicationPolicy.html#initialize-instance_method" title="ApplicationPolicy#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_current_api_user'>current_api_user</span><span class='comma'>,</span> <span class='symbol'>:admin</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_show?'><span class='object_link'><a href="../../../ApplicationPolicy.html#show%3F-instance_method" title="ApplicationPolicy#show? (method)">show?</a></span></span>
+
+  <span class='id identifier rubyid_render'>render</span> <span class='label'>json:</span> <span class='id identifier rubyid_admin'>admin</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -349,21 +407,27 @@ end</p>
       <pre class="lines">
 
 
-27
-28
-29
-30
-31
-32
-33
 34
-35</pre>
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/api/v1/web/admins_controller.rb', line 27</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/api/v1/web/admins_controller.rb', line 34</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_update'>update</span>
-  <span class='id identifier rubyid_form'>form</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../Admin.html" title="Admin (class)">Admin</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../../Admin/EditAdminForm.html" title="Admin::EditAdminForm (class)">EditAdminForm</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="../../../Admin.html" title="Admin (class)">Admin</a></span></span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:id</span><span class='rbracket'>]</span><span class='rparen'>)</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_admin'>admin</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../Admin.html" title="Admin (class)">Admin</a></span></span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_form'>form</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../Admin.html" title="Admin (class)">Admin</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../../Admin/EditAdminForm.html" title="Admin::EditAdminForm (class)">EditAdminForm</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_admin'>admin</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_check_policy'>check_policy</span> <span class='const'><span class='object_link'><a href="../../../AdminPolicy.html" title="AdminPolicy (class)">AdminPolicy</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="../../../ApplicationPolicy.html#initialize-instance_method" title="ApplicationPolicy#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_current_api_user'>current_api_user</span><span class='comma'>,</span> <span class='id identifier rubyid_admin'>admin</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_update?'><span class='object_link'><a href="../../../ApplicationPolicy.html#update%3F-instance_method" title="ApplicationPolicy#update? (method)">update?</a></span></span>
 
   <span class='kw'>return</span> <span class='id identifier rubyid_raise'>raise</span> <span class='const'><span class='object_link'><a href="../../../ValidationFailureException.html" title="ValidationFailureException (class)">ValidationFailureException</a></span></span><span class='comma'>,</span> <span class='id identifier rubyid_form'>form</span> <span class='kw'>unless</span> <span class='id identifier rubyid_form'>form</span><span class='period'>.</span><span class='id identifier rubyid_validate'>validate</span><span class='lparen'>(</span><span class='id identifier rubyid_admin_params'>admin_params</span><span class='rparen'>)</span>
 
