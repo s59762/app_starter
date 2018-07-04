@@ -18,7 +18,8 @@ class Api::V1::Web::ProductsController < Api::V1::Web::BaseController
     render json: product,
            include: [:normal_images, :variants_with_master, 'option_types.option_values'],
            show_variants: true,
-           show_options: true
+           show_options: true,
+           show_normal_images: true
   end
 
   def create
@@ -32,9 +33,10 @@ class Api::V1::Web::ProductsController < Api::V1::Web::BaseController
     form.save
 
     render json: form.model,
-           include: [:normal_images, :master, :variants, 'option_types.option_values'],
+           include: [:normal_images, :variants_with_master, 'option_types.option_values'],
            show_variants: true,
-           show_options: true
+           show_options: true,
+           show_normal_images: true
   end
 
   def update
@@ -48,9 +50,10 @@ class Api::V1::Web::ProductsController < Api::V1::Web::BaseController
     form.save
 
     render json: form.model,
-           include: [:normal_images, :master, :variants, 'option_types.option_values'],
+           include: [:normal_images, :variants_with_master, 'option_types.option_values'],
            show_variants: true,
-           show_options: true
+           show_options: true,
+           show_normal_images: true
   end
 
   private
