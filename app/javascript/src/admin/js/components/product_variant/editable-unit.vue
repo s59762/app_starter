@@ -17,7 +17,7 @@
         .label {{ attributeLocaleText('product', 'discounted_price') }}
         span.price {{ variant.displayPrice('discounted') }}
     .column.info-wrapper
-      .info-unit
+      .info-unit(v-if="variant.option_value_ids.length > 0")
         .label {{ attributeLocaleText('product/variant', 'option_values') }}
         span.option-values(v-for="id in variant.option_value_ids")
           span.tag.is-default {{ fetchOptionTypeNameBy(fetchOptionValueBy(id).option_type_id) }}: {{ fetchOptionValueBy(id).value }}
