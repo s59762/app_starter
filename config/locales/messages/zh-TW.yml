@@ -29,6 +29,7 @@ zh-TW:
       please_make_words_count_about: 請盡量維持在 %{count} 字左右
       click_for_update_logo: 點擊選擇新 LOGO
       no_sub_category: 不設定子分類
+      no_variant: 不屬於任何規格
     admin_is_suspended: 管理員 %{name} 已停權
     admin_is_unsuspended: 管理員 %{name} 已復權
     resource_added_successfully: '%{resource}已成功新增'

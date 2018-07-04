@@ -6,9 +6,9 @@
     .edit-trigger(@click="showForm")
       .icon
         i.fa.fa-pencil
+    .cover-indicator {{ attributeLocaleText('product', 'cover') }}
     .delete-button(@click="confirmDelete")
       i.fa.fa-close
-    .cover-indicator {{ attributeLocaleText('product', 'cover') }}
 
   b-modal(:active.sync="isFormActive")
     edit-form(:image="image")

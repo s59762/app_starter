@@ -10,6 +10,7 @@ zh-TW:
       product/image:
         image: 圖片
         use_case: 用於
+        variant_id: 所屬規格
 
     errors:
       models:

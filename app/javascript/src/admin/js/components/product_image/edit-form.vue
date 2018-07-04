@@ -3,10 +3,22 @@
 .vc-product-image-edit-form.box.form-container-box.is-default.clearfix
   h3.subtitle {{ pageTitleLocaleText('admin', 'products', 'image_config') }}
 
+  b-field(:label="attributeLocaleText('product/image', 'variant_id')"
+          :type="errors.errorClassAt('variant_id')"
+          :message="errors.get('variant_id')")
+    b-select(v-model="form.variant_id"
+             :loading="isLoading"
+             :placeholder="messageLocaleText('help.no_variant')"
+             @input="errors.clear('variant_id')"
+             expanded)
+      option(:label="messageLocaleText('help.no_variant')"
+             :value="undefined")
+      option(v-for="variant in variants"
+             :value="variant.id")
+        | {{ variant.name }} - {{ variant.sku }}
+
   set-as-cover-button(:image="image"
                       @image-updated="imageUpdatedHandler")
-
-  //- Button for assign to variant
 
   br
 
@@ -17,6 +29,7 @@
 </template>
 
 <script>
+import Form from 'odd-form_object'
 import SetAsCoverButton from './set-as-cover-button.vue'
 
 export default {
@@ -32,7 +45,9 @@ export default {
   },
 
   data() {
-    return {}
+    return {
+      form: new Form(this.image)
+    }
   },
 
   computed: {
@@ -42,9 +57,16 @@ export default {
 
     errors() {
       return this.image.errors
+    },
+
+    variants() {
+      return this.$store.getters['productVariants/all']
     }
   },
-  // created() {},
+
+  created() {
+    this.form.variant_id = this.image.variant_id || undefined
+  },
   // mounted() {},
   methods: {
     submitForm() {
