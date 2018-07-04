@@ -13,7 +13,8 @@ const OPTIONS = {
     'thumb_url',
     'original_filename',
     'product',
-    'is_cover'
+    'is_cover',
+    'variant_id'
   ],
   editableAttributes: []
 }

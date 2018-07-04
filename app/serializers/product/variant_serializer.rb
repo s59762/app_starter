@@ -48,6 +48,8 @@ class Product::VariantSerializer < ApplicationSerializer
                    :sell_price,
                    :discounted_price
 
+  has_many :images
+
   def stock_status
     return :no_stock if object.stock <= 0
     return :low_stock if object.stock < SiteConfig.product_config['safe_stock_level']

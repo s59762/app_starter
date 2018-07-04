@@ -22,7 +22,8 @@ const OPTIONS = {
     'product_id',
     'option_value_ids',
     'stock',
-    'stock_status'
+    'stock_status',
+    'images'
   ],
   editableAttributes: [
     'name',

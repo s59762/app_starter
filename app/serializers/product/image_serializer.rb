@@ -10,6 +10,7 @@
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #  is_cover          :boolean          default(FALSE)
+#  variant_id        :bigint(8)
 #
 
 class Product::ImageSerializer < ApplicationSerializer
@@ -20,9 +21,11 @@ class Product::ImageSerializer < ApplicationSerializer
              :url,
              :thumb_url,
              :original_filename,
-             :is_cover
+             :is_cover,
+             :variant_id
 
   belongs_to :product, optional: true, if: -> { instance_options[:show_product] }
+  belongs_to :variant, optional: true, if: -> { instance_options[:show_variant] }
 
   def url
     object.image.url

@@ -10,6 +10,7 @@
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #  is_cover          :boolean          default(FALSE)
+#  variant_id        :bigint(8)
 #
 
 FactoryBot.define do
