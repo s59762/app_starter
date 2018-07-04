@@ -3,7 +3,7 @@
 .vc-product-image-edit-form.box.form-container-box.is-default.clearfix
   h3.subtitle {{ pageTitleLocaleText('admin', 'products', 'image_config') }}
 
-  //- Button for set as cover
+  set-as-cover-button(:image="image")
 
   //- Button for assign to variant
 
@@ -16,8 +16,12 @@
 </template>
 
 <script>
+import SetAsCoverButton from './set-as-cover-button.vue'
+
 export default {
-  // components: {},
+  components: {
+    SetAsCoverButton
+  },
   // mixins: [],
   props: {
     image: {
