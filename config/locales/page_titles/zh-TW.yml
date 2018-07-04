@@ -56,6 +56,7 @@ zh-TW:
         variants_management: 規格設定
         images_management: 圖片管理
         stocks_management: 庫存管理
+        image_config: 圖片設定
         seo_config: SEO 設定
         increase_stock_form: 進貨表單
         decrease_stock_form: 銷貨表單

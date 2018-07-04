@@ -10,14 +10,18 @@
       i.fa.fa-close
 
   b-modal(:active.sync="isFormActive")
+    edit-form(:image="image")
 
 </template>
 
 <script>
 import ActionConfirmService from '../../../../shared/services/action_confirm_service.js'
+import EditForm from './edit-form.vue'
 
 export default {
-  // components: {},
+  components: {
+    EditForm
+  },
   // mixins: [],
   props: {
     image: {

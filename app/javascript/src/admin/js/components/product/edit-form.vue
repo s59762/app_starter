@@ -15,11 +15,10 @@
           b-tab-item(:label="pageTitleLocaleText('admin', 'products', 'basic_product_info')"
                      icon="file-text-o")
             //- TODO: Dev only
-            section.section
-              .image-list
-                image-editable-unit(v-for="image in images"
-                                    :image="image"
-                                    :key="image.id")
+            .image-list
+              image-editable-unit(v-for="image in images"
+                                  :image="image"
+                                  :key="image.id")
 
             section.section
               b-field(:label="attributeLocaleText('product', 'name')"
