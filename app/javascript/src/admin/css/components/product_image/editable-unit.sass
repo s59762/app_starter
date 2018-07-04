@@ -1,0 +1,38 @@
+.vc-product-image-editable-unit
+  $gap: .5rem
+
+  padding: $gap
+  width: 33.333333%
+  flex-shrink: 0
+  +from($iphone-plus)
+    width: 20%
+
+  .image-container
+    position: relative
+    > .image
+      display: block
+    > .edit-trigger
+      padding: 0.5rem 0
+      background-color: $info
+      color: $white
+      +from($ipad-pro)
+        position: absolute
+        top: 0
+        right: 0
+        bottom: 0
+        left: 0
+        background-color: rgba($black, .8)
+    &:hover,
+    &:focus
+      +from($ipad-pro)
+        > .edit-trigger
+          opacity: 1
+
+  .edit-trigger
+    @extend %is-flex-vc-hc
+    transition: opacity, .3s
+    cursor: pointer
+    +from($ipad-pro)
+      opacity: 0
+      font-size: $size-3
+
