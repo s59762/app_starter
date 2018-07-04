@@ -15,6 +15,12 @@
           b-tab-item(:label="pageTitleLocaleText('admin', 'products', 'basic_product_info')"
                      icon="file-text-o")
             //- TODO: Dev only
+            .tools.is-clearfix
+              .is-pulled-right
+                .upload-images-button.button.is-primary
+                  .icon
+                    i.fa.fa-plus
+                  span 新增商品圖片
             .image-list
               image-editable-unit(v-for="image in images"
                                   :image="image"
