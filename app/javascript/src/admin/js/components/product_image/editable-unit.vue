@@ -6,7 +6,7 @@
     .edit-trigger(@click="showForm")
       .icon
         i.fa.fa-pencil
-    .delete-button
+    .delete-button(@click="confirmDelete")
       i.fa.fa-close
 
   b-modal(:active.sync="isFormActive")
@@ -14,6 +14,8 @@
 </template>
 
 <script>
+import ActionConfirmService from '../../../../shared/services/action_confirm_service.js'
+
 export default {
   // components: {},
   // mixins: [],
@@ -35,6 +37,25 @@ export default {
   methods: {
     showForm() {
       this.isFormActive = true
+    },
+
+    confirmDelete() {
+      new ActionConfirmService({
+        title: this.messageLocaleText('confirmations.are_you_sure_want_to_delete_for', {
+          model: this.modelNameLocaleText('product/image')
+        })
+      }).confirm(this.deleteImage)
+    },
+
+    deleteImage() {
+      this.$store.dispatch('productImages/destroy', this.image).then(() => {
+        this.$store.dispatch('addFlashMessage', [
+          'success',
+          this.messageLocaleText('resource_deleted_successfully', {
+            resource: this.modelNameLocaleText('product/image')
+          })
+        ])
+      })
     }
   }
 }

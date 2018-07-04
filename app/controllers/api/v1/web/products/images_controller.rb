@@ -1,4 +1,6 @@
 class Api::V1::Web::Products::ImagesController < Api::V1::Web::BaseController
+  # '/products/images' and 'products/:product_id/images'
+  # for description images upload, and normal images upload.
   def create
     check_policy ProductPolicy.new(current_api_user, :product).create?
 
@@ -12,20 +14,21 @@ class Api::V1::Web::Products::ImagesController < Api::V1::Web::BaseController
     render_result
   end
 
+  def update
+    # TODO: ?
+  end
+
+  # '/product_images/:id'
   def destroy
-    product = Product.find(params[:product_id])
+    image = Product::Image.includes(:product).normal.find(params[:id])
 
-    check_policy ProductPolicy.new(current_api_user, product).update?
-
-    image = product.normal_images.find(params[:id])
+    check_policy ProductPolicy.new(current_api_user, image.product).update?
 
     image.destroy
 
-    render json: product,
-           include: [:normal_images, :variants_with_master, 'option_types.option_values'],
-           show_variants: true,
-           show_options: true,
-           show_normal_images: true
+    render json: {
+      messages: ['image deleted successfully.']
+    }
   end
 
   private

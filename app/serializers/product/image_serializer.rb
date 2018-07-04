@@ -20,7 +20,7 @@ class Product::ImageSerializer < ApplicationSerializer
              :thumb_url,
              :original_filename
 
-  belongs_to :product, optional: true
+  belongs_to :product, optional: true, if: -> { instance_options[:show_product] }
 
   def url
     object.image.url

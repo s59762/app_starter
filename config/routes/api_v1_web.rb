@@ -37,7 +37,7 @@ namespace :api do
         end
 
         resource :collect, only: %i(create destroy), controller: 'products/collect'
-        resources :images, only: %i(create destroy), controller: 'products/images'
+        resources :images, only: %i(create), controller: 'products/images'
       end
 
       resources :product_option_types, only: %i(update destroy), controller: 'products/option_types'
@@ -48,6 +48,8 @@ namespace :api do
         resource :set_as_master, only: :update, controller: 'products/variants/set_as_master'
         resource :stock, only: :update, controller: 'products/variants/stock'
       end
+
+      resources :product_images, only: %i(destroy), controller: 'products/images'
 
       resource :cart, only: %i(show), controller: 'cart'
 

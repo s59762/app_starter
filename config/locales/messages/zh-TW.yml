@@ -33,6 +33,7 @@ zh-TW:
     admin_is_unsuspended: 管理員 %{name} 已復權
     resource_added_successfully: '%{resource}已成功新增'
     resource_updated_successfully: '%{resource}已成功更新'
+    resource_deleted_successfully: '%{resource}已成功刪除'
     server_side_500_error: 抱歉，伺服器發生問題，請稍後再試
     there_is_no_data_for_now: 目前沒有資料
     there_is_no_sub_categories_for_now: 目前沒有子分類
