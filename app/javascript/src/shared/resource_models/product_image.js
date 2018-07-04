@@ -16,7 +16,7 @@ const OPTIONS = {
     'is_cover',
     'variant_id'
   ],
-  editableAttributes: []
+  editableAttributes: ['variant_id']
 }
 
 export default class ProductImage extends ResourceModelBase {
@@ -26,6 +26,19 @@ export default class ProductImage extends ResourceModelBase {
 
   setAsCover() {
     return axios.put(`${this.apiBasePath()}/${this.id}/set_as_cover`)
+  }
+
+  assignToVariant() {
+    const requestBody = {
+      data: {
+        type: "product-image-assign-to-variant",
+        attributes: {
+          variant_id: this.variant_id
+        }
+      }
+    }
+
+    return axios.put(`${this.apiBasePath()}/${this.id}/assign_to_variant`, requestBody)
   }
   // extra methods or helpers here...
 }

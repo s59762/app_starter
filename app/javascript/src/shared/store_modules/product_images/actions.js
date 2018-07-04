@@ -128,6 +128,30 @@ export const setAsCover = ({
   })
 }
 
+export const assignToVariant = ({
+  dispatch,
+  commit
+}, model) => {
+  commit(types.API_REQUEST_START, 'assignToVariant')
+
+  return new Promise((resolve, reject) => {
+    model.assignToVariant()
+      .then(response => {
+        commit(types.GET_PRODUCT_IMAGE_SUCCESS, response)
+
+        resolve(response)
+      })
+      .catch(errors => {
+        commit(types.API_REQUEST_FAIL, errors)
+        dispatch('errorMessageHandler', errors, {
+          root: true
+        })
+
+        reject(errors)
+      })
+  })
+}
+
 export const receiveResourcesFromRelationships = ({
   commit
 }, response) => {

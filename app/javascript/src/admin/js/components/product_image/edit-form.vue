@@ -68,7 +68,19 @@ export default {
   // mounted() {},
   methods: {
     submitForm() {
-      console.log('ok')
+      this.$store
+        .dispatch('productImages/assignToVariant', this.form.sync())
+        .then(() => {
+          return this.$store.dispatch('addFlashMessage', [
+            'success',
+            this.messageLocaleText('resource_updated_successfully', {
+              resource: this.modelNameLocaleText('product/image')
+            })
+          ])
+        })
+        .then(() => {
+          this.$parent.close()
+        })
     },
 
     imageUpdatedHandler() {
