@@ -12,7 +12,7 @@
              @input="errors.clear('variant_id')"
              expanded)
       option(:label="messageLocaleText('help.no_variant')"
-             :value="undefined")
+             :value="null")
       option(v-for="variant in variants"
              :value="variant.id")
         | {{ variant.name }} - {{ variant.sku }}
@@ -64,9 +64,7 @@ export default {
     }
   },
 
-  created() {
-    this.form.variant_id = this.image.variant_id || undefined
-  },
+  // created() {},
   // mounted() {},
   methods: {
     submitForm() {

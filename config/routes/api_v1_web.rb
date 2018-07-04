@@ -51,6 +51,7 @@ namespace :api do
 
       resources :product_images, only: %i(destroy), controller: 'products/images' do
         resource :set_as_cover, only: :update, controller: 'products/images/set_as_cover'
+        resource :assign_to_variant, only: :update, controller: 'products/images/assign_to_variant'
       end
 
       resource :cart, only: %i(show), controller: 'cart'
