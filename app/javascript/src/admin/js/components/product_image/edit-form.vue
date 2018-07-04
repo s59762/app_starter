@@ -3,6 +3,9 @@
 .vc-product-image-edit-form.box.form-container-box.is-default.clearfix
   h3.subtitle {{ pageTitleLocaleText('admin', 'products', 'image_config') }}
 
+  set-as-cover-button(:image="image"
+                      @image-updated="imageUpdatedHandler")
+
   b-field(:label="attributeLocaleText('product/image', 'variant_id')"
           :type="errors.errorClassAt('variant_id')"
           :message="errors.get('variant_id')")
@@ -16,9 +19,6 @@
       option(v-for="variant in variants"
              :value="variant.id")
         | {{ variant.name }} - {{ variant.sku }}
-
-  set-as-cover-button(:image="image"
-                      @image-updated="imageUpdatedHandler")
 
   br
 
