@@ -41,6 +41,9 @@ export const find = ({
         dispatch('productOptionTypes/receiveResourcesFromRelationships', response, {
           root: true
         })
+        dispatch('productImages/receiveResourcesFromRelationships', response, {
+          root: true
+        })
 
         resolve(response)
       })
@@ -98,6 +101,9 @@ export const save = ({
           root: true
         })
         dispatch('productOptionTypes/receiveResourcesFromRelationships', response, {
+          root: true
+        })
+        dispatch('productImages/receiveResourcesFromRelationships', response, {
           root: true
         })
 

@@ -12,6 +12,8 @@
 #
 
 class Product::ImageSerializer < ApplicationSerializer
+  type 'product_images'
+
   attributes :id,
              :use_case,
              :url,
