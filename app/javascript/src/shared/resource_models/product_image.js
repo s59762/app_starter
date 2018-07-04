@@ -1,3 +1,4 @@
+import axios from 'axios'
 import ResourceModelBase from 'odd-resource_model'
 
 const OPTIONS = {
@@ -22,5 +23,8 @@ export default class ProductImage extends ResourceModelBase {
     super(OPTIONS, attributes)
   }
 
+  setAsCover() {
+    return axios.put(`${this.apiBasePath()}/${this.id}/set_as_cover`)
+  }
   // extra methods or helpers here...
 }

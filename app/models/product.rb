@@ -32,7 +32,7 @@ class Product < ApplicationRecord
   belongs_to :brand, counter_cache: true, optional: true, touch: true
   belongs_to :category, class_name: 'ProductCategory', counter_cache: true, optional: true, touch: true
   has_many :images, class_name: 'Product::Image', dependent: :destroy
-  has_many :normal_images, -> { where(use_case: :normal) }, class_name: 'Product::Image'
+  has_many :normal_images, -> { where(use_case: :normal).order(created_at: :asc) }, class_name: 'Product::Image'
   has_many :description_images, -> { where(use_case: :description) }, class_name: 'Product::Image'
   has_many :option_types, -> { order(created_at: :asc) }, class_name: 'Product::OptionType', dependent: :destroy, index_errors: true
   has_many :variants, -> { where(is_master: false).order(created_at: :asc) }, class_name: 'Product::Variant'

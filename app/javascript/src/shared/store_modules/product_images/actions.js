@@ -1,7 +1,10 @@
 import * as types from './mutation-types'
 import ProductImage from '../../resource_models/product_image'
 
-export const all = ({ dispatch, commit }, options) => {
+export const all = ({
+  dispatch,
+  commit
+}, options) => {
   commit(types.API_REQUEST_START, 'all')
 
   return new Promise((resolve, reject) => {
@@ -13,14 +16,19 @@ export const all = ({ dispatch, commit }, options) => {
       })
       .catch(errors => {
         commit(types.API_REQUEST_FAIL, errors)
-        dispatch('errorMessageHandler', errors, { root: true })
+        dispatch('errorMessageHandler', errors, {
+          root: true
+        })
 
         reject(errors)
       })
   })
 }
 
-export const find = ({ dispatch, commit }, id) => {
+export const find = ({
+  dispatch,
+  commit
+}, id) => {
   commit(types.API_REQUEST_START, 'find')
 
   return new Promise((resolve, reject) => {
@@ -32,14 +40,19 @@ export const find = ({ dispatch, commit }, id) => {
       })
       .catch(errors => {
         commit(types.API_REQUEST_FAIL, errors)
-        dispatch('errorMessageHandler', errors, { root: true })
+        dispatch('errorMessageHandler', errors, {
+          root: true
+        })
 
         reject(errors)
       })
   })
 }
 
-export const save = ({ dispatch, commit }, model) => {
+export const save = ({
+  dispatch,
+  commit
+}, model) => {
   commit(types.API_REQUEST_START, 'save')
 
   return new Promise((resolve, reject) => {
@@ -56,14 +69,19 @@ export const save = ({ dispatch, commit }, model) => {
       .catch(errors => {
         model.errors.record(errors)
         commit(types.API_REQUEST_FAIL, errors)
-        dispatch('errorMessageHandler', errors, { root: true })
+        dispatch('errorMessageHandler', errors, {
+          root: true
+        })
 
         reject(errors)
       })
   })
 }
 
-export const destroy = ({ dispatch, commit }, model) => {
+export const destroy = ({
+  dispatch,
+  commit
+}, model) => {
   commit(types.API_REQUEST_START, 'destroy')
 
   return new Promise((resolve, reject) => {
@@ -76,14 +94,43 @@ export const destroy = ({ dispatch, commit }, model) => {
       .catch(errors => {
         model.errors.record(errors)
         commit(types.API_REQUEST_FAIL, errors)
-        dispatch('errorMessageHandler', errors, { root: true })
+        dispatch('errorMessageHandler', errors, {
+          root: true
+        })
 
         reject(errors)
       })
   })
 }
 
-export const receiveResourcesFromRelationships = ({ commit }, response) => {
+export const setAsCover = ({
+  dispatch,
+  commit
+}, model) => {
+  commit(types.API_REQUEST_START, 'setAsCover')
+
+  return new Promise((resolve, reject) => {
+    model.setAsCover()
+      .then(response => {
+        commit(types.FETCH_PRODUCT_IMAGES_SUCCESS, response)
+
+        resolve(response)
+      })
+      .catch(errors => {
+        model.errors.record(errors)
+        commit(types.API_REQUEST_FAIL, errors)
+        dispatch('errorMessageHandler', errors, {
+          root: true
+        })
+
+        reject(errors)
+      })
+  })
+}
+
+export const receiveResourcesFromRelationships = ({
+  commit
+}, response) => {
   return new Promise((resolve, reject) => {
     commit(types.GET_RELATED_PRODUCT_IMAGES_SUCCESS, response)
 
@@ -91,7 +138,9 @@ export const receiveResourcesFromRelationships = ({ commit }, response) => {
   })
 }
 
-export const getResourceFromRelationship = ({ commit }, response) => {
+export const getResourceFromRelationship = ({
+  commit
+}, response) => {
   return new Promise((resolve, reject) => {
     commit(types.GET_PRODUCT_IMAGE_SUCCESS, response)
 

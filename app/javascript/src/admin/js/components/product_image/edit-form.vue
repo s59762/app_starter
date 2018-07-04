@@ -3,7 +3,8 @@
 .vc-product-image-edit-form.box.form-container-box.is-default.clearfix
   h3.subtitle {{ pageTitleLocaleText('admin', 'products', 'image_config') }}
 
-  set-as-cover-button(:image="image")
+  set-as-cover-button(:image="image"
+                      @image-updated="imageUpdatedHandler")
 
   //- Button for assign to variant
 
@@ -48,6 +49,10 @@ export default {
   methods: {
     submitForm() {
       console.log('ok')
+    },
+
+    imageUpdatedHandler() {
+      this.$parent.close()
     }
   }
 }

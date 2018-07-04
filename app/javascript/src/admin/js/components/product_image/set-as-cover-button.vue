@@ -35,7 +35,19 @@ export default {
   // mounted() {},
   methods: {
     setAsCover() {
-      console.log('opk')
+      this.$store
+        .dispatch('productImages/setAsCover', this.image)
+        .then(() => {
+          return this.$store.dispatch('addFlashMessage', [
+            'success',
+            this.messageLocaleText('resource_updated_successfully', {
+              resource: this.modelNameLocaleText('product/image')
+            })
+          ])
+        })
+        .then(() => {
+          this.$emit('image-updated')
+        })
     }
   }
 }

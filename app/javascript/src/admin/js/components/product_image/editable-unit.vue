@@ -1,13 +1,14 @@
 <template lang="pug">
 
 .vc-product-image-editable-unit
-  .image-container
+  .image-container(:class="{ 'is-cover': image.is_cover }")
     img.image(:src="image.thumb_url")
     .edit-trigger(@click="showForm")
       .icon
         i.fa.fa-pencil
     .delete-button(@click="confirmDelete")
       i.fa.fa-close
+    .cover-indicator {{ attributeLocaleText('product', 'cover') }}
 
   b-modal(:active.sync="isFormActive")
     edit-form(:image="image")
