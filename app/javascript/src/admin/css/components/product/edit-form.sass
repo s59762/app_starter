@@ -8,6 +8,11 @@
   .image-list
     @extend %is-flex-vc
     flex-wrap: wrap
+    > .vc-product-image-editable-unit
+      width: 33.333333%
+      flex-shrink: 0
+      +from($iphone-plus)
+        width: 20%
 
   .tabs ul
     justify-content: center

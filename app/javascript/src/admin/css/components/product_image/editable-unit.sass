@@ -1,16 +1,25 @@
 .vc-product-image-editable-unit
-  $gap: .5rem
+  $gap: .25rem
 
   padding: $gap
-  width: 33.333333%
-  flex-shrink: 0
-  +from($iphone-plus)
-    width: 20%
 
   .image-container
     position: relative
     > .image
       display: block
+    > .delete-button
+      $size: 25px
+
+      padding: 0.2rem 0
+      +from($ipad-pro)
+        position: absolute
+        right: -$size/3
+        top: -$size/3
+        width: $size
+        height: $size
+        border-radius: 100%
+        &:hover
+          box-shadow: 0 0 8px rgba($black, .7)
     > .edit-trigger
       padding: 0.5rem 0
       background-color: $info
@@ -27,6 +36,8 @@
       +from($ipad-pro)
         > .edit-trigger
           opacity: 1
+        > .delete-button
+          display: flex
 
   .edit-trigger
     @extend %is-flex-vc-hc
@@ -36,3 +47,12 @@
       opacity: 0
       font-size: $size-3
 
+  .delete-button
+    @extend %is-flex-vc-hc
+    background-color: $danger
+    cursor: pointer
+    +from($ipad-pro)
+      display: none
+    > .fa
+      font-size: $size-5
+      color: $white

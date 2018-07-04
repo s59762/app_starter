@@ -3,9 +3,13 @@
 .vc-product-image-editable-unit
   .image-container
     img.image(:src="image.thumb_url")
-    .edit-trigger
+    .edit-trigger(@click="showForm")
       .icon
         i.fa.fa-pencil
+    .delete-button
+      i.fa.fa-close
+
+  b-modal(:active.sync="isFormActive")
 
 </template>
 
@@ -18,13 +22,20 @@ export default {
       type: Object,
       required: true
     }
-  }
-  // data() {
-  //   return {}
-  // },
+  },
+
+  data() {
+    return {
+      isFormActive: false
+    }
+  },
   // computed: {},
   // created() {},
   // mounted() {},
-  // methods: {}
+  methods: {
+    showForm() {
+      this.isFormActive = true
+    }
+  }
 }
 </script>
