@@ -11,7 +11,8 @@ const OPTIONS = {
     'url',
     'thumb_url',
     'original_filename',
-    'product'
+    'product',
+    'is_cover'
   ],
   editableAttributes: []
 }

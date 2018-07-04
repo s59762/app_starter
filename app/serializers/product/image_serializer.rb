@@ -9,6 +9,7 @@
 #  product_id        :bigint(8)
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
+#  is_cover          :boolean          default(FALSE)
 #
 
 class Product::ImageSerializer < ApplicationSerializer
@@ -18,7 +19,8 @@ class Product::ImageSerializer < ApplicationSerializer
              :use_case,
              :url,
              :thumb_url,
-             :original_filename
+             :original_filename,
+             :is_cover
 
   belongs_to :product, optional: true, if: -> { instance_options[:show_product] }
 
