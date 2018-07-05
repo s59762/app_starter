@@ -13,8 +13,9 @@
         span.name {{ subCategoryName }}
 
   .info-section.cover-image
-    .image-container
-      img.image
+    .image-container(:class="{ 'is-empty': !coverImage }")
+      img.image(v-if="coverImage"
+                :src="coverImage")
 
   .info-section.options-info(v-if="optionTypes")
     label.label {{ attributeLocaleText('product', 'option_types') }}
@@ -70,8 +71,8 @@ export default {
       required: true
     },
 
-    isNewRecord: {
-      type: Boolean,
+    product: {
+      type: Object,
       required: true
     }
   },
@@ -79,6 +80,10 @@ export default {
   //   return {}
   // },
   computed: {
+    isNewRecord() {
+      return this.product.isNewRecord()
+    },
+
     brandName() {
       if (this.form.brand_id) return this.$store.getters['brands/find'](this.form.brand_id).name
 
@@ -103,6 +108,14 @@ export default {
         return this.$store.getters['productCategories/find'](this.form.sub_category_id).name
     },
 
+    coverImage() {
+      const images = this.$store.getters['productImages/all']
+      const cover = images.filter(image => image.is_cover)[0]
+
+      if (cover) return cover.url
+      if (images.length > 0) return images[0].url
+    },
+
     SellPrice() {
       if (this.form.price.sell && this.form.price.discounted) return this.form.price.sell
     },
@@ -117,7 +130,7 @@ export default {
       if (this.isNewRecord) {
         if (this.form.option_types.length > 0) return this.form.option_types
       } else {
-        return this.$store.getters['productOptionTypes/all'].map(type => {
+        const result = this.$store.getters['productOptionTypes/all'].map(type => {
           return {
             name: type.name,
             options: type.option_values.map(option => {
@@ -127,6 +140,8 @@ export default {
             })
           }
         })
+
+        if (result.length > 0) return result
       }
     },
 

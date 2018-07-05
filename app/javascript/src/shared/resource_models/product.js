@@ -41,7 +41,6 @@ const OPTIONS = {
     'brand_id',
     'top_level_category_id',
     'sub_category_id',
-    'cover',
     'description',
     'is_preorder',
     'name',

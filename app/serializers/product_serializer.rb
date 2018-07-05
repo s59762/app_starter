@@ -73,6 +73,14 @@ class ProductSerializer < ApplicationSerializer
     object.category_id
   end
 
+  def cover
+    return nil unless object.normal_images.cover.present?
+    {
+      url: object.normal_images.cover.take.image.url,
+      thumb_url: object.normal_images.cover.take.image.thumb.url
+    }
+  end
+
   # 折扣率
   def discount_rate
     return 1.0 if object.discounted_price.zero?

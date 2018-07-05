@@ -41,8 +41,12 @@
     border: 1px solid darken($light, 10)
     > .image-container
       width: 100%
+
+  .image-container
+    @extend %is-flex-vc
+    background-color: darken($light, 20)
+    &.is-empty
       min-height: 350px
-      background-color: darken($light, 20)
 
   .price-info
     text-align: right

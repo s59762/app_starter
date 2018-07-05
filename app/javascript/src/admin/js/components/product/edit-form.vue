@@ -120,7 +120,7 @@
       .column.preview-container
         label.label Preview
         result-preview(:form="form"
-                       :is-new-record="product.isNewRecord()")
+                       :product="product")
 </template>
 
 <script>
