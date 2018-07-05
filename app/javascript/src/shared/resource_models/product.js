@@ -118,4 +118,8 @@ export default class Product extends ResourceModelBase {
 
     return result.join(' × ')
   }
+
+  hasVariants() {
+    return this.variants.length > 0
+  }
 }

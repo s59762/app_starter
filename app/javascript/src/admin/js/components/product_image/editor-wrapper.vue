@@ -2,7 +2,7 @@
 
 .vc-product-image-editor-wrapper
   .image-list-wrapper
-    .general-image-list.image-category
+    .general-image-list.image-category(v-if="product.hasVariants() || generalImages.length > 0")
       h4.title {{ attributeLocaleText('product/image', 'general_images') }}
       .image-list
         image-editable-unit(v-for="image in generalImages"
@@ -12,7 +12,7 @@
 
     .variant-image-list.image-category(v-for="variant in variants"
                                        :key="variant.id")
-      h4.title {{ attributeLocaleText('product/image', 'images_for', { variant_name: `${variant.name} - ${variant.sku}` }) }}
+      h4.title {{ attributeLocaleText('product/image', 'images_for', { variant_name: variant.nameWithSku() }) }}
       .image-list
         image-editable-unit(v-for="image in imagesFor(variant)"
                             :image="image"

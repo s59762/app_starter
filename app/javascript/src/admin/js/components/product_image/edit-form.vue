@@ -18,7 +18,7 @@
              :value="null")
       option(v-for="variant in variants"
              :value="variant.id")
-        | {{ variant.name }} - {{ variant.sku }}
+        | {{ variant.nameWithSku() }}
 
   br
 

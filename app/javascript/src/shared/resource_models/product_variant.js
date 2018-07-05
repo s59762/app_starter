@@ -114,4 +114,12 @@ export default class ProductVariant extends ResourceModelBase {
       return I18n.t('messages.data_not_provided')
     }
   }
+
+  nameWithSku() {
+    if (this.name) {
+      return `${this.name} - ${this.sku}`
+    } else {
+      return this.sku
+    }
+  }
 }

@@ -5,7 +5,7 @@
 
   label.label
     b &nbsp;{{ product.name }}&nbsp;
-    b(v-if="variant") &nbsp;- {{ variant.name }} （{{ variant.sku }}）
+    b(v-if="variant") [ {{ variant.nameWithSku() }} ]&nbsp;
     span 的圖片
 
   b-field
