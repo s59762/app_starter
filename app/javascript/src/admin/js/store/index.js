@@ -11,6 +11,7 @@ import products from '../../../shared/store_modules/products'
 import productOptionTypes from '../../../shared/store_modules/product_option_types'
 import productOptionValues from '../../../shared/store_modules/product_option_values'
 import productVariants from '../../../shared/store_modules/product_variants'
+import productImages from '../../../shared/store_modules/product_images'
 import siteConfigs from '../../../shared/store_modules/site_configs'
 import CurrentUserAssignService from '../../../shared/services/current_user_assign_service'
 
@@ -43,6 +44,7 @@ export default new Vuex.Store({
     productOptionTypes,
     productOptionValues,
     productVariants,
+    productImages,
     siteConfigs
   }
 })

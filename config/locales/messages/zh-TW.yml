@@ -26,6 +26,7 @@ zh-TW:
       please_select_a_category: 請選擇一個分類
       please_select_a_brand: 請選擇一個品牌
       please_select_a_picture: 請選擇一個圖檔
+      drop_your_files_here_or_click_to_upload: 將圖片拖放至此，或點擊選擇圖檔上傳
       please_make_words_count_about: 請盡量維持在 %{count} 字左右
       click_for_update_logo: 點擊選擇新 LOGO
       no_sub_category: 不設定子分類
@@ -33,6 +34,7 @@ zh-TW:
     admin_is_unsuspended: 管理員 %{name} 已復權
     resource_added_successfully: '%{resource}已成功新增'
     resource_updated_successfully: '%{resource}已成功更新'
+    resource_deleted_successfully: '%{resource}已成功刪除'
     server_side_500_error: 抱歉，伺服器發生問題，請稍後再試
     there_is_no_data_for_now: 目前沒有資料
     there_is_no_sub_categories_for_now: 目前沒有子分類

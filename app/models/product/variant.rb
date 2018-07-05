@@ -26,6 +26,7 @@
 
 class Product::Variant < ApplicationRecord
   belongs_to :product, touch: true
+  has_many :images, class_name: 'Product::Image', foreign_key: 'variant_id', dependent: :destroy
 
   monetize :original_price_cents,
            :sell_price_cents,

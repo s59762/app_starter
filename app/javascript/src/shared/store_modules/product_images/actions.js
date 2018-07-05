@@ -1,5 +1,5 @@
 import * as types from './mutation-types'
-import Product from '../../resource_models/product'
+import ProductImage from '../../resource_models/product_image'
 
 export const all = ({
   dispatch,
@@ -8,9 +8,9 @@ export const all = ({
   commit(types.API_REQUEST_START, 'all')
 
   return new Promise((resolve, reject) => {
-    Product.all(options)
+    ProductImage.all(options)
       .then(response => {
-        commit(types.FETCH_PRODUCTS_SUCCESS, response)
+        commit(types.FETCH_PRODUCT_IMAGES_SUCCESS, response)
 
         resolve(response)
       })
@@ -32,18 +32,9 @@ export const find = ({
   commit(types.API_REQUEST_START, 'find')
 
   return new Promise((resolve, reject) => {
-    Product.find(id)
+    ProductImage.find(id)
       .then(response => {
-        commit(types.GET_PRODUCT_SUCCESS, response)
-        dispatch('productVariants/receiveResourcesFromRelationships', response, {
-          root: true
-        })
-        dispatch('productOptionTypes/receiveResourcesFromRelationships', response, {
-          root: true
-        })
-        dispatch('productImages/receiveResourcesFromRelationships', response, {
-          root: true
-        })
+        commit(types.GET_PRODUCT_IMAGE_SUCCESS, response)
 
         resolve(response)
       })
@@ -65,23 +56,13 @@ export const save = ({
   commit(types.API_REQUEST_START, 'save')
 
   return new Promise((resolve, reject) => {
-    model
-      .save()
+    model.save()
       .then(response => {
         if (model.isNewRecord()) {
-          commit(types.ADD_PRODUCT_SUCCESS, response)
+          commit(types.ADD_PRODUCT_IMAGE_SUCCESS, response)
         } else {
-          commit(types.UPDATE_PRODUCT_SUCCESS, response)
+          commit(types.UPDATE_PRODUCT_IMAGE_SUCCESS, response)
         }
-        dispatch('productVariants/receiveResourcesFromRelationships', response, {
-          root: true
-        })
-        dispatch('productOptionTypes/receiveResourcesFromRelationships', response, {
-          root: true
-        })
-        dispatch('productImages/receiveResourcesFromRelationships', response, {
-          root: true
-        })
 
         resolve(response)
       })
@@ -104,10 +85,9 @@ export const destroy = ({
   commit(types.API_REQUEST_START, 'destroy')
 
   return new Promise((resolve, reject) => {
-    model
-      .destroy()
+    model.destroy()
       .then(response => {
-        commit(types.DELETE_PRODUCT_SUCCESS, id)
+        commit(types.DELETE_PRODUCT_IMAGE_SUCCESS, model.id)
 
         resolve(response)
       })
@@ -123,29 +103,41 @@ export const destroy = ({
   })
 }
 
-export const uploadImages = ({
+export const setAsCover = ({
   dispatch,
   commit
-}, formData) => {
-  commit(types.API_REQUEST_START, 'uploadImages')
+}, model) => {
+  commit(types.API_REQUEST_START, 'setAsCover')
 
   return new Promise((resolve, reject) => {
-    Product.uploadImages(formData)
+    model.setAsCover()
       .then(response => {
-        if (formData.get('product[product_id]')) {
-          commit(types.UPDATE_PRODUCT_SUCCESS, response)
-          dispatch('productVariants/receiveResourcesFromRelationships', response, {
-            root: true
-          })
-          dispatch('productOptionTypes/receiveResourcesFromRelationships', response, {
-            root: true
-          })
-          dispatch('productImages/receiveResourcesFromRelationships', response, {
-            root: true
-          })
-        } else {
-          commit(types.PRODUCT_IMAGE_UPLOAD_SUCCESS, response)
-        }
+        commit(types.FETCH_PRODUCT_IMAGES_SUCCESS, response)
+
+        resolve(response)
+      })
+      .catch(errors => {
+        model.errors.record(errors)
+        commit(types.API_REQUEST_FAIL, errors)
+        dispatch('errorMessageHandler', errors, {
+          root: true
+        })
+
+        reject(errors)
+      })
+  })
+}
+
+export const assignToVariant = ({
+  dispatch,
+  commit
+}, model) => {
+  commit(types.API_REQUEST_START, 'assignToVariant')
+
+  return new Promise((resolve, reject) => {
+    model.assignToVariant()
+      .then(response => {
+        commit(types.GET_PRODUCT_IMAGE_SUCCESS, response)
 
         resolve(response)
       })
@@ -164,7 +156,7 @@ export const receiveResourcesFromRelationships = ({
   commit
 }, response) => {
   return new Promise((resolve, reject) => {
-    commit(types.GET_RELATED_PRODUCTS_SUCCESS, response)
+    commit(types.GET_RELATED_PRODUCT_IMAGES_SUCCESS, response)
 
     resolve(response)
   })
@@ -174,7 +166,7 @@ export const getResourceFromRelationship = ({
   commit
 }, response) => {
   return new Promise((resolve, reject) => {
-    commit(types.GET_PRODUCT_SUCCESS, response)
+    commit(types.GET_PRODUCT_IMAGE_SUCCESS, response)
 
     resolve(response)
   })

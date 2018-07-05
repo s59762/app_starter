@@ -14,7 +14,6 @@
           //- 基本資料
           b-tab-item(:label="pageTitleLocaleText('admin', 'products', 'basic_product_info')"
                      icon="file-text-o")
-
             section.section
               b-field(:label="attributeLocaleText('product', 'name')"
                       :type="errors.errorClassAt('name')"
@@ -79,6 +78,7 @@
           //- 圖片管理
           b-tab-item(:label="pageTitleLocaleText('admin', 'products', 'images_management')"
                      icon="picture-o")
+            image-editor-wrapper(:product="product")
 
           //- 庫存管理
           b-tab-item(:label="pageTitleLocaleText('admin', 'products', 'stocks_management')"
@@ -131,6 +131,7 @@ import PropertiesColumns from './properties-columns.vue'
 import DescriptionColumn from './description-column.vue'
 import VariantEditableUnit from '../product_variant/editable-unit.vue'
 import StockManagementUnit from '../product_variant/stock-management-unit.vue'
+import ImageEditorWrapper from '../product_image/editor-wrapper.vue'
 
 export default {
   components: {
@@ -139,7 +140,8 @@ export default {
     PropertiesColumns,
     DescriptionColumn,
     VariantEditableUnit,
-    StockManagementUnit
+    StockManagementUnit,
+    ImageEditorWrapper
   },
 
   // mixins: [],

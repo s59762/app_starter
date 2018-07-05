@@ -23,8 +23,7 @@ class Admin::EditProductForm < ApplicationForm
   #
   # @return [Bollean] 回傳是否成功寫入 DB
   def save
-    description_image_ids = description.scan(/\/uploads\/product\/image\/image\/([0-9]+)/).flatten.map(&:to_i) if description.present?
-    @is_new_record = model.new_record?
+    description_image_ids = description.present? ? description.scan(/\/uploads\/product\/image\/image\/([0-9]+)/).flatten.map(&:to_i) : []
 
     sync
     # assign_price_info_to_model

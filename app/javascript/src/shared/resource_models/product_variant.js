@@ -22,7 +22,8 @@ const OPTIONS = {
     'product_id',
     'option_value_ids',
     'stock',
-    'stock_status'
+    'stock_status',
+    'images'
   ],
   editableAttributes: [
     'name',
@@ -111,6 +112,14 @@ export default class ProductVariant extends ResourceModelBase {
       return result.join(' × ')
     } else {
       return I18n.t('messages.data_not_provided')
+    }
+  }
+
+  nameWithSku() {
+    if (this.name) {
+      return `${this.name} - ${this.sku}`
+    } else {
+      return this.sku
     }
   }
 }

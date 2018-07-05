@@ -1,0 +1,38 @@
+.vc-product-image-form
+  .upload
+    > .upload-draggable
+      width: 100%
+  .file-previews
+    @extend %is-flex-vc
+    flex-wrap: wrap
+    > .preview-unit
+      flex-shrink: 0
+      width: 50%
+      +from($iphone-plus)
+        width: 16.666666667%
+      +from($ipad-pro)
+        width: 20%
+
+  .preview-unit
+    padding: 0.5rem
+    > .preview-image
+      +bg-image
+      position: relative
+      width: 100%
+      padding-bottom: 100%
+    .delete-button
+      $size: 25px
+
+      @extend %is-flex-vc-hc
+      position: absolute
+      right: -$size/3
+      top: -$size/3
+      width: $size
+      height: $size
+      border-radius: 100%
+      background-color: $danger
+      box-shadow: 0 0 3px rgba($black, .5)
+      color: $white
+      &:hover
+        box-shadow: 0 0 8px rgba($black, .7)
+
