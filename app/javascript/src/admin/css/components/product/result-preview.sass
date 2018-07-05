@@ -1,0 +1,107 @@
+.vc-product-result-preview
+  padding: 0.5rem
+  border-radius: 8px
+  background-color: $light
+  color: $grey
+
+  hr
+    background-color: $grey
+    height: 1px
+  .label
+    color: $grey
+
+  .info-section
+    margin-bottom: .5rem
+
+  .brand-name
+    > .name
+      font-size: $size-7
+      font-weight: $weight-bold
+  .product-name
+    > .name
+      font-size: $size-5
+      font-weight: $weight-bold
+      color: darken($grey, 20)
+
+  .category-info
+    > .category-level
+      display: inline-block
+
+  .category-level
+    > .name
+      font-size: $size-6
+    &.top
+      margin-right: 0.5em
+    &.sub:before
+      content: '>'
+      margin-right: 0.5em
+
+  .cover-image
+    padding: 0.5rem
+    border: 1px solid darken($light, 10)
+    > .image-container
+      width: 100%
+
+  .image-container
+    @extend %is-flex-vc
+    background-color: darken($light, 20)
+    &.is-empty
+      min-height: 350px
+
+  .price-info
+    text-align: right
+
+  .price-type
+    &.sell
+      font-size: $size-6
+      text-decoration: line-through
+    &.discounted
+      font-size: $size-4
+      font-weight: $weight-bold
+      color: darken($grey, 10)
+    > .price:before
+      content: '$'
+
+  .option-unit
+    @extend %is-flex-vc
+    flex-wrap: wrap
+    font-size: $size-7
+    > .option-type,
+    > .option-value
+      display: inline-block
+    > .option-type
+      color: darken($grey, 10)
+      font-weight: $weight-bold
+      &:before
+        content: '・'
+      &:after
+        content: ':'
+        margin-right: .5rem
+    > .option-value
+      padding: 0.2rem .5rem
+      margin-bottom: 0.5rem
+      border-radius: 5px
+      background-color: $grey
+      color: $white
+      font-weight: $weight-bold
+      &:not(:last-child)
+        margin-right: 0.5rem
+
+  .property-unit
+    @extend %is-flex-vc
+    font-size: $size-7
+    > .property-name,
+    > .property-value,
+    > .unit-name
+      display: inline-block
+    > .property-name
+      margin-right: 1rem
+      font-weight: $weight-bold
+      &:before
+        content: '・'
+    > .unit-name
+      margin-left: .5rem
+      &:before
+        content: '('
+      &:after
+        content: ')'

@@ -1,5 +1,12 @@
 .vc-product-new-form
   @extend %is-form
 
+  .preview-container
+    padding-top: 4rem
+    display: none
+    +from($iphone-plus)
+      display: block
   .submit-button
     text-align: center
+    > .button
+      width: 95%

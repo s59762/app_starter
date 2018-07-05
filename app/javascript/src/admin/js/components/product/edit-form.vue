@@ -117,9 +117,10 @@
               span {{ actionLocaleText('admin', 'save') }}
 
       //- previews
-      .column
-        //- TODO: create a component for roughly preview input content
-        //- product-previewer(:product="this.form")
+      .column.preview-container
+        label.label Preview
+        result-preview(:form="form"
+                       :product="product")
 </template>
 
 <script>
@@ -132,6 +133,7 @@ import DescriptionColumn from './description-column.vue'
 import VariantEditableUnit from '../product_variant/editable-unit.vue'
 import StockManagementUnit from '../product_variant/stock-management-unit.vue'
 import ImageEditorWrapper from '../product_image/editor-wrapper.vue'
+import ResultPreview from './result-preview.vue'
 
 export default {
   components: {
@@ -141,7 +143,8 @@ export default {
     DescriptionColumn,
     VariantEditableUnit,
     StockManagementUnit,
-    ImageEditorWrapper
+    ImageEditorWrapper,
+    ResultPreview
   },
 
   // mixins: [],

@@ -21,7 +21,7 @@ class Product::Image < ApplicationRecord
 
   mount_uploader :image, ProductImageUploader
 
-  scope :cover, -> { where(is_cover: true).take }
+  scope :cover, -> { where(is_cover: true) }
 
   def set_as_cover
     ActiveRecord::Base.transaction do
