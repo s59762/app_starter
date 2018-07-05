@@ -12,7 +12,7 @@ zh-TW:
         use_case: 用於
         variant_id: 所屬規格
         general_images: 不屬於任何規格
-        images_for: '屬於 %{variant_name}'
+        images_for: '屬於 %{variant_name} 的圖片'
 
     errors:
       models:

@@ -1,49 +1,36 @@
 <template lang="pug">
 
 .vc-product-image-editor-wrapper
-  .tools-wrapper
-    .is-pulled-right
-      .upload-images-button.button.is-primary
-        .icon
-          i.fa.fa-plus
-        span 新增商品圖片
-
   .image-list-wrapper
     .general-image-list.image-category
       h4.title {{ attributeLocaleText('product/image', 'general_images') }}
       .image-list
-        template(v-if="generalImages.length > 0")
-          image-editable-unit(v-for="image in generalImages"
-                              :image="image"
-                              :key="image.id")
-        template(v-else)
-          .empty-state
-            .inner
-              i.fa.fa-meh-o
-      .image-list
+        image-editable-unit(v-for="image in generalImages"
+                            :image="image"
+                            :key="image.id")
+        new-image-button(:product="product")
 
     .variant-image-list.image-category(v-for="variant in variants"
                                        :key="variant.id")
       h4.title {{ attributeLocaleText('product/image', 'images_for', { variant_name: `${variant.name} - ${variant.sku}` }) }}
       .image-list
-        template(v-if="imagesFor(variant)")
-          image-editable-unit(v-for="image in imagesFor(variant)"
-                              :image="image"
-                              :key="image.id")
-        template(v-else)
-          .empty-state
-            .inner
-              i.fa.fa-meh-o
+        image-editable-unit(v-for="image in imagesFor(variant)"
+                            :image="image"
+                            :key="image.id")
+        new-image-button(:product="product"
+                         :variant="variant")
 
 
 </template>
 
 <script>
 import ImageEditableUnit from '../product_image/editable-unit.vue'
+import NewImageButton from './new-button.vue'
 
 export default {
   components: {
-    ImageEditableUnit
+    ImageEditableUnit,
+    NewImageButton
   },
   // mixins: [],
   props: {

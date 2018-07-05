@@ -9,33 +9,37 @@
       font-size: $size-6
       font-weight: $weight-bold
 
-  .tools-wrapper
-    +clearfix
-    margin-bottom: 1rem
-
   .image-list
     @extend %is-flex-vc
     flex-wrap: wrap
     margin-left: -.25rem
     margin-right: -.25rem
     > .vc-product-image-editable-unit,
-    > .empty-state
+    > .vc-product-image-new-button
       width: 50%
       flex-shrink: 0
       +from($iphone-plus)
         width: 20%
 
-  .empty-state
+  .vc-product-image-new-button
     padding: 0.25rem
-    > .inner
+    > .button
       position: relative
       width: 100%
       padding-bottom: 100%
       background-color: $light
-    > .inner > .fa
+      box-shadow: 0 0 .3rem rgba($black, .3)
+      transition: box-shadow .3s
+      &:hover,
+      &:focus
+        box-shadow: 0 0 1rem rgba($black, .5)
+    > .button > .icon
       position: absolute
       top: 50%
       left: 50%
+      margin: 0
       transform: translate(-50%, -50%)
       font-size: $size-1
       color: darken($light, 20)
+    > .button > .text
+      display: none
