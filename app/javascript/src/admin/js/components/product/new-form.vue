@@ -88,10 +88,9 @@
 
       //- previews
       .column.preview-container
+        label.label Preview
         result-preview(:form="form"
                        :is-new-record="product.isNewRecord()")
-        //- TODO: create a component for roughly preview input content
-        //- product-previewer(:product="this.form")
 
 </template>
 

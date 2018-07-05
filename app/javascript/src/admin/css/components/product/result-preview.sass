@@ -4,6 +4,9 @@
   background-color: $light
   color: $grey
 
+  hr
+    background-color: $grey
+    height: 1px
   .label
     color: $grey
 
@@ -57,19 +60,22 @@
 
   .option-unit
     @extend %is-flex-vc
+    flex-wrap: wrap
     font-size: $size-7
-    &:not(:last-child)
-      margin-bottom: 0.5rem
     > .option-type,
     > .option-value
       display: inline-block
     > .option-type
       color: darken($grey, 10)
+      font-weight: $weight-bold
+      &:before
+        content: '・'
       &:after
         content: ':'
         margin-right: .5rem
     > .option-value
       padding: 0.2rem .5rem
+      margin-bottom: 0.5rem
       border-radius: 5px
       background-color: $grey
       color: $white
@@ -89,8 +95,6 @@
       font-weight: $weight-bold
       &:before
         content: '・'
-    > .property-value
-      font-size: $size-6
     > .unit-name
       margin-left: .5rem
       &:before
