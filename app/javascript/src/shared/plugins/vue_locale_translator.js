@@ -11,8 +11,8 @@ function install(Vue) {
        * @param {string} attribute attribute name
        * @returns {string}
        */
-      attributeLocaleText(model, attribute) {
-        return i18n.t(`activerecord.attributes.${model}.${attribute}`)
+      attributeLocaleText(model, attribute, options = {}) {
+        return i18n.t(`activerecord.attributes.${model}.${attribute}`, options)
       },
 
       /**

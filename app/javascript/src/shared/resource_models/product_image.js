@@ -12,7 +12,7 @@ const OPTIONS = {
     'url',
     'thumb_url',
     'original_filename',
-    'product',
+    'product_id',
     'is_cover',
     'variant_id'
   ],

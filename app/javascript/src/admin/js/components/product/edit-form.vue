@@ -15,16 +15,7 @@
           b-tab-item(:label="pageTitleLocaleText('admin', 'products', 'basic_product_info')"
                      icon="file-text-o")
             //- TODO: Dev only
-            .tools.is-clearfix
-              .is-pulled-right
-                .upload-images-button.button.is-primary
-                  .icon
-                    i.fa.fa-plus
-                  span 新增商品圖片
-            .image-list
-              image-editable-unit(v-for="image in images"
-                                  :image="image"
-                                  :key="image.id")
+            image-editor-wrapper(:product="product")
 
             section.section
               b-field(:label="attributeLocaleText('product', 'name')"
@@ -142,7 +133,7 @@ import PropertiesColumns from './properties-columns.vue'
 import DescriptionColumn from './description-column.vue'
 import VariantEditableUnit from '../product_variant/editable-unit.vue'
 import StockManagementUnit from '../product_variant/stock-management-unit.vue'
-import ImageEditableUnit from '../product_image/editable-unit.vue'
+import ImageEditorWrapper from '../product_image/editor-wrapper.vue'
 
 export default {
   components: {
@@ -152,7 +143,7 @@ export default {
     DescriptionColumn,
     VariantEditableUnit,
     StockManagementUnit,
-    ImageEditableUnit
+    ImageEditorWrapper
   },
 
   // mixins: [],
@@ -200,10 +191,6 @@ export default {
 
     variants() {
       return this.$store.getters['productVariants/all']
-    },
-
-    images() {
-      return this.$store.getters['productImages/all']
     },
 
     dirtyCheckClass() {

@@ -11,6 +11,8 @@ zh-TW:
         image: 圖片
         use_case: 用於
         variant_id: 所屬規格
+        general_images: 商品圖片
+        images_for: '屬於 %{variant_name}'
 
     errors:
       models:

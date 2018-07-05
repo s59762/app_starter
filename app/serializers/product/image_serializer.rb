@@ -22,7 +22,8 @@ class Product::ImageSerializer < ApplicationSerializer
              :thumb_url,
              :original_filename,
              :is_cover,
-             :variant_id
+             :variant_id,
+             :product_id
 
   belongs_to :product, optional: true, if: -> { instance_options[:show_product] }
   belongs_to :variant, optional: true, if: -> { instance_options[:show_variant] }
