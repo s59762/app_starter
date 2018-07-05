@@ -58,30 +58,6 @@ export const find = ({
   })
 }
 
-export const uploadImages = ({
-  dispatch,
-  commit
-}, formData) => {
-  commit(types.API_REQUEST_START, 'uploadImages')
-
-  return new Promise((resolve, reject) => {
-    Product.uploadImages(formData)
-      .then(response => {
-        commit(types.PRODUCT_IMAGE_UPLOAD_SUCCESS, response)
-
-        resolve(response)
-      })
-      .catch(errors => {
-        commit(types.API_REQUEST_FAIL, errors)
-        dispatch('errorMessageHandler', errors, {
-          root: true
-        })
-
-        reject(errors)
-      })
-  })
-}
-
 export const save = ({
   dispatch,
   commit
@@ -137,6 +113,43 @@ export const destroy = ({
       })
       .catch(errors => {
         model.errors.record(errors)
+        commit(types.API_REQUEST_FAIL, errors)
+        dispatch('errorMessageHandler', errors, {
+          root: true
+        })
+
+        reject(errors)
+      })
+  })
+}
+
+export const uploadImages = ({
+  dispatch,
+  commit
+}, formData) => {
+  commit(types.API_REQUEST_START, 'uploadImages')
+
+  return new Promise((resolve, reject) => {
+    Product.uploadImages(formData)
+      .then(response => {
+        if (formData.get('product[product_id]')) {
+          commit(types.UPDATE_PRODUCT_SUCCESS, response)
+          dispatch('productVariants/receiveResourcesFromRelationships', response, {
+            root: true
+          })
+          dispatch('productOptionTypes/receiveResourcesFromRelationships', response, {
+            root: true
+          })
+          dispatch('productImages/receiveResourcesFromRelationships', response, {
+            root: true
+          })
+        } else {
+          commit(types.PRODUCT_IMAGE_UPLOAD_SUCCESS, response)
+        }
+
+        resolve(response)
+      })
+      .catch(errors => {
         commit(types.API_REQUEST_FAIL, errors)
         dispatch('errorMessageHandler', errors, {
           root: true

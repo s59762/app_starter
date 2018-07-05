@@ -7,7 +7,9 @@ class Admin::ProductImageForm < ApplicationForm
   ).freeze
 
   property :images, virtual: true
-  properties :use_case, :product_id
+  properties :use_case,
+             :product_id,
+             :variant_id
 
   validate :valid_use_case?
   validate :valid_images_content?
@@ -18,7 +20,7 @@ class Admin::ProductImageForm < ApplicationForm
   def save
     ::ActiveRecord::Base.transaction do
       images.each do |file|
-        new_image = Product::Image.create image: file, use_case: use_case, product_id: product_id
+        new_image = Product::Image.create image: file, use_case: use_case, product_id: product_id, variant_id: variant_id
         created_image_ids << new_image.id
       end
     end

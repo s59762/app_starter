@@ -14,8 +14,12 @@
 </template>
 
 <script>
+import NewImageForm from './form.vue'
+
 export default {
-  // components: {},
+  components: {
+    NewImageForm
+  },
   // mixins: [],
   props: {
     product: {

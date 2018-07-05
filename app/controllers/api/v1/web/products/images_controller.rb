@@ -1,10 +1,9 @@
 class Api::V1::Web::Products::ImagesController < Api::V1::Web::BaseController
-  # '/products/images' and 'products/:product_id/images'
-  # for description images upload, and normal images upload.
+  # '/products/images'
   def create
     check_policy ProductPolicy.new(current_api_user, :product).create?
 
-    image = Product::Image.new(product_id: params[:product_id])
+    image = Product::Image.new
     @form = Admin::ProductImageForm.new(image)
 
     return raise ValidationFailureException, @form unless @form.validate(image_params)
@@ -34,7 +33,7 @@ class Api::V1::Web::Products::ImagesController < Api::V1::Web::BaseController
   private
 
   def image_params
-    params.require(:product).permit(:use_case, images: [])
+    params.require(:product).permit(:use_case, :product_id, :variant_id, images: [])
   end
 
   # 因為這個 action 同時負責 `/products/images` 和 `/products/:product_id/images` 兩個 routes 的 POST request

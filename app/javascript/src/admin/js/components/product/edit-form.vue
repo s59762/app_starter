@@ -14,9 +14,6 @@
           //- 基本資料
           b-tab-item(:label="pageTitleLocaleText('admin', 'products', 'basic_product_info')"
                      icon="file-text-o")
-            //- TODO: Dev only
-            image-editor-wrapper(:product="product")
-
             section.section
               b-field(:label="attributeLocaleText('product', 'name')"
                       :type="errors.errorClassAt('name')"
@@ -81,6 +78,7 @@
           //- 圖片管理
           b-tab-item(:label="pageTitleLocaleText('admin', 'products', 'images_management')"
                      icon="picture-o")
+            image-editor-wrapper(:product="product")
 
           //- 庫存管理
           b-tab-item(:label="pageTitleLocaleText('admin', 'products', 'stocks_management')"

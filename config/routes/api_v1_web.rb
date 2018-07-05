@@ -37,7 +37,6 @@ namespace :api do
         end
 
         resource :collect, only: %i(create destroy), controller: 'products/collect'
-        resources :images, only: %i(create), controller: 'products/images'
       end
 
       resources :product_option_types, only: %i(update destroy), controller: 'products/option_types'
