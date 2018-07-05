@@ -88,6 +88,8 @@
 
       //- previews
       .column.preview-container
+        result-preview(:form="form"
+                       :is-new-record="product.isNewRecord()")
         //- TODO: create a component for roughly preview input content
         //- product-previewer(:product="this.form")
 
@@ -101,6 +103,7 @@ import PriceInfoColumns from './price-info-columns.vue'
 import OptionTypesColumns from './option-types-columns.vue'
 import PropertiesColumns from './properties-columns.vue'
 import DescriptionColumn from './description-column.vue'
+import ResultPreview from './result-preview.vue'
 
 export default {
   components: {
@@ -108,7 +111,8 @@ export default {
     PriceInfoColumns,
     OptionTypesColumns,
     PropertiesColumns,
-    DescriptionColumn
+    DescriptionColumn,
+    ResultPreview
   },
 
   // mixins: [],
