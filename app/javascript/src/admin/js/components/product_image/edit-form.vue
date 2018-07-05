@@ -11,10 +11,10 @@
           :message="errors.get('variant_id')")
     b-select(v-model="form.variant_id"
              :loading="isLoading"
-             :placeholder="messageLocaleText('help.no_variant')"
+             :placeholder="attributeLocaleText('product/image', 'general_images')"
              @input="errors.clear('variant_id')"
              expanded)
-      option(:label="messageLocaleText('help.no_variant')"
+      option(:label="attributeLocaleText('product/image', 'general_images')"
              :value="null")
       option(v-for="variant in variants"
              :value="variant.id")
