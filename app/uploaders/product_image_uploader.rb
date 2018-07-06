@@ -18,6 +18,10 @@ class ProductImageUploader < CarrierWave::Uploader::Base
   process resize_to_limit: [1280, 1280], if: :image?
 
   # Create different versions of your uploaded files:
+  version :square, if: :normal_images? do
+    process resize_to_fill: [800, 800]
+  end
+
   version :thumb do
     process resize_to_fill: [128, 128]
   end
@@ -45,6 +49,10 @@ class ProductImageUploader < CarrierWave::Uploader::Base
 
   def image?(new_file)
     new_file.content_type.start_with? 'image'
+  end
+
+  def normal_images?(new_file)
+    model.use_case == 'normal'
   end
 
   def timestamp

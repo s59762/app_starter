@@ -19,6 +19,7 @@ class Product::ImageSerializer < ApplicationSerializer
   attributes :id,
              :use_case,
              :url,
+             :squal_image,
              :thumb_url,
              :original_filename,
              :is_cover,
@@ -30,6 +31,12 @@ class Product::ImageSerializer < ApplicationSerializer
 
   def url
     object.image.url
+  end
+
+  def squal_image
+    return nil if object.description?
+
+    object.image.squal.url
   end
 
   def thumb_url
