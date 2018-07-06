@@ -8,10 +8,11 @@
     b(v-if="variant") [ {{ variant.nameWithSku() }} ]&nbsp;
     span 的圖片
 
-  b-field
+  b-field(message="JPG, PNG, GIF only")
     b-upload(v-model='imageFiles'
              multiple
-             drag-drop)
+             drag-drop
+             accept="image/*")
       section.section
         .content.has-text-centered
           p

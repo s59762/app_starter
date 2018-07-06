@@ -74,10 +74,14 @@ class ProductSerializer < ApplicationSerializer
   end
 
   def cover
-    return nil unless object.normal_images.cover.present?
+    return nil unless object.normal_images.present?
+
+    cover = object.normal_images.cover.present? ? object.normal_images.cover.take : object.normal_images.take
+
     {
-      url: object.normal_images.cover.take.image.url,
-      thumb_url: object.normal_images.cover.take.image.thumb.url
+      url: cover.image.url,
+      squal_url: cover.image.squal.url,
+      thumb_url: cover.image.thumb.url
     }
   end
 
