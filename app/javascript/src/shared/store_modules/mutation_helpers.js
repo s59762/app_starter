@@ -1,6 +1,7 @@
 import normalize from 'jsonapi-normalizer'
 import Vue from 'vue/dist/vue.esm'
 import merge from 'lodash.merge'
+import union from 'lodash.union'
 
 /**
  * 若 server response 包含 meta Object 的話，一併存到 vuex module 中
@@ -46,7 +47,7 @@ export default class MutationHelpers {
 
     tryStoreMetaToVuex(state, response)
     state.entities = merge({}, state.entities, normalizedResult.entities[this.resource_type])
-    state.result = merge([], state.result, normalizedResult.result[this.resource_type])
+    state.result = union(state.result, normalizedResult.result[this.resource_type])
   }
 
   /**

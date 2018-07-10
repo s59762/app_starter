@@ -19,6 +19,7 @@
     "lodash.clonedeep": "^4.5.0",
     "lodash.debounce": "^4.0.8",
     "lodash.merge": "^4.6.1",
+    "lodash.union": "^4.6.0",
     "moment": "^2.22.2",
     "odd-error_object": "https://github.com/FunnyQ/odd-error_object.git",
     "odd-fetching_data_options_service": "https://github.com/FunnyQ/odd-fetching_data_options_service.git",
