@@ -28,7 +28,7 @@ Rails.application.routes.draw do
                       }
 
   # for bot only
-  resource :robots, only: [:show], controller: :robot
+  resource :robots, only: [:show]
 
   root 'pages#index'
 
