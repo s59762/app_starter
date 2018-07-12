@@ -1,4 +1,5 @@
 set :stage, :staging
+set :rails_env, 'staging'
 
 role :app, %w(deployer@[your.domain.name]) # RENAME: change to your domain name
 role :web, %w(deployer@[your.domain.name]) # RENAME: change to your domain name

@@ -26,6 +26,9 @@ staging:
   http_protocol:
   pg_username:
   pg_password:
+  redis_sidekiq_db_no:
+  redis_cache_db_no:
+  redis_action_cable_db_no:
   mailgun_user_name:
   mailgun_password:
   mailgun_api_key:
@@ -38,6 +41,9 @@ production:
   http_protocol: https
   pg_username:
   pg_password:
+  redis_sidekiq_db_no:
+  redis_cache_db_no:
+  redis_action_cable_db_no:
   mailgun_user_name:
   mailgun_password:
   mailgun_api_key:
