@@ -11,8 +11,9 @@ defaults: &defaults
     type: 'website'
     locale: 'zh_TW'
   trackers:
-    ga: ''
-    facebook_pixel: ''
+    ignore_dnt: false
+    ga: <%= ENV['ga_id'] %>
+    facebook_pixel: <%= ENV['fb_pixel_id'] %>
 
 development:
   <<: *defaults

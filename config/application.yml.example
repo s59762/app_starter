@@ -15,6 +15,8 @@ smtp_port: '1025'
 slack_webhook: https://hooks.slack.com/services/XXXXX/XXXXX/XXXXXX
 slack_team: yourteamname
 slack_channels: '#channel-name,#can-assign-multiple-channels,#separate-with-comma'
+ga_id: ''         # GA ID for development
+fb_pixel_id: ''   # Pixel ID for development
 SECRET_KEY_BASE: a914a802130373c8939559575b9186385d474b139d28f44c7450ccfa0569b87f609ec31bb64766a4ea9a5200fcb36e680036cd7501be1b14616d33e9f1be1c1c
 
 test:
@@ -49,4 +51,6 @@ production:
   mailgun_api_key:
   smtp_server: 'smtp.mailgun.org'
   smtp_port: '587'
+  ga_id: ''
+  fb_pixel_id: ''
   SECRET_KEY_BASE:
