@@ -124,3 +124,11 @@
       border: 1px solid darken($light, 10)
     &:not(:last-child)
       margin-right: 0.5em
+
+%has-lazyload
+  &[lazy="loading"]
+    +loader
+    animation: spinAround 500ms infinite linear
+    position: absolute
+    top: calc(50% - .5em)
+    left: calc(50% - .5em)
