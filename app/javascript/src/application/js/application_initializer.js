@@ -1,9 +1,9 @@
 import Vue from 'vue/dist/vue.esm'
 import Buefy from 'buefy'
-import store from './store'
-import cloneDeep from 'lodash.clonedeep'
 import VueLocaleTranslator from '../../shared/plugins/vue_locale_translator'
 import JwtManageService from '../../shared/services/jwt_manage_service'
+import store from './store'
+import cloneDeep from 'lodash.clonedeep'
 import '../../../src/locale/zh-TW'
 import moment from 'moment'
 import axios from 'axios'
@@ -46,9 +46,7 @@ class ApplicationInitializer {
     moment.locale('zh-TW')
 
     // setting up axios default headers with JWT
-    axios.defaults.headers.common['Authorization'] = JwtManageService.getAuthorizationHeader(
-      envScope
-    )
+    axios.defaults.headers.common['Authorization'] = JwtManageService.getAuthorizationHeader(envScope)
 
     this.requireVueInitializers()
     this.detectAndInitializingVueInstances()
@@ -77,9 +75,7 @@ class ApplicationInitializer {
     document.addEventListener('turbolinks:load', () => {
       let templates = document.querySelectorAll('[data-vue]')
       for (let element of templates) {
-        let vm = new Vue(
-          Object.assign(this.vueInitializers[element.dataset.vue], { el: element, store })
-        )
+        let vm = new Vue(Object.assign(this.vueInitializers[element.dataset.vue], { el: element, store }))
 
         this.vms.push(vm)
       }
