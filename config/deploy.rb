@@ -7,7 +7,7 @@ require 'capistrano-db-tasks'
 set :application, ENV['app_name'].classify
 # set :repo_url, 'git@github.com:oracle-design/kaishall.git'
 set :repo_url, %(git@github.com:oracle-design/#{ENV['app_name']}.git)
-set :branch, 'master'
+set :branch, ENV['BRANCH'] if ENV['BRANCH']
 set :deploy_to, %(/home/deployer/websites/#{ENV['app_name']})
 
 set :linked_files, %w(config/database.yml)
