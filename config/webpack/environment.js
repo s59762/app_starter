@@ -18,6 +18,12 @@ environment.plugins.append(
   })
 )
 
+// Ignore moment js locale files
+environment.plugins.append(
+  'Ignore',
+  new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)
+)
+
 environment.loaders.append('vue', vue)
 
 environment.loaders.append('import-glob', {

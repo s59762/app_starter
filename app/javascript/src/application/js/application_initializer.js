@@ -6,6 +6,7 @@ import store from './store'
 import cloneDeep from 'lodash.clonedeep'
 import '../../../src/locale/zh-TW'
 import moment from 'moment'
+import 'moment/locale/zh-tw'
 import axios from 'axios'
 
 const storeState = cloneDeep(store.state)
