@@ -76,16 +76,19 @@ Rails.application.configure do
 
   # trackers
   config.middleware.use(Rack::Tracker) do
-    dnt_config = SiteConfig['trackers.ignore_dnt']
-    ga_config = { tracker: lambda { |env| SiteConfig['trackers.ga'] }, position: :body }
-    fb_pixel_config = { id: lambda { |env| SiteConfig['trackers.facebook_pixel'] } }
+    if ENV['SKIP_TRACKER'] == 'true'
+    else
+      dnt_config = SiteConfig['trackers.ignore_dnt']
+      ga_config = { tracker: lambda { |env| SiteConfig['trackers.ga'] }, position: :body }
+      fb_pixel_config = { id: lambda { |env| SiteConfig['trackers.facebook_pixel'] } }
 
-    if dnt_config
-      ga_config.merge!({ DO_NOT_RESPECT_DNT_HEADER: dnt_config })
-      fb_pixel_config.merge!({ DO_NOT_RESPECT_DNT_HEADER: dnt_config })
+      if dnt_config
+        ga_config.merge!({ DO_NOT_RESPECT_DNT_HEADER: dnt_config })
+        fb_pixel_config.merge!({ DO_NOT_RESPECT_DNT_HEADER: dnt_config })
+      end
+
+      handler :google_analytics, ga_config if SiteConfig['trackers.ga'].present?
+      handler :facebook_pixel, fb_pixel_config if SiteConfig['trackers.facebook_pixel'].present?
     end
-
-    handler :google_analytics, ga_config if SiteConfig['trackers.ga'].present?
-    handler :facebook_pixel, fb_pixel_config if SiteConfig['trackers.facebook_pixel'].present?
   end
 end

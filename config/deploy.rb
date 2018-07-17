@@ -74,7 +74,7 @@ namespace :deploy do
       run_locally { execute "mv #{local_packs_dir} #{temp_packs_dir}" }
 
       # compile assets locally
-      run_locally { execute "RAILS_ENV=#{fetch(:stage)} bundle exec rake assets:precompile" }
+      run_locally { execute "SKIP_TRACKER=true RAILS_ENV=#{fetch(:stage)} bundle exec rake assets:precompile" }
 
       # rsync to each server
       on roles(fetch(:assets_roles, [:web])) do

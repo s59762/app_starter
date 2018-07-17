@@ -57,7 +57,7 @@ chdir APP_ROOT do
   system! 'docker-compose up -d'
   puts "\n== Please wait for db setup =="
   sleep 10
-  system! 'bin/rails db:setup'
+  system! 'bin/rails db:setup SKIP_TRACKER=true'
   system! 'docker-compose down'
 
   puts "\n== Removing old logs and tempfiles =="
