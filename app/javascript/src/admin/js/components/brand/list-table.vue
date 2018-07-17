@@ -56,7 +56,6 @@ export default {
   data() {
     return {
       resourceType: 'brands',
-      currentUrlPath: '/admin/brands',
       sortField: 'brands.created_at'
     }
   },

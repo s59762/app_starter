@@ -103,7 +103,6 @@ export default {
   data() {
     return {
       resourceType: 'admins',
-      currentUrlPath: '/admin/admins',
       currentFilter: 0,
       availableFilters: ['actived', 'suspended'],
       searchOptions: {

@@ -71,7 +71,6 @@ export default {
   data() {
     return {
       resourceType: 'products',
-      currentUrlPath: '/admin/products',
       availableFilters: [''],
       sortField: 'products.created_at'
     }

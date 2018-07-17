@@ -17,7 +17,6 @@ export default {
   data() {
     return {
       resourceType: 'admins',
-      currentUrlPath: '/admin/admins/',
       isNewAdminFormActive: false
     }
   },

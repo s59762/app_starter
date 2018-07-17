@@ -84,7 +84,6 @@ export default {
   data() {
     return {
       resourceType: 'users',
-      currentUrlPath: '/admin/users',
       currentFilter: 0,
       availableFilters: [''],
       searchOptions: {

@@ -72,7 +72,6 @@ export default {
   data() {
     return {
       resourceType: 'productCategories',
-      currentUrlPath: '/admin/product_categories',
       currentPage: null,
       pageSize: null,
       sortOrder: 'asc',
