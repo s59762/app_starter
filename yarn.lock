@@ -3980,8 +3980,8 @@ obuf@^1.0.0, obuf@^1.1.1:
   resolved "https://github.com/FunnyQ/odd-policy_user_model.git#777d51ad75999d4a452fd094579a95384be61e04"
 
 "odd-resource_model@https://github.com/FunnyQ/odd-resource_model.git":
-  version "0.1.2"
-  resolved "https://github.com/FunnyQ/odd-resource_model.git#f92eadbeb3d6f5ceb24d272d461bf4970099e16a"
+  version "0.1.3"
+  resolved "https://github.com/FunnyQ/odd-resource_model.git#35108e88f1373795e759d07d7ab87c568f17f410"
   dependencies:
     axios "^0.18.0"
     lodash.defaults "^4.2.0"
