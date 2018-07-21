@@ -1,6 +1,6 @@
 <template lang="pug">
 
-.vc-product-variant-edit-button
+.vc-product-variant-edit-button.option-button
   .button.is-info.is-block(@click="showForm"
                            :class="size")
     .icon

@@ -40,8 +40,8 @@
         | {{props.row.displayPrice('discounted')}}
         span(v-if="props.row.hasDiscount()") （{{props.row.displayDiscountRate()}}）
 
-      b-table-column(:label="actionLocaleText('admin', 'options')"
-                    numeric)
+      b-table-column.options(:label="actionLocaleText('admin', 'options')"
+                             numeric)
           //- Edit button
           button.button.is-small.is-info(@click="linkToEditPage(props.row)")
             .icon

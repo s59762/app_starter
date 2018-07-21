@@ -68,10 +68,9 @@
                     sortable)
         | {{timeAgoLocaleText(props.row.created_at)}}
 
-      b-table-column(:label="actionLocaleText('admin', 'options')"
-                     numeric)
+      b-table-column.options(:label="actionLocaleText('admin', 'options')"
+                             numeric)
         suspend-button(:admin="props.row")
-        | &nbsp;
         edit-button(:admin="props.row")
 
 

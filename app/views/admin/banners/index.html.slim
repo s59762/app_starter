@@ -1,0 +1,11 @@
+- breadcrumb :admin_banners
+
+= cell('admin/common').call(:content_header)
+
+.box.content-box.is-primary(data-vue="banner_list_container")
+  .box-header.with-border
+    .box-tools
+      .tools
+        new-banner-button
+  .box-body
+    banner-list-table

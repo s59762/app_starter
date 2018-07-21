@@ -1,6 +1,6 @@
 <template lang="pug">
 
-.vc-product-variant-update-stock-button
+.vc-product-variant-update-stock-button.option-button
   .button.is-block(:class="buttonTypeClasses"
                    @click="showForm")
     .icon

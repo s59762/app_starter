@@ -94,6 +94,15 @@
       title: <%= I18n.t('page_titles.admin.users.main_title') %>
       policy: user
       action: index
+- title: <%= I18n.t('page_titles.admin.sidebar.content_management') %>
+  menus:
+    - path: <%= Rails.application.routes.url_helpers.admin_banners_path %>
+      active_by: <%= Rails.application.routes.url_helpers.admin_banners_path %>
+      icon: fa-picture-o
+      title: <%= I18n.t('page_titles.admin.banners.main_title') %>
+      policy: Banner
+      action: show
+
 - title: <%= I18n.t('page_titles.admin.sidebar.system_config') %>
   menus:
     - path: <%= Rails.application.routes.url_helpers.admin_system_config_path %>

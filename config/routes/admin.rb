@@ -25,6 +25,9 @@ namespace :admin do
   # product management
   resources :products, only: %i(index new edit)
 
+  # Banner management
+  resources :banners, only: :index
+
   # system config
   resource :system_config, only: %i(show), controller: 'system_config'
 end
