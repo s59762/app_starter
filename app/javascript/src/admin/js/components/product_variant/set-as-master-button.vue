@@ -1,6 +1,6 @@
 <template lang="pug">
 
-.vc-product-variant-set-as-master-button
+.vc-product-variant-set-as-master-button.option-button
   .button.is-warning.is-block(v-if="!variant.is_master"
                               @click="setAsMaster"
                               :class="size")

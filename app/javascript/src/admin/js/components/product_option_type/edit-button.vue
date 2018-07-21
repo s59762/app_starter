@@ -1,6 +1,6 @@
 <template lang="pug">
 
-.vc-product-option-type-edit-button
+.vc-product-option-type-edit-button.option-button
   .button.is-small.is-info.edit-button(@click="showForm")
     .icon
       i.fa.fa-pencil

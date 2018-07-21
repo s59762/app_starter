@@ -1,6 +1,6 @@
 <template lang="pug">
 
-span.vc-product-category-new-sub-category-button
+.vc-product-category-new-sub-category-button.option-button
   .button.is-small.is-primary(@click="openForm"
                               data-behavior="new-sub-category-button")
     span.icon

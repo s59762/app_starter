@@ -53,6 +53,11 @@ crumb :admin_products_edit do |product|
   parent :admin_products
 end
 
+crumb :admin_banners do
+  link I18n.t('page_titles.admin.banners.main_title'), admin_admins_path, icon: 'fa-picture-o'
+  parent :admin_root
+end
+
 crumb :admin_system_config do
   link I18n.t('page_titles.admin.system_config.main_title'), admin_admins_path, icon: 'fa-gears'
   parent :admin_root

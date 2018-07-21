@@ -58,8 +58,8 @@ div.vc-user-list-table
                     sortable)
         | {{timeAgoLocaleText(props.row.created_at)}}
 
-      b-table-column(:label="actionLocaleText('admin', 'options')"
-                     numeric)
+      b-table-column.options(:label="actionLocaleText('admin', 'options')"
+                             numeric)
 
     template(slot='empty')
       section.section

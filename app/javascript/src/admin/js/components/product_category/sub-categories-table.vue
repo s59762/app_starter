@@ -16,8 +16,8 @@ b-table.vc-product-category-sub-categories-table(:data="subCategories"
                    :label="attributeLocaleText('product_category', 'products_count')")
       | {{ props.row.products_count }}
 
-    b-table-column(:label="actionLocaleText('admin', 'options')"
-                   width="50")
+    b-table-column.options(:label="actionLocaleText('admin', 'options')"
+                           width="50")
       edit-button(:category="props.row")
 
   template(slot='empty')

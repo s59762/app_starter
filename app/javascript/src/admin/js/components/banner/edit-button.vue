@@ -1,28 +1,26 @@
 <template lang="pug">
 
-.vc-product-category-edit-button.option-button
-  .button.is-small.is-info(@click="openForm"
-                           data-behavior="edit-product-category-button")
+span.vc-banner-edit-button.option-button
+  button.button.is-small.is-info(@click="showForm"
+                                 data-behavior="edit-banner-button")
     span.icon
       i.fa.fa-pencil
     span {{actionLocaleText('admin', 'edit')}}
   b-modal(:active.sync="isFormActive")
-    edit-form.form-modal(:category="category")
+    banner-form(:banner="banner")
 
 </template>
 
 <script>
-import EditForm from './edit-form'
+import BannerForm from './form.vue'
 
 export default {
   components: {
-    EditForm
+    BannerForm
   },
-
   // mixins: [],
-
   props: {
-    category: {
+    banner: {
       type: Object,
       required: true
     }
@@ -33,15 +31,11 @@ export default {
       isFormActive: false
     }
   },
-
   // computed: {},
-
   // created() {},
-
   // mounted() {},
-
   methods: {
-    openForm() {
+    showForm() {
       this.isFormActive = true
     }
   }

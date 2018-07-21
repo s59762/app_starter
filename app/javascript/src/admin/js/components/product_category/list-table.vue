@@ -30,11 +30,10 @@
                      centered)
         | {{ calculateTopLevelCategoryProductsCount(props.row) }}
 
-      b-table-column(:label="actionLocaleText('admin', 'options')"
-                     numeric)
+      b-table-column.options(:label="actionLocaleText('admin', 'options')"
+                             numeric)
         new-sub-category-button(:parent="props.row"
                                 @product-category-added="categoryAddedHandler")
-        | &nbsp;
         edit-button(:category="props.row")
 
     template(slot="detail"
