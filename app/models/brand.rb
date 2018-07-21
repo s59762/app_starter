@@ -5,7 +5,7 @@
 #  id             :bigint(8)        not null, primary key
 #  name           :string
 #  introduce      :string
-#  description    :string
+#  description    :text
 #  logo           :string
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
@@ -13,6 +13,8 @@
 #
 
 class Brand < ApplicationRecord
+  include EditorAttachable
+
   allow_sort_fields :'brands.id',
                     :'brands.name',
                     :'brands.created_at',

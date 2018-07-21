@@ -85,7 +85,6 @@ export default {
     generateFormData() {
       let formData = new FormData()
 
-      formData.append('product[use_case]', 'normal')
       formData.append('product[product_id]', this.product.id)
       if (this.variant) formData.append('product[variant_id]', this.variant.id)
       this.imageFiles.forEach(file => {

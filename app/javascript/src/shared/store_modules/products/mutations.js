@@ -41,7 +41,7 @@ export default {
     state.isCallingAPI = false
   },
 
-  [types.PRODUCT_IMAGE_UPLOAD_SUCCESS](state, response) {
+  [types.PRODUCT_IMAGE_UPLOAD_SUCCESS](state) {
     state.isCallingAPI = false
   },
 

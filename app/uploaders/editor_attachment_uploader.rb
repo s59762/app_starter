@@ -1,4 +1,4 @@
-class ProductImageUploader < CarrierWave::Uploader::Base
+class EditorAttachmentUploader < CarrierWave::Uploader::Base
   # delete empty folder after remove uploaded files
   before :cache, :save_original_filename
   after :remove, :delete_empty_upstream_dirs
@@ -15,16 +15,7 @@ class ProductImageUploader < CarrierWave::Uploader::Base
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
-  process resize_to_limit: [1280, 1280]
-
-  # Create different versions of your uploaded files:
-  version :square do
-    process resize_to_fill: [800, 800]
-  end
-
-  version :thumb do
-    process resize_to_fill: [128, 128]
-  end
+  process resize_to_limit: [1280, 1280], if: :image?
 
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
@@ -46,6 +37,10 @@ class ProductImageUploader < CarrierWave::Uploader::Base
   end
 
   protected
+
+  def image?(new_file)
+    new_file.content_type.start_with? 'image'
+  end
 
   def timestamp
     var = :"@#{mounted_as}_timestamp"

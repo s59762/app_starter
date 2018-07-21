@@ -14,7 +14,7 @@
 class Brand::Banner < ApplicationRecord
   allow_sort_fields :'brand_banners.position'
 
-  belongs_to :brand
+  belongs_to :brand, touch: true
 
   acts_as_list scope: [:brand_id]
 

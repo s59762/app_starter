@@ -191,6 +191,30 @@ export const fetchBanners = ({
   })
 }
 
+export const uploadAttachments = ({
+  dispatch,
+  commit
+}, formData) => {
+  commit(types.API_REQUEST_START, 'uploadAttachments')
+
+  return new Promise((resolve, reject) => {
+    Brand.uploadAttachments(formData)
+      .then(response => {
+        commit(types.UPLOAD_ATTACHMENTS_SUCCESS)
+
+        resolve(response)
+      })
+      .catch(errors => {
+        commit(types.API_REQUEST_FAIL, errors)
+        dispatch('errorMessageHandler', errors, {
+          root: true
+        })
+
+        reject(errors)
+      })
+  })
+}
+
 
 export const receiveResourcesFromRelationships = ({
   commit

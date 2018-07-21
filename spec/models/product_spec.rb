@@ -24,8 +24,7 @@ RSpec.describe Product, type: :model do
   it { should belong_to :brand }
   it { should belong_to :category }
   it { should have_many :images }
-  it { should have_many :normal_images }
-  it { should have_many :description_images }
+  it { should have_many :editor_attachments }
   it { should have_many :option_types }
   it { should have_many :variants }
   it { should have_one :master }

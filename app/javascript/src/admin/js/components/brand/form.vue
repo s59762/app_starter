@@ -41,9 +41,12 @@
   b-field(:label="attributeLocaleText('brand', 'description')"
           :type="errors.errorClassAt('description')"
           :message="errors.get('description')")
-    b-input(type="textarea"
-            v-model="form.description"
-            @input="errors.clear('description')")
+    quill-editor(type="textarea"
+                 ref="quill"
+                 v-model="form.description"
+                 @input="errors.clear('description')"
+                 :options="editorOptions")
+
 
 
   br
@@ -55,18 +58,36 @@
 </template>
 
 <script>
+import quillEditorMixin from '../mixins/quill_editor_mixin.js'
 import Brand from '../../../../shared/resource_models/brand.js'
 import Form from 'odd-form_object'
 
 export default {
   // components: {},
-  // mixins: [],
+  mixins: [quillEditorMixin],
+
   props: {
     brand: {
       type: Object,
       required: false,
       default() {
         return new Brand()
+      }
+    },
+
+    uploadAction: {
+      type: String,
+      required: false,
+      default: () => {
+        return 'brands/uploadAttachments'
+      }
+    },
+
+    editorPlaceholder: {
+      type: String,
+      required: false,
+      default: () => {
+        return 'Describe brand here...'
       }
     }
   },
@@ -110,7 +131,11 @@ export default {
       }
     }
   },
-  // created() {},
+
+  created() {
+    this.form.uploaded_attachment_ids = []
+  },
+
   // mounted() {},
   methods: {
     showLogoImageCropper() {
@@ -164,6 +189,10 @@ export default {
         .then(() => {
           this.$parent.close()
         })
+    },
+
+    imageUploadedCallback(image) {
+      this.form.uploaded_attachment_ids.push(parseInt(image.id))
     }
   }
 }

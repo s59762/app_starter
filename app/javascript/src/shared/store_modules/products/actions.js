@@ -144,8 +144,32 @@ export const uploadImages = ({
             root: true
           })
         } else {
-          commit(types.PRODUCT_IMAGE_UPLOAD_SUCCESS, response)
+          commit(types.PRODUCT_IMAGE_UPLOAD_SUCCESS)
         }
+
+        resolve(response)
+      })
+      .catch(errors => {
+        commit(types.API_REQUEST_FAIL, errors)
+        dispatch('errorMessageHandler', errors, {
+          root: true
+        })
+
+        reject(errors)
+      })
+  })
+}
+
+export const uploadAttachments = ({
+  dispatch,
+  commit
+}, formData) => {
+  commit(types.API_REQUEST_START, 'uploadAttachments')
+
+  return new Promise((resolve, reject) => {
+    Product.uploadAttachments(formData)
+      .then(response => {
+        commit(types.PRODUCT_IMAGE_UPLOAD_SUCCESS)
 
         resolve(response)
       })

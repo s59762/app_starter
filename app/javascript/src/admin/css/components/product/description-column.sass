@@ -1,30 +1,5 @@
 .vc-product-description-column
+  @extend %has-quill-editor
+
   .ql-editor
     min-height: 500px
-
-  .ql-snow .ql-picker.ql-size
-    .ql-picker-item[data-value="small"]::before,
-    .ql-picker-label[data-value="small"]::before
-      content: '小字'
-    .ql-picker-item::before,
-    .ql-picker-label::before
-      content: '一般'
-    .ql-picker-item[data-value="large"]::before,
-    .ql-picker-label[data-value="large"]::before
-      content: '大字'
-    .ql-picker-item[data-value="huge"]::before,
-    .ql-picker-label[data-value="huge"]::before
-      content: '巨大'
-  .ql-snow .ql-picker.ql-header
-    .ql-picker-label::before,
-    .ql-picker-item::before
-      content: '內文'
-    .ql-picker-label[data-value="1"]::before,
-    .ql-picker-item[data-value="1"]::before
-      content: '大標題'
-    .ql-picker-label[data-value="2"]::before,
-    .ql-picker-item[data-value="2"]::before
-      content: '副標題'
-    .ql-picker-label[data-value="3"]::before,
-    .ql-picker-item[data-value="3"]::before
-      content: '次標題'

@@ -8,7 +8,6 @@ const OPTIONS = {
   resourceType: 'product_images',
   attributes: [
     'id',
-    'use_case',
     'image',
     'original_filename',
     'product_id',

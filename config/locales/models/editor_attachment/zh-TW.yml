@@ -1,0 +1,26 @@
+zh-TW:
+  # model and attributes name
+  activerecord: &default
+    models:
+      editor_attachment:
+        one: 編輯器附件
+        other: 編輯器附件
+
+    attributes:
+      editor_attachment:
+        file: 檔案
+        original_filename: 原始檔名
+
+    errors:
+      models:
+        editor_attachment:
+          attributes:
+  activemodel: *default
+
+  # Enums
+  enums:
+    editor_attachment:
+
+  # AASM state machine
+  aasm_state:
+    editor_attachment:
