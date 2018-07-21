@@ -6,7 +6,8 @@
     span.icon
       i.fa.fa-pencil
     span {{ buttonText }}
-  b-modal(:active.sync="isFormActive")
+  b-modal(:active.sync="isFormActive"
+          :can-cancel="['x', 'outside']")
     brand-form(:brand="brand")
 
 </template>

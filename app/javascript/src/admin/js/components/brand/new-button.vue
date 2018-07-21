@@ -6,7 +6,8 @@
     span.icon
       i.fa.fa-plus
     span {{ actionLocaleText('admin', 'create', { model: modelNameLocaleText('brand') }) }}
-  b-modal(:active.sync="isFormActive")
+  b-modal(:active.sync="isFormActive"
+          :can-cancel="['x', 'outside']")
     brand-form
 
 </template>
