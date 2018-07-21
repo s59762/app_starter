@@ -5,6 +5,7 @@ zh-TW:
         general_info: 一般資訊
         product_info: 商品資訊
         sales_info: 銷售相關資訊
+        content_management: 內容管理
         system_config: 系統管理
       login:
         title: 請先登入
@@ -66,6 +67,11 @@ zh-TW:
       profile:
         main_title: 管理員個人檔案
         show: 編輯
+      banners:
+        main_title: Banner 管理
+        index: 列表
+        new: 建立 Banner
+        edit: 編輯 Banner
       system_config:
         main_title: 系統設定
         show: 選項列表

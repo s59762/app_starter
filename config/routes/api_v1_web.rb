@@ -34,7 +34,6 @@ namespace :api do
       # Product resource
       resources :products, only: %i(index show create update) do
         collection do
-          # Product image resource
           resources :images, only: %i(create), controller: 'products/images'
         end
 
@@ -51,6 +50,12 @@ namespace :api do
         resource :assign_to_variant, only: :update, controller: 'products/images/assign_to_variant'
       end
 
+      # Banners
+      resources :banners, only: %i(index create update destroy) do
+        collection do
+          resource :use_type, only: :show, controller: 'banners/use_type'
+        end
+      end
       resources :brand_banners, only: %i(create update destroy), controller: 'brands/banners', as: :brand_banners
 
       # Editor Attachment resource
