@@ -17,7 +17,7 @@ namespace :admin do
   resources :users, only: %i(index show)
 
   # Brand resource
-  resources :brands, only: %i(index)
+  resources :brands, only: %i(index show)
 
   # product category management
   resources :product_categories, only: %i(index)

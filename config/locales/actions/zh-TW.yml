@@ -1,43 +1,54 @@
 zh-TW:
   actions:
-    admin:
+    admin: &default
       add_new: '新增%{model}'
-      add_product_property: 增加商品屬性欄位
       add_product_option_type: 增加商品選項類型
       add_product_option_value: 增加選項
+      add_product_property: 增加商品屬性欄位
+      all: '所有%{model}'
       cancel: 取消
       change_password: 變更密碼
       close: 關閉
+      collect: 收藏
       confirm: 確認
       confirm_to_delete: 確認刪除%{model}
       create: '建立%{model}'
+      decrease_stock: 銷貨
       delete: 刪除
+      deleting: 刪除中...
       destroy: '刪除%{modle}'
       detail_of: '%{model}詳細內容'
       edit: '編輯'
       edit_on: '編輯%{model}'
       get_info_for: '查看%{model}'
+      increase_stock: 進貨
       index: '%{model}列表'
       login: 登入
       logout: 登出
+      long_press_for_action: '請長押按鈕%{action}'
       management: '管理%{model}'
+      more: '更多%{model}'
       new: '建立%{model}'
       open: 開啟
       options: 選項
       preview: 預覽
+      processing: 處理中...
+      purchase: 購買
       reply: 回覆
       reset_search: 清除條件
       save: 儲存
       save_and_go_to_next_step: 儲存並前往下一步
-      set_as_cover: 設定為封面
-      update_config: 更新設定
       search: 搜尋
       search_by: '以%{attribute_name}搜尋'
       search_for: '搜尋%{model_name}'
+      set_as_cover: 設定為封面
       show:  詳細內容
+      signup: 註冊
       submit: 送出資料
       suspend_admin: 停權
       unsuspend_admin: 復權
+      update_config: 更新設定
       update_profile: 編輯檔案
-      increase_stock: 進貨
-      decrease_stock: 銷貨
+      user_login: 會員登入
+      user_signup: 會員註冊
+    user: *default

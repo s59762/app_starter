@@ -199,33 +199,13 @@
 
 29
 30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41</pre>
+31</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'app/serializers/brand_serializer.rb', line 29</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_logo'>logo</span>
-  <span class='kw'>return</span> <span class='kw'>nil</span> <span class='kw'>unless</span> <span class='id identifier rubyid_object'>object</span><span class='period'>.</span><span class='id identifier rubyid_logo'>logo</span><span class='period'>.</span><span class='id identifier rubyid_present?'>present?</span>
-
-  <span class='lbrace'>{</span>
-    <span class='label'>url:</span> <span class='id identifier rubyid_object'>object</span><span class='period'>.</span><span class='id identifier rubyid_logo'>logo</span><span class='period'>.</span><span class='id identifier rubyid_url'>url</span><span class='comma'>,</span>
-    <span class='label'>medium:</span> <span class='lbrace'>{</span>
-      <span class='label'>url:</span> <span class='id identifier rubyid_object'>object</span><span class='period'>.</span><span class='id identifier rubyid_logo'>logo</span><span class='period'>.</span><span class='id identifier rubyid_medium'>medium</span><span class='period'>.</span><span class='id identifier rubyid_url'>url</span>
-    <span class='rbrace'>}</span><span class='comma'>,</span>
-    <span class='label'>thumb:</span> <span class='lbrace'>{</span>
-      <span class='label'>url:</span> <span class='id identifier rubyid_object'>object</span><span class='period'>.</span><span class='id identifier rubyid_logo'>logo</span><span class='period'>.</span><span class='id identifier rubyid_thumb'>thumb</span><span class='period'>.</span><span class='id identifier rubyid_url'>url</span>
-    <span class='rbrace'>}</span>
-  <span class='rbrace'>}</span>
+  <span class='id identifier rubyid_object'>object</span><span class='period'>.</span><span class='id identifier rubyid_logo'>logo</span><span class='period'>.</span><span class='id identifier rubyid_serializable_hash'>serializable_hash</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>

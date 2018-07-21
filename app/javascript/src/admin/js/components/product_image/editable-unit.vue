@@ -2,7 +2,7 @@
 
 .vc-product-image-editable-unit
   .image-container(:class="{ 'is-cover': image.is_cover }")
-    img.image(:src="image.thumb_url")
+    img.image(:src="image.image.thumb.url")
     .edit-trigger(@click="showForm")
       .icon
         i.fa.fa-pencil

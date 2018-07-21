@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_04_141159) do
+ActiveRecord::Schema.define(version: 2018_07_21_060302) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,6 +53,16 @@ ActiveRecord::Schema.define(version: 2018_07_04_141159) do
     t.boolean "is_suspended", default: false
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+  end
+
+  create_table "brand_banners", force: :cascade do |t|
+    t.string "image"
+    t.string "alt_text"
+    t.bigint "brand_id"
+    t.integer "position"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["brand_id"], name: "index_brand_banners_on_brand_id"
   end
 
   create_table "brands", force: :cascade do |t|
@@ -196,6 +206,7 @@ ActiveRecord::Schema.define(version: 2018_07_04_141159) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "brand_banners", "brands"
   add_foreign_key "product_categories", "product_categories", column: "parent_id"
   add_foreign_key "product_images", "product_variants", column: "variant_id"
   add_foreign_key "product_images", "products"

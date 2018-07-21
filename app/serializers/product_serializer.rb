@@ -25,10 +25,10 @@ class ProductSerializer < ApplicationSerializer
              :discounted_price,
              :is_preorder,
              :brand_id,
+             :brand_name,
              :top_level_category_id,
              :sub_category_id,
              :name,
-             :original_price,
              :properties,
              :width,
              :depth,
@@ -36,7 +36,6 @@ class ProductSerializer < ApplicationSerializer
              :weight,
              :sell_price,
              :created_at,
-             :updated_at,
              :discount_rate,
              :options,
              :sku,
@@ -48,18 +47,20 @@ class ProductSerializer < ApplicationSerializer
   belongs_to :brand, optional: true
   belongs_to :category, class_name: 'ProductCategory', optional: true
   has_many :images, class_name: 'Product::Image', dependent: :destroy, if: -> { instance_options[:show_images] }
-  has_many :normal_images, class_name: 'Product::Image', if: -> { instance_options[:show_normal_images] }
-  has_many :description_images, class_name: 'Product::Image', if: -> { instance_options[:show_description_images] }
   has_many :option_types, class_name: 'Product::OptionType', if: -> { instance_options[:show_options] }
   has_many :variants, if: -> { instance_options[:show_variants] }
   has_many :variants_with_master, if: -> { instance_options[:show_variants] }
   has_many :activities, if: -> { instance_options[:show_activities] }
   has_one :master
 
-  to_unix_time :created_at, :updated_at
+  to_unix_time :created_at
   money_to_integer :original_price,
                    :sell_price,
                    :discounted_price
+
+  def brand_name
+    object.brand&.name
+  end
 
   def top_level_category_id
     return object.category.parent.id if object.category.parent.present?
@@ -68,21 +69,17 @@ class ProductSerializer < ApplicationSerializer
   end
 
   def sub_category_id
-    return nil unless object.category.parent.present?
+    return nil if object.category.parent.blank?
 
     object.category_id
   end
 
   def cover
-    return nil unless object.normal_images.present?
+    return nil if object.images.blank?
 
-    cover = object.normal_images.cover.present? ? object.normal_images.cover.take : object.normal_images.take
+    cover = object.images.cover.blank? ? object.images.take : object.images.cover.take
 
-    {
-      url: cover.image.url,
-      squal_url: cover.image.squal.url,
-      thumb_url: cover.image.thumb.url
-    }
+    cover.image.serializable_hash
   end
 
   # 折扣率
@@ -106,5 +103,17 @@ class ProductSerializer < ApplicationSerializer
                 end
       }
     end
+  end
+
+  # With detailed infomation, for admin only.
+  class Detail < ProductSerializer
+    attributes :original_price,
+               :updated_at
+
+    has_many :variants, serializer: Product::VariantSerializer::Detail, if: -> { instance_options[:show_variants] }
+    has_many :variants_with_master, serializer: Product::VariantSerializer::Detail, if: -> { instance_options[:show_variants] }
+    has_one :master, serializer: Product::VariantSerializer::Detail
+
+    to_unix_time :updated_at
   end
 end

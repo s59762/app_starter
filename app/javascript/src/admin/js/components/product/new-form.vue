@@ -97,6 +97,7 @@
 <script>
 import Product from '../../../../shared/resource_models/product'
 import Form from 'odd-form_object'
+import queryString from 'query-string'
 import CategorySelector from './category-selector.vue'
 import PriceInfoColumns from './price-info-columns.vue'
 import OptionTypesColumns from './option-types-columns.vue'
@@ -171,6 +172,8 @@ export default {
         discounted: this.product.discounted_price / 100
       }
     }
+
+    this.assignBrandFromQueryString()
   },
 
   // mounted() {},
@@ -181,6 +184,12 @@ export default {
       this.$store.dispatch('products/save', this.form.sync()).then(response => {
         Turbolinks.visit(`/admin/products/${response.data.data.id}/edit?product_added=1`)
       })
+    },
+
+    assignBrandFromQueryString() {
+      const brandId = queryString.parse(window.location.search).brand_id
+
+      if (brandId) this.form.brand_id = brandId
     }
   }
 }

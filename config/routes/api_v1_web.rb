@@ -24,6 +24,8 @@ namespace :api do
       # Brand resource
       resources :brands, only: %i(index show create update) do
         resource :logo, only: :update, controller: 'brands/logo'
+        resources :products, only: :index, controller: 'brands/products'
+        resources :banners, only: :index, controller: 'brands/banners'
       end
 
       # ProductCategory resource
@@ -52,6 +54,8 @@ namespace :api do
         resource :set_as_cover, only: :update, controller: 'products/images/set_as_cover'
         resource :assign_to_variant, only: :update, controller: 'products/images/assign_to_variant'
       end
+
+      resources :brand_banners, only: %i(create update destroy), controller: 'brands/banners', as: :brand_banners
 
       resource :cart, only: %i(show), controller: 'cart'
 

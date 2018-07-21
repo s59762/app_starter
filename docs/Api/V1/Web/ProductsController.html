@@ -251,7 +251,6 @@
       <pre class="lines">
 
 
-24
 25
 26
 27
@@ -265,10 +264,12 @@
 35
 36
 37
-38</pre>
+38
+39
+40</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/api/v1/web/products_controller.rb', line 24</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/api/v1/web/products_controller.rb', line 25</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_create'>create</span>
   <span class='id identifier rubyid_product'>product</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../Product.html" title="Product (class)">Product</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
@@ -281,9 +282,10 @@
   <span class='id identifier rubyid_form'>form</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span>
 
   <span class='id identifier rubyid_render'>render</span> <span class='label'>json:</span> <span class='id identifier rubyid_form'>form</span><span class='period'>.</span><span class='id identifier rubyid_model'>model</span><span class='comma'>,</span>
-         <span class='label'>include:</span> <span class='lbracket'>[</span><span class='symbol'>:normal_images</span><span class='comma'>,</span> <span class='symbol'>:master</span><span class='comma'>,</span> <span class='symbol'>:variants</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>option_types.option_values</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
+         <span class='label'>include:</span> <span class='lbracket'>[</span><span class='symbol'>:normal_images</span><span class='comma'>,</span> <span class='symbol'>:variants_with_master</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>option_types.option_values</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
          <span class='label'>show_variants:</span> <span class='kw'>true</span><span class='comma'>,</span>
-         <span class='label'>show_options:</span> <span class='kw'>true</span>
+         <span class='label'>show_options:</span> <span class='kw'>true</span><span class='comma'>,</span>
+         <span class='label'>show_normal_images:</span> <span class='kw'>true</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -320,7 +322,7 @@
 <span class='kw'>def</span> <span class='id identifier rubyid_index'>index</span>
   <span class='id identifier rubyid_check_policy'>check_policy</span> <span class='const'><span class='object_link'><a href="../../../ProductPolicy.html" title="ProductPolicy (class)">ProductPolicy</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="../../../ApplicationPolicy.html#initialize-instance_method" title="ApplicationPolicy#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_current_api_user'>current_api_user</span><span class='comma'>,</span> <span class='symbol'>:product</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_index?'><span class='object_link'><a href="../../../ApplicationPolicy.html#index%3F-instance_method" title="ApplicationPolicy#index? (method)">index?</a></span></span>
 
-  <span class='id identifier rubyid_products'>products</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../FetchingDataService.html" title="FetchingDataService (class)">FetchingDataService</a></span></span><span class='period'>.</span><span class='id identifier rubyid_call'><span class='object_link'><a href="../../../FetchingDataService.html#call-class_method" title="FetchingDataService.call (method)">call</a></span></span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="../../../Product.html" title="Product (class)">Product</a></span></span><span class='comma'>,</span> <span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_includes'>includes</span><span class='lparen'>(</span><span class='symbol'>:brand</span><span class='comma'>,</span> <span class='symbol'>:master</span><span class='comma'>,</span> <span class='label'>option_types:</span> <span class='lbracket'>[</span><span class='symbol'>:option_values</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='label'>category:</span> <span class='lbracket'>[</span><span class='symbol'>:parent</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_products'>products</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../FetchingDataService.html" title="FetchingDataService (class)">FetchingDataService</a></span></span><span class='period'>.</span><span class='id identifier rubyid_call'><span class='object_link'><a href="../../../FetchingDataService.html#call-class_method" title="FetchingDataService.call (method)">call</a></span></span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="../../../Product.html" title="Product (class)">Product</a></span></span><span class='comma'>,</span> <span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_includes'>includes</span><span class='lparen'>(</span><span class='symbol'>:brand</span><span class='comma'>,</span> <span class='symbol'>:normal_images</span><span class='comma'>,</span> <span class='label'>master:</span> <span class='lbracket'>[</span><span class='symbol'>:images</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='label'>option_types:</span> <span class='lbracket'>[</span><span class='symbol'>:option_values</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='label'>category:</span> <span class='lbracket'>[</span><span class='symbol'>:parent</span><span class='rbracket'>]</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../Api.html" title="Api (module)">Api</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../DataCacheService.html" title="Api::DataCacheService (class)">DataCacheService</a></span></span><span class='period'>.</span><span class='id identifier rubyid_call'><span class='object_link'><a href="../../DataCacheService.html#call-class_method" title="Api::DataCacheService.call (method)">call</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_products'>products</span><span class='comma'>,</span> <span class='id identifier rubyid_request'>request</span><span class='comma'>,</span> <span class='label'>extra:</span> <span class='lbrace'>{</span> <span class='label'>include:</span> <span class='lbracket'>[</span><span class='symbol'>:master</span><span class='rbracket'>]</span> <span class='rbrace'>}</span><span class='rparen'>)</span>
 
   <span class='id identifier rubyid_render'>render</span> <span class='label'>json:</span> <span class='id identifier rubyid_result'>result</span>
@@ -345,12 +347,12 @@
       <pre class="lines">
 
 
-58
-59
-60</pre>
+61
+62
+63</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/api/v1/web/products_controller.rb', line 58</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/api/v1/web/products_controller.rb', line 61</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_product_params'>product_params</span>
   <span class='const'>ActiveModelSerializers</span><span class='op'>::</span><span class='const'>Deserialization</span><span class='period'>.</span><span class='id identifier rubyid_jsonapi_parse'>jsonapi_parse</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span>
@@ -384,20 +386,22 @@
 19
 20
 21
-22</pre>
+22
+23</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'app/controllers/api/v1/web/products_controller.rb', line 13</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_show'>show</span>
-  <span class='id identifier rubyid_product'>product</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../Product.html" title="Product (class)">Product</a></span></span><span class='period'>.</span><span class='id identifier rubyid_includes'>includes</span><span class='lparen'>(</span><span class='symbol'>:brand</span><span class='comma'>,</span> <span class='symbol'>:master</span><span class='comma'>,</span> <span class='label'>option_types:</span> <span class='lbracket'>[</span><span class='symbol'>:option_values</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='label'>category:</span> <span class='lbracket'>[</span><span class='symbol'>:parent</span><span class='rbracket'>]</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_product'>product</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../Product.html" title="Product (class)">Product</a></span></span><span class='period'>.</span><span class='id identifier rubyid_includes'>includes</span><span class='lparen'>(</span><span class='symbol'>:brand</span><span class='comma'>,</span> <span class='label'>variants_with_master:</span> <span class='lbracket'>[</span><span class='symbol'>:images</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='label'>option_types:</span> <span class='lbracket'>[</span><span class='symbol'>:option_values</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='label'>category:</span> <span class='lbracket'>[</span><span class='symbol'>:parent</span><span class='rbracket'>]</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
 
   <span class='id identifier rubyid_check_policy'>check_policy</span> <span class='const'><span class='object_link'><a href="../../../ProductPolicy.html" title="ProductPolicy (class)">ProductPolicy</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="../../../ApplicationPolicy.html#initialize-instance_method" title="ApplicationPolicy#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_current_api_user'>current_api_user</span><span class='comma'>,</span> <span class='id identifier rubyid_product'>product</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_show?'><span class='object_link'><a href="../../../ApplicationPolicy.html#show%3F-instance_method" title="ApplicationPolicy#show? (method)">show?</a></span></span>
 
   <span class='id identifier rubyid_render'>render</span> <span class='label'>json:</span> <span class='id identifier rubyid_product'>product</span><span class='comma'>,</span>
          <span class='label'>include:</span> <span class='lbracket'>[</span><span class='symbol'>:normal_images</span><span class='comma'>,</span> <span class='symbol'>:variants_with_master</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>option_types.option_values</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
          <span class='label'>show_variants:</span> <span class='kw'>true</span><span class='comma'>,</span>
-         <span class='label'>show_options:</span> <span class='kw'>true</span>
+         <span class='label'>show_options:</span> <span class='kw'>true</span><span class='comma'>,</span>
+         <span class='label'>show_normal_images:</span> <span class='kw'>true</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -419,8 +423,6 @@
       <pre class="lines">
 
 
-40
-41
 42
 43
 44
@@ -433,13 +435,16 @@
 51
 52
 53
-54</pre>
+54
+55
+56
+57</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/api/v1/web/products_controller.rb', line 40</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/api/v1/web/products_controller.rb', line 42</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_update'>update</span>
-  <span class='id identifier rubyid_product'>product</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../Product.html" title="Product (class)">Product</a></span></span><span class='period'>.</span><span class='id identifier rubyid_includes'>includes</span><span class='lparen'>(</span><span class='label'>option_types:</span> <span class='lbracket'>[</span><span class='symbol'>:option_values</span><span class='rbracket'>]</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_product'>product</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../Product.html" title="Product (class)">Product</a></span></span><span class='period'>.</span><span class='id identifier rubyid_includes'>includes</span><span class='lparen'>(</span><span class='label'>variants_with_master:</span> <span class='lbracket'>[</span><span class='symbol'>:images</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='label'>option_types:</span> <span class='lbracket'>[</span><span class='symbol'>:option_values</span><span class='rbracket'>]</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_form'>form</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../Admin.html" title="Admin (class)">Admin</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../../Admin/EditProductForm.html" title="Admin::EditProductForm (class)">EditProductForm</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_product'>product</span><span class='rparen'>)</span>
 
   <span class='id identifier rubyid_check_policy'>check_policy</span> <span class='const'><span class='object_link'><a href="../../../ProductPolicy.html" title="ProductPolicy (class)">ProductPolicy</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="../../../ApplicationPolicy.html#initialize-instance_method" title="ApplicationPolicy#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_current_api_user'>current_api_user</span><span class='comma'>,</span> <span class='id identifier rubyid_product'>product</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_update?'><span class='object_link'><a href="../../../ApplicationPolicy.html#update%3F-instance_method" title="ApplicationPolicy#update? (method)">update?</a></span></span>
@@ -449,9 +454,10 @@
   <span class='id identifier rubyid_form'>form</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span>
 
   <span class='id identifier rubyid_render'>render</span> <span class='label'>json:</span> <span class='id identifier rubyid_form'>form</span><span class='period'>.</span><span class='id identifier rubyid_model'>model</span><span class='comma'>,</span>
-         <span class='label'>include:</span> <span class='lbracket'>[</span><span class='symbol'>:normal_images</span><span class='comma'>,</span> <span class='symbol'>:master</span><span class='comma'>,</span> <span class='symbol'>:variants</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>option_types.option_values</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
+         <span class='label'>include:</span> <span class='lbracket'>[</span><span class='symbol'>:normal_images</span><span class='comma'>,</span> <span class='symbol'>:variants_with_master</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>option_types.option_values</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
          <span class='label'>show_variants:</span> <span class='kw'>true</span><span class='comma'>,</span>
-         <span class='label'>show_options:</span> <span class='kw'>true</span>
+         <span class='label'>show_options:</span> <span class='kw'>true</span><span class='comma'>,</span>
+         <span class='label'>show_normal_images:</span> <span class='kw'>true</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>

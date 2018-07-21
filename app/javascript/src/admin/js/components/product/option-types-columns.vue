@@ -83,7 +83,6 @@ export default {
     },
 
     deleteOptionType(index) {
-      console.log(index)
       this.optionTypes.splice(index, 1)
     },
 

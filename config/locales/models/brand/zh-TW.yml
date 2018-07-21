@@ -12,6 +12,7 @@ zh-TW:
         introduce: 簡介
         description: 品牌介紹
         logo: Logo
+        products: 品牌商品
         products_count: 產品數量
 
     errors:

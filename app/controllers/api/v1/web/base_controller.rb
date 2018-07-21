@@ -26,4 +26,17 @@ class Api::V1::Web::BaseController < Api::ApiController
 
     @current_cart
   end
+
+  def product_index_extra_options
+    if admin_signed_in?
+      {
+        include: [:master],
+        each_serializer: ProductSerializer::Detail
+      }
+    else
+      {
+        include: [:master]
+      }
+    end
+  end
 end

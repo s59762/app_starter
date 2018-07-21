@@ -98,6 +98,7 @@ gem 'pg' # postgresSQL adapter
 gem 'rails-settings-cached' # App settings function
 gem 'ransack' # for meta search
 gem 'public_activity' # tracking activities of models
+gem 'acts_as_list' # make sorting adjustable
 
 # Authentication
 gem 'devise' # users authenticate

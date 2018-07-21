@@ -115,7 +115,9 @@
  original_filename :string
  product_id        :bigint(8)
  created_at        :datetime         not null
- updated_at        :datetime         not null</p>
+ updated_at        :datetime         not null
+ is_cover          :boolean          default(FALSE)
+ variant_id        :bigint(8)</p>
 
 
   </div>
@@ -130,6 +132,39 @@
 
 
 
+  
+    <h2>
+      Instance Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#set_as_cover-instance_method" title="#set_as_cover (instance method)">#<strong>set_as_cover</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
 
   
   
@@ -137,7 +172,7 @@
   
   
   
-  <h2>Method Summary</h2>
+  
   
   <h3 class="inherited">Methods inherited from <span class='object_link'><a href="../ApplicationRecord.html" title="ApplicationRecord (class)">ApplicationRecord</a></span></h3>
   <p class="inherited"><span class='object_link'><a href="../ApplicationRecord.html#latest_updated_at-class_method" title="ApplicationRecord.latest_updated_at (method)">latest_updated_at</a></span></p>
@@ -162,6 +197,48 @@
 
   
   
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="set_as_cover-instance_method">
+  
+    #<strong>set_as_cover</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+26
+27
+28
+29
+30
+31</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/product/image.rb', line 26</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_set_as_cover'>set_as_cover</span>
+  <span class='const'>ActiveRecord</span><span class='op'>::</span><span class='const'>Base</span><span class='period'>.</span><span class='id identifier rubyid_transaction'>transaction</span> <span class='kw'>do</span>
+    <span class='id identifier rubyid_product'>product</span><span class='period'>.</span><span class='id identifier rubyid_normal_images'>normal_images</span><span class='period'>.</span><span class='id identifier rubyid_cover'>cover</span><span class='period'>.</span><span class='id identifier rubyid_update'>update</span> <span class='label'>is_cover:</span> <span class='kw'>false</span>
+    <span class='id identifier rubyid_update'>update</span> <span class='label'>is_cover:</span> <span class='kw'>true</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
 
 </div>
 

@@ -20,7 +20,11 @@
       b-table-column(field="brands.name"
                      :label="attributeLocaleText('brand', 'name')"
                      sortable)
-        | {{ props.row.name }}
+        a(:href="brandPath(props.row)")
+          .icon
+            i.fa.fa-search
+          span {{ props.row.name }}
+
 
       b-table-column(field="brands.products_count"
                      :label="attributeLocaleText('brand', 'products_count')"
@@ -68,7 +72,12 @@ export default {
   // created() {},
   mounted() {
     this.fetchingInitialData()
+  },
+
+  methods: {
+    brandPath(brand) {
+      return `/admin/brands/${brand.id}`
+    }
   }
-  // methods: {}
 }
 </script>

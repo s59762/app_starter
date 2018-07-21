@@ -115,7 +115,9 @@
  original_filename :string
  product_id        :bigint(8)
  created_at        :datetime         not null
- updated_at        :datetime         not null</p>
+ updated_at        :datetime         not null
+ is_cover          :boolean          default(FALSE)
+ variant_id        :bigint(8)</p>
 
 
   </div>
@@ -141,29 +143,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#thumb_url-instance_method" title="#thumb_url (instance method)">#<strong>thumb_url</strong>  &#x21d2; Object </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'></div></span>
-  
-</li>
-
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#url-instance_method" title="#url (instance method)">#<strong>url</strong>  &#x21d2; Object </a>
+      <a href="#image-instance_method" title="#image (instance method)">#<strong>image</strong>  &#x21d2; Object </a>
     
 
     
@@ -204,39 +184,9 @@
 
     
       <div class="method_details first">
-  <h3 class="signature first" id="thumb_url-instance_method">
+  <h3 class="signature first" id="image-instance_method">
   
-    #<strong>thumb_url</strong>  &#x21d2; <tt>Object</tt> 
-  
-
-  
-
-  
-</h3><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-27
-28
-29</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'app/serializers/product/image_serializer.rb', line 27</span>
-
-<span class='kw'>def</span> <span class='id identifier rubyid_thumb_url'>thumb_url</span>
-  <span class='id identifier rubyid_object'>object</span><span class='period'>.</span><span class='id identifier rubyid_image'>image</span><span class='period'>.</span><span class='id identifier rubyid_thumb'>thumb</span><span class='period'>.</span><span class='id identifier rubyid_url'>url</span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
-  <h3 class="signature " id="url-instance_method">
-  
-    #<strong>url</strong>  &#x21d2; <tt>Object</tt> 
+    #<strong>image</strong>  &#x21d2; <tt>Object</tt> 
   
 
   
@@ -248,15 +198,15 @@
       <pre class="lines">
 
 
-23
-24
-25</pre>
+30
+31
+32</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/serializers/product/image_serializer.rb', line 23</span>
+      <pre class="code"><span class="info file"># File 'app/serializers/product/image_serializer.rb', line 30</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_url'>url</span>
-  <span class='id identifier rubyid_object'>object</span><span class='period'>.</span><span class='id identifier rubyid_image'>image</span><span class='period'>.</span><span class='id identifier rubyid_url'>url</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_image'>image</span>
+  <span class='id identifier rubyid_object'>object</span><span class='period'>.</span><span class='id identifier rubyid_image'>image</span><span class='period'>.</span><span class='id identifier rubyid_serializable_hash'>serializable_hash</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>

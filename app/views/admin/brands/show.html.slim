@@ -1,0 +1,27 @@
+- breadcrumb :admin_brand, @brand
+
+= cell('admin/common').call(:content_header)
+
+.box.content-box.is-primary(data-vue="brand_show_container"
+                            data-brand=(@brand.id))
+  .box-header.with-border
+    .box-tools
+      .tools
+        edit-button(:brand="brand"
+                    :button-text="actionLocaleText('admin', 'edit_on', { model: modelNameLocaleText('brand') })")
+        new-brand-banner-button(:brand="brand")
+        a.button.is-small.is-primary(href=(new_admin_product_path(brand_id: @brand.id))
+                                     data-behavior="new-product-button")
+          .icon
+            i.fa.fa-plus
+          span
+            | {{actionLocaleText('admin', 'new', { model: modelNameLocaleText('product') })}}
+  .box-body(v-if="brandLoaded")
+    b-tabs(type="is-boxed"
+           v-model="currentTab")
+      b-tab-item(:label="attributeLocaleText('brand', 'products')"
+                 icon="shopping-bag")
+        product-list(:brand="brand")
+      b-tab-item(label="管理 Banner"
+                 icon="picture-o")
+        banner-list(:brand="brand")

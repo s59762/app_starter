@@ -133,7 +133,31 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>&#39;/products/images&#39;.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#destroy-instance_method" title="#destroy (instance method)">#<strong>destroy</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>&#39;/product_images/:id&#39;.</p>
+</div></span>
   
 </li>
 
@@ -150,6 +174,51 @@
   
   
   <span class="note title private">private</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="private ">
+  <span class="summary_signature">
+    
+      <a href="#render_result-instance_method" title="#render_result (instance method)">#<strong>render_result</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  <span class="note title private">private</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>因為這個 action 同時負責 <code>/products/images</code> 和 <code>/products/:product_id/images</code> 兩個 routes 的 POST request 所以根據 params[:product_id] 是否存在，分別 render 不同的 json 結果。 第一種狀況是上傳 product description editor 中的圖片，因此只需回傳 image 本身即可。 第二種狀況是上傳 product normal image，因此需要回傳 product 的完整資訊來更新前端畫面。.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#update-instance_method" title="#update (instance method)">#<strong>update</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
   
   
   
@@ -179,13 +248,22 @@
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>&#39;/products/images&#39;</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-2
 3
 4
 5
@@ -200,20 +278,75 @@
 14</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/api/v1/web/products/images_controller.rb', line 2</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/api/v1/web/products/images_controller.rb', line 3</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_create'>create</span>
   <span class='id identifier rubyid_check_policy'>check_policy</span> <span class='const'><span class='object_link'><a href="../../../../ProductPolicy.html" title="ProductPolicy (class)">ProductPolicy</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="../../../../ApplicationPolicy.html#initialize-instance_method" title="ApplicationPolicy#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_current_api_user'>current_api_user</span><span class='comma'>,</span> <span class='symbol'>:product</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_create?'><span class='object_link'><a href="../../../../ApplicationPolicy.html#create%3F-instance_method" title="ApplicationPolicy#create? (method)">create?</a></span></span>
 
-  <span class='id identifier rubyid_form'>form</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../../Admin.html" title="Admin (class)">Admin</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../../../Admin/ProductImageForm.html" title="Admin::ProductImageForm (class)">ProductImageForm</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="../../../../Product.html" title="Product (class)">Product</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../../../Product/Image.html" title="Product::Image (class)">Image</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_image'>image</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../../Product.html" title="Product (class)">Product</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../../../Product/Image.html" title="Product::Image (class)">Image</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+  <span class='ivar'>@form</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../../Admin.html" title="Admin (class)">Admin</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../../../Admin/ProductImageForm.html" title="Admin::ProductImageForm (class)">ProductImageForm</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_image'>image</span><span class='rparen'>)</span>
 
-  <span class='kw'>return</span> <span class='id identifier rubyid_raise'>raise</span> <span class='const'><span class='object_link'><a href="../../../../ValidationFailureException.html" title="ValidationFailureException (class)">ValidationFailureException</a></span></span><span class='comma'>,</span> <span class='id identifier rubyid_form'>form</span> <span class='kw'>unless</span> <span class='id identifier rubyid_form'>form</span><span class='period'>.</span><span class='id identifier rubyid_validate'>validate</span><span class='lparen'>(</span><span class='id identifier rubyid_image_params'>image_params</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_raise'>raise</span> <span class='const'><span class='object_link'><a href="../../../../ValidationFailureException.html" title="ValidationFailureException (class)">ValidationFailureException</a></span></span><span class='comma'>,</span> <span class='ivar'>@form</span> <span class='kw'>unless</span> <span class='ivar'>@form</span><span class='period'>.</span><span class='id identifier rubyid_validate'>validate</span><span class='lparen'>(</span><span class='id identifier rubyid_image_params'>image_params</span><span class='rparen'>)</span>
 
-  <span class='id identifier rubyid_form'>form</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span>
+  <span class='ivar'>@form</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span>
 
-  <span class='id identifier rubyid_created_images'>created_images</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../../Product.html" title="Product (class)">Product</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../../../Product/Image.html" title="Product::Image (class)">Image</a></span></span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='lparen'>(</span><span class='label'>id:</span> <span class='id identifier rubyid_form'>form</span><span class='period'>.</span><span class='id identifier rubyid_created_image_ids'>created_image_ids</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_render_result'>render_result</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="destroy-instance_method">
+  
+    #<strong>destroy</strong>  &#x21d2; <tt>Object</tt> 
+  
 
-  <span class='id identifier rubyid_render'>render</span> <span class='label'>json:</span> <span class='id identifier rubyid_created_images'>created_images</span>
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>&#39;/product_images/:id&#39;</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/api/v1/web/products/images_controller.rb', line 21</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_destroy'>destroy</span>
+  <span class='id identifier rubyid_image'>image</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../../Product.html" title="Product (class)">Product</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../../../Product/Image.html" title="Product::Image (class)">Image</a></span></span><span class='period'>.</span><span class='id identifier rubyid_includes'>includes</span><span class='lparen'>(</span><span class='symbol'>:product</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_normal'>normal</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_check_policy'>check_policy</span> <span class='const'><span class='object_link'><a href="../../../../ProductPolicy.html" title="ProductPolicy (class)">ProductPolicy</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="../../../../ApplicationPolicy.html#initialize-instance_method" title="ApplicationPolicy#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_current_api_user'>current_api_user</span><span class='comma'>,</span> <span class='id identifier rubyid_image'>image</span><span class='period'>.</span><span class='id identifier rubyid_product'>product</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_update?'><span class='object_link'><a href="../../../../ApplicationPolicy.html#update%3F-instance_method" title="ApplicationPolicy#update? (method)">update?</a></span></span>
+
+  <span class='id identifier rubyid_image'>image</span><span class='period'>.</span><span class='id identifier rubyid_destroy'>destroy</span>
+
+  <span class='id identifier rubyid_render'>render</span> <span class='label'>json:</span> <span class='lbrace'>{</span>
+    <span class='label'>messages:</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>image deleted successfully.</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+  <span class='rbrace'>}</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -235,16 +368,105 @@
       <pre class="lines">
 
 
-18
-19
-20</pre>
+35
+36
+37</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/api/v1/web/products/images_controller.rb', line 18</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/api/v1/web/products/images_controller.rb', line 35</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_image_params'>image_params</span>
-  <span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_require'>require</span><span class='lparen'>(</span><span class='symbol'>:product</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_permit'>permit</span><span class='lparen'>(</span><span class='symbol'>:use_case</span><span class='comma'>,</span> <span class='label'>images:</span> <span class='lbracket'>[</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_require'>require</span><span class='lparen'>(</span><span class='symbol'>:product</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_permit'>permit</span><span class='lparen'>(</span><span class='symbol'>:use_case</span><span class='comma'>,</span> <span class='symbol'>:product_id</span><span class='comma'>,</span> <span class='symbol'>:variant_id</span><span class='comma'>,</span> <span class='label'>images:</span> <span class='lbracket'>[</span><span class='rbracket'>]</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="render_result-instance_method">
+  
+    #<strong>render_result</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(private)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>因為這個 action 同時負責 <code>/products/images</code> 和 <code>/products/:product_id/images</code> 兩個 routes 的 POST request
+所以根據 params[:product_id] 是否存在，分別 render 不同的 json 結果。
+第一種狀況是上傳 product description editor 中的圖片，因此只需回傳 image 本身即可。
+第二種狀況是上傳 product normal image，因此需要回傳 product 的完整資訊來更新前端畫面。</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/api/v1/web/products/images_controller.rb', line 43</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_render_result'>render_result</span>
+  <span class='kw'>if</span> <span class='ivar'>@form</span><span class='period'>.</span><span class='id identifier rubyid_product_id'>product_id</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+    <span class='id identifier rubyid_render'>render</span> <span class='label'>json:</span> <span class='const'><span class='object_link'><a href="../../../../Product.html" title="Product (class)">Product</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../../../Product/Image.html" title="Product::Image (class)">Image</a></span></span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='lparen'>(</span><span class='label'>id:</span> <span class='ivar'>@form</span><span class='period'>.</span><span class='id identifier rubyid_created_image_ids'>created_image_ids</span><span class='rparen'>)</span>
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_render'>render</span> <span class='label'>json:</span> <span class='const'><span class='object_link'><a href="../../../../Product.html" title="Product (class)">Product</a></span></span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='ivar'>@form</span><span class='period'>.</span><span class='id identifier rubyid_product_id'>product_id</span><span class='rparen'>)</span><span class='comma'>,</span>
+           <span class='label'>include:</span> <span class='lbracket'>[</span><span class='symbol'>:normal_images</span><span class='comma'>,</span> <span class='symbol'>:variants_with_master</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>option_types.option_values</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
+           <span class='label'>show_variants:</span> <span class='kw'>true</span><span class='comma'>,</span>
+           <span class='label'>show_options:</span> <span class='kw'>true</span><span class='comma'>,</span>
+           <span class='label'>show_normal_images:</span> <span class='kw'>true</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="update-instance_method">
+  
+    #<strong>update</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+16
+17
+18</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/api/v1/web/products/images_controller.rb', line 16</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_update'>update</span>
+  <span class='comment'># TODO: ?
+</span><span class='kw'>end</span></pre>
     </td>
   </tr>
 </table>

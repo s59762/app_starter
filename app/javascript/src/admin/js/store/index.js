@@ -6,6 +6,7 @@ import mutations from './mutations'
 import admins from '../../../shared/store_modules/admins'
 import users from '../../../shared/store_modules/users'
 import brands from '../../../shared/store_modules/brands'
+import brandBanners from '../../../shared/store_modules/brand_banners'
 import productCategories from '../../../shared/store_modules/product_categories'
 import products from '../../../shared/store_modules/products'
 import productOptionTypes from '../../../shared/store_modules/product_option_types'
@@ -39,6 +40,7 @@ export default new Vuex.Store({
     admins,
     users,
     brands,
+    brandBanners,
     productCategories,
     products,
     productOptionTypes,

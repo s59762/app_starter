@@ -31,6 +31,8 @@ zh-TW:
         show: 詳細資料
         new: 新增品牌
         edit: 編輯品牌
+        new_banner: 新增品牌 Banner
+        edit_banner: 編輯品牌 Banner
       product_categories:
         main_title: 商品分類管理
         index: 列表
