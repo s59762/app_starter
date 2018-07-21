@@ -99,7 +99,7 @@ export default class ImageHandler {
         .catch(() => {
           this.dispatch(this.action, formData).then(response => {
             response.data.data.forEach(image => {
-              this.insert(image.attributes.url)
+              this.insert(image.attributes.file.url) // TODO: maybe add a callback function `getImageUrlCallbakc`
               if (this.imageUploadedCallback) this.imageUploadedCallback(image)
             })
           })

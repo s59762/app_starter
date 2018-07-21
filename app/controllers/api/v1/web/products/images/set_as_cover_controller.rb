@@ -6,6 +6,6 @@ class Api::V1::Web::Products::Images::SetAsCoverController < Api::V1::Web::BaseC
 
     image.set_as_cover
 
-    render json: image.product.normal_images.includes(:product)
+    render json: image.product.images.includes(:product)
   end
 end

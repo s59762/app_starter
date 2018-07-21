@@ -112,8 +112,8 @@ export default {
       const images = this.$store.getters['productImages/all']
       const cover = images.filter(image => image.is_cover)[0]
 
-      if (cover) return cover.url
-      if (images.length > 0) return images[0].url
+      if (cover) return cover.image.url
+      if (images.length > 0) return images[0].image.url
     },
 
     SellPrice() {

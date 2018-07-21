@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_21_060302) do
+ActiveRecord::Schema.define(version: 2018_07_21_073614) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -68,7 +68,7 @@ ActiveRecord::Schema.define(version: 2018_07_21_060302) do
   create_table "brands", force: :cascade do |t|
     t.string "name"
     t.string "introduce"
-    t.string "description"
+    t.text "description"
     t.string "logo"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -78,6 +78,16 @@ ActiveRecord::Schema.define(version: 2018_07_21_060302) do
   create_table "carts", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "editor_attachments", force: :cascade do |t|
+    t.string "file"
+    t.string "original_filename"
+    t.string "attachable_type"
+    t.bigint "attachable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["attachable_type", "attachable_id"], name: "index_editor_attachments_on_attachable_type_and_attachable_id"
   end
 
   create_table "product_categories", force: :cascade do |t|
@@ -92,7 +102,6 @@ ActiveRecord::Schema.define(version: 2018_07_21_060302) do
 
   create_table "product_images", force: :cascade do |t|
     t.string "image"
-    t.integer "use_case", default: 0
     t.string "original_filename"
     t.bigint "product_id"
     t.datetime "created_at", null: false

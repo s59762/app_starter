@@ -40,16 +40,12 @@ namespace :api do
 
         resource :collect, only: %i(create destroy), controller: 'products/collect'
       end
-
       resources :product_option_types, only: %i(update destroy), controller: 'products/option_types'
-
       resources :product_option_values, only: %i(update destroy), controller: 'products/option_values'
-
       resources :product_variants, only: %i(update), controller: 'products/variants' do
         resource :set_as_master, only: :update, controller: 'products/variants/set_as_master'
         resource :stock, only: :update, controller: 'products/variants/stock'
       end
-
       resources :product_images, only: %i(destroy), controller: 'products/images' do
         resource :set_as_cover, only: :update, controller: 'products/images/set_as_cover'
         resource :assign_to_variant, only: :update, controller: 'products/images/assign_to_variant'
@@ -57,6 +53,10 @@ namespace :api do
 
       resources :brand_banners, only: %i(create update destroy), controller: 'brands/banners', as: :brand_banners
 
+      # Editor Attachment resource
+      resources :editor_attachments, only: %i(create destroy)
+
+      # REMOVE: cart not useable now
       resource :cart, only: %i(show), controller: 'cart'
 
       # Site config

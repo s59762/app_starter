@@ -204,7 +204,7 @@ export default {
 
   created() {
     this.$store.dispatch('brands/all')
-    this.form.uploaded_image_ids = []
+    this.form.uploaded_attachment_ids = []
     this.form.price = {
       original: this.product.original_price / 100,
       sell: this.product.sell_price / 100,

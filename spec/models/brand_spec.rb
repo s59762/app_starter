@@ -5,7 +5,7 @@
 #  id             :bigint(8)        not null, primary key
 #  name           :string
 #  introduce      :string
-#  description    :string
+#  description    :text
 #  logo           :string
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
@@ -15,5 +15,7 @@
 require 'rails_helper'
 
 RSpec.describe Brand, type: :model do
+  it { should have_many :products }
   it { should have_many :banners }
+  it { should have_many :editor_attachments }
 end

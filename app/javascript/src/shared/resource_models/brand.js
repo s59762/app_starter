@@ -20,7 +20,8 @@ const OPTIONS = {
   editableAttributes: [
     'name',
     'introduce',
-    'description'
+    'description',
+    'uploaded_attachment_ids'
   ]
 }
 
@@ -41,6 +42,9 @@ export default class Brand extends ResourceModelBase {
     return axios.get(`${this.apiBasePath()}/${this.id}/banners?${FetchingDataOptionsService.call(options)}`)
   }
 
+  static uploadAttachments(formData) {
+    return axios.post(`${new this().apiBasePath({ withResourceType: false })}/editor_attachments`, formData)
+  }
 
   // extra methods or helpers here...
 

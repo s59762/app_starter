@@ -8,6 +8,7 @@ const OPTIONS = {
   resourceType: 'products',
   attributes: [
     'brand_id',
+    'brand_name',
     'category',
     'top_level_category_id',
     'sub_category_id',
@@ -35,7 +36,7 @@ const OPTIONS = {
     'meta_description',
     'meta_keywords',
     'total_stock',
-    'normal_images'
+    'images'
   ],
   editableAttributes: [
     'brand_id',
@@ -47,7 +48,7 @@ const OPTIONS = {
     'price',
     'properties',
     'option_types',
-    'uploaded_image_ids',
+    'uploaded_attachment_ids',
     'width',
     'depth',
     'height',
@@ -66,6 +67,10 @@ export default class Product extends ResourceModelBase {
 
   static uploadImages(formData) {
     return axios.post(`${new this().apiBasePath()}/images`, formData)
+  }
+
+  static uploadAttachments(formData) {
+    return axios.post(`${new this().apiBasePath({ withResourceType: false })}/editor_attachments`, formData)
   }
 
   // helpers
@@ -104,7 +109,7 @@ export default class Product extends ResourceModelBase {
   displayPrice(price = 'sell') {
     if (this[`${price}_price`] === 0) return I18n.t('messages.data_not_provided')
 
-    return `${this[`${price}_price`] / 100} ${I18n.t('activerecord.attributes.product.price_unit')}`
+    return `${this[`${price}_price`] / 100}`
   }
 
   displaySize() {
@@ -120,5 +125,15 @@ export default class Product extends ResourceModelBase {
 
   hasVariants() {
     return this.variants.length > 0
+  }
+
+  coverImageThumb() {
+    if (this.cover) return this.cover.square.url
+
+    return 'https://via.placeholder.com/512x512?text=No+Image'
+  }
+
+  hasDiscount() {
+    return this.discounted_price !== 0
   }
 }

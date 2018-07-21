@@ -15,9 +15,8 @@ zh-TW:
         cover: 封面圖片
         description: 商品描述
         discounted_price: 折扣價
-        images: 圖片
-        normal_images: 商品圖片
-        description_images: 敘述圖片
+        images: 商品圖片
+        editor_attachments: 敘述圖片
         is_preorder: 預購商品
         name: 品名
         original_price: 進貨成本

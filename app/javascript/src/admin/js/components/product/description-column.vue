@@ -5,44 +5,20 @@
           :type="errors.errorClassAt('description')"
           :message="errors.get('description')")
     quill-editor(v-model="form.description"
-                  ref="quill"
-                  data-behavior="product-description"
-                  :options="editorOptions")
+                 ref="quill"
+                 data-behavior="product-description"
+                 :options="editorOptions")
 
 </template>
 
 <script>
-import { quillEditor, Quill } from 'vue-quill-editor'
-import ImageHandler from '../../../../shared/plugins/quill_image_handler_module/image_handler'
-import imageButtonHandler from '../../../../shared/plugins/quill_image_handler_module/image_button_handler'
-// import ImageResize from 'quill-image-resize-module'
-
-const toolbarOptions = [
-  [{ size: [false, 'small', 'large', 'huge'] }], // custom dropdown
-  [{ header: [false, 1, 2, 3] }],
-  ['bold', 'italic', 'underline', 'strike'], // toggled buttons
-  [{ align: [] }],
-  ['blockquote', 'code-block'],
-  [{ list: 'ordered' }, { list: 'bullet' }],
-  [{ indent: '-1' }, { indent: '+1' }], // outdent/indent
-  [{ color: [] }, { background: [] }], // dropdown with defaults from theme
-  ['image', 'video', 'clean']
-]
-
-const imagesAttrName = 'product[images][]'
-const action = 'products/uploadImages'
-const additionalFormData = formData => {
-  formData.append('product[use_case]', 'description')
-}
-
-Quill.register('modules/ImageHandler', ImageHandler)
-// Quill.register('modules/ImageResize', ImageResize)
+import quillEditorMixin from '../mixins/quill_editor_mixin.js'
 
 export default {
-  components: {
-    quillEditor
-  },
-  // mixins: [],
+  // components: {},
+
+  mixins: [quillEditorMixin],
+
   props: {
     errors: {
       type: Object,
@@ -52,41 +28,20 @@ export default {
     form: {
       type: Object,
       required: true
-    }
-  },
+    },
 
-  data() {
-    return {
-      editorOptions: {
-        placeholder: 'e.g. A powerfull tool for your professional works.',
-        modules: {
-          ImageHandler: {
-            dispatcher: this.$store.dispatch,
-            action: action,
-            imagesAttrName: imagesAttrName,
-            additionalFormData: additionalFormData,
-            imageUploadedCallback: this.imageUploadedCallback
-          },
-          // ImageResize: {},
-          toolbar: {
-            container: toolbarOptions,
-            handlers: {
-              image: () => {
-                imageButtonHandler({
-                  imagesAttrName,
-                  additionalFormData,
-                  imageUploadedCallback: this.imageUploadedCallback,
-                  dispatcher: this.$store.dispatch,
-                  action: action,
-                  quill: this.$refs.quill.quill
-                })
-              }
-            }
-          }
-        }
+    uploadAction: {
+      type: String,
+      required: false,
+      default: () => {
+        return 'products/uploadAttachments'
       }
     }
   },
+
+  // data() {
+  //   return {}
+  // },
   // computed: {},
   // created() {},
   // mounted() {},
@@ -96,7 +51,7 @@ export default {
     * 這邊把上傳後的圖片 ID 記錄下來，一併在儲存 product 時送給後端做後續處理。
     */
     imageUploadedCallback(image) {
-      this.form.uploaded_image_ids.push(parseInt(image.id))
+      this.form.uploaded_attachment_ids.push(parseInt(image.id))
     }
   }
 }

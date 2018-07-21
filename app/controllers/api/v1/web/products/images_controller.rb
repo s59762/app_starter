@@ -19,7 +19,7 @@ class Api::V1::Web::Products::ImagesController < Api::V1::Web::BaseController
 
   # '/product_images/:id'
   def destroy
-    image = Product::Image.includes(:product).normal.find(params[:id])
+    image = Product::Image.includes(:product).find(params[:id])
 
     check_policy ProductPolicy.new(current_api_user, image.product).update?
 
@@ -33,7 +33,7 @@ class Api::V1::Web::Products::ImagesController < Api::V1::Web::BaseController
   private
 
   def image_params
-    params.require(:product).permit(:use_case, :product_id, :variant_id, images: [])
+    params.require(:product).permit(:product_id, :variant_id, images: [])
   end
 
   # 因為這個 action 同時負責 `/products/images` 和 `/products/:product_id/images` 兩個 routes 的 POST request
@@ -45,10 +45,10 @@ class Api::V1::Web::Products::ImagesController < Api::V1::Web::BaseController
       render json: Product::Image.where(id: @form.created_image_ids)
     else
       render json: Product.find(@form.product_id),
-             include: [:normal_images, :variants_with_master, 'option_types.option_values'],
+             include: [:images, :variants_with_master, 'option_types.option_values'],
              show_variants: true,
              show_options: true,
-             show_normal_images: true
+             show_images: true
     end
   end
 end

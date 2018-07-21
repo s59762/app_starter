@@ -36,7 +36,7 @@ export default function imageButtonHandler(options = {}) {
 
       dispatch(action, formData).then(response => {
         response.data.data.forEach(image => {
-          _insertImage(quill, image.attributes.url)
+          _insertImage(quill, image.attributes.file.url)
           if (imageUploadedCallback) imageUploadedCallback(image)
         })
       })

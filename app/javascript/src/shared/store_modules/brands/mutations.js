@@ -49,6 +49,10 @@ export default {
     state.isCallingAPI = false
   },
 
+  [types.UPLOAD_ATTACHMENTS_SUCCESS](state) {
+    state.isCallingAPI = false
+  },
+
   [types.API_REQUEST_START](state, action = 'not provided') {
     state.isCallingAPI = true
   },
