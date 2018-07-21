@@ -9,8 +9,7 @@ const OPTIONS = {
   attributes: [
     'id',
     'use_case',
-    'url',
-    'thumb_url',
+    'image',
     'original_filename',
     'product_id',
     'is_cover',

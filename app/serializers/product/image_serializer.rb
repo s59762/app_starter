@@ -18,9 +18,7 @@ class Product::ImageSerializer < ApplicationSerializer
 
   attributes :id,
              :use_case,
-             :url,
-             :squal_image,
-             :thumb_url,
+             :image,
              :original_filename,
              :is_cover,
              :variant_id,
@@ -29,17 +27,7 @@ class Product::ImageSerializer < ApplicationSerializer
   belongs_to :product, optional: true, if: -> { instance_options[:show_product] }
   belongs_to :variant, optional: true, if: -> { instance_options[:show_variant] }
 
-  def url
-    object.image.url
-  end
-
-  def squal_image
-    return nil if object.description?
-
-    object.image.squal.url
-  end
-
-  def thumb_url
-    object.image.thumb.url
+  def image
+    object.image.serializable_hash
   end
 end

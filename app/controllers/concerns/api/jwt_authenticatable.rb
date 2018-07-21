@@ -24,6 +24,10 @@ module Api
       @current_api_user ||= @api_auth ? @api_auth.call : Null::User.new('user')
     end
 
+    def current_api_user_scope
+      @current_api_user_scope ||= admin_signed_in? ? current_api_user.class.name : 'User'
+    end
+
     # 驗證當前使用者身份是否為 'Admin'
     def admin_signed_in?
       current_api_user.class.name == 'Admin'

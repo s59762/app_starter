@@ -1,0 +1,27 @@
+zh-TW:
+  # model and attributes name
+  activerecord: &default
+    models:
+      brand/banner:
+        one: 品牌 Banner
+        other: 品牌 Banner
+
+    attributes:
+      brand/banner:
+        image: 圖片
+        alt_text: 替代文字
+        position: 排序位置
+
+    errors:
+      models:
+        brand/banner:
+          attributes:
+  activemodel: *default
+
+  # Enums
+  enums:
+    brand/banner:
+
+  # AASM state machine
+  aasm_state:
+    brand/banner:

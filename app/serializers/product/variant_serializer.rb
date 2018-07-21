@@ -30,7 +30,6 @@ class Product::VariantSerializer < ApplicationSerializer
   attributes :id,
              :name,
              :sku,
-             :original_price,
              :sell_price,
              :discounted_price,
              :weight,
@@ -55,5 +54,9 @@ class Product::VariantSerializer < ApplicationSerializer
     return :low_stock if object.stock < SiteConfig.product_config['safe_stock_level']
 
     :normal
+  end
+
+  class Detail < Product::VariantSerializer
+    attributes :original_price
   end
 end

@@ -27,16 +27,6 @@ class BrandSerializer < ApplicationSerializer
   to_unix_time :created_at, :updated_at
 
   def logo
-    return nil unless object.logo.present?
-
-    {
-      url: object.logo.url,
-      medium: {
-        url: object.logo.medium.url
-      },
-      thumb: {
-        url: object.logo.thumb.url
-      }
-    }
+    object.logo.serializable_hash
   end
 end

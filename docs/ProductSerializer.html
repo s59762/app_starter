@@ -148,6 +148,28 @@
         <li class="public ">
   <span class="summary_signature">
     
+      <a href="#cover-instance_method" title="#cover (instance method)">#<strong>cover</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
       <a href="#discount_rate-instance_method" title="#discount_rate (instance method)">#<strong>discount_rate</strong>  &#x21d2; Object </a>
     
 
@@ -256,7 +278,45 @@
 
     
       <div class="method_details first">
-  <h3 class="signature first" id="discount_rate-instance_method">
+  <h3 class="signature first" id="cover-instance_method">
+  
+    #<strong>cover</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+76
+77
+78
+79
+80
+81
+82</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/serializers/product_serializer.rb', line 76</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_cover'>cover</span>
+  <span class='kw'>return</span> <span class='kw'>nil</span> <span class='kw'>unless</span> <span class='id identifier rubyid_object'>object</span><span class='period'>.</span><span class='id identifier rubyid_normal_images'>normal_images</span><span class='period'>.</span><span class='id identifier rubyid_present?'>present?</span>
+
+  <span class='id identifier rubyid_cover'>cover</span> <span class='op'>=</span> <span class='id identifier rubyid_object'>object</span><span class='period'>.</span><span class='id identifier rubyid_normal_images'>normal_images</span><span class='period'>.</span><span class='id identifier rubyid_cover'>cover</span><span class='period'>.</span><span class='id identifier rubyid_present?'>present?</span> <span class='op'>?</span> <span class='id identifier rubyid_object'>object</span><span class='period'>.</span><span class='id identifier rubyid_normal_images'>normal_images</span><span class='period'>.</span><span class='id identifier rubyid_cover'>cover</span><span class='period'>.</span><span class='id identifier rubyid_take'>take</span> <span class='op'>:</span> <span class='id identifier rubyid_object'>object</span><span class='period'>.</span><span class='id identifier rubyid_normal_images'>normal_images</span><span class='period'>.</span><span class='id identifier rubyid_take'>take</span>
+
+  <span class='id identifier rubyid_cover'>cover</span><span class='period'>.</span><span class='id identifier rubyid_image'>image</span><span class='period'>.</span><span class='id identifier rubyid_serializable_hash'>serializable_hash</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="discount_rate-instance_method">
   
     #<strong>discount_rate</strong>  &#x21d2; <tt>Object</tt> 
   
@@ -280,15 +340,15 @@
       <pre class="lines">
 
 
-77
-78
-79
-80
-81
-82</pre>
+85
+86
+87
+88
+89
+90</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/serializers/product_serializer.rb', line 77</span>
+      <pre class="code"><span class="info file"># File 'app/serializers/product_serializer.rb', line 85</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_discount_rate'>discount_rate</span>
   <span class='kw'>return</span> <span class='float'>1.0</span> <span class='kw'>if</span> <span class='id identifier rubyid_object'>object</span><span class='period'>.</span><span class='id identifier rubyid_discounted_price'>discounted_price</span><span class='period'>.</span><span class='id identifier rubyid_zero?'>zero?</span>
@@ -316,23 +376,23 @@
       <pre class="lines">
 
 
-84
-85
-86
-87
-88
-89
-90
-91
 92
 93
 94
 95
 96
-97</pre>
+97
+98
+99
+100
+101
+102
+103
+104
+105</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/serializers/product_serializer.rb', line 84</span>
+      <pre class="code"><span class="info file"># File 'app/serializers/product_serializer.rb', line 92</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_options'>options</span>
   <span class='id identifier rubyid_object'>object</span><span class='period'>.</span><span class='id identifier rubyid_option_types'>option_types</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_type'>type</span><span class='op'>|</span>

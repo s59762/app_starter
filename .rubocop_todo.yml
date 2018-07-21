@@ -1,5 +1,11 @@
-Style/TrailingCommaInLiteral:
+Layout/FirstArrayElementLineBreak:
   Enabled: false
 
-Layout/FirstArrayElementLineBreak:
+Metrics/LineLength:
+  Enabled: false
+
+Style/TrailingCommaInHashLiteral:
+  Enabled: false
+
+Style/TrailingCommaInArrayLiteral:
   Enabled: false

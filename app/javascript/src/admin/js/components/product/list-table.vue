@@ -89,14 +89,6 @@ export default {
   // mounted() {},
 
   methods: {
-    preorderIcon(product) {
-      if (product.is_preorder) {
-        return 'fa-check-circle'
-      } else {
-        return 'fa-times-circle'
-      }
-    },
-
     linkToEditPage(product) {
       Turbolinks.visit(`/admin/products/${product.id}/edit`)
     }

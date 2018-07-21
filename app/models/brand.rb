@@ -19,6 +19,7 @@ class Brand < ApplicationRecord
                     :'brands.updated_at'
 
   has_many :products, dependent: :nullify
+  has_many :banners, -> { order(position: :asc) }, dependent: :destroy
 
   mount_uploader :logo, BrandLogoUploader
 end

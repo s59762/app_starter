@@ -1,11 +1,11 @@
 <template lang="pug">
 
-.vc-brand-edit-button
+.vc-brand-edit-button.option-button
   button.button.is-small.is-info(@click="showForm"
                                  data-behavior="edit-brand-button")
     span.icon
       i.fa.fa-pencil
-    span {{ actionLocaleText('admin', 'edit') }}
+    span {{ buttonText }}
   b-modal(:active.sync="isFormActive")
     brand-form(:brand="brand")
 
@@ -23,6 +23,14 @@ export default {
     brand: {
       type: Object,
       required: true
+    },
+
+    buttonText: {
+      type: String,
+      required: false,
+      default: () => {
+        return I18n.t('actions.admin.edit')
+      }
     }
   },
 

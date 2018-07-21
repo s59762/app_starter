@@ -1,5 +1,6 @@
 import ResourceModelBase from 'odd-resource_model'
 import axios from 'axios'
+import FetchingDataOptionsService from 'odd-fetching_data_options_service'
 
 const OPTIONS = {
   apiPath: '/api',
@@ -31,6 +32,15 @@ export default class Brand extends ResourceModelBase {
   updateLogo(formData) {
     return axios.put(`${this.apiBasePath()}/${this.id}/logo`, formData)
   }
+
+  fetchProducts(options) {
+    return axios.get(`${this.apiBasePath()}/${this.id}/products?${FetchingDataOptionsService.call(options)}`)
+  }
+
+  fetchBanners(options) {
+    return axios.get(`${this.apiBasePath()}/${this.id}/banners?${FetchingDataOptionsService.call(options)}`)
+  }
+
 
   // extra methods or helpers here...
 

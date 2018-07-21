@@ -40,7 +40,15 @@ export default {
 
     state.isCallingAPI = false
   },
-  
+
+  [types.FETCH_BRAND_PRODUCTS_SUCCESS](state) {
+    state.isCallingAPI = false
+  },
+
+  [types.FETCH_BRAND_BANNERS_SUCCESS](state) {
+    state.isCallingAPI = false
+  },
+
   [types.API_REQUEST_START](state, action = 'not provided') {
     state.isCallingAPI = true
   },

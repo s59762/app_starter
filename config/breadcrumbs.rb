@@ -24,8 +24,13 @@ crumb :admin_users do
 end
 
 crumb :admin_brands do
-  link I18n.t('page_titles.admin.brands.main_title'), admin_admins_path, icon: 'fa-address-card-o'
+  link I18n.t('page_titles.admin.brands.main_title'), admin_brands_path, icon: 'fa-address-card-o'
   parent :admin_root
+end
+
+crumb :admin_brand do |brand|
+  link brand.name, admin_brand_path(brand), icon: 'fa-search'
+  parent :admin_brands
 end
 
 crumb :admin_product_categories do

@@ -310,14 +310,14 @@
       <pre class="lines">
 
 
+58
 59
 60
 61
-62
-63</pre>
+62</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/forms/admin/edit_product_form.rb', line 59</span>
+      <pre class="code"><span class="info file"># File 'app/forms/admin/edit_product_form.rb', line 58</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_assign_category_to_model'>assign_category_to_model</span>
     <span class='id identifier rubyid_id'>id</span> <span class='op'>=</span> <span class='id identifier rubyid_sub_category_id'>sub_category_id</span><span class='period'>.</span><span class='id identifier rubyid_present?'>present?</span> <span class='op'>?</span> <span class='id identifier rubyid_sub_category_id'>sub_category_id</span> <span class='op'>:</span> <span class='id identifier rubyid_top_level_category_id'>top_level_category_id</span>
@@ -354,14 +354,14 @@
       <pre class="lines">
 
 
+52
 53
 54
 55
-56
-57</pre>
+56</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/forms/admin/edit_product_form.rb', line 53</span>
+      <pre class="code"><span class="info file"># File 'app/forms/admin/edit_product_form.rb', line 52</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_assign_price_info_to_model'>assign_price_info_to_model</span>
   <span class='id identifier rubyid_price'>price</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='op'>|</span>
@@ -398,17 +398,17 @@
       <pre class="lines">
 
 
+74
 75
 76
 77
 78
 79
 80
-81
-82</pre>
+81</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/forms/admin/edit_product_form.rb', line 75</span>
+      <pre class="code"><span class="info file"># File 'app/forms/admin/edit_product_form.rb', line 74</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_delete_unused_images'>delete_unused_images</span><span class='lparen'>(</span><span class='id identifier rubyid_description_image_ids'>description_image_ids</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='kw'>unless</span> <span class='id identifier rubyid_description_image_ids'>description_image_ids</span>
@@ -448,16 +448,16 @@
       <pre class="lines">
 
 
+65
 66
 67
 68
 69
 70
-71
-72</pre>
+71</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/forms/admin/edit_product_form.rb', line 66</span>
+      <pre class="code"><span class="info file"># File 'app/forms/admin/edit_product_form.rb', line 65</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_link_product_images'>link_product_images</span><span class='lparen'>(</span><span class='id identifier rubyid_description_image_ids'>description_image_ids</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='kw'>unless</span> <span class='id identifier rubyid_description_image_ids'>description_image_ids</span>
@@ -525,15 +525,13 @@
 34
 35
 36
-37
-38</pre>
+37</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'app/forms/admin/edit_product_form.rb', line 25</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_save'>save</span>
-  <span class='id identifier rubyid_description_image_ids'>description_image_ids</span> <span class='op'>=</span> <span class='id identifier rubyid_description'>description</span><span class='period'>.</span><span class='id identifier rubyid_scan'>scan</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\/uploads\/product\/image\/image\/([0-9]+)</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_flatten'>flatten</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbol'>:to_i</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_description'>description</span><span class='period'>.</span><span class='id identifier rubyid_present?'>present?</span>
-  <span class='ivar'>@is_new_record</span> <span class='op'>=</span> <span class='id identifier rubyid_model'>model</span><span class='period'>.</span><span class='id identifier rubyid_new_record?'>new_record?</span>
+  <span class='id identifier rubyid_description_image_ids'>description_image_ids</span> <span class='op'>=</span> <span class='id identifier rubyid_description'>description</span><span class='period'>.</span><span class='id identifier rubyid_present?'>present?</span> <span class='op'>?</span> <span class='id identifier rubyid_description'>description</span><span class='period'>.</span><span class='id identifier rubyid_scan'>scan</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\/uploads\/product\/image\/image\/([0-9]+)</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_flatten'>flatten</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbol'>:to_i</span><span class='rparen'>)</span> <span class='op'>:</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
 
   <span class='id identifier rubyid_sync'>sync</span>
   <span class='comment'># assign_price_info_to_model
@@ -588,17 +586,17 @@
       <pre class="lines">
 
 
+40
 41
 42
 43
 44
 45
 46
-47
-48</pre>
+47</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/forms/admin/edit_product_form.rb', line 41</span>
+      <pre class="code"><span class="info file"># File 'app/forms/admin/edit_product_form.rb', line 40</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_valid_price_params?'>valid_price_params?</span>
   <span class='id identifier rubyid_price'>price</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='op'>|</span>
