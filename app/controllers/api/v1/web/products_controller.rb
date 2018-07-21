@@ -4,8 +4,12 @@ class Api::V1::Web::ProductsController < Api::V1::Web::BaseController
   def index
     check_policy ProductPolicy.new(current_api_user, :product).index?
 
-    products = FetchingDataService.call(Product, params).includes(:brand, :normal_images, master: [:images], option_types: [:option_values], category: [:parent])
-    result = Api::DataCacheService.call(products, request, extra: { include: [:master] })
+    products = FetchingDataService.call(Product, params)
+    result = Api::DataCacheService.call(products,
+                                        request,
+                                        extra: product_index_extra_options,
+                                        user_scope: current_api_user_scope,
+                                        includes: [:brand, :images, master: [:images], option_types: [:option_values], category: [:parent]])
 
     render json: result
   end
@@ -16,10 +20,11 @@ class Api::V1::Web::ProductsController < Api::V1::Web::BaseController
     check_policy ProductPolicy.new(current_api_user, product).show?
 
     render json: product,
-           include: [:normal_images, :variants_with_master, 'option_types.option_values'],
+           include: [:images, :variants_with_master, 'option_types.option_values'],
            show_variants: true,
            show_options: true,
-           show_normal_images: true
+           show_images: true,
+           serializer: admin_signed_in? ? ProductSerializer::Detail : ProductSerializer
   end
 
   def create
@@ -33,10 +38,10 @@ class Api::V1::Web::ProductsController < Api::V1::Web::BaseController
     form.save
 
     render json: form.model,
-           include: [:normal_images, :variants_with_master, 'option_types.option_values'],
+           include: [:images, :variants_with_master, 'option_types.option_values'],
            show_variants: true,
            show_options: true,
-           show_normal_images: true
+           show_images: true
   end
 
   def update
@@ -50,10 +55,10 @@ class Api::V1::Web::ProductsController < Api::V1::Web::BaseController
     form.save
 
     render json: form.model,
-           include: [:normal_images, :variants_with_master, 'option_types.option_values'],
+           include: [:images, :variants_with_master, 'option_types.option_values'],
            show_variants: true,
            show_options: true,
-           show_normal_images: true
+           show_images: true
   end
 
   private
