@@ -1,3 +1,13 @@
 - breadcrumb :admin_product_sub_category, @parent_category, @product_category
 
 = cell('admin/common').call(:content_header)
+
+.box.content-box.is-primary(data-vue="product_category_products_container"
+                            data-product-category=(@product_category.id))
+  .box-header.with-border
+  .box-tools
+    .tools
+      / tools
+  .box-body
+    products-list-table(v-if="isReady"
+                        :product-category="productCategory")
