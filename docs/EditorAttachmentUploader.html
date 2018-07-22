@@ -4,7 +4,7 @@
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>
-  Class: ProductImageUploader
+  Class: EditorAttachmentUploader
   
     &mdash; Documentation by YARD 0.9.14
   
@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
 
 <script type="text/javascript" charset="utf-8">
-  pathId = "ProductImageUploader";
+  pathId = "EditorAttachmentUploader";
   relpath = '';
 </script>
 
@@ -36,10 +36,10 @@
       <div id="header">
         <div id="menu">
   
-    <a href="_index.html">Index (P)</a> &raquo;
+    <a href="_index.html">Index (E)</a> &raquo;
     
     
-    <span class="title">ProductImageUploader</span>
+    <span class="title">EditorAttachmentUploader</span>
   
 </div>
 
@@ -59,7 +59,7 @@
         <div class="clear"></div>
       </div>
 
-      <div id="content"><h1>Class: ProductImageUploader
+      <div id="content"><h1>Class: EditorAttachmentUploader
   
   
   
@@ -76,7 +76,7 @@
           
             <li class="next">CarrierWave::Uploader::Base</li>
           
-            <li class="next">ProductImageUploader</li>
+            <li class="next">EditorAttachmentUploader</li>
           
         </ul>
         <a href="#" class="inheritanceTree">show all</a>
@@ -101,7 +101,7 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>app/uploaders/product_image_uploader.rb</dd>
+    <dd>app/uploaders/editor_attachment_uploader.rb</dd>
   </dl>
   
 </div>
@@ -185,6 +185,28 @@
   
     <span class="summary_desc"><div class='inline'><p>Override the filename of the uploaded files: Avoid using model.id or version_name here, see uploader/store.rb for details.</p>
 </div></span>
+  
+</li>
+
+      
+        <li class="protected ">
+  <span class="summary_signature">
+    
+      <a href="#image%3F-instance_method" title="#image? (instance method)">#<strong>image?</strong>(new_file)  &#x21d2; Boolean </a>
+    
+
+    
+  </span>
+  
+  
+  
+  <span class="note title protected">protected</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -304,15 +326,15 @@
       <pre class="lines">
 
 
-41
-42
-43
-44
-45
-46</pre>
+32
+33
+34
+35
+36
+37</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/uploaders/product_image_uploader.rb', line 41</span>
+      <pre class="code"><span class="info file"># File 'app/uploaders/editor_attachment_uploader.rb', line 32</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_delete_empty_upstream_dirs'>delete_empty_upstream_dirs</span>
   <span class='id identifier rubyid_path'>path</span> <span class='op'>=</span> <span class='op'>::</span><span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_expand_path'>expand_path</span><span class='lparen'>(</span><span class='id identifier rubyid_store_dir'>store_dir</span><span class='comma'>,</span> <span class='id identifier rubyid_root'><span class='object_link'><a href="top-level-namespace.html" title="Top Level Namespace (root)">root</a></span></span><span class='rparen'>)</span>
@@ -351,12 +373,12 @@ For images you might use something like this:</p>
       <pre class="lines">
 
 
-31
-32
-33</pre>
+22
+23
+24</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/uploaders/product_image_uploader.rb', line 31</span>
+      <pre class="code"><span class="info file"># File 'app/uploaders/editor_attachment_uploader.rb', line 22</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_extension_whitelist'>extension_whitelist</span>
   <span class='qwords_beg'>%w(</span><span class='tstring_content'>jpg</span><span class='words_sep'> </span><span class='tstring_content'>jpeg</span><span class='words_sep'> </span><span class='tstring_content'>gif</span><span class='words_sep'> </span><span class='tstring_content'>png</span><span class='tstring_end'>)</span></span>
@@ -392,15 +414,67 @@ Avoid using model.id or version_name here, see uploader/store.rb for details.</p
       <pre class="lines">
 
 
-37
-38
-39</pre>
+28
+29
+30</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/uploaders/product_image_uploader.rb', line 37</span>
+      <pre class="code"><span class="info file"># File 'app/uploaders/editor_attachment_uploader.rb', line 28</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_filename'>filename</span>
   <span class='ivar'>@name</span> <span class='op'>||=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_timestamp'>timestamp</span><span class='embexpr_end'>}</span><span class='tstring_content'>-</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_secure_token'>secure_token</span><span class='lparen'>(</span><span class='int'>8</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>.</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_file'>file</span><span class='period'>.</span><span class='id identifier rubyid_extension'>extension</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='id identifier rubyid_original_filename'>original_filename</span><span class='period'>.</span><span class='id identifier rubyid_present?'>present?</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="image?-instance_method">
+  
+    #<strong>image?</strong>(new_file)  &#x21d2; <tt>Boolean</tt>  <span class="extras">(protected)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+41
+42
+43</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/uploaders/editor_attachment_uploader.rb', line 41</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_image?'>image?</span><span class='lparen'>(</span><span class='id identifier rubyid_new_file'>new_file</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_new_file'>new_file</span><span class='period'>.</span><span class='id identifier rubyid_content_type'>content_type</span><span class='period'>.</span><span class='id identifier rubyid_start_with?'>start_with?</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>image</span><span class='tstring_end'>&#39;</span></span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -422,12 +496,12 @@ Avoid using model.id or version_name here, see uploader/store.rb for details.</p
       <pre class="lines">
 
 
-60
-61
-62</pre>
+55
+56
+57</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/uploaders/product_image_uploader.rb', line 60</span>
+      <pre class="code"><span class="info file"># File 'app/uploaders/editor_attachment_uploader.rb', line 55</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_save_original_filename'>save_original_filename</span><span class='lparen'>(</span><span class='id identifier rubyid_file'>file</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_model'>model</span><span class='period'>.</span><span class='id identifier rubyid_original_filename'>original_filename</span> <span class='op'>||=</span> <span class='id identifier rubyid_file'>file</span><span class='period'>.</span><span class='id identifier rubyid_original_filename'>original_filename</span> <span class='kw'>if</span> <span class='id identifier rubyid_file'>file</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='symbol'>:original_filename</span><span class='rparen'>)</span>
@@ -452,13 +526,13 @@ Avoid using model.id or version_name here, see uploader/store.rb for details.</p
       <pre class="lines">
 
 
-55
-56
-57
-58</pre>
+50
+51
+52
+53</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/uploaders/product_image_uploader.rb', line 55</span>
+      <pre class="code"><span class="info file"># File 'app/uploaders/editor_attachment_uploader.rb', line 50</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_secure_token'>secure_token</span><span class='lparen'>(</span><span class='id identifier rubyid_length'>length</span> <span class='op'>=</span> <span class='int'>16</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_var'>var</span> <span class='op'>=</span> <span class='symbol'>:&quot;@</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_mounted_as'>mounted_as</span><span class='embexpr_end'>}</span><span class='tstring_content'>_secure_token</span><span class='tstring_end'>&quot;</span></span>
@@ -500,7 +574,7 @@ This is a sensible default for uploaders that are meant to be mounted:</p>
 16</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/uploaders/product_image_uploader.rb', line 14</span>
+      <pre class="code"><span class="info file"># File 'app/uploaders/editor_attachment_uploader.rb', line 14</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_store_dir'>store_dir</span>
   <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>uploads/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_model'>model</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_underscore'>underscore</span><span class='embexpr_end'>}</span><span class='tstring_content'>/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_mounted_as'>mounted_as</span><span class='embexpr_end'>}</span><span class='tstring_content'>/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_model'>model</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
@@ -525,13 +599,13 @@ This is a sensible default for uploaders that are meant to be mounted:</p>
       <pre class="lines">
 
 
-50
-51
-52
-53</pre>
+45
+46
+47
+48</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/uploaders/product_image_uploader.rb', line 50</span>
+      <pre class="code"><span class="info file"># File 'app/uploaders/editor_attachment_uploader.rb', line 45</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_timestamp'>timestamp</span>
   <span class='id identifier rubyid_var'>var</span> <span class='op'>=</span> <span class='symbol'>:&quot;@</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_mounted_as'>mounted_as</span><span class='embexpr_end'>}</span><span class='tstring_content'>_timestamp</span><span class='tstring_end'>&quot;</span></span>

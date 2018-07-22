@@ -4,7 +4,7 @@
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>
-  Class: Admin::ProductCategoriesController
+  Class: Admin::BannersController
   
     &mdash; Documentation by YARD 0.9.14
   
@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
 
 <script type="text/javascript" charset="utf-8">
-  pathId = "Admin::ProductCategoriesController";
+  pathId = "Admin::BannersController";
   relpath = '../';
 </script>
 
@@ -36,10 +36,10 @@
       <div id="header">
         <div id="menu">
   
-    <a href="../_index.html">Index (P)</a> &raquo;
+    <a href="../_index.html">Index (B)</a> &raquo;
     <span class='title'><span class='object_link'><a href="../Admin.html" title="Admin (class)">Admin</a></span></span>
      &raquo; 
-    <span class="title">ProductCategoriesController</span>
+    <span class="title">BannersController</span>
   
 </div>
 
@@ -59,7 +59,7 @@
         <div class="clear"></div>
       </div>
 
-      <div id="content"><h1>Class: Admin::ProductCategoriesController
+      <div id="content"><h1>Class: Admin::BannersController
   
   
   
@@ -78,7 +78,7 @@
           
             <li class="next"><span class='object_link'><a href="ApplicationController.html" title="Admin::ApplicationController (class)">ApplicationController</a></span></li>
           
-            <li class="next">Admin::ProductCategoriesController</li>
+            <li class="next">Admin::BannersController</li>
           
         </ul>
         <a href="#" class="inheritanceTree">show all</a>
@@ -98,7 +98,7 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>app/controllers/admin/product_categories_controller.rb</dd>
+    <dd>app/controllers/admin/banners_controller.rb</dd>
   </dl>
   
 </div>
@@ -128,28 +128,6 @@
   <span class="summary_signature">
     
       <a href="#index-instance_method" title="#index (instance method)">#<strong>index</strong>  &#x21d2; Object </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'></div></span>
-  
-</li>
-
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#show-instance_method" title="#show (instance method)">#<strong>show</strong>  &#x21d2; Object </a>
     
 
     
@@ -230,48 +208,12 @@
 
 
 4
-5
-6</pre>
+5</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/admin/product_categories_controller.rb', line 4</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/admin/banners_controller.rb', line 4</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_index'>index</span>
-  <span class='id identifier rubyid_authorize'>authorize</span> <span class='symbol'>:product_category</span><span class='comma'>,</span> <span class='symbol'>:index?</span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
-  <h3 class="signature " id="show-instance_method">
-  
-    #<strong>show</strong>  &#x21d2; <tt>Object</tt> 
-  
-
-  
-
-  
-</h3><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-8
-9
-10
-11
-12</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/admin/product_categories_controller.rb', line 8</span>
-
-<span class='kw'>def</span> <span class='id identifier rubyid_show'>show</span>
-  <span class='ivar'>@product_category</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../ProductCategory.html" title="ProductCategory (class)">ProductCategory</a></span></span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
-
-  <span class='id identifier rubyid_authorize'>authorize</span> <span class='ivar'>@product_category</span><span class='comma'>,</span> <span class='symbol'>:show?</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>

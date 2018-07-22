@@ -229,7 +229,6 @@
       <pre class="lines">
 
 
-16
 17
 18
 19
@@ -240,10 +239,11 @@
 24
 25
 26
-27</pre>
+27
+28</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/api/v1/web/product_categories_controller.rb', line 16</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/api/v1/web/product_categories_controller.rb', line 17</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_create'>create</span>
   <span class='id identifier rubyid_category'>category</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../ProductCategory.html" title="ProductCategory (class)">ProductCategory</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
@@ -289,7 +289,8 @@
 11
 12
 13
-14</pre>
+14
+15</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'app/controllers/api/v1/web/product_categories_controller.rb', line 2</span>
@@ -297,13 +298,14 @@
 <span class='kw'>def</span> <span class='id identifier rubyid_index'>index</span>
   <span class='id identifier rubyid_check_policy'>check_policy</span> <span class='const'><span class='object_link'><a href="../../../ProductCategoryPolicy.html" title="ProductCategoryPolicy (class)">ProductCategoryPolicy</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="../../../ApplicationPolicy.html#initialize-instance_method" title="ApplicationPolicy#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_current_api_user'>current_api_user</span><span class='comma'>,</span> <span class='symbol'>:category</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_index?'><span class='object_link'><a href="../../../ApplicationPolicy.html#index%3F-instance_method" title="ApplicationPolicy#index? (method)">index?</a></span></span>
 
-  <span class='id identifier rubyid_categories'>categories</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../FetchingDataService.html" title="FetchingDataService (class)">FetchingDataService</a></span></span><span class='period'>.</span><span class='id identifier rubyid_call'><span class='object_link'><a href="../../../FetchingDataService.html#call-class_method" title="FetchingDataService.call (method)">call</a></span></span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="../../../ProductCategory.html" title="ProductCategory (class)">ProductCategory</a></span></span><span class='period'>.</span><span class='id identifier rubyid_top_level_only'>top_level_only</span><span class='comma'>,</span> <span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_includes'>includes</span><span class='lparen'>(</span><span class='symbol'>:parent</span><span class='comma'>,</span> <span class='label'>sub_categories:</span> <span class='lbracket'>[</span><span class='symbol'>:parent</span><span class='comma'>,</span> <span class='symbol'>:sub_categories</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_categories'>categories</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../FetchingDataService.html" title="FetchingDataService (class)">FetchingDataService</a></span></span><span class='period'>.</span><span class='id identifier rubyid_call'><span class='object_link'><a href="../../../FetchingDataService.html#call-class_method" title="FetchingDataService.call (method)">call</a></span></span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="../../../ProductCategory.html" title="ProductCategory (class)">ProductCategory</a></span></span><span class='period'>.</span><span class='id identifier rubyid_top_level_only'>top_level_only</span><span class='comma'>,</span> <span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../Api.html" title="Api (module)">Api</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../DataCacheService.html" title="Api::DataCacheService (class)">DataCacheService</a></span></span><span class='period'>.</span><span class='id identifier rubyid_call'><span class='object_link'><a href="../../DataCacheService.html#call-class_method" title="Api::DataCacheService.call (method)">call</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_categories'>categories</span><span class='comma'>,</span>
                                       <span class='id identifier rubyid_request'>request</span><span class='comma'>,</span>
                                       <span class='label'>extra:</span> <span class='lbrace'>{</span>
                                         <span class='label'>show_sub_categories:</span> <span class='kw'>true</span><span class='comma'>,</span>
                                         <span class='label'>include:</span> <span class='lbracket'>[</span><span class='symbol'>:sub_categories</span><span class='rbracket'>]</span>
-                                      <span class='rbrace'>}</span><span class='rparen'>)</span>
+                                      <span class='rbrace'>}</span><span class='comma'>,</span>
+                                      <span class='label'>includes:</span> <span class='lbracket'>[</span><span class='symbol'>:parent</span><span class='comma'>,</span> <span class='label'>sub_categories:</span> <span class='lbracket'>[</span><span class='symbol'>:parent</span><span class='comma'>,</span> <span class='symbol'>:sub_categories</span><span class='rbracket'>]</span><span class='rbracket'>]</span><span class='rparen'>)</span>
 
   <span class='id identifier rubyid_render'>render</span> <span class='label'>json:</span> <span class='id identifier rubyid_result'>result</span>
 <span class='kw'>end</span></pre>
@@ -327,12 +329,12 @@
       <pre class="lines">
 
 
-44
 45
-46</pre>
+46
+47</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/api/v1/web/product_categories_controller.rb', line 44</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/api/v1/web/product_categories_controller.rb', line 45</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_product_category_params'>product_category_params</span>
   <span class='const'>ActiveModelSerializers</span><span class='op'>::</span><span class='const'>Deserialization</span><span class='period'>.</span><span class='id identifier rubyid_jsonapi_parse'>jsonapi_parse</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span>
@@ -357,7 +359,6 @@
       <pre class="lines">
 
 
-29
 30
 31
 32
@@ -368,10 +369,11 @@
 37
 38
 39
-40</pre>
+40
+41</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/api/v1/web/product_categories_controller.rb', line 29</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/api/v1/web/product_categories_controller.rb', line 30</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_update'>update</span>
   <span class='id identifier rubyid_category'>category</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../ProductCategory.html" title="ProductCategory (class)">ProductCategory</a></span></span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
