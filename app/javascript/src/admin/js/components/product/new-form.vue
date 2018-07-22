@@ -173,7 +173,7 @@ export default {
       }
     }
 
-    this.assignBrandFromQueryString()
+    this.assignAttributesFromQueryString()
   },
 
   // mounted() {},
@@ -186,10 +186,12 @@ export default {
       })
     },
 
-    assignBrandFromQueryString() {
-      const brandId = queryString.parse(window.location.search).brand_id
+    assignAttributesFromQueryString() {
+      const options = queryString.parse(window.location.search)
 
-      if (brandId) this.form.brand_id = brandId
+      if (options.brandId) this.form.brand_id = options.brandId
+      if (options.product_category_id) this.form.top_level_category_id = options.product_category_id
+      if (options.sub_category_id) this.form.sub_category_id = options.sub_category_id
     }
   }
 }

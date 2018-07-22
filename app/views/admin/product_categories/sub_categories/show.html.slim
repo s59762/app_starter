@@ -7,7 +7,12 @@
   .box-header.with-border
   .box-tools
     .tools
-      / tools
+      a.button.is-small.is-primary.option-button(href=(new_admin_product_path(product_category_id: @parent_category.id, sub_category_id: @product_category.id))
+                                                 data-behavior="new-product-button")
+          .icon
+            i.fa.fa-plus
+          span
+            | {{actionLocaleText('admin', 'new', { model: modelNameLocaleText('product') })}}
   .box-body
     products-list-table(v-if="isReady"
                         :product-category="productCategory")
