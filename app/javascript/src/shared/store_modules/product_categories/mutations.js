@@ -41,6 +41,10 @@ export default {
     state.isCallingAPI = false
   },
 
+  [types.FETCH_PRODUCT_CATEGORY_PRODUCTS_SUCCESS](state) {
+    state.isCallingAPI = false
+  },
+
   [types.API_REQUEST_START](state, action = 'not provided') {
     state.isCallingAPI = true
   },

@@ -105,6 +105,36 @@ export const destroy = ({
   })
 }
 
+export const fetchProducts = ({
+  dispatch,
+  commit
+}, {
+  model,
+  options
+}) => {
+  commit(types.API_REQUEST_START, 'fetchProducts')
+
+  return new Promise((resolve, reject) => {
+    model.fetchProducts(options)
+      .then(response => {
+        dispatch('products/receiveResourcesFromRelationshipsWithReplace', response, {
+          root: true
+        })
+        commit(types.FETCH_PRODUCT_CATEGORY_PRODUCTS_SUCCESS)
+
+        resolve(response)
+      })
+      .catch(errors => {
+        commit(types.API_REQUEST_FAIL, errors)
+        dispatch('errorMessageHandler', errors, {
+          root: true
+        })
+
+        reject(errors)
+      })
+  })
+}
+
 export const receiveResourcesFromRelationships = ({
   commit
 }, response) => {

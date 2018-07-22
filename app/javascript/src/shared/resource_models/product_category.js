@@ -1,4 +1,6 @@
+import axios from 'axios'
 import ResourceModelBase from 'odd-resource_model'
+import FetchingDataOptionsService from 'odd-fetching_data_options_service'
 
 const OPTIONS = {
   apiPath: '/api',
@@ -25,5 +27,8 @@ export default class ProductCategory extends ResourceModelBase {
     super(OPTIONS, attributes)
   }
 
+  fetchProducts(options = {}) {
+    return axios.get(`${this.apiBasePath()}/${this.id}/products?${FetchingDataOptionsService.call(options)}`)
+  }
   // extra methods or helpers here...
 }
