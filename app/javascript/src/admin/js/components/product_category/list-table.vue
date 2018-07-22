@@ -18,7 +18,10 @@
       b-table-column(field="name"
                     :label="attributeLocaleText('product_category', 'name')"
                     sortable)
-        | {{ props.row.name }}
+        a(:href="productCategoryPath(props.row)")
+          .icon
+            i.fa.fa-search
+          span {{ props.row.name }}
 
       b-table-column(field="parent_id"
                      :label="attributeLocaleText('product_category', 'has_sub_categories')"
@@ -116,6 +119,10 @@ export default {
         .reduce((accumulator, currentCategory) => {
           return accumulator + currentCategory.products_count
         }, topLevelCategory.products_count)
+    },
+
+    productCategoryPath(productCategory) {
+      return `/admin/product_categories/${productCategory.id}`
     }
   }
 }

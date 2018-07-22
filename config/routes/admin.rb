@@ -20,7 +20,9 @@ namespace :admin do
   resources :brands, only: %i(index show)
 
   # product category management
-  resources :product_categories, only: %i(index)
+  resources :product_categories, only: %i(index show) do
+    resources :sub_categories, only: :show, controller: 'product_categories/sub_categories'
+  end
 
   # product management
   resources :products, only: %i(index new edit)

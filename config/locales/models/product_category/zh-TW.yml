@@ -15,6 +15,7 @@ zh-TW:
         sub_categories: 子分類
         sub_category_name: 子分類名稱
         products_count: 產品數量
+        products: 分類商品
 
     errors:
       models:

@@ -38,6 +38,16 @@ crumb :admin_product_categories do
   parent :admin_root
 end
 
+crumb :admin_product_category do |product_category|
+  link product_category.name, admin_product_category_path(product_category), icon: 'fa-search'
+  parent :admin_product_categories
+end
+
+crumb :admin_product_sub_category do |parent_category, product_category|
+  link product_category.name, admin_product_category_sub_category_path(parent_category, product_category), icon: 'fa-search'
+  parent :admin_product_category, parent_category
+end
+
 crumb :admin_products do
   link I18n.t('page_titles.admin.products.main_title'), admin_products_path, icon: 'fa-tags'
   parent :admin_root
@@ -49,7 +59,7 @@ crumb :admin_products_new do
 end
 
 crumb :admin_products_edit do |product|
-  link I18n.t('page_titles.admin.products.edit'), edit_admin_product_path(product), icon: 'fa-pencil'
+  link "#{I18n.t('page_titles.admin.products.edit')} - #{product.name}", edit_admin_product_path(product), icon: 'fa-pencil'
   parent :admin_products
 end
 

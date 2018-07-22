@@ -29,7 +29,9 @@ namespace :api do
       end
 
       # ProductCategory resource
-      resources :product_categories, only: %i(index create update)
+      resources :product_categories, only: %i(index create update) do
+        resources :products, only: :index, controller: 'product_categories/products'
+      end
 
       # Product resource
       resources :products, only: %i(index show create update) do

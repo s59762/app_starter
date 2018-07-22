@@ -1,0 +1,31 @@
+.product_categories-show,
+.sub_categories-show
+
+  .category-info
+    $padding: .5rem
+
+    padding: $padding
+    margin-bottom: $padding*2
+    background-color: $light
+    > .category-name
+      margin-bottom: $padding*2
+      font-size: $size-6
+      font-weight: $weight-bold
+
+  .sub-categories
+    > .label
+      font-size: $size-7
+      color: lighten($grey, 10)
+      &:after
+        content: ':'
+        margin-right: .5rem
+    > .sub-category
+      padding: 0.2rem .5rem
+
+  .list-title
+    > .title
+      padding-bottom: .5rem
+      font-size: $size-6
+      border-bottom: 2px solid $light
+      &:after
+        content: ':'

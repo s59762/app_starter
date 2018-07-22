@@ -10,7 +10,10 @@ b-table.vc-product-category-sub-categories-table(:data="subCategories"
 
     b-table-column(field="name"
                    :label="attributeLocaleText('product_category', 'sub_category_name')")
-      | {{ props.row.name }}
+      a(:href="productSubCategoryPath(props.row)")
+          .icon
+            i.fa.fa-search
+          span {{ props.row.name }}
 
     b-table-column(field="products_count"
                    :label="attributeLocaleText('product_category', 'products_count')")
@@ -57,12 +60,16 @@ export default {
 
       return nextLevelCategoriesID.map(id => this.categories.find(element => element.id == id))
     }
-  }
+  },
 
   // created() {},
 
   // mounted() {},
 
-  // methods: {}
+  methods: {
+    productSubCategoryPath(productCategory) {
+      return `/admin/product_categories/${productCategory.parent_id}/sub_categories/${productCategory.id}`
+    }
+  }
 }
 </script>
