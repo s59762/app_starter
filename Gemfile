@@ -20,7 +20,7 @@ group :development, :test do
   gem 'pry-remote'
 
   # Test
-  gem 'capybara', '~> 3.0.2' # Adds support for Capybara system testing and selenium driver
+  gem 'capybara' # Adds support for Capybara system testing and selenium driver
   gem 'capybara-screenshot'
   gem 'database_cleaner'
   gem 'factory_bot_rails'
@@ -50,7 +50,7 @@ group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'pattern_generator' # generator for service objects, form objects, PORO, policy objects.
   gem 'rack-mini-profiler', require: false # page proformence monitor
-  gem 'rubocop', '~> 0.52' # Linter
+  gem 'rubocop' # Linter
   gem 'rubocop-airbnb'
   gem 'ruby-debug-ide' # for vscode remote debug
   gem 'web-console', '>= 3.6.1'

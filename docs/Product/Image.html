@@ -111,7 +111,6 @@
 
 <p>id                :bigint(8)        not null, primary key
  image             :string
- use_case          :integer          default(&quot;normal&quot;)
  original_filename :string
  product_id        :bigint(8)
  created_at        :datetime         not null
@@ -217,19 +216,19 @@
       <pre class="lines">
 
 
+23
+24
+25
 26
 27
-28
-29
-30
-31</pre>
+28</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/product/image.rb', line 26</span>
+      <pre class="code"><span class="info file"># File 'app/models/product/image.rb', line 23</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_set_as_cover'>set_as_cover</span>
   <span class='const'>ActiveRecord</span><span class='op'>::</span><span class='const'>Base</span><span class='period'>.</span><span class='id identifier rubyid_transaction'>transaction</span> <span class='kw'>do</span>
-    <span class='id identifier rubyid_product'>product</span><span class='period'>.</span><span class='id identifier rubyid_normal_images'>normal_images</span><span class='period'>.</span><span class='id identifier rubyid_cover'>cover</span><span class='period'>.</span><span class='id identifier rubyid_update'>update</span> <span class='label'>is_cover:</span> <span class='kw'>false</span>
+    <span class='id identifier rubyid_product'>product</span><span class='period'>.</span><span class='id identifier rubyid_images'>images</span><span class='period'>.</span><span class='id identifier rubyid_cover'>cover</span><span class='period'>.</span><span class='id identifier rubyid_update'>update</span> <span class='label'>is_cover:</span> <span class='kw'>false</span>
     <span class='id identifier rubyid_update'>update</span> <span class='label'>is_cover:</span> <span class='kw'>true</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>

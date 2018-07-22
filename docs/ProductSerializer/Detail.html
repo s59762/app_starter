@@ -4,7 +4,7 @@
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>
-  Class: Product::ImageSerializer
+  Class: ProductSerializer::Detail
   
     &mdash; Documentation by YARD 0.9.14
   
@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
 
 <script type="text/javascript" charset="utf-8">
-  pathId = "Product::ImageSerializer";
+  pathId = "ProductSerializer::Detail";
   relpath = '../';
 </script>
 
@@ -36,10 +36,10 @@
       <div id="header">
         <div id="menu">
   
-    <a href="../_index.html">Index (I)</a> &raquo;
-    <span class='title'><span class='object_link'><a href="../Product.html" title="Product (class)">Product</a></span></span>
+    <a href="../_index.html">Index (D)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../ProductSerializer.html" title="ProductSerializer (class)">ProductSerializer</a></span></span>
      &raquo; 
-    <span class="title">ImageSerializer</span>
+    <span class="title">Detail</span>
   
 </div>
 
@@ -59,7 +59,7 @@
         <div class="clear"></div>
       </div>
 
-      <div id="content"><h1>Class: Product::ImageSerializer
+      <div id="content"><h1>Class: ProductSerializer::Detail
   
   
   
@@ -69,7 +69,7 @@
   <dl>
     <dt>Inherits:</dt>
     <dd>
-      <span class="inheritName"><span class='object_link'><a href="../ApplicationSerializer.html" title="ApplicationSerializer (class)">ApplicationSerializer</a></span></span>
+      <span class="inheritName"><span class='object_link'><a href="../ProductSerializer.html" title="ProductSerializer (class)">ProductSerializer</a></span></span>
       
         <ul class="fullTree">
           <li>Object</li>
@@ -78,7 +78,9 @@
           
             <li class="next"><span class='object_link'><a href="../ApplicationSerializer.html" title="ApplicationSerializer (class)">ApplicationSerializer</a></span></li>
           
-            <li class="next">Product::ImageSerializer</li>
+            <li class="next"><span class='object_link'><a href="../ProductSerializer.html" title="ProductSerializer (class)">ProductSerializer</a></span></li>
+          
+            <li class="next">ProductSerializer::Detail</li>
           
         </ul>
         <a href="#" class="inheritanceTree">show all</a>
@@ -98,25 +100,14 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>app/serializers/product/image_serializer.rb</dd>
+    <dd>app/serializers/product_serializer.rb</dd>
   </dl>
   
 </div>
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    <p>== Schema Information</p>
-
-<p>Table name: product_images</p>
-
-<p>id                :bigint(8)        not null, primary key
- image             :string
- original_filename :string
- product_id        :bigint(8)
- created_at        :datetime         not null
- updated_at        :datetime         not null
- is_cover          :boolean          default(FALSE)
- variant_id        :bigint(8)</p>
+    <p>With detailed infomation, for admin only.</p>
 
 
   </div>
@@ -131,39 +122,17 @@
 
 
 
-  
-    <h2>
-      Instance Method Summary
-      <small><a href="#" class="summary_toggle">collapse</a></small>
-    </h2>
-
-    <ul class="summary">
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#image-instance_method" title="#image (instance method)">#<strong>image</strong>  &#x21d2; Object </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-  
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
   
-</li>
-
-      
-    </ul>
   
-
+  
+  
+  
+  <h2>Method Summary</h2>
+  
+  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="../ProductSerializer.html" title="ProductSerializer (class)">ProductSerializer</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="../ProductSerializer.html#brand_name-instance_method" title="ProductSerializer#brand_name (method)">#brand_name</a></span>, <span class='object_link'><a href="../ProductSerializer.html#cover-instance_method" title="ProductSerializer#cover (method)">#cover</a></span>, <span class='object_link'><a href="../ProductSerializer.html#discount_rate-instance_method" title="ProductSerializer#discount_rate (method)">#discount_rate</a></span>, <span class='object_link'><a href="../ProductSerializer.html#options-instance_method" title="ProductSerializer#options (method)">#options</a></span>, <span class='object_link'><a href="../ProductSerializer.html#sub_category_id-instance_method" title="ProductSerializer#sub_category_id (method)">#sub_category_id</a></span>, <span class='object_link'><a href="../ProductSerializer.html#top_level_category_id-instance_method" title="ProductSerializer#top_level_category_id (method)">#top_level_category_id</a></span></p>
 
   
   
@@ -177,42 +146,6 @@
   <p class="inherited"><span class='object_link'><a href="../ApplicationSerializer.html#money_to_integer-class_method" title="ApplicationSerializer.money_to_integer (method)">money_to_integer</a></span>, <span class='object_link'><a href="../ApplicationSerializer.html#to_unix_time-class_method" title="ApplicationSerializer.to_unix_time (method)">to_unix_time</a></span></p>
 
   
-
-  <div id="instance_method_details" class="method_details_list">
-    <h2>Instance Method Details</h2>
-
-    
-      <div class="method_details first">
-  <h3 class="signature first" id="image-instance_method">
-  
-    #<strong>image</strong>  &#x21d2; <tt>Object</tt> 
-  
-
-  
-
-  
-</h3><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-28
-29
-30</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'app/serializers/product/image_serializer.rb', line 28</span>
-
-<span class='kw'>def</span> <span class='id identifier rubyid_image'>image</span>
-  <span class='id identifier rubyid_object'>object</span><span class='period'>.</span><span class='id identifier rubyid_image'>image</span><span class='period'>.</span><span class='id identifier rubyid_serializable_hash'>serializable_hash</span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-  </div>
 
 </div>
 

@@ -104,25 +104,6 @@
 </div>
 
 
-  
-    <h2>
-      Constant Summary
-      <small><a href="#" class="constants_summary_toggle">collapse</a></small>
-    </h2>
-
-    <dl class="constants">
-      
-        <dt id="VALID_USE_CASES-constant" class="">VALID_USE_CASES =
-          
-        </dt>
-        <dd><pre class="code"><span class='qwords_beg'>%w(</span><span class='words_sep'>
-  </span><span class='tstring_content'>normal</span><span class='words_sep'>
-  </span><span class='tstring_content'>description</span><span class='words_sep'>
-</span><span class='tstring_end'>)</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
-      
-    </dl>
-  
-
 
 
 
@@ -204,28 +185,6 @@
 </li>
 
       
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#valid_use_case%3F-instance_method" title="#valid_use_case? (instance method)">#<strong>valid_use_case?</strong>  &#x21d2; Boolean </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'></div></span>
-  
-</li>
-
-      
     </ul>
   
 
@@ -265,12 +224,12 @@
       <pre class="lines">
 
 
-29
-30
-31</pre>
+22
+23
+24</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/forms/admin/product_image_form.rb', line 29</span>
+      <pre class="code"><span class="info file"># File 'app/forms/admin/product_image_form.rb', line 22</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_created_image_ids'>created_image_ids</span>
   <span class='ivar'>@created_image_ids</span> <span class='op'>||=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
@@ -322,22 +281,22 @@
       <pre class="lines">
 
 
-20
-21
-22
-23
-24
-25
-26
-27</pre>
+13
+14
+15
+16
+17
+18
+19
+20</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/forms/admin/product_image_form.rb', line 20</span>
+      <pre class="code"><span class="info file"># File 'app/forms/admin/product_image_form.rb', line 13</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_save'>save</span>
   <span class='op'>::</span><span class='const'>ActiveRecord</span><span class='op'>::</span><span class='const'>Base</span><span class='period'>.</span><span class='id identifier rubyid_transaction'>transaction</span> <span class='kw'>do</span>
     <span class='id identifier rubyid_images'>images</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_file'>file</span><span class='op'>|</span>
-      <span class='id identifier rubyid_new_image'>new_image</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../Product.html" title="Product (class)">Product</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Product/Image.html" title="Product::Image (class)">Image</a></span></span><span class='period'>.</span><span class='id identifier rubyid_create'>create</span> <span class='label'>image:</span> <span class='id identifier rubyid_file'>file</span><span class='comma'>,</span> <span class='label'>use_case:</span> <span class='id identifier rubyid_use_case'>use_case</span><span class='comma'>,</span> <span class='label'>product_id:</span> <span class='id identifier rubyid_product_id'>product_id</span><span class='comma'>,</span> <span class='label'>variant_id:</span> <span class='id identifier rubyid_variant_id'>variant_id</span>
+      <span class='id identifier rubyid_new_image'>new_image</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../Product.html" title="Product (class)">Product</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Product/Image.html" title="Product::Image (class)">Image</a></span></span><span class='period'>.</span><span class='id identifier rubyid_create'>create</span> <span class='label'>image:</span> <span class='id identifier rubyid_file'>file</span><span class='comma'>,</span> <span class='label'>product_id:</span> <span class='id identifier rubyid_product_id'>product_id</span><span class='comma'>,</span> <span class='label'>variant_id:</span> <span class='id identifier rubyid_variant_id'>variant_id</span>
       <span class='id identifier rubyid_created_image_ids'>created_image_ids</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_new_image'>new_image</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span>
     <span class='kw'>end</span>
   <span class='kw'>end</span>
@@ -384,67 +343,15 @@
       <pre class="lines">
 
 
-37
-38
-39</pre>
+26
+27
+28</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/forms/admin/product_image_form.rb', line 37</span>
+      <pre class="code"><span class="info file"># File 'app/forms/admin/product_image_form.rb', line 26</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_valid_images_content?'>valid_images_content?</span>
   <span class='id identifier rubyid_errors'>errors</span><span class='period'>.</span><span class='id identifier rubyid_add'>add</span><span class='lparen'>(</span><span class='symbol'>:images</span><span class='comma'>,</span> <span class='symbol'>:blank</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_images'>images</span><span class='period'>.</span><span class='id identifier rubyid_blank?'>blank?</span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
-  <h3 class="signature " id="valid_use_case?-instance_method">
-  
-    #<strong>valid_use_case?</strong>  &#x21d2; <tt>Boolean</tt> 
-  
-
-  
-
-  
-</h3><div class="docstring">
-  <div class="discussion">
-    
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Boolean</tt>)</span>
-      
-      
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-33
-34
-35</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'app/forms/admin/product_image_form.rb', line 33</span>
-
-<span class='kw'>def</span> <span class='id identifier rubyid_valid_use_case?'>valid_use_case?</span>
-  <span class='id identifier rubyid_errors'>errors</span><span class='period'>.</span><span class='id identifier rubyid_add'>add</span><span class='lparen'>(</span><span class='symbol'>:use_case</span><span class='comma'>,</span> <span class='symbol'>:invalid_value</span><span class='comma'>,</span> <span class='label'>value:</span> <span class='id identifier rubyid_use_case'>use_case</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='const'><span class='object_link'><a href="#VALID_USE_CASES-constant" title="Admin::ProductImageForm::VALID_USE_CASES (constant)">VALID_USE_CASES</a></span></span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_use_case'>use_case</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>

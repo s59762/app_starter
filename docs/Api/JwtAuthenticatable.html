@@ -180,6 +180,28 @@
         <li class="private ">
   <span class="summary_signature">
     
+      <a href="#current_api_user_scope-instance_method" title="#current_api_user_scope (instance method)">#<strong>current_api_user_scope</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  <span class="note title private">private</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="private ">
+  <span class="summary_signature">
+    
       <a href="#for_admin_only!-instance_method" title="#for_admin_only! (instance method)">#<strong>for_admin_only!</strong>  &#x21d2; Object </a>
     
 
@@ -294,12 +316,12 @@
       <pre class="lines">
 
 
-28
-29
-30</pre>
+32
+33
+34</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/concerns/api/jwt_authenticatable.rb', line 28</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/concerns/api/jwt_authenticatable.rb', line 32</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_admin_signed_in?'>admin_signed_in?</span>
   <span class='id identifier rubyid_current_api_user'>current_api_user</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Admin</span><span class='tstring_end'>&#39;</span></span>
@@ -424,6 +446,36 @@
 </div>
     
       <div class="method_details ">
+  <h3 class="signature " id="current_api_user_scope-instance_method">
+  
+    #<strong>current_api_user_scope</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(private)</span>
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+27
+28
+29</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/concerns/api/jwt_authenticatable.rb', line 27</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_current_api_user_scope'>current_api_user_scope</span>
+  <span class='ivar'>@current_api_user_scope</span> <span class='op'>||=</span> <span class='id identifier rubyid_admin_signed_in?'>admin_signed_in?</span> <span class='op'>?</span> <span class='id identifier rubyid_current_api_user'>current_api_user</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span> <span class='op'>:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>User</span><span class='tstring_end'>&#39;</span></span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
   <h3 class="signature " id="for_admin_only!-instance_method">
   
     #<strong>for_admin_only!</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(private)</span>
@@ -465,12 +517,12 @@
       <pre class="lines">
 
 
-42
-43
-44</pre>
+46
+47
+48</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/concerns/api/jwt_authenticatable.rb', line 42</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/concerns/api/jwt_authenticatable.rb', line 46</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_for_admin_only!'>for_admin_only!</span>
   <span class='id identifier rubyid_raise'>raise</span> <span class='const'><span class='object_link'><a href="../PolicyFailureException.html" title="PolicyFailureException (class)">PolicyFailureException</a></span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>%(</span><span class='tstring_content'>this api is for admin only.</span><span class='tstring_end'>)</span></span> <span class='kw'>unless</span> <span class='id identifier rubyid_signed_in_as?'>signed_in_as?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Admin</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -522,12 +574,12 @@
       <pre class="lines">
 
 
-35
-36
-37</pre>
+39
+40
+41</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/concerns/api/jwt_authenticatable.rb', line 35</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/concerns/api/jwt_authenticatable.rb', line 39</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_jwt_payload'>jwt_payload</span>
   <span class='ivar'>@api_auth</span><span class='period'>.</span><span class='id identifier rubyid_payload'>payload</span>
@@ -607,12 +659,12 @@
       <pre class="lines">
 
 
-54
-55
-56</pre>
+58
+59
+60</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/concerns/api/jwt_authenticatable.rb', line 54</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/concerns/api/jwt_authenticatable.rb', line 58</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_signed_in_as?'>signed_in_as?</span><span class='lparen'>(</span><span class='id identifier rubyid_role'>role</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_jwt_payload'>jwt_payload</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>type</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='id identifier rubyid_role'>role</span>

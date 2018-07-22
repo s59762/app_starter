@@ -4,7 +4,7 @@
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>
-  Class: Brand
+  Class: EditorAttachment
   
     &mdash; Documentation by YARD 0.9.14
   
@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
 
 <script type="text/javascript" charset="utf-8">
-  pathId = "Brand";
+  pathId = "EditorAttachment";
   relpath = '';
 </script>
 
@@ -36,10 +36,10 @@
       <div id="header">
         <div id="menu">
   
-    <a href="_index.html">Index (B)</a> &raquo;
+    <a href="_index.html">Index (E)</a> &raquo;
     
     
-    <span class="title">Brand</span>
+    <span class="title">EditorAttachment</span>
   
 </div>
 
@@ -59,7 +59,7 @@
         <div class="clear"></div>
       </div>
 
-      <div id="content"><h1>Class: Brand
+      <div id="content"><h1>Class: EditorAttachment
   
   
   
@@ -78,7 +78,7 @@
           
             <li class="next"><span class='object_link'><a href="ApplicationRecord.html" title="ApplicationRecord (class)">ApplicationRecord</a></span></li>
           
-            <li class="next">Brand</li>
+            <li class="next">EditorAttachment</li>
           
         </ul>
         <a href="#" class="inheritanceTree">show all</a>
@@ -91,11 +91,6 @@
   
   
   
-  <dl>
-      <dt>Includes:</dt>
-      <dd><span class='object_link'><a href="EditorAttachable.html" title="EditorAttachable (module)">EditorAttachable</a></span></dd>
-  </dl>
-  
   
 
   
@@ -103,7 +98,7 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>app/models/brand.rb</dd>
+    <dd>app/models/editor_attachment.rb</dd>
   </dl>
   
 </div>
@@ -112,16 +107,15 @@
   <div class="discussion">
     <p>== Schema Information</p>
 
-<p>Table name: brands</p>
+<p>Table name: editor_attachments</p>
 
-<p>id             :bigint(8)        not null, primary key
- name           :string
- introduce      :string
- description    :text
- logo           :string
- created_at     :datetime         not null
- updated_at     :datetime         not null
- products_count :integer          default(0)</p>
+<p>id                :bigint(8)        not null, primary key
+ file              :string
+ original_filename :string
+ attachable_type   :string
+ attachable_id     :bigint(8)
+ created_at        :datetime         not null
+ updated_at        :datetime         not null</p>
 
 
   </div>
@@ -129,17 +123,7 @@
 <div class="tags">
   
 
-</div><h2>Defined Under Namespace</h2>
-<p class="children">
-  
-    
-  
-    
-      <strong class="classes">Classes:</strong> <span class='object_link'><a href="Brand/Banner.html" title="Brand::Banner (class)">Banner</a></span>, <span class='object_link'><a href="Brand/BannerSerializer.html" title="Brand::BannerSerializer (class)">BannerSerializer</a></span>
-    
-  
-</p>
-
+</div>
 
 
 
@@ -154,18 +138,6 @@
   
   
   <h2>Method Summary</h2>
-  
-  <h3 class="inherited">Methods included from <span class='object_link'><a href="EditorAttachable.html" title="EditorAttachable (module)">EditorAttachable</a></span></h3>
-  <p class="inherited"><span class='object_link'><a href="EditorAttachable.html#process_uploaded_attachments-instance_method" title="EditorAttachable#process_uploaded_attachments (method)">#process_uploaded_attachments</a></span></p>
-
-  
-  
-  
-  
-  
-  
-  
-  
   
   <h3 class="inherited">Methods inherited from <span class='object_link'><a href="ApplicationRecord.html" title="ApplicationRecord (class)">ApplicationRecord</a></span></h3>
   <p class="inherited"><span class='object_link'><a href="ApplicationRecord.html#latest_updated_at-class_method" title="ApplicationRecord.latest_updated_at (method)">latest_updated_at</a></span></p>

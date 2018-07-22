@@ -156,75 +156,6 @@
 </li>
 
       
-        <li class="private ">
-  <span class="summary_signature">
-    
-      <a href="#assign_price_info_to_model-instance_method" title="#assign_price_info_to_model (instance method)">#<strong>assign_price_info_to_model</strong>  &#x21d2; Object </a>
-    
-
-    
-  </span>
-  
-  
-  
-  <span class="note title private">private</span>
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'><p>把 price 的內容指定到 model 中.</p>
-</div></span>
-  
-</li>
-
-      
-        <li class="private ">
-  <span class="summary_signature">
-    
-      <a href="#delete_unused_images-instance_method" title="#delete_unused_images (instance method)">#<strong>delete_unused_images</strong>(description_image_ids)  &#x21d2; Object </a>
-    
-
-    
-  </span>
-  
-  
-  
-  <span class="note title private">private</span>
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'><p>刪除 description 編輯後不再需要的圖片.</p>
-</div></span>
-  
-</li>
-
-      
-        <li class="private ">
-  <span class="summary_signature">
-    
-      <a href="#link_product_images-instance_method" title="#link_product_images (instance method)">#<strong>link_product_images</strong>(description_image_ids)  &#x21d2; Object </a>
-    
-
-    
-  </span>
-  
-  
-  
-  <span class="note title private">private</span>
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'><p>將有出現在 description 中的圖片與此 product 建立關聯.</p>
-</div></span>
-  
-</li>
-
-      
         <li class="public ">
   <span class="summary_signature">
     
@@ -310,161 +241,19 @@
       <pre class="lines">
 
 
-58
-59
-60
-61
-62</pre>
+49
+50
+51
+52
+53</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/forms/admin/edit_product_form.rb', line 58</span>
+      <pre class="code"><span class="info file"># File 'app/forms/admin/edit_product_form.rb', line 49</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_assign_category_to_model'>assign_category_to_model</span>
-    <span class='id identifier rubyid_id'>id</span> <span class='op'>=</span> <span class='id identifier rubyid_sub_category_id'>sub_category_id</span><span class='period'>.</span><span class='id identifier rubyid_present?'>present?</span> <span class='op'>?</span> <span class='id identifier rubyid_sub_category_id'>sub_category_id</span> <span class='op'>:</span> <span class='id identifier rubyid_top_level_category_id'>top_level_category_id</span>
+    <span class='id identifier rubyid_id'>id</span> <span class='op'>=</span> <span class='id identifier rubyid_sub_category_id'>sub_category_id</span> <span class='op'>||</span> <span class='id identifier rubyid_top_level_category_id'>top_level_category_id</span>
 
     <span class='id identifier rubyid_model'>model</span><span class='period'>.</span><span class='id identifier rubyid_assign_attributes'>assign_attributes</span> <span class='label'>category_id:</span> <span class='id identifier rubyid_id'>id</span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
-  <h3 class="signature " id="assign_price_info_to_model-instance_method">
-  
-    #<strong>assign_price_info_to_model</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(private)</span>
-  
-
-  
-
-  
-</h3><div class="docstring">
-  <div class="discussion">
-    <p>把 price 的內容指定到 model 中</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-52
-53
-54
-55
-56</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'app/forms/admin/edit_product_form.rb', line 52</span>
-
-<span class='kw'>def</span> <span class='id identifier rubyid_assign_price_info_to_model'>assign_price_info_to_model</span>
-  <span class='id identifier rubyid_price'>price</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='op'>|</span>
-    <span class='id identifier rubyid_model'>model</span><span class='period'>.</span><span class='id identifier rubyid_assign_attributes'>assign_attributes</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_key'>key</span><span class='embexpr_end'>}</span><span class='tstring_content'>_price</span><span class='tstring_end'>&quot;</span></span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_value'>value</span>
-  <span class='kw'>end</span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
-  <h3 class="signature " id="delete_unused_images-instance_method">
-  
-    #<strong>delete_unused_images</strong>(description_image_ids)  &#x21d2; <tt>Object</tt>  <span class="extras">(private)</span>
-  
-
-  
-
-  
-</h3><div class="docstring">
-  <div class="discussion">
-    <p>刪除 description 編輯後不再需要的圖片</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-74
-75
-76
-77
-78
-79
-80
-81</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'app/forms/admin/edit_product_form.rb', line 74</span>
-
-<span class='kw'>def</span> <span class='id identifier rubyid_delete_unused_images'>delete_unused_images</span><span class='lparen'>(</span><span class='id identifier rubyid_description_image_ids'>description_image_ids</span><span class='rparen'>)</span>
-  <span class='kw'>return</span> <span class='kw'>unless</span> <span class='id identifier rubyid_description_image_ids'>description_image_ids</span>
-
-  <span class='id identifier rubyid_current_description_image_ids'>current_description_image_ids</span> <span class='op'>=</span> <span class='id identifier rubyid_model'>model</span><span class='period'>.</span><span class='id identifier rubyid_description_images'>description_images</span><span class='period'>.</span><span class='id identifier rubyid_select'>select</span><span class='lparen'>(</span><span class='symbol'>:id</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbol'>:id</span><span class='rparen'>)</span> <span class='comment'># 目前與 product 有關聯的 description 圖片
-</span>  <span class='id identifier rubyid_unused_image_ids'>unused_image_ids</span> <span class='op'>=</span> <span class='id identifier rubyid_uploaded_image_ids'>uploaded_image_ids</span> <span class='op'>+</span> <span class='id identifier rubyid_current_description_image_ids'>current_description_image_ids</span> <span class='op'>-</span> <span class='id identifier rubyid_description_image_ids'>description_image_ids</span>
-
-  <span class='const'><span class='object_link'><a href="../Product.html" title="Product (class)">Product</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Product/Image.html" title="Product::Image (class)">Image</a></span></span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='lparen'>(</span><span class='label'>id:</span> <span class='id identifier rubyid_unused_image_ids'>unused_image_ids</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_destroy_all'>destroy_all</span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
-  <h3 class="signature " id="link_product_images-instance_method">
-  
-    #<strong>link_product_images</strong>(description_image_ids)  &#x21d2; <tt>Object</tt>  <span class="extras">(private)</span>
-  
-
-  
-
-  
-</h3><div class="docstring">
-  <div class="discussion">
-    <p>將有出現在 description 中的圖片與此 product 建立關聯</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-65
-66
-67
-68
-69
-70
-71</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'app/forms/admin/edit_product_form.rb', line 65</span>
-
-<span class='kw'>def</span> <span class='id identifier rubyid_link_product_images'>link_product_images</span><span class='lparen'>(</span><span class='id identifier rubyid_description_image_ids'>description_image_ids</span><span class='rparen'>)</span>
-  <span class='kw'>return</span> <span class='kw'>unless</span> <span class='id identifier rubyid_description_image_ids'>description_image_ids</span>
-
-  <span class='const'><span class='object_link'><a href="../Product.html" title="Product (class)">Product</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Product/Image.html" title="Product::Image (class)">Image</a></span></span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='lparen'>(</span><span class='label'>id:</span> <span class='id identifier rubyid_description_image_ids'>description_image_ids</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_image'>image</span><span class='op'>|</span>
-    <span class='id identifier rubyid_image'>image</span><span class='period'>.</span><span class='id identifier rubyid_update'>update</span> <span class='label'>product_id:</span> <span class='id identifier rubyid_model'>model</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span>
-  <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -523,24 +312,20 @@
 32
 33
 34
-35
-36
-37</pre>
+35</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'app/forms/admin/edit_product_form.rb', line 25</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_save'>save</span>
-  <span class='id identifier rubyid_description_image_ids'>description_image_ids</span> <span class='op'>=</span> <span class='id identifier rubyid_description'>description</span><span class='period'>.</span><span class='id identifier rubyid_present?'>present?</span> <span class='op'>?</span> <span class='id identifier rubyid_description'>description</span><span class='period'>.</span><span class='id identifier rubyid_scan'>scan</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\/uploads\/product\/image\/image\/([0-9]+)</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_flatten'>flatten</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbol'>:to_i</span><span class='rparen'>)</span> <span class='op'>:</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='id identifier rubyid_attachment_ids'>attachment_ids</span> <span class='op'>=</span> <span class='id identifier rubyid_description'>description</span><span class='period'>.</span><span class='id identifier rubyid_present?'>present?</span> <span class='op'>?</span> <span class='id identifier rubyid_description'>description</span><span class='period'>.</span><span class='id identifier rubyid_scan'>scan</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\/uploads\/editor_attachment\/file\/([0-9]+)</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_flatten'>flatten</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbol'>:to_i</span><span class='rparen'>)</span> <span class='op'>:</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
 
   <span class='id identifier rubyid_sync'>sync</span>
-  <span class='comment'># assign_price_info_to_model
-</span>  <span class='id identifier rubyid_assign_category_to_model'>assign_category_to_model</span>
+  <span class='id identifier rubyid_assign_category_to_model'>assign_category_to_model</span>
 
   <span class='op'>::</span><span class='const'>ActiveRecord</span><span class='op'>::</span><span class='const'>Base</span><span class='period'>.</span><span class='id identifier rubyid_transaction'>transaction</span> <span class='kw'>do</span>
     <span class='id identifier rubyid_model'>model</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span>
-    <span class='id identifier rubyid_link_product_images'>link_product_images</span><span class='lparen'>(</span><span class='id identifier rubyid_description_image_ids'>description_image_ids</span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_delete_unused_images'>delete_unused_images</span><span class='lparen'>(</span><span class='id identifier rubyid_description_image_ids'>description_image_ids</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_model'>model</span><span class='period'>.</span><span class='id identifier rubyid_process_uploaded_attachments'>process_uploaded_attachments</span><span class='lparen'>(</span><span class='id identifier rubyid_attachment_ids'>attachment_ids</span><span class='comma'>,</span> <span class='label'>uploaded_attachment_ids:</span> <span class='id identifier rubyid_uploaded_attachment_ids'>uploaded_attachment_ids</span><span class='rparen'>)</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -586,17 +371,17 @@
       <pre class="lines">
 
 
+38
+39
 40
 41
 42
 43
 44
-45
-46
-47</pre>
+45</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/forms/admin/edit_product_form.rb', line 40</span>
+      <pre class="code"><span class="info file"># File 'app/forms/admin/edit_product_form.rb', line 38</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_valid_price_params?'>valid_price_params?</span>
   <span class='id identifier rubyid_price'>price</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='op'>|</span>
