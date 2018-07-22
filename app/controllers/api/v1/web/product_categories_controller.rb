@@ -2,13 +2,14 @@ class Api::V1::Web::ProductCategoriesController < Api::V1::Web::BaseController
   def index
     check_policy ProductCategoryPolicy.new(current_api_user, :category).index?
 
-    categories = FetchingDataService.call(ProductCategory.top_level_only, params).includes(:parent, sub_categories: [:parent, :sub_categories])
+    categories = FetchingDataService.call(ProductCategory.top_level_only, params)
     result = Api::DataCacheService.call(categories,
                                         request,
                                         extra: {
                                           show_sub_categories: true,
                                           include: [:sub_categories]
-                                        })
+                                        },
+                                        includes: [:parent, sub_categories: [:parent, :sub_categories]])
 
     render json: result
   end
