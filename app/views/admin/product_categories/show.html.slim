@@ -14,7 +14,19 @@
             span
               | {{actionLocaleText('admin', 'new', { model: modelNameLocaleText('product') })}}
         new-sub-category-button(v-if="isReady"
-                                :parent="productCategory")
+                                :parent="productCategory"
+                                @product-category-added="subCategoryAddedHandler")
   .box-body
+    .category-info
+      h2.category-name = @product_category.name
+
+      .sub-categories.buttons
+        label.label = ProductCategory.human_attribute_name :sub_categories
+        - @product_category.sub_categories.each do |sub_category|
+          = link_to sub_category.name, admin_product_category_sub_category_path(@product_category, sub_category), class: 'sub-category button is-default is-outlined is-small'
+
+    .list-title
+      h2.title = ProductCategory.human_attribute_name :products
+
     products-list-table(v-if="isReady"
                         :product-category="productCategory")

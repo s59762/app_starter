@@ -34,5 +34,9 @@ export default {
     })
   },
 
-  // methods: {}
+  methods: {
+    subCategoryAddedHandler() {
+      Turbolinks.visit(window.location.href)
+    }
+  }
 }
