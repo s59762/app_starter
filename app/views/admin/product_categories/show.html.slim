@@ -5,14 +5,16 @@
 .box.content-box.is-primary(data-vue="product_category_products_container"
                             data-product-category=(@product_category.id))
   .box-header.with-border
-  .box-tools
-    .tools
-      a.button.is-small.is-primary.option-button(href=(new_admin_product_path(product_category_id: @product_category.id))
-                                                 data-behavior="new-product-button")
-          .icon
-            i.fa.fa-plus
-          span
-            | {{actionLocaleText('admin', 'new', { model: modelNameLocaleText('product') })}}
+    .box-tools
+      .tools
+        a.button.is-small.is-primary.option-button(href=(new_admin_product_path(product_category_id: @product_category.id))
+                                                  data-behavior="new-product-button")
+            .icon
+              i.fa.fa-plus
+            span
+              | {{actionLocaleText('admin', 'new', { model: modelNameLocaleText('product') })}}
+        new-sub-category-button(v-if="isReady"
+                                :parent="productCategory")
   .box-body
     products-list-table(v-if="isReady"
                         :product-category="productCategory")
