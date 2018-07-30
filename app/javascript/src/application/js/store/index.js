@@ -10,7 +10,8 @@ Vue.use(Vuex)
 const state = {
   currentUser: CurrentUserAssignService.call('user'),
   flashMessages: [],
-  queryString: {}
+  queryString: {},
+  retryCounter: 0,
 }
 
 export default new Vuex.Store({

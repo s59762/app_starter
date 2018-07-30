@@ -24,7 +24,7 @@ class Api::V1::Web::ProductsController < Api::V1::Web::BaseController
            show_variants: true,
            show_options: true,
            show_images: true,
-           serializer: admin_signed_in? ? ProductSerializer::Detail : ProductSerializer
+           serializer: signed_in_as?('Admin') ? ProductSerializer::Detail : ProductSerializer
   end
 
   def create

@@ -16,7 +16,15 @@ export const fetchConfigs = ({
       })
       .catch(errors => {
         commit(types.API_REQUEST_FAIL, errors)
-        dispatch('errorMessageHandler', errors, {
+        dispatch('errorMessageHandler', {
+          errors,
+          retryAction: fetchConfigs,
+          ref: {
+            dispatch,
+            commit
+          },
+          params: {}
+        }, {
           root: true
         })
 
@@ -41,7 +49,15 @@ export const updateMetaTags = ({
       })
       .catch(errors => {
         commit(types.API_REQUEST_FAIL, errors)
-        dispatch('errorMessageHandler', errors, {
+        dispatch('errorMessageHandler', {
+          errors,
+          retryAction: updateMetaTags,
+          ref: {
+            dispatch,
+            commit
+          },
+          params: model
+        }, {
           root: true
         })
 

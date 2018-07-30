@@ -1,19 +1,19 @@
 # 用於在 API 中驗證 JWT，並回傳當前使用者的身份
 class ApiAuthServiceService
-  attr_reader :auth_header, :payload
+  include ActionController::Cookies
+  attr_reader :request, :auth_header, :payload
 
   TIME_CHECK_LEEWAY = 10.minutes
 
   # 使用 JWT 來驗證
-  # @param [String] auth_header `request.headers['Authorization']` 的內容
-  def initialize(auth_header)
-    @auth_header = auth_header
+  # @param [String] request Rails 的 request 物件。由於可能需要操作 cookies 因此必須帶入完整的 request 內容。
+  def initialize(request, ref: :web)
+    @request = request
+    @auth_header = (ref == :web) ? auth_header_from_cookies : request.headers['Authorization']
 
     raise AuthenticateFailureException, 'You have to provide valid JWT in HTTP header `Authorization` with `Bearer` strategy.' unless valid?
 
     @payload = jwt_payload
-
-    validate_api_user_token
   end
 
   # 回傳當前的 API User
@@ -52,14 +52,15 @@ class ApiAuthServiceService
   #
   # @return [Object] Admin or Client instance
   def current_api_user
-    @current_api_user ||= payload['type'].constantize.find(payload['sub'])
+    @current_api_user ||= case payload['type']
+                          when 'Guest'
+                            Null::User.new(:user)
+                          else
+                            payload['type'].constantize.find(payload['sub'])
+                          end
   end
 
-  # 若 JWT 是由 web 端登入所取得的，驗證 JWT 發行時間是否在使用者登入時間的正常範圍內
-  # 如果 JWT 因使用者的登入行為失效則顯示錯誤訊息
-  def validate_api_user_token
-    return unless payload['ref'] == 'web'
-
-    # raise AuthenticateFailureException, 'auth token was expired due to user activity.' if payload['iat'] < (current_api_user.current_sign_in_at - TIME_CHECK_LEEWAY).to_i
+  def auth_header_from_cookies
+    "Bearer #{cookies["#{request.headers['Application-Scope']}_jwt"]}"
   end
 end

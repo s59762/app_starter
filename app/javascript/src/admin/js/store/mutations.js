@@ -18,6 +18,15 @@ export default {
     state.queryString = queryString.parse(window.location.search)
   },
 
+  [types.TALLY_RETRY_COUNTER](state) {
+    state.retryCounter += 1
+  },
+
+  [types.RESET_RETRY_COUNTER](state) {
+    state.retryCounter = 0
+  },
+
+
   [types.TOGGLE_SIDEBAR](state, option) {
     if (state.device.isMobile) {
       state.sidebar.isOpen = option

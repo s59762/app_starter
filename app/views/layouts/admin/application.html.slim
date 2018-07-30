@@ -13,7 +13,7 @@ html
     /![if lt IE 7]
       | <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
     // [vue flash_message]
-    .flash-messages-container data-vue="flash_message" data-messages=(flash.to_json)
+    .flash-messages-container data-vue="basic_initializer" data-flash-messages=(flash.to_json)
       flash-message(v-for="(message, index) in flashMessages" :message-type="message[0]" :message="message[1]" :key="index")
 
     // [vue site_navbar_container]
