@@ -37,4 +37,4 @@ UnusedPrivateMethod:
 InstanceVariableAssumption:
   exclude:
     - !ruby/regexp /Controller$/
-    - !ruby/regexp /Mailer$/s
+    - !ruby/regexp /Mailer$/
