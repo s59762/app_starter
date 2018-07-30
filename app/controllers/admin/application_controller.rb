@@ -35,7 +35,8 @@ class Admin::ApplicationController < ActionController::Base
   rescue JWT::ExpiredSignature
     cookies[:admin_jwt] = current_admin.issue_jwt if admin_signed_in?
   rescue
+    cookies.delete(:user_jwt)
+    flash[:notice] = I18n.t('messages.error.jwt_token_invalid')
     sign_out(current_admin) if admin_signed_in?
-    redirect_to new_admin_session_path, flash: { notice: I18n.t('messages.error.jwt_token_invalid') }
   end
 end
