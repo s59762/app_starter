@@ -1,6 +1,8 @@
 namespace :api do
   namespace :v1 do
     namespace :web do
+      resource :refresh, only: :create, controller: 'refresh'
+
       # Admin resource
       resources :admins, only: %i(index show create update) do
         collection do

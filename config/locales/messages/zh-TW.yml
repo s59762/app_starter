@@ -9,7 +9,7 @@ zh-TW:
       you_will_suspend_this_admin: 您將會將此管理員停權，暫停帳號的功能。
       you_will_unsuspend_this_admin: 您將會將此管理員復權，恢復帳號的功能。
     error:
-      jwt_token_been_modified: 您的身份憑證可能遭到竄改，請重新登入取得正確的憑證。
+      jwt_token_invalid: 登入憑證失效，請重新登入。
     failure:
       parameters_failure: 您提供的參數不符合規範
       policy_validate_failure: 您的帳號並不能執行這個動作

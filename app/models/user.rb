@@ -34,6 +34,7 @@ class User < ApplicationRecord
   def issue_jwt
     JsonWebToken.encode(sub: id,
                         iat: Time.current.to_i,
+                        exp: 1.hour.from_now.to_i,
                         type: 'User',
                         ref: 'web')
   end

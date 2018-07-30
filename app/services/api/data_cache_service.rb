@@ -52,7 +52,7 @@ class Api::DataCacheService
   #     render json: result
   #   # ...
   #   def extra_options
-  #     return {} unless admin_signed_in?
+  #     return {} unless signed_in_as?('Admin')
 
   #     {
   #       each_serializer: EventPostSerializer::Detail,

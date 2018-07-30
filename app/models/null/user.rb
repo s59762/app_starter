@@ -37,6 +37,7 @@ class Null::User
   def issue_jwt
     JsonWebToken.encode(sub: nil,
                         iat: Time.current.to_i,
+                        exp: 1.hour.from_now.to_i,
                         type: 'Guest',
                         ref: 'web')
   end

@@ -59,6 +59,7 @@ class Admin < ApplicationRecord
   def issue_jwt
     JsonWebToken.encode(sub: id,
                         iat: Time.current.to_i,
+                        exp: 1.hour.from_now.to_i,
                         role: role,
                         type: 'Admin',
                         ref: 'web')

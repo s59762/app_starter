@@ -28,7 +28,7 @@ class Api::V1::Web::BaseController < Api::ApiController
   end
 
   def product_index_extra_options
-    if admin_signed_in?
+    if signed_in_as?('Admin')
       {
         include: [:master],
         each_serializer: ProductSerializer::Detail

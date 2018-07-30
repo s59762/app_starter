@@ -2,6 +2,7 @@
 
 module Api
   module JwtAuthenticatable
+    include ActionController::Cookies
     extend ActiveSupport::Concern
 
     included do
@@ -14,23 +15,19 @@ module Api
     #
     # @raise [AuthenticateFailureException] 若 request header 沒有提供 JWT 會 raise 例外
     def authenticate_for_jwt!
-      @api_auth ||= ApiAuthServiceService.new(request.headers['Authorization'])
+      @api_auth ||= controller_path.split('/')[2] == 'web' ? ApiAuthServiceService.new(request) : ApiAuthServiceService.new(request, ref: :app)
     end
 
     # 取得當前的 API user
     #
     # @return [Object] 會回傳 user model 的 instance
     def current_api_user
-      @current_api_user ||= @api_auth ? @api_auth.call : Null::User.new('user')
+      @current_api_user ||= @api_auth.call
     end
 
+    # 依照當前 API 使用者的類型判斷 scope。一般來說會有 Admin 和 User 兩部分，作為提供不同的資料內容的依據、管理 cache 等功能。
     def current_api_user_scope
-      @current_api_user_scope ||= admin_signed_in? ? current_api_user.class.name : 'User'
-    end
-
-    # 驗證當前使用者身份是否為 'Admin'
-    def admin_signed_in?
-      current_api_user.class.name == 'Admin'
+      @current_api_user_scope ||= signed_in_as?('Admin') ? current_api_user.class.name : 'User'
     end
 
     # 取得 JWT Payload

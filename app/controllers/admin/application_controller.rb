@@ -31,12 +31,11 @@ class Admin::ApplicationController < ActionController::Base
 
     payload = JsonWebToken.decode(jwt)
 
-    # TODO: this is a walkaround for now
     cookies[:admin_jwt] = current_admin.issue_jwt if payload['role'] != current_admin.role
   rescue JWT::ExpiredSignature
     cookies[:admin_jwt] = current_admin.issue_jwt if admin_signed_in?
   rescue
     sign_out(current_admin) if admin_signed_in?
-    redirect_to new_admin_session_path, flash: { notice: I18n.t('messages.error.jwt_token_been_modified') }
+    redirect_to new_admin_session_path, flash: { notice: I18n.t('messages.error.jwt_token_invalid') }
   end
 end
