@@ -1,7 +1,10 @@
 import * as types from './mutation-types'
 import ProductOptionValue from '../../resource_models/product_option_value'
 
-export const all = ({ dispatch, commit }, options) => {
+export const all = ({
+  dispatch,
+  commit
+}, options) => {
   commit(types.API_REQUEST_START, 'all')
 
   return new Promise((resolve, reject) => {
@@ -13,14 +16,27 @@ export const all = ({ dispatch, commit }, options) => {
       })
       .catch(errors => {
         commit(types.API_REQUEST_FAIL, errors)
-        dispatch('errorMessageHandler', errors, { root: true })
+        dispatch('errorMessageHandler', {
+          errors,
+          retryAction: all,
+          ref: {
+            dispatch,
+            commit
+          },
+          params: options
+        }, {
+          root: true
+        })
 
         reject(errors)
       })
   })
 }
 
-export const find = ({ dispatch, commit }, id) => {
+export const find = ({
+  dispatch,
+  commit
+}, id) => {
   commit(types.API_REQUEST_START, 'find')
 
   return new Promise((resolve, reject) => {
@@ -32,14 +48,27 @@ export const find = ({ dispatch, commit }, id) => {
       })
       .catch(errors => {
         commit(types.API_REQUEST_FAIL, errors)
-        dispatch('errorMessageHandler', errors, { root: true })
+        dispatch('errorMessageHandler', {
+          errors,
+          retryAction: find,
+          ref: {
+            dispatch,
+            commit
+          },
+          params: id
+        }, {
+          root: true
+        })
 
         reject(errors)
       })
   })
 }
 
-export const save = ({ dispatch, commit }, model) => {
+export const save = ({
+  dispatch,
+  commit
+}, model) => {
   commit(types.API_REQUEST_START, 'save')
 
   return new Promise((resolve, reject) => {
@@ -56,14 +85,27 @@ export const save = ({ dispatch, commit }, model) => {
       .catch(errors => {
         model.errors.record(errors)
         commit(types.API_REQUEST_FAIL, errors)
-        dispatch('errorMessageHandler', errors, { root: true })
+        dispatch('errorMessageHandler', {
+          errors,
+          retryAction: save,
+          ref: {
+            dispatch,
+            commit
+          },
+          params: model
+        }, {
+          root: true
+        })
 
         reject(errors)
       })
   })
 }
 
-export const destroy = ({ dispatch, commit }, model) => {
+export const destroy = ({
+  dispatch,
+  commit
+}, model) => {
   commit(types.API_REQUEST_START, 'destroy')
 
   return new Promise((resolve, reject) => {
@@ -76,14 +118,26 @@ export const destroy = ({ dispatch, commit }, model) => {
       .catch(errors => {
         model.errors.record(errors)
         commit(types.API_REQUEST_FAIL, errors)
-        dispatch('errorMessageHandler', errors, { root: true })
+        dispatch('errorMessageHandler', {
+          errors,
+          retryAction: destroy,
+          ref: {
+            dispatch,
+            commit
+          },
+          params: model
+        }, {
+          root: true
+        })
 
         reject(errors)
       })
   })
 }
 
-export const receiveResourcesFromRelationships = ({ commit }, response) => {
+export const receiveResourcesFromRelationships = ({
+  commit
+}, response) => {
   return new Promise((resolve, reject) => {
     commit(types.GET_RELATED_PRODUCT_OPTION_VALUES_SUCCESS, response)
 
@@ -91,7 +145,9 @@ export const receiveResourcesFromRelationships = ({ commit }, response) => {
   })
 }
 
-export const getResourceFromRelationship = ({ commit }, response) => {
+export const getResourceFromRelationship = ({
+  commit
+}, response) => {
   return new Promise((resolve, reject) => {
     commit(types.GET_PRODUCT_OPTION_VALUE_SUCCESS, response)
 

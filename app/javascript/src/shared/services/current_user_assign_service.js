@@ -35,7 +35,7 @@ export default class CurrentUserAssignService {
         return new User(this.payload)
         break
       default:
-        return new Guest()
+        return new Guest(this.payload)
     }
   }
 

@@ -5,14 +5,14 @@ import {
 import debounce from 'lodash.debounce'
 
 export default {
-  name: 'flash-message',
+  name: 'basic-initializer',
 
   components: {
     FlashMessage
   },
 
   computed: {
-    ...mapGetters(['flashMessages'])
+    ...mapGetters(['flashMessages', 'currentUser'])
   },
 
   beforeMount() {
@@ -46,8 +46,9 @@ export default {
   },
 
   mounted() {
-    let messages = JSON.parse(this.$el.dataset.messages)
-    this.$store.dispatch('setFlashMessages', messages)
+    const flashMessages = JSON.parse(this.$el.dataset.flashMessages)
+
+    this.$store.dispatch('setFlashMessages', flashMessages)
   },
 
   methods: {

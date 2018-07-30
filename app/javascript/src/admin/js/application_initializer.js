@@ -2,7 +2,7 @@ import Vue from 'vue/dist/vue.esm'
 import Buefy from 'buefy'
 import Croppa from 'vue-croppa'
 import VueLocaleTranslator from '../../shared/plugins/vue_locale_translator'
-import JwtManageService from '../../shared/services/jwt_manage_service'
+import CurrentUserAssignService from '../../shared/services/current_user_assign_service'
 import store from './store'
 import cloneDeep from 'lodash.clonedeep'
 import '../../../src/locale/zh-TW'
@@ -52,10 +52,8 @@ class ApplicationInitializer {
     I18n.locale = 'zh-TW'
     moment.locale('zh-TW')
 
-    // setting up axios default headers with JWT
-    axios.defaults.headers.common['Authorization'] = JwtManageService.getAuthorizationHeader(
-      envScope
-    )
+    // setting up axios headers with JWT
+    axios.defaults.headers.common['Application-Scope'] = envScope
 
     this.requireVueInitializers()
     this.detectAndInitializingVueInstances()
@@ -66,14 +64,14 @@ class ApplicationInitializer {
    * 讀取 `path` 中的所有檔案，以 Object 的形式記錄到 `vueInitializers` 中
    */
   requireVueInitializers() {
-    let requireContextForvueInitializers = require.context('./vue_initializers', true, /\.js$/)
-    requireContextForvueInitializers.keys().forEach(key => {
+    let requireContextForVueInitializers = require.context('./vue_initializers', true, /\.js$/)
+    requireContextForVueInitializers.keys().forEach(key => {
       let name = key
         .split('/')
         .pop()
         .split('.')
         .shift()
-      this.vueInitializers[name] = requireContextForvueInitializers(key).default
+      this.vueInitializers[name] = requireContextForVueInitializers(key).default
     })
   }
 
@@ -105,7 +103,9 @@ class ApplicationInitializer {
         vm.$destroy()
       }
       this.vms = []
-      store.replaceState(cloneDeep(storeState))
+      store.replaceState(Object.assign({}, cloneDeep(storeState), {
+        currentUser: CurrentUserAssignService.call(envScope)
+      }))
     })
   }
 }

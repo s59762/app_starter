@@ -16,5 +16,13 @@ export default {
 
   [types.UPDATE_QUERY_STRING](state) {
     state.queryString = queryString.parse(window.location.search)
+  },
+
+  [types.TALLY_RETRY_COUNTER](state) {
+    state.retryCounter += 1
+  },
+
+  [types.RESET_RETRY_COUNTER](state) {
+    state.retryCounter = 0
   }
 }

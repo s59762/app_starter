@@ -62,7 +62,14 @@ export default class JwtManageService {
     const currentTime = moment().unix()
 
     if (currentTime > expireTime) {
-      window.location.reload()
+      let xhr = new XMLHttpRequest()
+
+      xhr.open('POST', '/api/v1/web/refresh')
+      xhr.setRequestHeader('Application-Scope', scope)
+      xhr.withCredentials = true
+      xhr.send('')
+    } else {
+      Promise.resolve('ok')
     }
   }
 }

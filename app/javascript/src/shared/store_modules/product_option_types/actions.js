@@ -19,7 +19,15 @@ export const all = ({
       })
       .catch(errors => {
         commit(types.API_REQUEST_FAIL, errors)
-        dispatch('errorMessageHandler', errors, {
+        dispatch('errorMessageHandler', {
+          errors,
+          retryAction: all,
+          ref: {
+            dispatch,
+            commit
+          },
+          params: options
+        }, {
           root: true
         })
 
@@ -46,7 +54,15 @@ export const find = ({
       })
       .catch(errors => {
         commit(types.API_REQUEST_FAIL, errors)
-        dispatch('errorMessageHandler', errors, {
+        dispatch('errorMessageHandler', {
+          errors,
+          retryAction: find,
+          ref: {
+            dispatch,
+            commit
+          },
+          params: id
+        }, {
           root: true
         })
 
@@ -78,7 +94,15 @@ export const save = ({
       .catch(errors => {
         model.errors.record(errors)
         commit(types.API_REQUEST_FAIL, errors)
-        dispatch('errorMessageHandler', errors, {
+        dispatch('errorMessageHandler', {
+          errors,
+          retryAction: save,
+          ref: {
+            dispatch,
+            commit
+          },
+          params: model
+        }, {
           root: true
         })
 
@@ -103,7 +127,15 @@ export const destroy = ({
       .catch(errors => {
         model.errors.record(errors)
         commit(types.API_REQUEST_FAIL, errors)
-        dispatch('errorMessageHandler', errors, {
+        dispatch('errorMessageHandler', {
+          errors,
+          retryAction: destroy,
+          ref: {
+            dispatch,
+            commit
+          },
+          params: model
+        }, {
           root: true
         })
 

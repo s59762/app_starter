@@ -23,6 +23,7 @@ const state = {
   currentUser: CurrentUserAssignService.call('admin'),
   flashMessages: [],
   queryString: {},
+  retryCounter: 0,
   device: {
     isMobile: false,
     deviceType: ''
