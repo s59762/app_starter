@@ -10,7 +10,11 @@ html
     = javascript_pack_tag 'admin', 'data-turbolinks-track': 'reload'
   body(class=("#{controller.controller_name}-#{controller.action_name}"))
     // [vue flash_message]
-    .flash-messages-container data-vue="basic_initializer" data-flash-messages=(flash.to_json)
-      flash-message(v-for="(message, index) in flashMessages" :message-type="message[0]" :message="message[1]" :key="index")
+    .flash-messages-container(data-vue="basic_initializer"
+                              data-flash-messages=(flash.to_json))
+      flash-message(v-for="(message, index) in flashMessages"
+                    :message-type="message[0]"
+                    :message="message[1]"
+                    :key="index")
 
     = yield
