@@ -11,9 +11,9 @@ html
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
   .flash-messages-container(data-vue="basic_initializer"
                             data-flash-messages=(flash.to_json))
-      flash-message(v-for="(message, index) in flashMessages"
-                    :message-type="message[0]"
-                    :message="message[1]"
-                    :key="index")
+    flash-message(v-for="(message, index) in flashMessages"
+                  :message-type="message[0]"
+                  :message="message[1]"
+                  :key="index")
 
     = yield
