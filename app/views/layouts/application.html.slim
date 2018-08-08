@@ -9,8 +9,13 @@ html
     = csrf_meta_tags
     = stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
-  .flash-messages-container(data-vue="basic_initializer"
-                            data-flash-messages=(flash.to_json))
+
+  body(class="#{controller.controller_name}-#{controller.action_name}")
+    /![if lt IE 7]
+      | <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+    // [vue flash_message]
+    .flash-messages-container(data-vue="basic_initializer"
+                              data-flash-messages=(flash.to_json))
       flash-message(v-for="(message, index) in flashMessages"
                     :message-type="message[0]"
                     :message="message[1]"
