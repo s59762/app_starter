@@ -22,13 +22,13 @@ class Product < ApplicationRecord
   include EditorAttachable
   include PublicActivity::Common
 
-  allow_sort_fields :'product_variants.sku',
-                    :'products.name',
+  allow_sort_fields :'master.sku',
+                    :name,
                     :category_id,
-                    :original_price,
-                    :sell_price,
-                    :discounted_price,
-                    :'products.created_at'
+                    :'master.original_price_cents',
+                    :'master.sell_price_cents',
+                    :'master.discounted_price_cents',
+                    :created_at
 
   belongs_to :brand, counter_cache: true, optional: true, touch: true
   belongs_to :category, class_name: 'ProductCategory', counter_cache: true, optional: true, touch: true
