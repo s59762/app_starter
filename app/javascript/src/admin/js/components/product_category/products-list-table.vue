@@ -17,23 +17,23 @@
 
     template(slot-scope="props")
 
-      b-table-column(field="product_variants.sku"
+      b-table-column(field="master.sku"
                      label="SKU"
                      sortable)
         | {{props.row.sku}}
 
-      b-table-column(field="products.name"
+      b-table-column(field="name"
                      :label="attributeLocaleText('product', 'name')"
                      sortable)
         | {{props.row.name}}
 
-      b-table-column(field="sell_price"
+      b-table-column(field="master.sell_price_cents"
                      :label="attributeLocaleText('product', 'sell_price')"
                      sortable
                      numbric)
         | {{props.row.displayPrice('sell')}}
 
-      b-table-column(field="discounted_price"
+      b-table-column(field="master.discounted_price_cents"
                      :label="attributeLocaleText('product', 'discounted_price')"
                      sortable
                      numbric)
@@ -75,7 +75,7 @@ export default {
   data() {
     return {
       resourceType: 'products',
-      sortField: 'products.created_at'
+      sortField: 'created_at'
     }
   },
 
