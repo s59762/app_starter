@@ -151,6 +151,16 @@ export const receiveResourcesFromRelationships = ({
   })
 }
 
+export const receiveResourcesFromRelationshipsWithReplace = ({
+  commit
+}, response) => {
+  return new Promise((resolve, reject) => {
+    commit(types.FETCH_BRAND_BANNERS_SUCCESS, response)
+
+    resolve(response)
+  })
+}
+
 export const getResourceFromRelationship = ({
   commit
 }, response) => {

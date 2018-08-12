@@ -227,7 +227,7 @@ export const fetchBanners = ({
   return new Promise((resolve, reject) => {
     model.fetchBanners(options)
       .then(response => {
-        dispatch('brandBanners/receiveResourcesFromRelationships', response, {
+        dispatch('brandBanners/receiveResourcesFromRelationshipsWithReplace', response, {
           root: true
         })
         commit(types.FETCH_BRAND_BANNERS_SUCCESS)
