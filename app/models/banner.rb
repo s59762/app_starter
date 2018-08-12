@@ -16,7 +16,7 @@ class Banner < ApplicationRecord
                 :products,
                 :brands,
                 :sign_up
-  allow_sort_fields :'banners.position'
+  allow_sort_fields :position
 
   acts_as_list scope: [:use_type]
 

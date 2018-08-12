@@ -67,7 +67,7 @@ export default {
     return {
       resourceType: 'banners',
       sortOrder: 'asc',
-      sortField: 'banners.position',
+      sortField: 'position',
       currentFilter: 0,
       availableFilters: ['homepage', 'products', 'brands', 'sign_up']
     }
