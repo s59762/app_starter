@@ -6,7 +6,7 @@
 <title>
   Module: Api::ExceptionHandleable
   
-    &mdash; Documentation by YARD 0.9.14
+    &mdash; Documentation by YARD 0.9.15
   
 </title>
 
@@ -111,6 +111,28 @@
         <li class="private ">
   <span class="summary_signature">
     
+      <a href="#logout_current_api_user-instance_method" title="#logout_current_api_user (instance method)">#<strong>logout_current_api_user</strong>(exception)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  <span class="note title private">private</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="private ">
+  <span class="summary_signature">
+    
       <a href="#not_found-instance_method" title="#not_found (instance method)">#<strong>not_found</strong>  &#x21d2; Object </a>
     
 
@@ -163,7 +185,49 @@
 
     
       <div class="method_details first">
-  <h3 class="signature first" id="not_found-instance_method">
+  <h3 class="signature first" id="logout_current_api_user-instance_method">
+  
+    #<strong>logout_current_api_user</strong>(exception)  &#x21d2; <tt>Object</tt>  <span class="extras">(private)</span>
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+27
+28
+29
+30
+31
+32
+33
+34
+35</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/concerns/api/exception_handleable.rb', line 27</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_logout_current_api_user'>logout_current_api_user</span><span class='lparen'>(</span><span class='id identifier rubyid_exception'>exception</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_request'>request</span><span class='period'>.</span><span class='id identifier rubyid_referer'>referer</span><span class='period'>.</span><span class='id identifier rubyid_split'>split</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>/</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='lbracket'>[</span><span class='int'>3</span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>admin</span><span class='tstring_end'>&#39;</span></span>
+    <span class='id identifier rubyid_sign_out'>sign_out</span><span class='lparen'>(</span><span class='id identifier rubyid_current_admin'>current_admin</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_admin_signed_in?'>admin_signed_in?</span>
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_sign_out'>sign_out</span><span class='lparen'>(</span><span class='id identifier rubyid_current_user'>current_user</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_user_signed_in?'>user_signed_in?</span>
+  <span class='kw'>end</span>
+
+  <span class='id identifier rubyid_render'>render</span> <span class='label'>json:</span> <span class='id identifier rubyid_exception'>exception</span><span class='period'>.</span><span class='id identifier rubyid_response'>response</span><span class='comma'>,</span> <span class='label'>status:</span> <span class='id identifier rubyid_exception'>exception</span><span class='period'>.</span><span class='id identifier rubyid_status'>status</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="not_found-instance_method">
   
     #<strong>not_found</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(private)</span>
   
@@ -177,16 +241,16 @@
       <pre class="lines">
 
 
-14
 15
 16
 17
 18
 19
-20</pre>
+20
+21</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/concerns/api/exception_handleable.rb', line 14</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/concerns/api/exception_handleable.rb', line 15</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_not_found'>not_found</span>
   <span class='id identifier rubyid_render'>render</span> <span class='label'>json:</span> <span class='lbrace'>{</span>
@@ -215,12 +279,12 @@
       <pre class="lines">
 
 
-22
 23
-24</pre>
+24
+25</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/concerns/api/exception_handleable.rb', line 22</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/concerns/api/exception_handleable.rb', line 23</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_show_exception'>show_exception</span><span class='lparen'>(</span><span class='id identifier rubyid_exception'>exception</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_render'>render</span> <span class='label'>json:</span> <span class='id identifier rubyid_exception'>exception</span><span class='period'>.</span><span class='id identifier rubyid_response'>response</span><span class='comma'>,</span> <span class='label'>status:</span> <span class='id identifier rubyid_exception'>exception</span><span class='period'>.</span><span class='id identifier rubyid_status'>status</span>

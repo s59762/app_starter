@@ -617,7 +617,7 @@ DEPENDENCIES
   rack-cors
   rack-mini-profiler
   rack-tracker
-  rails (= 5.2)
+  rails (~> 5.2)
   rails-settings-cached
   ransack
   readthis
@@ -650,4 +650,4 @@ DEPENDENCIES
   yard
 
 BUNDLED WITH
-   1.16.1
+   1.16.3

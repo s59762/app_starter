@@ -1,21 +1,21 @@
 # 提供根據 params 的選項，從 DB 中提取特定資料的功能
 
 class FetchingDataService
-  attr_reader :resource, :model, :paginate_options, :filter_options, :sort_options, :search_options, :options
+  attr_reader :resource,
+              :model,
+              :query_options,
+              :options
 
   PAGE_SIZE_LIMIT = 100
 
   def initialize(resource, params, options = {})
     @resource = resource
     @model = resource.name.constantize
-    @paginate_options = params[:page] || {}
-    @filter_options = params[:filter]&.to_sym || {}
-    @sort_options = params[:sort] || {}
-    @search_options = params[:q] || {}
+    @query_options = JsonApiParametersNormalizeService.new(model, params)
     @options = options
-    @result = resource.ransack(search_options).result
+    @result = resource.ransack(query_options.search).result
 
-    check_for_paginate_options_requirement! if options[:check_paginate]
+    check_for_paginate_params_requirement! if options[:check_paginate]
     validate_page_size!
   end
 
@@ -41,90 +41,42 @@ class FetchingDataService
   private
 
   def try_query_with_paginate(collection)
-    return false if paginate_options.blank?
+    return false unless query_options.has_paginate?
 
-    @result = collection.page(page_number).per(page_size)
+    @result = collection.page(query_options.page_number).per(query_options.page_size)
 
     true
   end
 
   def try_query_with_filter(collection)
-    return false if filter_options.blank?
-    return false if invalid_filter?
+    return false unless query_options.has_filter?
 
-    @result = collection.send(filter_options)
+    @result = collection.send(query_options.filter)
 
     true
   end
 
   def try_query_with_sort(collection)
-    return false if sort_options.blank?
-    return false if invalid_sort?
+    return false unless query_options.has_sort?
 
-    @result = collection.order(sort_options_to_sql)
+    @result = collection.order(query_options.sort_sql).includes(query_options.association_name)
 
     true
   end
 
-  # 當前頁碼
-  #
-  # @return [String]
-  def page_number
-    paginate_options[:number]
-  end
-
-  # 每頁 items 數量
-  #
-  # @return [String]
-  def page_size
-    paginate_options[:size]
-  end
-
-  # 驗證 client 端提供的 params 中是否包含 paginate_options
+  # 驗證 client 端提供的 params 中是否包含 paginate_params
   #
   # @raise [ParametersFailureException] 若 page size option 大於 PAGE_SIZE_LIMIT 時 raise exception
-  def check_for_paginate_options_requirement!
-    raise ParametersFailureException, 'Must provide paginate options with query string like `?page[number]=1&page[size]=20`' if paginate_options.blank?
+  def check_for_paginate_params_requirement!
+    raise ParametersFailureException, 'Must provide paginate options with query string like `?page[number]=1&page[size]=20`' unless query_options.has_paginate?
   end
 
   # 驗證 page size option 的值是否合於規範
   #
   # @raise [ParametersFailureException] 若 page size option 大於 PAGE_SIZE_LIMIT 時 raise exception
   def validate_page_size!
-    return unless page_size
+    return unless query_options.page_size
 
-    raise ParametersFailureException, %(page size option is too large. must less than `#{PAGE_SIZE_LIMIT}`) if page_size.to_i > PAGE_SIZE_LIMIT
-  end
-
-  # 根據 sort_option 來產生正確的 order sql 敘述。
-  # JSONAPI 規範中 `sort` 的內容應該為 `sort=attribute_name`，預設為 ASC，若需要 DESC 排序則應表示為 `sort=-attribute_name`
-  #
-  # @return [String] order sql statement
-  def sort_options_to_sql
-    %(#{sort_field} #{sort_direction})
-  end
-
-  def sort_field
-    @sort_field ||= sort_options[0] == '-' ? sort_options[1..-1].to_sym : sort_options[0..-1].to_sym
-  end
-
-  def sort_direction
-    @sort_direction ||= sort_options[0] == '-' ? 'DESC' : 'ASC'
-  end
-
-  def filterable_fields
-    model.allowed_filters
-  end
-
-  def sortable_fields
-    model.allowed_sort_fields
-  end
-
-  def invalid_filter?
-    !filterable_fields.include?(filter_options)
-  end
-
-  def invalid_sort?
-    !sortable_fields.include?(sort_field)
+    raise ParametersFailureException, %(page size option is too large. must less than `#{PAGE_SIZE_LIMIT}`) if query_options.page_size.to_i > PAGE_SIZE_LIMIT
   end
 end

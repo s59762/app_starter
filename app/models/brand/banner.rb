@@ -12,7 +12,8 @@
 #
 
 class Brand::Banner < ApplicationRecord
-  allow_sort_fields :'brand_banners.position'
+  allow_sort_fields :position,
+                    :created_at
 
   belongs_to :brand, touch: true
 

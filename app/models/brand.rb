@@ -15,13 +15,14 @@
 class Brand < ApplicationRecord
   include EditorAttachable
 
-  allow_sort_fields :'brands.id',
-                    :'brands.name',
-                    :'brands.created_at',
-                    :'brands.updated_at'
+  allow_sort_fields :id,
+                    :name,
+                    :products_count,
+                    :created_at,
+                    :updated_at
 
   has_many :products, dependent: :nullify
-  has_many :banners, -> { order(position: :asc) }, dependent: :destroy
+  has_many :banners, dependent: :destroy
 
   mount_uploader :logo, BrandLogoUploader
 end

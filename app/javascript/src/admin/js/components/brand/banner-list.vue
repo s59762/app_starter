@@ -19,7 +19,8 @@
 
       b-table-column(field="position"
                      :label="attributeLocaleText('brand/banner', 'position')"
-                     numbric)
+                     numbric
+                     sortable)
         | {{ props.row.position }}
 
       b-table-column(field="image"
@@ -67,7 +68,7 @@ export default {
     return {
       resourceType: 'brandBanners',
       sortOrder: 'asc',
-      sortField: 'brand_banners.position',
+      sortField: 'created_at',
       availableFilters: []
     }
   },

@@ -17,7 +17,7 @@
 
     template(slot-scope="props")
 
-      b-table-column(field="brands.name"
+      b-table-column(field="name"
                      :label="attributeLocaleText('brand', 'name')"
                      sortable)
         a(:href="brandPath(props.row)")
@@ -26,7 +26,7 @@
           span {{ props.row.name }}
 
 
-      b-table-column(field="brands.products_count"
+      b-table-column(field="products_count"
                      :label="attributeLocaleText('brand', 'products_count')"
                      sortable
                      numbric)
@@ -60,7 +60,7 @@ export default {
   data() {
     return {
       resourceType: 'brands',
-      sortField: 'brands.created_at'
+      sortField: 'created_at'
     }
   },
 
