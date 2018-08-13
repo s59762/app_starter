@@ -6,7 +6,7 @@
 <title>
   Class: Null::User
   
-    &mdash; Documentation by YARD 0.9.14
+    &mdash; Documentation by YARD 0.9.15
   
 </title>
 
@@ -541,16 +541,16 @@
       <pre class="lines">
 
 
-46
 47
 48
 49
 50
 51
-52</pre>
+52
+53</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/null/user.rb', line 46</span>
+      <pre class="code"><span class="info file"># File 'app/models/null/user.rb', line 47</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_generate_role_methods'>generate_role_methods</span>
   <span class='id identifier rubyid_user_model'>user_model</span><span class='period'>.</span><span class='id identifier rubyid_roles'>roles</span><span class='period'>.</span><span class='id identifier rubyid_keys'>keys</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_role'>role</span><span class='op'>|</span>
@@ -636,7 +636,8 @@
 39
 40
 41
-42</pre>
+42
+43</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'app/models/null/user.rb', line 37</span>
@@ -644,6 +645,7 @@
 <span class='kw'>def</span> <span class='id identifier rubyid_issue_jwt'>issue_jwt</span>
   <span class='const'><span class='object_link'><a href="../JsonWebToken.html" title="JsonWebToken (class)">JsonWebToken</a></span></span><span class='period'>.</span><span class='id identifier rubyid_encode'><span class='object_link'><a href="../JsonWebToken.html#encode-class_method" title="JsonWebToken.encode (method)">encode</a></span></span><span class='lparen'>(</span><span class='label'>sub:</span> <span class='kw'>nil</span><span class='comma'>,</span>
                       <span class='label'>iat:</span> <span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_current'>current</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span><span class='comma'>,</span>
+                      <span class='label'>exp:</span> <span class='int'>1</span><span class='period'>.</span><span class='id identifier rubyid_hour'>hour</span><span class='period'>.</span><span class='id identifier rubyid_from_now'>from_now</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span><span class='comma'>,</span>
                       <span class='label'>type:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Guest</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
                       <span class='label'>ref:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>web</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>

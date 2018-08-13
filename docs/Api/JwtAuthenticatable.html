@@ -6,7 +6,7 @@
 <title>
   Module: Api::JwtAuthenticatable
   
-    &mdash; Documentation by YARD 0.9.14
+    &mdash; Documentation by YARD 0.9.15
   
 </title>
 
@@ -76,6 +76,11 @@
   
   
   
+  <dl>
+      <dt>Includes:</dt>
+      <dd>ActionController::Cookies</dd>
+  </dl>
+  
   
 
   
@@ -107,29 +112,6 @@
     </h2>
 
     <ul class="summary">
-      
-        <li class="private ">
-  <span class="summary_signature">
-    
-      <a href="#admin_signed_in%3F-instance_method" title="#admin_signed_in? (instance method)">#<strong>admin_signed_in?</strong>  &#x21d2; Boolean </a>
-    
-
-    
-  </span>
-  
-  
-  
-  <span class="note title private">private</span>
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'><p>驗證當前使用者身份是否為 &#39;Admin&#39;.</p>
-</div></span>
-  
-</li>
-
       
         <li class="private ">
   <span class="summary_signature">
@@ -194,7 +176,8 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>依照當前 API 使用者的類型判斷 scope。一般來說會有 Admin 和 User 兩部分，作為提供不同的資料內容的依據、管理 cache 等功能。.</p>
+</div></span>
   
 </li>
 
@@ -273,66 +256,14 @@
 
 
   
+  
 
   <div id="instance_method_details" class="method_details_list">
     <h2>Instance Method Details</h2>
 
     
       <div class="method_details first">
-  <h3 class="signature first" id="admin_signed_in?-instance_method">
-  
-    #<strong>admin_signed_in?</strong>  &#x21d2; <tt>Boolean</tt>  <span class="extras">(private)</span>
-  
-
-  
-
-  
-</h3><div class="docstring">
-  <div class="discussion">
-    <p>驗證當前使用者身份是否為 &#39;Admin&#39;</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Boolean</tt>)</span>
-      
-      
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-32
-33
-34</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/concerns/api/jwt_authenticatable.rb', line 32</span>
-
-<span class='kw'>def</span> <span class='id identifier rubyid_admin_signed_in?'>admin_signed_in?</span>
-  <span class='id identifier rubyid_current_api_user'>current_api_user</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Admin</span><span class='tstring_end'>&#39;</span></span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
-  <h3 class="signature " id="authenticate_for_jwt!-instance_method">
+  <h3 class="signature first" id="authenticate_for_jwt!-instance_method">
   
     #<strong>authenticate_for_jwt!</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(private)</span>
   
@@ -373,15 +304,15 @@
       <pre class="lines">
 
 
-16
 17
-18</pre>
+18
+19</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/concerns/api/jwt_authenticatable.rb', line 16</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/concerns/api/jwt_authenticatable.rb', line 17</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_authenticate_for_jwt!'>authenticate_for_jwt!</span>
-  <span class='ivar'>@api_auth</span> <span class='op'>||=</span> <span class='const'><span class='object_link'><a href="../ApiAuthServiceService.html" title="ApiAuthServiceService (class)">ApiAuthServiceService</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="../ApiAuthServiceService.html#initialize-instance_method" title="ApiAuthServiceService#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_request'>request</span><span class='period'>.</span><span class='id identifier rubyid_headers'>headers</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Authorization</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='ivar'>@api_auth</span> <span class='op'>||=</span> <span class='id identifier rubyid_controller_path'>controller_path</span><span class='period'>.</span><span class='id identifier rubyid_split'>split</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>/</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='lbracket'>[</span><span class='int'>2</span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>web</span><span class='tstring_end'>&#39;</span></span> <span class='op'>?</span> <span class='const'><span class='object_link'><a href="../ApiAuthServiceService.html" title="ApiAuthServiceService (class)">ApiAuthServiceService</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="../ApiAuthServiceService.html#initialize-instance_method" title="ApiAuthServiceService#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_request'>request</span><span class='rparen'>)</span> <span class='op'>:</span> <span class='const'><span class='object_link'><a href="../ApiAuthServiceService.html" title="ApiAuthServiceService (class)">ApiAuthServiceService</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="../ApiAuthServiceService.html#initialize-instance_method" title="ApiAuthServiceService#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_request'>request</span><span class='comma'>,</span> <span class='label'>ref:</span> <span class='symbol'>:app</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -430,15 +361,15 @@
       <pre class="lines">
 
 
-23
 24
-25</pre>
+25
+26</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/concerns/api/jwt_authenticatable.rb', line 23</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/concerns/api/jwt_authenticatable.rb', line 24</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_current_api_user'>current_api_user</span>
-  <span class='ivar'>@current_api_user</span> <span class='op'>||=</span> <span class='ivar'>@api_auth</span> <span class='op'>?</span> <span class='ivar'>@api_auth</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span> <span class='op'>:</span> <span class='const'>Null</span><span class='op'>::</span><span class='const'>User</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>user</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+  <span class='ivar'>@current_api_user</span> <span class='op'>||=</span> <span class='ivar'>@api_auth</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -454,21 +385,31 @@
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>依照當前 API 使用者的類型判斷 scope。一般來說會有 Admin 和 User 兩部分，作為提供不同的資料內容的依據、管理 cache 等功能。</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-27
-28
-29</pre>
+29
+30
+31</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/concerns/api/jwt_authenticatable.rb', line 27</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/concerns/api/jwt_authenticatable.rb', line 29</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_current_api_user_scope'>current_api_user_scope</span>
-  <span class='ivar'>@current_api_user_scope</span> <span class='op'>||=</span> <span class='id identifier rubyid_admin_signed_in?'>admin_signed_in?</span> <span class='op'>?</span> <span class='id identifier rubyid_current_api_user'>current_api_user</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span> <span class='op'>:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>User</span><span class='tstring_end'>&#39;</span></span>
+  <span class='ivar'>@current_api_user_scope</span> <span class='op'>||=</span> <span class='id identifier rubyid_signed_in_as?'>signed_in_as?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Admin</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='op'>?</span> <span class='id identifier rubyid_current_api_user'>current_api_user</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span> <span class='op'>:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>User</span><span class='tstring_end'>&#39;</span></span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -517,12 +458,12 @@
       <pre class="lines">
 
 
-46
-47
-48</pre>
+43
+44
+45</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/concerns/api/jwt_authenticatable.rb', line 46</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/concerns/api/jwt_authenticatable.rb', line 43</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_for_admin_only!'>for_admin_only!</span>
   <span class='id identifier rubyid_raise'>raise</span> <span class='const'><span class='object_link'><a href="../PolicyFailureException.html" title="PolicyFailureException (class)">PolicyFailureException</a></span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>%(</span><span class='tstring_content'>this api is for admin only.</span><span class='tstring_end'>)</span></span> <span class='kw'>unless</span> <span class='id identifier rubyid_signed_in_as?'>signed_in_as?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Admin</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -574,12 +515,12 @@
       <pre class="lines">
 
 
-39
-40
-41</pre>
+36
+37
+38</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/concerns/api/jwt_authenticatable.rb', line 39</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/concerns/api/jwt_authenticatable.rb', line 36</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_jwt_payload'>jwt_payload</span>
   <span class='ivar'>@api_auth</span><span class='period'>.</span><span class='id identifier rubyid_payload'>payload</span>
@@ -659,12 +600,12 @@
       <pre class="lines">
 
 
-58
-59
-60</pre>
+55
+56
+57</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/concerns/api/jwt_authenticatable.rb', line 58</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/concerns/api/jwt_authenticatable.rb', line 55</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_signed_in_as?'>signed_in_as?</span><span class='lparen'>(</span><span class='id identifier rubyid_role'>role</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_jwt_payload'>jwt_payload</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>type</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='id identifier rubyid_role'>role</span>
