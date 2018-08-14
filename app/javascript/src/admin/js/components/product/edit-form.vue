@@ -57,6 +57,8 @@
                      icon="list-ol")
             section.section
               option-type-editor(:option-types="optionTypes")
+              hr
+              OptionTypeNewButton(:product-id="product.id")
 
             section.section
               properties-columns(:errors="errors"
@@ -128,6 +130,7 @@ import Product from '../../../../shared/resource_models/product'
 import Form from 'odd-form_object'
 import CategorySelector from './category-selector.vue'
 import OptionTypeEditor from './option-type-editor.vue'
+import OptionTypeNewButton from '../product_option_type/new-button.vue'
 import PropertiesColumns from './properties-columns.vue'
 import DescriptionColumn from './description-column.vue'
 import VariantEditableUnit from '../product_variant/editable-unit.vue'
@@ -139,6 +142,7 @@ export default {
   components: {
     CategorySelector,
     OptionTypeEditor,
+    OptionTypeNewButton,
     PropertiesColumns,
     DescriptionColumn,
     VariantEditableUnit,

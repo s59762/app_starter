@@ -43,7 +43,7 @@ namespace :api do
 
         resource :collect, only: %i(create destroy), controller: 'products/collect'
       end
-      resources :product_option_types, only: %i(update destroy), controller: 'products/option_types'
+      resources :product_option_types, only: %i(create update destroy), controller: 'products/option_types'
       resources :product_option_values, only: %i(create update destroy), controller: 'products/option_values'
       resources :product_variants, only: %i(update), controller: 'products/variants' do
         resource :set_as_master, only: :update, controller: 'products/variants/set_as_master'

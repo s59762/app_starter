@@ -15,7 +15,27 @@
     {
       "label": "regenerate JS I18n",
       "type": "shell",
-      "command": "rake i18n: js: export",
+      "command": "rake i18n:js:export",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "never",
+        "panel": "shared"
+      }
+    },
+    {
+      "label": "Restart Web",
+      "type": "shell",
+      "command": "overmind restart web",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "never",
+        "panel": "shared"
+      }
+    },
+    {
+      "label": "Restart Assets",
+      "type": "shell",
+      "command": "overmind restart assets",
       "problemMatcher": [],
       "presentation": {
         "reveal": "never",
@@ -43,7 +63,6 @@
         "panel": "shared"
       }
     },
-
     {
       "label": "cap production deploy",
       "type": "shell",
@@ -53,7 +72,6 @@
         "reveal": "always"
       }
     },
-
     {
       "label": "cap staging deploy",
       "type": "shell",
@@ -63,7 +81,6 @@
         "reveal": "always"
       }
     },
-
     {
       "label": "kill all overmind progress",
       "type": "shell",
