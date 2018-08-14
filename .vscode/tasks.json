@@ -12,7 +12,16 @@
         "panel": "shared"
       }
     },
-
+    {
+      "label": "regenerate JS I18n",
+      "type": "shell",
+      "command": "rake i18n: js: export",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "never",
+        "panel": "shared"
+      }
+    },
     {
       "label": "rails server with remote debugger",
       "type": "shell",

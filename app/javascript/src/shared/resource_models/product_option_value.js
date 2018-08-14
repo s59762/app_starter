@@ -6,7 +6,7 @@ const OPTIONS = {
   scope: 'web',
   resourceType: 'product_option_values',
   attributes: ['id', 'value', 'option_type_id'],
-  editableAttributes: ['value']
+  editableAttributes: ['value', 'option_type_id']
 }
 
 export default class ProductOptionValue extends ResourceModelBase {
