@@ -34,7 +34,8 @@ const OPTIONS = {
     'depth',
     'height',
     'description',
-    'stock_params'
+    'stock_params',
+    'option_value_ids'
   ]
 }
 

@@ -22,6 +22,25 @@
                   v-model="form.sku"
                   @input="errors.clear('sku')")
 
+  section.section(v-if="optionTypesWidthValues.length > 0")
+    h4.section-title {{pageTitleLocaleText('admin', 'products', 'option_type_fields')}}
+
+    .columns.is-multiline
+      .column.is-half(v-for="optionType in optionTypesWidthValues"
+              :key="optionType.id")
+        b-field(:label="optionType.name"
+                :type="errors.errorClassAt('option_value_ids')"
+                :message="errors.get('option_value_ids')")
+          b-select(v-model="optionType.selected_value_id"
+                  :placeholder="messageLocaleText('help.please_select_option_value')"
+                  @input="errors.clear('option_value_id')"
+                  expanded)
+            option {{messageLocaleText('help.choose_none')}}
+            option(v-for="optionValue in optionType.option_values"
+                  :value="optionValue.id"
+                  :key="optionValue.id")
+              | {{ optionValue.value }}
+
   section.section
     price-info-columns(:price="form.price"
                        :errors="errors")
@@ -69,7 +88,8 @@ export default {
 
   data() {
     return {
-      form: new Form(this.variant)
+      form: new Form(this.variant),
+      optionTypesWidthValues: []
     }
   },
 
@@ -82,8 +102,9 @@ export default {
       return this.variant.errors
     }
   },
-
   created() {
+    this.buildOptionTypesSelectProperty()
+
     if (this.variant.isNewRecord()) {
       this.form.price = {
         original: 0,
@@ -101,7 +122,33 @@ export default {
 
   // mounted() {},
   methods: {
+    buildOptionTypesSelectProperty() {
+      let optionTypes = this.$store.getters['productOptionTypes/all']
+
+      this.optionTypesWidthValues = optionTypes.map(optionType => {
+        optionType.option_values = this.relatedOptionValuesOf(optionType)
+        optionType['selected_value_id'] = this.form.model.option_value_ids.filter(id => {
+          let optionIds = optionType.option_values.map(optionValue => {
+            return optionValue.id
+          })
+          return optionIds.includes(String(id))
+        })[0]
+        return optionType
+      })
+    },
+    relatedOptionValuesOf(optionType) {
+      return this.$store.getters['productOptionValues/all'].filter(
+        value => String(value.option_type_id) === optionType.id
+      )
+    },
+    syncOptionValues() {
+      let ids = this.optionTypesWidthValues.map(optionType => {
+        return parseInt(optionType.selected_value_id)
+      })
+      this.form.option_value_ids = ids.filter(id => id)
+    },
     submitForm() {
+      this.syncOptionValues()
       this.$store
         .dispatch('productVariants/save', this.form.sync())
         .then(() => {
