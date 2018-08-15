@@ -4,7 +4,7 @@
   .add-option-type-button.button.is-default.is-block(@click="showForm")
     .icon
       i.fa.fa-plus
-    span {{actionLocaleText('admin', 'add_product_option_type')}}
+    span {{ actionLocaleText('admin', 'add_product_option_type') }}
 
   b-modal(:active.sync="isFormActive"
           ref="modal")
@@ -64,6 +64,7 @@ export default {
     showForm() {
       this.isFormActive = true
     },
+
     submitForm() {
       this.$store
         .dispatch('productOptionTypes/save', this.form.sync())

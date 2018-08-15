@@ -4,7 +4,7 @@
   .add-option-type-button.button.is-default.is-block(@click="showForm")
     .icon
       i.fa.fa-plus
-    span {{actionLocaleText('admin', 'add_new', { model: modelNameLocaleText('product/variant') })}}
+    span {{ actionLocaleText('admin', 'add_new', { model: modelNameLocaleText('product/variant') }) }}
 
   b-modal(:active.sync="isFormActive")
     variant-form(:variant="variant")

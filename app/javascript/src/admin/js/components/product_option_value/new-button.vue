@@ -4,7 +4,7 @@
   .button.is-small.is-info(@click="showForm")
     .icon
       i.fa.fa-plus
-    span {{actionLocaleText('admin', 'add_product_option_value')}}
+    span {{ actionLocaleText('admin', 'add_product_option_value') }}
   b-modal(:active.sync="isFormActive"
           ref="modal")
     .box.form-container-box.is-default.clearfix
@@ -60,6 +60,7 @@ export default {
     showForm() {
       this.isFormActive = true
     },
+
     submitForm() {
       this.$store
         .dispatch('productOptionValues/save', this.form.sync())
