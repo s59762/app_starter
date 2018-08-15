@@ -21,7 +21,7 @@
 
 <script>
 import Form from 'odd-form_object'
-import ProductOptionValue from '../../../../shared/resource_models/product_option_value'
+import ProductOptionValue from '../../../../shared/resource_models/product_option_value.js'
 
 export default {
   // components: {},
