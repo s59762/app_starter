@@ -1,5 +1,7 @@
 class Api::V1::Web::Products::VariantsController < Api::V1::Web::BaseController
   def create
+    check_policy ProductPolicy.new(current_api_user, :product).create?
+
     variant = Product.find(variant_params[:product_id]).variants.new
     form = Admin::ProductVariantForm.new(variant)
 
@@ -11,7 +13,10 @@ class Api::V1::Web::Products::VariantsController < Api::V1::Web::BaseController
   end
 
   def update
-    variant = Product::Variant.find(params[:id])
+    variant = Product::Variant.includes(:product).find(params[:id])
+
+    check_policy ProductPolicy.new(current_api_user, variant.product).update?
+
     form = Admin::ProductVariantForm.new(variant)
 
     return raise ValidationFailureException, form unless form.validate(variant_params)
