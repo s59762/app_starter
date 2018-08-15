@@ -26,6 +26,7 @@ const OPTIONS = {
     'images'
   ],
   editableAttributes: [
+    'product_id',
     'name',
     'sku',
     'price',

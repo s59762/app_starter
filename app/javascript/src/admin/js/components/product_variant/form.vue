@@ -1,7 +1,7 @@
 <template lang="pug">
 
 .vc-product-variant-form.box.form-container-box.is-default.clearfix
-  h3.subtitle {{ pageTitleLocaleText('admin', 'products', 'edit_variant') }}
+  h3.subtitle {{ pageTitleLocaleText('admin', 'products', subtitleForVariant) }}
 
   section.section
     .columns
@@ -89,7 +89,8 @@ export default {
   data() {
     return {
       form: new Form(this.variant),
-      optionTypesWidthValues: []
+      optionTypesWidthValues: [],
+      subtitleForVariant: 'edit_variant'
     }
   },
 
@@ -103,14 +104,14 @@ export default {
     }
   },
   created() {
-    this.buildOptionTypesSelectProperty()
-
     if (this.variant.isNewRecord()) {
       this.form.price = {
         original: 0,
         sell: 0,
         discounted: 0
       }
+      this.form.model.option_value_ids = []
+      this.subtitleForVariant = 'new_variant'
     } else {
       this.form.price = {
         original: this.variant.original_price / 100,
@@ -118,6 +119,8 @@ export default {
         discounted: this.variant.discounted_price / 100
       }
     }
+
+    this.buildOptionTypesSelectProperty()
   },
 
   // mounted() {},

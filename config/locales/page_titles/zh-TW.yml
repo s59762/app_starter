@@ -58,6 +58,7 @@ zh-TW:
         edit_option_type: 編輯商品選項類型
         new_option_value: 新增商品選項
         edit_option_value: 編輯商品選項
+        new_variant: 新增規格資料
         edit_variant: 編輯規格資料
         basic_product_info: 基本資料
         options_and_properties: 選項與屬性
