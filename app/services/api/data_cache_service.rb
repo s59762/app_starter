@@ -14,7 +14,7 @@ class Api::DataCacheService
 
     @meta_options = options.fetch(:meta, {})
     @extra_options = options.fetch(:extra, {})
-    @cache_options = options.fetch(:cache, nil)
+    @cache_options = options.fetch(:cache, {})
     @includes = options.fetch(:includes, [nil])
     @user_scope = options.fetch(:user_scope, nil)
   end
