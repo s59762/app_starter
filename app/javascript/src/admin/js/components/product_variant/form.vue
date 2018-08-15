@@ -1,7 +1,7 @@
 <template lang="pug">
 
 .vc-product-variant-form.box.form-container-box.is-default.clearfix
-  h3.subtitle {{ pageTitleLocaleText('admin', 'products', subtitleForVariant) }}
+  h3.subtitle {{ formTitle }}
 
   section.section
     .columns
@@ -22,11 +22,11 @@
                   v-model="form.sku"
                   @input="errors.clear('sku')")
 
-  section.section(v-if="optionTypesWidthValues.length > 0")
+  section.section(v-if="optionTypesWithValues.length > 0")
     h4.section-title {{pageTitleLocaleText('admin', 'products', 'option_type_fields')}}
 
     .columns.is-multiline
-      .column.is-half(v-for="optionType in optionTypesWidthValues"
+      .column.is-half(v-for="optionType in optionTypesWithValues"
               :key="optionType.id")
         b-field(:label="optionType.name"
                 :type="errors.errorClassAt('option_value_ids')"
@@ -89,8 +89,7 @@ export default {
   data() {
     return {
       form: new Form(this.variant),
-      optionTypesWidthValues: [],
-      subtitleForVariant: 'edit_variant'
+      optionTypesWithValues: []
     }
   },
 
@@ -101,8 +100,21 @@ export default {
 
     errors() {
       return this.variant.errors
+    },
+
+    formTitle() {
+      if (this.variant.isNewRecord()) {
+        return this.pageTitleLocaleText('admin', 'products', 'new_variant')
+      } else {
+        return this.pageTitleLocaleText('admin', 'products', 'edit_variant')
+      }
+    },
+
+    optionTypes() {
+      return this.$store.getters['productOptionTypes/all']
     }
   },
+
   created() {
     if (this.variant.isNewRecord()) {
       this.form.price = {
@@ -111,7 +123,6 @@ export default {
         discounted: 0
       }
       this.form.model.option_value_ids = []
-      this.subtitleForVariant = 'new_variant'
     } else {
       this.form.price = {
         original: this.variant.original_price / 100,
@@ -126,9 +137,7 @@ export default {
   // mounted() {},
   methods: {
     buildOptionTypesSelectProperty() {
-      let optionTypes = this.$store.getters['productOptionTypes/all']
-
-      this.optionTypesWidthValues = optionTypes.map(optionType => {
+      this.optionTypesWithValues = this.optionTypes.map(optionType => {
         optionType.option_values = this.relatedOptionValuesOf(optionType)
         optionType['selected_value_id'] = this.form.model.option_value_ids.filter(id => {
           let optionIds = optionType.option_values.map(optionValue => {
@@ -139,17 +148,20 @@ export default {
         return optionType
       })
     },
+
     relatedOptionValuesOf(optionType) {
       return this.$store.getters['productOptionValues/all'].filter(
         value => String(value.option_type_id) === optionType.id
       )
     },
+
     syncOptionValues() {
-      let ids = this.optionTypesWidthValues.map(optionType => {
+      let ids = this.optionTypesWithValues.map(optionType => {
         return parseInt(optionType.selected_value_id)
       })
       this.form.option_value_ids = ids.filter(id => id)
     },
+
     submitForm() {
       this.syncOptionValues()
       this.$store
