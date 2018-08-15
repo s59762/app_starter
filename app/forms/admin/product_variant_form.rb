@@ -9,7 +9,8 @@ class Admin::ProductVariantForm < ApplicationForm
              :width,
              :depth,
              :height,
-             :description
+             :description,
+             :option_value_ids
   property :price, virtual: true
 
   validates :sku, presence: true

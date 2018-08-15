@@ -8,23 +8,27 @@
       span.name {{ optionType.name }}
       option-type-edit-button(:option-type="optionType")
 
+      option-value-new-button(:option-type-id="optionType.id")
+
     .option-values
-      .option-value-unit(v-for="optionValue in optionType.option_values"
+      .option-value-unit(v-for="optionValue in relatedOptionValuesOf(optionType)"
                          :key="optionValue.id")
         .inner
-          .value {{ fetchOptionValue(optionValue.id).value }}
-          option-value-edit-button(:option-value="fetchOptionValue(optionValue.id)")
+          .value {{ optionValue.value }}
+          option-value-edit-button(:option-value="optionValue")
 
 </template>
 
 <script>
 import OptionTypeEditButton from '../product_option_type/edit-button.vue'
 import OptionValueEditButton from '../product_option_value/edit-button.vue'
+import OptionValueNewButton from '../product_option_value/new-button.vue'
 
 export default {
   components: {
     OptionTypeEditButton,
-    OptionValueEditButton
+    OptionValueEditButton,
+    OptionValueNewButton
   },
   // mixins: [],
   props: {
@@ -40,8 +44,10 @@ export default {
   // created() {},
   // mounted() {},
   methods: {
-    fetchOptionValue(id) {
-      return this.$store.getters['productOptionValues/find'](id)
+    relatedOptionValuesOf(optionType) {
+      return this.$store.getters['productOptionValues/all'].filter(
+        value => String(value.option_type_id) === optionType.id
+      )
     }
   }
 }

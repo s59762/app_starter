@@ -47,8 +47,8 @@ class Admin::EditProductForm < ApplicationForm
   private
 
   def assign_category_to_model
-      id = sub_category_id || top_level_category_id
+    id = sub_category_id || top_level_category_id
 
-      model.assign_attributes category_id: id
+    model.assign_attributes category_id: id
   end
 end

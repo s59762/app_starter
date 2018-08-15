@@ -1,4 +1,15 @@
 class Api::V1::Web::Products::VariantsController < Api::V1::Web::BaseController
+  def create
+    variant = Product.find(variant_params[:product_id]).variants.new
+    form = Admin::ProductVariantForm.new(variant)
+
+    return raise ValidationFailureException, form unless form.validate(variant_params)
+
+    form.save
+
+    render json: form.model, serializer: Product::VariantSerializer::Detail
+  end
+
   def update
     variant = Product::Variant.find(params[:id])
     form = Admin::ProductVariantForm.new(variant)
@@ -7,7 +18,7 @@ class Api::V1::Web::Products::VariantsController < Api::V1::Web::BaseController
 
     form.save
 
-    render json: form.model
+    render json: form.model, serializer: Product::VariantSerializer::Detail
   end
 
   private

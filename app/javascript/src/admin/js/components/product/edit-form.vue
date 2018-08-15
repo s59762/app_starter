@@ -57,6 +57,8 @@
                      icon="list-ol")
             section.section
               option-type-editor(:option-types="optionTypes")
+              hr
+              OptionTypeNewButton(:product-id="product.id")
 
             section.section
               properties-columns(:errors="errors"
@@ -74,6 +76,8 @@
                      icon="barcode")
             variant-editable-unit(v-for="variant in variants"
                                   :variant="variant")
+            hr
+            variant-new-button(:product-id="product.id")
 
           //- 圖片管理
           b-tab-item(:label="pageTitleLocaleText('admin', 'products', 'images_management')"
@@ -128,8 +132,10 @@ import Product from '../../../../shared/resource_models/product'
 import Form from 'odd-form_object'
 import CategorySelector from './category-selector.vue'
 import OptionTypeEditor from './option-type-editor.vue'
+import OptionTypeNewButton from '../product_option_type/new-button.vue'
 import PropertiesColumns from './properties-columns.vue'
 import DescriptionColumn from './description-column.vue'
+import VariantNewButton from '../product_variant/new-button.vue'
 import VariantEditableUnit from '../product_variant/editable-unit.vue'
 import StockManagementUnit from '../product_variant/stock-management-unit.vue'
 import ImageEditorWrapper from '../product_image/editor-wrapper.vue'
@@ -139,8 +145,10 @@ export default {
   components: {
     CategorySelector,
     OptionTypeEditor,
+    OptionTypeNewButton,
     PropertiesColumns,
     DescriptionColumn,
+    VariantNewButton,
     VariantEditableUnit,
     StockManagementUnit,
     ImageEditorWrapper,

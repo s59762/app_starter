@@ -26,6 +26,7 @@ const OPTIONS = {
     'images'
   ],
   editableAttributes: [
+    'product_id',
     'name',
     'sku',
     'price',
@@ -34,7 +35,8 @@ const OPTIONS = {
     'depth',
     'height',
     'description',
-    'stock_params'
+    'stock_params',
+    'option_value_ids'
   ]
 }
 
