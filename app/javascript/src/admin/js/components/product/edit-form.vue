@@ -76,7 +76,7 @@
             variant-editable-unit(v-for="variant in variants"
                                   :variant="variant")
             hr
-            variant-new-button(:product-id="product.id")
+            variant-new-button(:product="product")
 
           //- 圖片管理
           b-tab-item(:label="pageTitleLocaleText('admin', 'products', 'images_management')"

@@ -77,11 +77,19 @@ export default {
   },
   // mixins: [],
   props: {
+    product: {
+      type: Object,
+      required: false,
+      default: () => {
+        return null
+      }
+    },
+
     variant: {
       type: Object,
       required: false,
       default: () => {
-        new ProductVariant()
+        return new ProductVariant()
       }
     }
   },
@@ -122,6 +130,7 @@ export default {
         sell: 0,
         discounted: 0
       }
+      this.form.product_id = this.product.id
       this.form.model.option_value_ids = []
     } else {
       this.form.price = {

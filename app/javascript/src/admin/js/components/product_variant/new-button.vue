@@ -7,13 +7,12 @@
     span {{ actionLocaleText('admin', 'add_new', { model: modelNameLocaleText('product/variant') }) }}
 
   b-modal(:active.sync="isFormActive")
-    variant-form(:variant="variant")
+    variant-form(:product="product")
 
 </template>
 
 <script>
 import VariantForm from './form.vue'
-import ProductVariant from '../../../../shared/resource_models/product_variant.js'
 
 export default {
   components: {
@@ -21,14 +20,13 @@ export default {
   },
   // mixins: [],
   props: {
-    productId: {
-      type: String,
+    product: {
+      type: Object,
       required: true
     }
   },
   data() {
     return {
-      variant: new ProductVariant({ product_id: this.productId }),
       isFormActive: false
     }
   },
