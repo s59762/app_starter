@@ -1,8 +1,10 @@
 class Api::V1::Web::Products::VariantsController < Api::V1::Web::BaseController
   def create
-    check_policy ProductPolicy.new(current_api_user, :product).create?
+    product = Product.find(variant_params[:product_id])
 
-    variant = Product.find(variant_params[:product_id]).variants.new
+    check_policy ProductPolicy.new(current_api_user, product).update?
+
+    variant = product.variants.new
     form = Admin::ProductVariantForm.new(variant)
 
     return raise ValidationFailureException, form unless form.validate(variant_params)

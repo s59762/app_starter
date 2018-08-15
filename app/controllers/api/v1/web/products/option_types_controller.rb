@@ -1,8 +1,10 @@
 class Api::V1::Web::Products::OptionTypesController < Api::V1::Web::BaseController
   def create
-    check_policy ProductPolicy.new(current_api_user, :product).create?
+    product = Product.find(option_type_params[:product_id])
 
-    option_type = Product.find(option_type_params[:product_id]).option_types.new
+    check_policy ProductPolicy.new(current_api_user, product).update?
+
+    option_type = product.option_types.new
     form = Admin::ProductOptionTypeForm.new(option_type)
 
     return raise ValidationFailureException, form unless form.validate(option_type_params)
