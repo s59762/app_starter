@@ -2,7 +2,6 @@ import normalize from 'jsonapi-normalizer'
 import Vue from 'vue/dist/vue.esm'
 import merge from 'lodash.merge'
 import mergeWith from 'lodash.mergewith'
-import isArray from 'lodash.isarray'
 import union from 'lodash.union'
 
 /**
@@ -81,7 +80,7 @@ export default class MutationHelpers {
 
     tryStoreMetaToVuex(state, response)
     Vue.set(state.entities, id, mergeWith({}, state.entities[id], normalizedResult.entities[this.resource_type][id], (objValue, srcValue) => {
-      if (isArray(objValue)) return srcValue
+      if (Array.isArray(objValue)) return srcValue
     }))
   }
 
