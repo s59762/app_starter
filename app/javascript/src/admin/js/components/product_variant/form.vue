@@ -22,24 +22,23 @@
                   v-model="form.sku"
                   @input="errors.clear('sku')")
 
-  section.section(v-if="optionTypesWithValues.length > 0")
+  section.section(v-if="optionTypes.length > 0")
     h4.section-title {{pageTitleLocaleText('admin', 'products', 'option_type_fields')}}
 
     .columns.is-multiline
-      .column.is-half(v-for="optionType in optionTypesWithValues"
-              :key="optionType.id")
+      .column.is-half(v-for="optionType in optionTypes"
+                      :key="optionType.id")
         b-field(:label="optionType.name"
                 :type="errors.errorClassAt('option_value_ids')"
                 :message="errors.get('option_value_ids')")
-          b-select(v-model="optionType.selected_value_id"
-                  :placeholder="messageLocaleText('help.please_select_option_value')"
-                  @input="errors.clear('option_value_id')"
-                  expanded)
+          b-select(v-model="optionTypeAndValuePairs[optionType.id]"
+                   :placeholder="messageLocaleText('help.please_select_option_value')"
+                   @input="errors.clear('option_value_id')"
+                   expanded)
             option {{messageLocaleText('help.choose_none')}}
-            option(v-for="optionValue in optionType.option_values"
+            option(v-for="optionValue in relatedOptionValuesOf(optionType)"
                   :value="optionValue.id"
-                  :key="optionValue.id")
-              | {{ optionValue.value }}
+                  :key="optionValue.id") {{ optionValue.value }}
 
   section.section
     price-info-columns(:price="form.price"
@@ -77,11 +76,19 @@ export default {
   },
   // mixins: [],
   props: {
+    product: {
+      type: Object,
+      required: false,
+      default: () => {
+        return null
+      }
+    },
+
     variant: {
       type: Object,
       required: false,
       default: () => {
-        new ProductVariant()
+        return new ProductVariant()
       }
     }
   },
@@ -89,7 +96,7 @@ export default {
   data() {
     return {
       form: new Form(this.variant),
-      optionTypesWithValues: []
+      optionTypeAndValuePairs: {}
     }
   },
 
@@ -110,6 +117,18 @@ export default {
       }
     },
 
+    flashMessage() {
+      if (this.variant.isNewRecord()) {
+        return this.messageLocaleText('resource_added_successfully', {
+          resource: this.modelNameLocaleText('product/variant')
+        })
+      } else {
+        return this.messageLocaleText('resource_updated_successfully', {
+          resource: this.modelNameLocaleText('product/variant')
+        })
+      }
+    },
+
     optionTypes() {
       return this.$store.getters['productOptionTypes/all']
     }
@@ -122,7 +141,8 @@ export default {
         sell: 0,
         discounted: 0
       }
-      this.form.model.option_value_ids = []
+      this.form.product_id = this.product.id
+      this.form.option_value_ids = []
     } else {
       this.form.price = {
         original: this.variant.original_price / 100,
@@ -131,21 +151,18 @@ export default {
       }
     }
 
-    this.buildOptionTypesSelectProperty()
+    this.parseOptionTypeAndValuePairs()
   },
 
   // mounted() {},
   methods: {
-    buildOptionTypesSelectProperty() {
-      this.optionTypesWithValues = this.optionTypes.map(optionType => {
-        optionType.option_values = this.relatedOptionValuesOf(optionType)
-        optionType['selected_value_id'] = this.form.model.option_value_ids.filter(id => {
-          let optionIds = optionType.option_values.map(optionValue => {
-            return optionValue.id
-          })
-          return optionIds.includes(String(id))
-        })[0]
-        return optionType
+    parseOptionTypeAndValuePairs() {
+      this.optionTypes.forEach(optionType => {
+        let selectedValue = this.relatedOptionValuesOf(optionType).find(optionValue =>
+          this.form.option_value_ids.includes(parseInt(optionValue.id))
+        )
+
+        this.optionTypeAndValuePairs[optionType.id] = selectedValue && selectedValue.id
       })
     },
 
@@ -155,24 +172,15 @@ export default {
       )
     },
 
-    syncOptionValues() {
-      let ids = this.optionTypesWithValues.map(optionType => {
-        return parseInt(optionType.selected_value_id)
-      })
-      this.form.option_value_ids = ids.filter(id => id)
-    },
-
     submitForm() {
-      this.syncOptionValues()
+      this.form.option_value_ids = this.optionTypes.map(optionType =>
+        parseInt(this.optionTypeAndValuePairs[optionType.id])
+      )
+
       this.$store
         .dispatch('productVariants/save', this.form.sync())
         .then(() => {
-          return this.$store.dispatch('addFlashMessage', [
-            'success',
-            this.messageLocaleText('resource_updated_successfully', {
-              resource: this.modelNameLocaleText('product/variant')
-            })
-          ])
+          return this.$store.dispatch('addFlashMessage', ['success', this.flashMessage])
         })
         .then(() => {
           this.$parent.close()

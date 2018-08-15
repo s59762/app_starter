@@ -7,7 +7,8 @@ const OPTIONS = {
   resourceType: 'product_option_types',
   attributes: ['id', 'name', 'product_id', 'option_values'],
   editableAttributes: [
-    'name', 'product_id'
+    'name',
+    'product_id'
   ]
 }
 

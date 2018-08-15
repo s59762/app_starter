@@ -56,9 +56,8 @@
           b-tab-item(:label="pageTitleLocaleText('admin', 'products', 'options_and_properties')"
                      icon="list-ol")
             section.section
-              option-type-editor(:option-types="optionTypes")
-              hr
-              OptionTypeNewButton(:product-id="product.id")
+              option-type-editor(:product="product"
+                                 :option-types="optionTypes")
 
             section.section
               properties-columns(:errors="errors"
@@ -77,7 +76,7 @@
             variant-editable-unit(v-for="variant in variants"
                                   :variant="variant")
             hr
-            variant-new-button(:product-id="product.id")
+            variant-new-button(:product="product")
 
           //- 圖片管理
           b-tab-item(:label="pageTitleLocaleText('admin', 'products', 'images_management')"
@@ -132,7 +131,6 @@ import Product from '../../../../shared/resource_models/product'
 import Form from 'odd-form_object'
 import CategorySelector from './category-selector.vue'
 import OptionTypeEditor from './option-type-editor.vue'
-import OptionTypeNewButton from '../product_option_type/new-button.vue'
 import PropertiesColumns from './properties-columns.vue'
 import DescriptionColumn from './description-column.vue'
 import VariantNewButton from '../product_variant/new-button.vue'
@@ -145,7 +143,6 @@ export default {
   components: {
     CategorySelector,
     OptionTypeEditor,
-    OptionTypeNewButton,
     PropertiesColumns,
     DescriptionColumn,
     VariantNewButton,
