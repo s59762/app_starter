@@ -30,6 +30,7 @@ class Product::VariantSerializer < ApplicationSerializer
   attributes :id,
              :name,
              :sku,
+             :original_price,
              :sell_price,
              :discounted_price,
              :weight,
