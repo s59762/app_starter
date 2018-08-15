@@ -7,7 +7,7 @@ class Api::V1::Web::Products::VariantsController < Api::V1::Web::BaseController
 
     form.save
 
-    render json: form.model
+    render json: form.model, serializer: Product::VariantSerializer::Detail
   end
 
   def update
@@ -18,7 +18,7 @@ class Api::V1::Web::Products::VariantsController < Api::V1::Web::BaseController
 
     form.save
 
-    render json: form.model
+    render json: form.model, serializer: Product::VariantSerializer::Detail
   end
 
   private
