@@ -7,15 +7,15 @@
     .option-type-name
       span.name {{ optionType.name }}
       option-type-edit-button(:option-type="optionType")
-
-      option-value-new-button(:option-type-id="optionType.id")
+      option-value-new-button(:option-type="optionType")
 
     .option-values
       .option-value-unit(v-for="optionValue in relatedOptionValuesOf(optionType)"
                          :key="optionValue.id")
         .inner
           .value {{ optionValue.value }}
-          option-value-edit-button(:option-value="optionValue")
+          option-value-edit-button(:option-type="optionType"
+                                   :option-value="optionValue")
 
 </template>
 
