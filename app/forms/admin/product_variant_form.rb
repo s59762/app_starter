@@ -24,6 +24,7 @@ class Admin::ProductVariantForm < ApplicationForm
 
     sync
     assign_price_info_to_model
+    normalizing_option_value_ids
 
     model.save
   end
@@ -44,5 +45,9 @@ class Admin::ProductVariantForm < ApplicationForm
     price.each do |key, value|
       model.assign_attributes "#{key}_price".to_sym => value
     end
+  end
+
+  def normalizing_option_value_ids
+    option_value_ids.map!(&:to_i)
   end
 end
