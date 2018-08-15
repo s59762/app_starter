@@ -58,7 +58,7 @@
             section.section
               option-type-editor(:option-types="optionTypes")
               hr
-              OptionTypeNewButton(:product-id="product.id")
+              option-type-new-button(:product="product")
 
             section.section
               properties-columns(:errors="errors"
