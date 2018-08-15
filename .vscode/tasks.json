@@ -13,29 +13,19 @@
       }
     },
     {
+      "label": "restart all services",
+      "type": "shell",
+      "command": "bundle exec bin/restart",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "never",
+        "panel": "shared"
+      }
+    },
+    {
       "label": "regenerate JS I18n",
       "type": "shell",
       "command": "rake i18n:js:export",
-      "problemMatcher": [],
-      "presentation": {
-        "reveal": "never",
-        "panel": "shared"
-      }
-    },
-    {
-      "label": "Restart Web",
-      "type": "shell",
-      "command": "overmind restart web",
-      "problemMatcher": [],
-      "presentation": {
-        "reveal": "never",
-        "panel": "shared"
-      }
-    },
-    {
-      "label": "Restart Assets",
-      "type": "shell",
-      "command": "overmind restart assets",
       "problemMatcher": [],
       "presentation": {
         "reveal": "never",
