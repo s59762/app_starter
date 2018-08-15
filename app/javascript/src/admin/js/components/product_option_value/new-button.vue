@@ -1,7 +1,7 @@
 <template lang="pug">
 
 .vc-product-option-value-new-button
-  .button.is-small.is-info(@click="showForm")
+  .button.is-small.is-primary(@click="showForm")
     .icon
       i.fa.fa-plus
     span {{ actionLocaleText('admin', 'add_product_option_value') }}
