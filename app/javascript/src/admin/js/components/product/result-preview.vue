@@ -130,14 +130,16 @@ export default {
       if (this.isNewRecord) {
         if (this.form.option_types.length > 0) return this.form.option_types
       } else {
-        const result = this.$store.getters['productOptionTypes/all'].map(type => {
+        const result = this.$store.getters['productOptionTypes/all'].map(optionType => {
           return {
-            name: type.name,
-            options: type.option_values.map(option => {
-              return {
-                value: this.$store.getters['productOptionValues/find'](option.id).value
-              }
-            })
+            name: optionType.name,
+            options: this.$store.getters['productOptionValues/all']
+              .filter(optionValue => String(optionValue.option_type_id) === optionType.id)
+              .map(optionValue => {
+                return {
+                  value: optionValue.value
+                }
+              })
           }
         })
 
