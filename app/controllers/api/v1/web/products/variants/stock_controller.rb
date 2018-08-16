@@ -1,6 +1,9 @@
 class Api::V1::Web::Products::Variants::StockController < Api::V1::Web::BaseController
   def update
-    variant = Product::Variant.find(params[:product_variant_id])
+    variant = Product::Variant.includes(:product).find(params[:product_variant_id])
+
+    check_policy ProductPolicy.new(current_api_user, variant.product).update?
+
     form = Admin::ProductVariantStockForm.new(variant)
 
     form.current_admin = current_api_user
